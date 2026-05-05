@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<!-- saved from url=(0265)file:///C:/Users/lochan.yadav/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/01fe2075-1ecb-4435-b7f5-1a68464d92a0/7eaf45e5-5188-4817-8089-1edf048fd0ca/local_873923f9-3ddc-482f-a57e-c69cdce57a75/outputs/portfolio.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lochan Yadav — Lead SEO Analyst</title>
+  <link href="./Lochan Yadav — Lead SEO Analyst_files/css2" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #6C63FF;
+      --accent2: #00D9C0;
+      --bg: #0D0D0F;
+      --bg2: #13131A;
+      --card: #1A1A24;
+      --border: #2a2a3a;
+      --text: #E8E8F0;
+      --muted: #888899;
+      --radius: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 6%;
+      background: rgba(13,13,15,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 30px; }
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 6% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; max-width: 780px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.3);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section { padding: 90px 6%; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 540px;
+      margin-bottom: 52px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      width: 260px;
+      flex-shrink: 0;
+    }
+    .avatar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .avatar-placeholder {
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e1a40, #2a1a50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      z-index: 1;
+      border: 4px solid var(--bg2);
+    }
+
+    .about-text p { color: var(--muted); margin-bottom: 14px; font-size: 0.97rem; }
+
+    .stats-row { display: flex; gap: 36px; margin-top: 28px; flex-wrap: wrap; }
+    .stat { }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ── EXPERIENCE ── */
+    .timeline { display: flex; flex-direction: column; gap: 28px; }
+
+    .exp-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 30px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .exp-card:hover { border-color: var(--accent); }
+
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+    .exp-title { font-size: 1.05rem; font-weight: 700; }
+    .exp-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent2);
+      background: rgba(0,217,192,0.1);
+      border: 1px solid rgba(0,217,192,0.25);
+      padding: 3px 12px;
+      border-radius: 50px;
+    }
+    .exp-company { font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+    .exp-date { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; }
+    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .exp-list li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-left: 18px;
+      position: relative;
+    }
+    .exp-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+    .skills-section { display: flex; flex-direction: column; gap: 36px; }
+    .skill-group-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent2);
+      margin-bottom: 14px;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 7px 16px;
+      font-size: 0.83rem;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+    .project-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+    .thumb-1 { background: linear-gradient(135deg, #1a1540, #2a1060); }
+    .thumb-2 { background: linear-gradient(135deg, #0d2030, #103040); }
+    .thumb-3 { background: linear-gradient(135deg, #1a2a10, #203010); }
+
+    .project-body { padding: 22px; }
+    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.2);
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+    .project-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .project-desc { font-size: 0.86rem; color: var(--muted); margin-bottom: 16px; }
+    .project-metric {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent2);
+      background: rgba(0,217,192,0.08);
+      border: 1px solid rgba(0,217,192,0.2);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); }
+    .contact-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 50px 44px;
+      text-align: center;
+    }
+    .contact-card h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; }
+    .contact-card p { color: var(--muted); margin-bottom: 32px; font-size: 0.95rem; }
+
+    .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.87rem;
+      font-weight: 600;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .social-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .contact-email { font-size: 0.88rem; color: var(--muted); }
+    .contact-email a { color: var(--accent); text-decoration: none; }
+    .contact-email a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 26px 6%;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      nav ul { display: none; }
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .avatar-wrap { margin: 0 auto; }
+      .stats-row { justify-content: center; }
+      .contact-card { padding: 32px 20px; }
+      .exp-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Lochan Yadav</div>
+  <ul>
+    <li><a href="file:///C:/Users/lochan.yadav/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/01fe2075-1ecb-4435-b7f5-1a68464d92a0/7eaf45e5-5188-4817-8089-1edf048fd0ca/local_873923f9-3ddc-482f-a57e-c69cdce57a75/outputs/portfolio.html#about">About</a></li>
+    <li><a href="file:///C:/Users/lochan.yadav/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/01fe2075-1ecb-4435-b7f5-1a68464d92a0/7eaf45e5-5188-4817-8089-1edf048fd0ca/local_873923f9-3ddc-482f-a57e-c69cdce57a75/outputs/portfolio.html#experience">Experience</a></li>
+    <li><a href="file:///C:/Users/lochan.yadav/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/01fe2075-1ecb-4435-b7f5-1a68464d92a0/7eaf45e5-5188-4817-8089-1edf048fd0ca/local_873923f9-3ddc-482f-a57e-c69cdce57a75/outputs/portfolio.html#skills">Skills</a></li>
+    <li><a href="file:///C:/Users/lochan.yadav/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/01fe2075-1ecb-4435-b7f5-1a68464d92a0/7eaf45e5-5188-4817-8089-1edf048fd0ca/local_873923f9-3ddc-482f-a57e-c69cdce57a75/outputs/portfolio.html#projects">Projects</a></li>
+    <li><a href="file:///C:/Users/lochan.yadav/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/01fe2075-1ecb-4435-b7f5-1a68464d92a0/7eaf45e5-5188-4817-8089-1edf048fd0ca/local_873923f9-3ddc-482f-a57e-c69cdce57a75/outputs/portfolio.html#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">📍 Open to New Opportunities · Hindupur, AP</div>
+    <h1>
+      Hi, I'm <span class="gradient-text">Lochan Yadav</span><br>
+      Lead SEO Analyst
+    </h1>
+    <p class="hero-sub">
+      6+ years driving organic growth for fintech &amp; e-commerce brands through data-driven SEO strategies, technical audits, and algorithm-proof content frameworks.
+    </p>
+    <div class="hero-buttons">
+      <a href="file:///C:/Users/lochan.yadav/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/01fe2075-1ecb-4435-b7f5-1a68464d92a0/7eaf45e5-5188-4817-8089-1edf048fd0ca/local_873923f9-3ddc-482f-a57e-c69cdce57a75/outputs/portfolio.html#experience" class="btn btn-primary">View My Work</a>
+      <a href="file:///C:/Users/lochan.yadav/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/01fe2075-1ecb-4435-b7f5-1a68464d92a0/7eaf45e5-5188-4817-8089-1edf048fd0ca/local_873923f9-3ddc-482f-a57e-c69cdce57a75/outputs/portfolio.html#contact" class="btn btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="avatar-wrap">
+        <div class="avatar-placeholder">👨‍💻</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Results-driven SEO, one ranking at a time</h2>
+      <p>
+        I'm a Lead SEO Analyst based in Hindupur, Andhra Pradesh, currently at <strong style="color:var(--text)">BankBazaar, Bangalore</strong> — one of India's largest fintech platforms.
+      </p>
+      <p>
+        With 6+ years of hands-on experience, I specialize in technical SEO audits, Core Web Vitals optimization, GA4 analytics, and crafting keyword strategies that consistently push brands to the top of Google's SERPs.
+      </p>
+      <p>
+        I hold a B.E. in Computer Science &amp; Engineering, which gives me a strong technical edge when working with developers on site speed, crawlability, and structured data.
+      </p>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Years Exp.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Top Brands</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Rankings</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Work Experience</h2>
+  <p class="section-sub">A track record of growing organic traffic for leading brands in fintech and e-commerce.</p>
+
+  <div class="timeline">
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-title">Lead SEO Analyst</div>
+        <div class="exp-badge">Current Role</div>
+      </div>
+      <div class="exp-company">BankBazaar · Bangalore, India</div>
+      <div class="exp-date">July 2022 – Present</div>
+      <ul class="exp-list">
+        <li>Lead comprehensive SEO audits identifying and resolving technical errors to improve crawlability, indexation, and overall site health.</li>
+        <li>Analyze and adapt to Google's core and AI-driven algorithm updates, implementing strategic changes to maintain and grow organic rankings.</li>
+        <li>Build and maintain GA4 report structures for tracking key SEO KPIs, traffic trends, and conversion performance.</li>
+        <li>Optimize Core Web Vitals and Lighthouse scores to enhance page experience across BankBazaar's financial product pages.</li>
+        <li>Conduct in-depth competitor analysis and keyword research to identify growth opportunities in the fintech/BFSI domain.</li>
+        <li>Manage internal linking architecture, URL structures, meta tags, headings, and alt attributes for on-page excellence.</li>
+        <li>Oversee link-building campaigns including guest posting, local listings, and directory submissions to grow domain authority.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-title">Junior SEO Analyst</div>
+      </div>
+      <div class="exp-company">AI Labs Pvt Ltd · India</div>
+      <div class="exp-date">March 2020 – March 2022</div>
+      <ul class="exp-list">
+        <li>Executed on-page and off-page SEO strategies for product and service-oriented brands, driving first-page Google rankings for competitive keywords.</li>
+        <li>Conducted keyword research using Google Keyword Planner, Ahrefs, and SEMrush to guide content strategy.</li>
+        <li>Audited websites for technical issues (broken links, crawl errors, site speed) and coordinated fixes with developers.</li>
+        <li>Managed affiliate marketing partnerships — researched brands, built relationships, and tracked performance on coupon websites.</li>
+        <li>Monitored site analytics using Google Search Console and GA4 to report on traffic, impressions, and ranking improvements.</li>
+        <li>Implemented XML sitemaps, robots.txt, and webmaster tools configurations to improve search engine visibility.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Expertise</div>
+  <h2 class="section-title">Skills &amp; Tools</h2>
+  <p class="section-sub">A full toolkit covering every dimension of modern SEO — from technical foundations to analytics and content.</p>
+
+  <div class="skills-section">
+
+    <div>
+      <div class="skill-group-title">🔧 SEO Tools</div>
+      <div class="skill-pills">
+        <span class="pill">Ahrefs</span>
+        <span class="pill">SEMrush</span>
+        <span class="pill">Moz</span>
+        <span class="pill">Google Search Console</span>
+        <span class="pill">Google Keyword Planner</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="skill-group-title">📊 Analytics &amp; Reporting</div>
+      <div class="skill-pills">
+        <span class="pill">Google Analytics 4 (GA4)</span>
+        <span class="pill">Google Looker Studio</span>
+        <span class="pill">Google Tag Manager</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="skill-group-title">⚙️ Technical SEO</div>
+      <div class="skill-pills">
+        <span class="pill">Site Audits</span>
+        <span class="pill">Core Web Vitals</span>
+        <span class="pill">Lighthouse Optimization</span>
+        <span class="pill">XML Sitemaps</span>
+        <span class="pill">Robots.txt</span>
+        <span class="pill">Disavow Tool</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="skill-group-title">📝 On-Page SEO</div>
+      <div class="skill-pills">
+        <span class="pill">Keyword Research</span>
+        <span class="pill">Title Tags</span>
+        <span class="pill">Meta Descriptions</span>
+        <span class="pill">URL Structure</span>
+        <span class="pill">Internal Linking</span>
+        <span class="pill">Anchor Text</span>
+        <span class="pill">Alt Tags</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="skill-group-title">🔗 Off-Page SEO</div>
+      <div class="skill-pills">
+        <span class="pill">Link Building</span>
+        <span class="pill">Guest Blogging</span>
+        <span class="pill">Local Listings</span>
+        <span class="pill">Directory Submissions</span>
+        <span class="pill">Blog Commenting</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="skill-group-title">🛠️ CMS &amp; Tools</div>
+      <div class="skill-pills">
+        <span class="pill">WordPress</span>
+        <span class="pill">Google Sheets</span>
+        <span class="pill">Microsoft Excel</span>
+        <span class="pill">PowerPoint</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS / CASE STUDIES -->
+<section id="projects">
+  <div class="section-label">Case Studies</div>
+  <h2 class="section-title">SEO Wins &amp; Projects</h2>
+  <p class="section-sub">Real results from real campaigns — replace these with your actual numbers and case studies.</p>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-thumb thumb-1">📈</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Technical SEO</span>
+          <span class="tag">Core Web Vitals</span>
+          <span class="tag">Fintech</span>
+        </div>
+        <div class="project-title">BankBazaar – Site Health Overhaul</div>
+        <div class="project-desc">Led a comprehensive technical SEO audit across BankBazaar's financial product pages, fixing crawlability issues and optimizing Core Web Vitals and Lighthouse scores.</div>
+        <div class="project-metric">📊 Result: Add your key metric here (e.g. +40% organic traffic)</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb thumb-2">🔑</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Keyword Research</span>
+          <span class="tag">GA4</span>
+          <span class="tag">BFSI</span>
+        </div>
+        <div class="project-title">BFSI Keyword Strategy</div>
+        <div class="project-desc">Conducted in-depth competitor analysis and keyword research in the fintech/BFSI domain, building a GA4 reporting framework to track ranking improvements and conversions.</div>
+        <div class="project-metric">📊 Result: Add your key metric here (e.g. 50+ Page-1 rankings)</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb thumb-3">🔗</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Link Building</span>
+          <span class="tag">Off-Page SEO</span>
+          <span class="tag">Domain Authority</span>
+        </div>
+        <div class="project-title">Domain Authority Growth Campaign</div>
+        <div class="project-desc">Managed link-building campaigns including guest posting, local listings, and directory submissions — steadily growing domain authority for competitive fintech keywords.</div>
+        <div class="project-metric">📊 Result: Add your key metric here (e.g. DA increased from X to Y)</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-card">
+    <h3>Let's Connect 🤝</h3>
+    <p>Looking to boost your brand's organic presence? I'd love to talk about how I can help.</p>
+    <div class="contact-links">
+      <a href="https://linkedin.com/in/lochan-yadav-0a26261a3" class="social-btn" target="_blank">
+        💼 LinkedIn
+      </a>
+      <a href="tel:+918951712138" class="social-btn">
+        📞 +91-8951712138
+      </a>
+    </div>
+    <div class="contact-email">
+      Or email me at <a href="mailto:lochan.yadavgolla@gmail.com">lochan.yadavgolla@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed &amp; built by <strong>Lochan Yadav</strong> · Lead SEO Analyst · 2026</p>
+</footer>
+
+
+
+</body></html>
