@@ -1,0 +1,11 @@
+# robots.txt — lochan.online
+# Last updated: May 2026
+
+User-agent: *
+Allow: /
+
+# Disallow temporary/system files
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://lochan.online/sitemap.xml

@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lochan Yadav | Lead SEO Analyst</title>
+<meta name="description" content="Lochan Yadav — Lead SEO Analyst with 6+ years driving organic growth for fintech & e-commerce brands. SEO tools, case studies, and insights.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lochan.online/">
+<meta property="og:title" content="Lochan Yadav | Lead SEO Analyst">
+<meta property="og:description" content="6+ years of SEO expertise in fintech. Technical audits, keyword strategy, GA4 analytics and more.">
+<meta property="og:url" content="https://lochan.online/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#F8F6F1;
+  --bg2:#F0EDE5;
+  --bg3:#E8E3D8;
+  --card:#FFFFFF;
+  --border:#DDD8CC;
+  --border2:#C9C2B4;
+  --ink:#1A1612;
+  --ink2:#3D3529;
+  --muted:#6B6152;
+  --muted2:#9E9285;
+  --accent:#7C3AED;
+  --accent2:#6D28D9;
+  --accent-lt:rgba(124,58,237,0.08);
+  --accent-mid:rgba(124,58,237,0.18);
+  --gold:#C07C2A;
+  --gold-lt:#F5ECD8;
+  --green:#167A4A;
+  --white:#FFFFFF;
+  --nav-h:68px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+
+/* ─── PROGRESS BAR ─── */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;transition:width .1s}
+
+/* ════════════════════════════════
+   NAVBAR
+════════════════════════════════ */
+nav{
+  position:fixed;top:3px;left:0;right:0;z-index:900;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;
+  background:rgba(248,246,241,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:all .3s;
+}
+nav.scrolled{background:rgba(248,246,241,0.99);box-shadow:0 2px 20px rgba(26,22,18,.06)}
+
+.nav-logo{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:1.2rem;
+  text-decoration:none;color:var(--ink);letter-spacing:-.01em;
+}
+.nav-logo span{color:var(--accent)}
+
+.nav-links{list-style:none;display:flex;align-items:center;gap:2px}
+.nav-links a{
+  text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;
+  padding:7px 12px;border-radius:6px;transition:all .2s;letter-spacing:.01em;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);background:var(--bg2)}
+.nav-links .hire{
+  background:var(--accent);color:#fff;padding:8px 20px;border-radius:6px;
+  font-weight:700;margin-left:8px;letter-spacing:.02em;
+}
+.nav-links .hire:hover{background:var(--accent2);color:#fff;transform:translateY(-1px)}
+
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mob-nav{
+  display:none;position:fixed;top:calc(var(--nav-h) + 3px);left:0;right:0;
+  background:rgba(248,246,241,.98);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);z-index:800;
+  flex-direction:column;padding:16px 6% 24px;gap:2px;
+}
+.mob-nav.open{display:flex}
+.mob-nav a{
+  display:block;padding:11px 14px;border-radius:8px;
+  text-decoration:none;color:var(--ink2);font-size:.92rem;font-weight:500;
+  transition:all .2s;border-bottom:1px solid var(--border);
+}
+.mob-nav a:last-child{border:none}
+.mob-nav a:hover{color:var(--accent);background:var(--accent-lt)}
+.mob-nav .m-hire{
+  display:block;margin-top:12px;text-align:center;
+  padding:12px;border-radius:8px;background:var(--accent);
+  color:#fff;font-weight:700;text-decoration:none;border:none;
+}
+
+/* ════════════════════════════════
+   SECTION COMMONS
+════════════════════════════════ */
+section{padding:100px 6%}
+section:nth-child(even){background:var(--bg2)}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:28px;height:1.5px;background:var(--accent)}
+
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;
+  color:var(--ink);letter-spacing:-.025em;line-height:1.15;
+  margin-bottom:12px;
+}
+.sec-sub{color:var(--muted);font-size:.92rem;max-width:560px;line-height:1.85;margin-bottom:52px}
+.center{text-align:center}
+.center .sec-sub{margin:0 auto 52px}
+.center .eyebrow{justify-content:center}
+
+/* Reveal animation */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rv.up{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+.rv-d4{transition-delay:.32s}.rv-d5{transition-delay:.40s}.rv-d6{transition-delay:.48s}
+
+/* Accent text */
+.at{color:var(--accent)}
+
+/* Pill badge */
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;border-radius:50px;font-size:.7rem;font-weight:600;
+}
+.pill-green{background:rgba(22,122,74,.08);border:1px solid rgba(22,122,74,.2);color:var(--green)}
+.pill-green::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Buttons */
+.btn-primary{
+  padding:13px 28px;border-radius:8px;
+  background:var(--accent);color:#fff;
+  font-weight:700;font-size:.86rem;text-decoration:none;
+  box-shadow:0 4px 16px rgba(124,58,237,.25);
+  transition:all .25s;display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer;
+}
+.btn-primary:hover{background:var(--accent2);box-shadow:0 8px 24px rgba(124,58,237,.35);transform:translateY(-2px)}
+.btn-secondary{
+  padding:13px 28px;border-radius:8px;
+  border:1.5px solid var(--border2);color:var(--ink2);
+  font-weight:600;font-size:.86rem;text-decoration:none;
+  transition:all .25s;display:inline-flex;align-items:center;gap:7px;
+  background:var(--card);
+}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* ════════════════════════════════
+   HERO
+════════════════════════════════ */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding-top:calc(var(--nav-h) + 40px);
+  padding-bottom:80px;
+  position:relative;overflow:hidden;
+  background:var(--bg);
+}
+.hero-grid-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+.hero-orb{position:absolute;pointer-events:none;border-radius:50%}
+.hero-orb-a{top:-15%;right:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.07) 0%,transparent 65%)}
+.hero-orb-b{bottom:-20%;left:-8%;width:450px;height:450px;background:radial-gradient(circle,rgba(192,124,42,.06) 0%,transparent 65%)}
+
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 420px;
+  align-items:center;gap:80px;width:100%;
+}
+.hero-greeting{font-size:.9rem;color:var(--muted);margin-bottom:10px;font-weight:400}
+.hero-greeting strong{color:var(--accent);font-weight:600}
+.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,6vw,4.6rem);
+  font-weight:900;color:var(--ink);
+  line-height:1.06;letter-spacing:-.03em;margin-bottom:12px;
+}
+.hero-name .hl{color:var(--accent)}
+.typed-row{
+  display:flex;align-items:center;gap:8px;
+  font-size:clamp(.9rem,1.8vw,1.25rem);font-weight:500;
+  margin-bottom:20px;min-height:2em;color:var(--ink2);
+}
+.typed-pre{color:var(--muted);font-weight:400}
+.typed-cur{
+  color:var(--accent);font-weight:700;
+  border-right:2.5px solid var(--accent);padding-right:3px;
+  animation:cblink .75s step-end infinite;
+}
+@keyframes cblink{50%{border-color:transparent}}
+.hero-desc{font-size:.9rem;color:var(--muted);max-width:500px;line-height:1.95;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.hero-stats{display:flex;gap:0;flex-wrap:wrap}
+.hs-item{display:flex;flex-direction:column;padding-right:28px}
+.hs-item+.hs-item{padding-left:28px;border-left:1px solid var(--border)}
+.hs-num{
+  font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;
+  color:var(--accent);line-height:1;
+}
+.hs-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;font-weight:500}
+
+/* Hero photo */
+.hero-photo-wrap{position:relative;display:flex;justify-content:center}
+.hero-photo-frame{
+  width:360px;height:420px;border-radius:16px;
+  border:2px solid var(--border2);
+  background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9rem;position:relative;overflow:hidden;
+  box-shadow:0 20px 60px rgba(26,22,18,.1);
+}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.hero-photo-frame::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(124,58,237,.04),rgba(192,124,42,.04));
+}
+.hero-badge{
+  position:absolute;bottom:-16px;right:-16px;
+  background:var(--accent);color:#fff;
+  font-family:'Playfair Display',serif;font-weight:800;
+  padding:14px 18px;border-radius:12px;text-align:center;
+  box-shadow:0 8px 24px rgba(124,58,237,.3);line-height:1.3;font-size:.8rem;
+}
+.hero-badge strong{font-size:1.6rem;display:block}
+.hero-avail-badge{
+  position:absolute;top:-12px;left:-12px;
+}
+
+/* ════════════════════════════════
+   ABOUT
+════════════════════════════════ */
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;align-items:center;gap:72px}
+.about-img-box{
+  border-radius:16px;overflow:hidden;aspect-ratio:4/4.5;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:8rem;position:relative;
+  box-shadow:0 8px 32px rgba(26,22,18,.07);
+}
+.about-img-box img{width:100%;height:100%;object-fit:cover}
+
+.about-body h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:800;color:var(--ink);
+  margin-bottom:16px;line-height:1.35;
+}
+.about-body p{font-size:.9rem;color:var(--muted);margin-bottom:14px;line-height:1.9}
+.about-details{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px 24px;margin:24px 0;
+  padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+}
+.ad-item{display:flex;flex-direction:column;gap:3px}
+.ad-label{font-size:.62rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+.ad-val{font-size:.83rem;color:var(--ink);font-weight:500}
+.ad-val a{color:var(--accent);text-decoration:none;font-weight:600}
+.about-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+
+/* ════════════════════════════════
+   SERVICES
+════════════════════════════════ */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:32px 28px;
+  position:relative;overflow:hidden;transition:all .3s;
+}
+.svc-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--gold));
+  transform:scaleX(0);transform-origin:left;transition:transform .35s;
+}
+.svc-card:hover::after{transform:scaleX(1)}
+.svc-card:hover{border-color:rgba(124,58,237,.2);transform:translateY(-6px);box-shadow:0 20px 48px rgba(26,22,18,.1)}
+.svc-num{
+  font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;
+  color:rgba(124,58,237,.07);line-height:1;margin-bottom:14px;
+}
+.svc-ico{font-size:1.8rem;display:block;margin-bottom:14px}
+.svc-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:10px}
+.svc-desc{font-size:.83rem;color:var(--muted);line-height:1.8}
+
+/* ════════════════════════════════
+   RESUME (Timeline)
+════════════════════════════════ */
+.resume-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.rc-title{
+  font-family:'Playfair Display',serif;font-size:1.05rem;
+  font-weight:700;color:var(--ink);margin-bottom:28px;
+  display:flex;align-items:center;gap:10px;
+  padding-bottom:14px;border-bottom:1px solid var(--border);
+}
+.rc-ico{
+  width:34px;height:34px;border-radius:8px;
+  background:var(--accent-lt);border:1px solid var(--accent-mid);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;
+}
+.tl{position:relative;padding-left:24px}
+.tl::before{content:'';position:absolute;top:8px;bottom:0;left:6px;width:1.5px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:22px}
+.tl-dot{
+  position:absolute;left:-24px;top:7px;
+  width:13px;height:13px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 4px rgba(124,58,237,.12);
+}
+.tl-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:20px 22px;transition:border-color .2s,transform .2s;
+  box-shadow:0 2px 8px rgba(26,22,18,.04);
+}
+.tl-card:hover{border-color:rgba(124,58,237,.25);transform:translateX(4px)}
+.tl-period{
+  display:inline-block;font-size:.65rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:var(--accent);color:#fff;
+  padding:3px 10px;border-radius:4px;margin-bottom:10px;
+}
+.tl-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+.tl-org{font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:10px}
+.tl-body{font-size:.8rem;color:var(--muted);line-height:1.75}
+.tl-body li{margin-left:16px;margin-bottom:3px}
+
+/* ════════════════════════════════
+   SKILLS
+════════════════════════════════ */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.skill-section-title{
+  font-family:'Playfair Display',serif;font-size:.95rem;font-weight:800;
+  color:var(--ink);margin-bottom:22px;padding-bottom:10px;
+  border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;
+}
+.skill-bars{display:flex;flex-direction:column;gap:16px}
+.sb-top{display:flex;justify-content:space-between;margin-bottom:7px}
+.sb-name{font-size:.83rem;font-weight:500;color:var(--ink2)}
+.sb-pct{font-size:.73rem;font-weight:700;color:var(--accent)}
+.sb-track{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.sb-fill{height:100%;width:0%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+
+.tags-block{display:flex;flex-direction:column;gap:22px}
+.tb-cat-label{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px}
+.skill-chip{
+  padding:5px 13px;border-radius:5px;font-size:.77rem;font-weight:500;
+  color:var(--muted);background:var(--card);border:1px solid var(--border);
+  transition:all .2s;cursor:default;
+}
+.skill-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
+
+/* ════════════════════════════════
+   TOOLS SECTION
+════════════════════════════════ */
+#tools{background:var(--bg2)}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tool-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;transition:all .3s;
+  display:flex;flex-direction:column;
+}
+.tool-card:hover{border-color:rgba(124,58,237,.25);transform:translateY(-5px);box-shadow:0 16px 40px rgba(26,22,18,.1)}
+.tool-card-top{
+  height:130px;display:flex;align-items:center;justify-content:center;
+  font-size:2.8rem;position:relative;overflow:hidden;
+}
+.tc1{background:linear-gradient(135deg,#F0EDE5,#E8E3D8)}
+.tc2{background:linear-gradient(135deg,#EDE5F0,#DCD0EC)}
+.tc3{background:linear-gradient(135deg,#E5F0EE,#D0E8E3)}
+.tc4{background:linear-gradient(135deg,#F0E8E5,#ECDCD8)}
+.tc5{background:linear-gradient(135deg,#E5EAF0,#D0DCE8)}
+.tc6{background:linear-gradient(135deg,#F0EFE5,#E8E4D0)}
+.tc7{background:linear-gradient(135deg,#EEE5F0,#E0D0EC)}
+.tc8{background:linear-gradient(135deg,#E5F0E8,#D0E8D4)}
+.tc9{background:linear-gradient(135deg,#F0E5E9,#ECDCD4)}
+.tc10{background:linear-gradient(135deg,#E8EDF0,#D4DCE8)}
+
+.tool-badge{
+  position:absolute;top:10px;right:10px;
+  font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+  padding:3px 9px;border-radius:4px;
+}
+.badge-web{background:rgba(22,122,74,.1);color:var(--green);border:1px solid rgba(22,122,74,.2)}
+.badge-py{background:rgba(124,58,237,.1);color:var(--accent);border:1px solid rgba(124,58,237,.2)}
+.badge-xl{background:rgba(192,124,42,.1);color:var(--gold);border:1px solid rgba(192,124,42,.2)}
+
+.tool-card-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.tool-cat{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:7px}
+.tool-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:7px}
+.tool-desc{font-size:.79rem;color:var(--muted);line-height:1.72;flex:1;margin-bottom:14px}
+.tool-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.78rem;font-weight:700;color:var(--accent);text-decoration:none;
+  transition:gap .2s;
+}
+.tool-link:hover{gap:10px;color:var(--accent2)}
+.tool-offline{
+  font-size:.76rem;color:var(--muted2);
+  display:flex;align-items:center;gap:5px;
+}
+
+/* ════════════════════════════════
+   PORTFOLIO
+════════════════════════════════ */
+.pf-filter{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.pf-btn{
+  padding:7px 18px;border-radius:6px;
+  border:1px solid var(--border2);background:var(--card);
+  color:var(--muted);font-size:.78rem;font-weight:600;
+  cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;
+}
+.pf-btn:hover,.pf-btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pf-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;transition:all .3s;
+}
+.pf-card:hover{border-color:rgba(124,58,237,.25);transform:translateY(-5px);box-shadow:0 16px 40px rgba(26,22,18,.1)}
+.pf-top{
+  height:160px;display:flex;align-items:center;justify-content:center;
+  font-size:3rem;position:relative;overflow:hidden;
+}
+.c1{background:linear-gradient(135deg,#EDE5F5,#DDD0EC)}
+.c2{background:linear-gradient(135deg,#E5EBF5,#D0DCEC)}
+.c3{background:linear-gradient(135deg,#E5F0EE,#D0E8E3)}
+.c4{background:linear-gradient(135deg,#F0E8E5,#ECD8D0)}
+.c5{background:linear-gradient(135deg,#F5EDE5,#ECDDD0)}
+.c6{background:linear-gradient(135deg,#EEF0E5,#E4ECCE)}
+.pf-hover{
+  position:absolute;inset:0;
+  background:rgba(124,58,237,.9);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .3s;
+}
+.pf-card:hover .pf-hover{opacity:1}
+.pf-hover span{color:#fff;font-weight:700;font-size:.84rem;letter-spacing:.04em}
+.pf-bottom{padding:20px}
+.pf-cat{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:7px}
+.pf-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:7px}
+.pf-desc{font-size:.79rem;color:var(--muted);line-height:1.72;margin-bottom:14px}
+.pf-metric{
+  display:inline-block;font-size:.73rem;font-weight:700;
+  color:var(--accent);background:var(--accent-lt);border:1px solid var(--accent-mid);
+  padding:4px 12px;border-radius:5px;
+}
+
+/* ════════════════════════════════
+   BLOG PREVIEW
+════════════════════════════════ */
+#blog-preview{background:var(--bg)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;transition:all .25s;
+  display:flex;flex-direction:column;
+}
+.blog-card:hover{border-color:rgba(124,58,237,.2);transform:translateY(-4px);box-shadow:0 14px 36px rgba(26,22,18,.09)}
+.blog-card-img{
+  height:170px;display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;position:relative;overflow:hidden;
+}
+.bi1{background:linear-gradient(135deg,#F0EDE5 0%,#DDD5EC 100%)}
+.bi2{background:linear-gradient(135deg,#E5EDF0 0%,#D0DFF0 100%)}
+.bi3{background:linear-gradient(135deg,#E5F0EC 0%,#D0EAE0 100%)}
+.blog-card-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.blog-cat{
+  font-size:.61rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  padding:3px 10px;border-radius:4px;margin-bottom:12px;display:inline-block;
+}
+.cat-aeo{background:var(--gold-lt);color:var(--gold)}
+.cat-geo{background:var(--accent-lt);color:var(--accent)}
+.cat-tech{background:rgba(22,122,74,.08);color:var(--green)}
+.blog-title{
+  font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:800;
+  line-height:1.35;color:var(--ink);margin-bottom:10px;letter-spacing:-.01em;
+}
+.blog-card:hover .blog-title{color:var(--accent)}
+.blog-exc{font-size:.8rem;color:var(--muted);line-height:1.72;flex:1;margin-bottom:14px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.blog-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
+.blog-meta{font-size:.7rem;color:var(--muted2)}
+.blog-read{font-size:.75rem;font-weight:700;color:var(--accent);text-decoration:none;transition:gap .18s;display:flex;align-items:center;gap:4px}
+.blog-card:hover .blog-read{gap:8px}
+
+.blog-cta-wrap{text-align:center;margin-top:40px}
+
+/* ════════════════════════════════
+   TESTIMONIALS
+════════════════════════════════ */
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.testi-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:30px;transition:all .25s;
+}
+.testi-card:hover{border-color:rgba(124,58,237,.2);transform:translateY(-3px);box-shadow:0 10px 32px rgba(26,22,18,.08)}
+.testi-q{font-family:'Playfair Display',serif;font-size:2.5rem;line-height:1;margin-bottom:12px;color:var(--accent)}
+.testi-txt{font-size:.87rem;color:var(--muted);line-height:1.88;font-style:italic;margin-bottom:22px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--accent-lt);border:2px solid var(--accent-mid);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
+}
+.testi-name{font-weight:700;font-size:.87rem;color:var(--ink)}
+.testi-role{font-size:.72rem;color:var(--accent);font-weight:600}
+
+/* ════════════════════════════════
+   EDUCATION
+════════════════════════════════ */
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.edu-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:28px;transition:all .25s;position:relative;overflow:hidden;
+}
+.edu-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--gold));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.edu-card:hover::after{transform:scaleX(1)}
+.edu-card:hover{border-color:rgba(124,58,237,.2);transform:translateY(-4px)}
+.edu-ico{font-size:2rem;margin-bottom:14px}
+.edu-deg{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.edu-school{font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:5px}
+.edu-yr{font-size:.73rem;color:var(--muted)}
+
+/* ════════════════════════════════
+   CONTACT
+════════════════════════════════ */
+.contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start}
+.contact-left h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--ink);margin-bottom:12px}
+.contact-left p{font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:30px}
+.contact-items{display:flex;flex-direction:column;gap:14px}
+.ci{display:flex;align-items:flex-start;gap:14px}
+.ci-box{
+  width:42px;height:42px;border-radius:10px;flex-shrink:0;
+  background:var(--accent-lt);border:1px solid var(--accent-mid);
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;
+}
+.ci-label{font-size:.6rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px;font-weight:600}
+.ci-val{font-size:.84rem;color:var(--ink);font-weight:500}
+.ci-val a{color:var(--accent);text-decoration:none;font-weight:600}
+
+.contact-form{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:36px;
+  display:flex;flex-direction:column;gap:16px;
+  box-shadow:0 4px 20px rgba(26,22,18,.05);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.fg input,.fg textarea{
+  background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:8px;padding:11px 14px;color:var(--ink);
+  font-size:.87rem;font-family:'Inter',sans-serif;
+  outline:none;width:100%;transition:border-color .2s;
+}
+.fg input:focus,.fg textarea:focus{border-color:var(--accent)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted2);font-size:.83rem}
+.fg textarea{resize:vertical;min-height:120px}
+.submit-btn{
+  padding:13px 28px;border-radius:8px;border:none;cursor:pointer;
+  background:var(--accent);color:#fff;font-weight:700;font-size:.88rem;
+  font-family:'Poppins',sans-serif;
+  box-shadow:0 4px 16px rgba(124,58,237,.25);
+  transition:all .25s;width:100%;
+}
+.submit-btn:hover{background:var(--accent2);box-shadow:0 8px 24px rgba(124,58,237,.35);transform:translateY(-2px)}
+
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.55);
+  padding:52px 6% 32px;
+}
+.footer-inner{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:28px;
+}
+.foot-brand h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:8px}
+.foot-brand h3 span{color:var(--accent)}
+.foot-brand p{font-size:.8rem;line-height:1.8;max-width:220px;margin-bottom:18px}
+.foot-social{display:flex;gap:8px}
+.foot-soc{
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;color:rgba(255,255,255,.5);font-size:.85rem;
+  transition:all .2s;font-weight:700;
+}
+.foot-soc:hover{border-color:rgba(124,58,237,.5);color:var(--accent);background:rgba(124,58,237,.1)}
+.foot-col h4{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.7);margin-bottom:16px}
+.foot-col a{display:block;font-size:.8rem;color:rgba(255,255,255,.45);text-decoration:none;padding:3px 0;transition:color .2s}
+.foot-col a:hover{color:rgba(255,255,255,.85)}
+.foot-copy{text-align:center;font-size:.74rem;color:rgba(255,255,255,.3)}
+.foot-copy strong{color:rgba(255,255,255,.55)}
+
+/* ════════════════════════════════
+   BACK TO TOP
+════════════════════════════════ */
+.btt{
+  position:fixed;bottom:28px;right:28px;z-index:800;
+  width:44px;height:44px;border-radius:10px;
+  background:var(--accent);color:#fff;
+  border:none;cursor:pointer;font-size:1rem;
+  box-shadow:0 4px 16px rgba(124,58,237,.35);
+  transition:all .3s;opacity:0;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.btt.show{opacity:1;pointer-events:all}
+.btt:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,58,237,.5)}
+
+/* ════════════════════════════════
+   RESPONSIVE
+════════════════════════════════ */
+@media(max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .pf-grid{grid-template-columns:repeat(2,1fr)}
+  .tools-grid{grid-template-columns:repeat(2,1fr)}
+  .blog-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  section{padding:80px 5%}
+  #hero{padding-top:calc(var(--nav-h) + 24px);padding-bottom:60px}
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .hero-photo-wrap{order:-1}
+  .hero-photo-frame{width:260px;height:300px;font-size:6rem}
+  .hero-badge{display:none}
+  .hero-btns{justify-content:center}
+  .hero-stats{justify-content:center;gap:0}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-img-box{max-width:260px;margin:0 auto;aspect-ratio:1}
+  .about-details{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .resume-cols{grid-template-columns:1fr}
+  .skills-layout{grid-template-columns:1fr}
+  .tools-grid{grid-template-columns:1fr}
+  .pf-grid{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .contact-layout{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .btt{bottom:20px;right:20px}
+}
+@media(max-width:480px){
+  .hero-name{font-size:2.6rem}
+  .sec-title{font-size:1.7rem}
+  .hero-stats{flex-direction:column;gap:16px}
+  .hs-item+.hs-item{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:16px}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Lochan <span>Yadav</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="courses.html">Courses</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="mailto:lochan.yadavgolla@gmail.com" class="hire">Hire Me</a></li>
+  </ul>
+  <button class="ham" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <a href="#about" onclick="cn()">About</a>
+  <a href="#services" onclick="cn()">Services</a>
+  <a href="#tools" onclick="cn()">Tools</a>
+  <a href="#resume" onclick="cn()">Resume</a>
+  <a href="#skills" onclick="cn()">Skills</a>
+  <a href="#portfolio" onclick="cn()">Portfolio</a>
+  <a href="blog.html" onclick="cn()">Blog</a>
+  <a href="courses.html" onclick="cn()">Courses</a>
+  <a href="#contact" onclick="cn()">Contact</a>
+  <a href="mailto:lochan.yadavgolla@gmail.com" class="m-hire" onclick="cn()">✉ Hire Me</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb hero-orb-a"></div>
+  <div class="hero-orb hero-orb-b"></div>
+  <div class="hero-inner">
+    <div class="rv up">
+      <div class="hero-avail-badge"><span class="pill pill-green">Available for New Opportunities</span></div>
+      <br>
+      <p class="hero-greeting">Hello, I'm <strong>Lochan Yadav</strong> 👋</p>
+      <h1 class="hero-name">Lead <span class="hl">SEO</span><br>Analyst</h1>
+      <div class="typed-row">
+        <span class="typed-pre">I specialize in&nbsp;</span>
+        <span class="typed-cur" id="tcur">Technical SEO</span>
+      </div>
+      <p class="hero-desc">Results-driven SEO professional with <strong style="color:var(--ink)">6+ years</strong> of experience building data-driven organic growth strategies for leading <strong style="color:var(--ink)">fintech &amp; e-commerce brands</strong>. Currently at BankBazaar — India's largest financial platform.</p>
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn-primary">📈 View My Work</a>
+        <a href="#contact" class="btn-secondary">✉ Get in Touch</a>
+        <a href="blog.html" class="btn-secondary">📝 Read My Blog</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs-item"><span class="hs-num" data-c="6">6+</span><span class="hs-label">Years Exp.</span></div>
+        <div class="hs-item"><span class="hs-num" data-c="2">2+</span><span class="hs-label">Top Brands</span></div>
+        <div class="hs-item"><span class="hs-num" data-c="10">10+</span><span class="hs-label">SEO Tools Built</span></div>
+        <div class="hs-item"><span class="hs-num" data-c="100">100+</span><span class="hs-label">Keywords Ranked</span></div>
+      </div>
+    </div>
+    <div class="hero-photo-wrap rv rv-d2 up">
+      <div class="hero-photo-frame">
+        👨‍💻
+        <!-- Replace emoji with: <img src="photo.jpg" alt="Lochan Yadav"> -->
+        <div class="hero-badge"><strong>6+</strong>Years of<br>Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="rv up">
+      <div class="about-img-box">👨‍💻
+        <!-- Replace with <img src="photo.jpg" alt="Lochan Yadav"> -->
+      </div>
+    </div>
+    <div class="about-body rv rv-d2 up">
+      <div class="eyebrow">Get to know me</div>
+      <h2 class="sec-title">About Me</h2>
+      <p>I'm a <strong style="color:var(--ink)">Lead SEO Analyst</strong> at BankBazaar, Bangalore — India's largest online financial marketplace. With 6+ years of hands-on experience, I build organic growth systems that consistently push brands to the top of Google's SERPs.</p>
+      <p>My B.E. in Computer Science gives me a genuine technical edge when collaborating with developers on crawlability, Core Web Vitals, and site architecture — a rare combination in the SEO world. I also build custom SEO automation tools that save my team hours every week.</p>
+      <div class="about-details">
+        <div class="ad-item"><span class="ad-label">Full Name</span><span class="ad-val">Lochan Yadav</span></div>
+        <div class="ad-item"><span class="ad-label">Role</span><span class="ad-val">Lead SEO Analyst</span></div>
+        <div class="ad-item"><span class="ad-label">Location</span><span class="ad-val">Hindupur, Andhra Pradesh</span></div>
+        <div class="ad-item"><span class="ad-label">Phone</span><span class="ad-val">+91-8951712138</span></div>
+        <div class="ad-item"><span class="ad-label">Email</span><span class="ad-val"><a href="mailto:lochan.yadavgolla@gmail.com">lochan.yadavgolla@gmail.com</a></span></div>
+        <div class="ad-item"><span class="ad-label">LinkedIn</span><span class="ad-val"><a href="https://linkedin.com/in/lochan-yadav-0a26261a3" target="_blank">View Profile →</a></span></div>
+        <div class="ad-item"><span class="ad-label">Availability</span><span class="ad-val" style="color:var(--green)">✓ Open to Work</span></div>
+        <div class="ad-item"><span class="ad-label">Work Type</span><span class="ad-val">Full-time / Remote / Hybrid</span></div>
+      </div>
+      <div class="about-btns">
+        <a href="mailto:lochan.yadavgolla@gmail.com" class="btn-primary">Hire Me</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="center rv up">
+    <div class="eyebrow">What I Do</div>
+    <h2 class="sec-title">My Services</h2>
+    <p class="sec-sub">End-to-end SEO capability — from deep technical audits to content strategy and authority building across fintech and e-commerce verticals.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card rv rv-d1 up"><div class="svc-num">01</div><span class="svc-ico">⚙️</span><div class="svc-name">Technical SEO Audits</div><div class="svc-desc">Comprehensive site health audits covering crawlability, indexation, Core Web Vitals, Lighthouse optimization, XML sitemaps, robots.txt, and structured data — with dev-ready fix plans.</div></div>
+    <div class="svc-card rv rv-d2 up"><div class="svc-num">02</div><span class="svc-ico">🔑</span><div class="svc-name">Keyword Research &amp; Strategy</div><div class="svc-desc">In-depth competitor analysis and keyword mapping for BFSI, fintech, and e-commerce using Ahrefs, SEMrush, and Google Keyword Planner to find high-ROI ranking opportunities.</div></div>
+    <div class="svc-card rv rv-d3 up"><div class="svc-num">03</div><span class="svc-ico">📊</span><div class="svc-name">GA4 Analytics &amp; Reporting</div><div class="svc-desc">Custom GA4 and Looker Studio dashboards tracking SEO KPIs, traffic trends, and conversions — giving leadership clear data-driven visibility into organic growth.</div></div>
+    <div class="svc-card rv rv-d4 up"><div class="svc-num">04</div><span class="svc-ico">📝</span><div class="svc-name">On-Page Optimization</div><div class="svc-desc">Full on-page audits: title tags, meta descriptions, URL structures, H-tags, alt attributes, internal linking, and anchor text — optimized for both users and search engines.</div></div>
+    <div class="svc-card rv rv-d5 up"><div class="svc-num">05</div><span class="svc-ico">🤖</span><div class="svc-name">AEO &amp; GEO Optimization</div><div class="svc-desc">Answer Engine Optimization and Generative Engine Optimization — structuring content to rank in AI-powered search, featured snippets, and conversational AI platforms like ChatGPT and Gemini.</div></div>
+    <div class="svc-card rv rv-d6 up"><div class="svc-num">06</div><span class="svc-ico">🔧</span><div class="svc-name">SEO Automation &amp; Tooling</div><div class="svc-desc">Custom Python and web-based SEO tools to automate audits, tracking, and reporting — from broken link detectors to keyword cannibalization analyzers. I build tools that save hours every week.</div></div>
+  </div>
+</section>
+
+<!-- ══ TOOLS ══ -->
+<section id="tools">
+  <div class="center rv up">
+    <div class="eyebrow">What I've Built</div>
+    <h2 class="sec-title">SEO Tools &amp; Automation</h2>
+    <p class="sec-sub">Custom-built tools that automate the most time-consuming SEO workflows — from meta tag audits to keyword cannibalization detection.</p>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card rv rv-d1 up">
+      <div class="tool-card-top tc1">🏷️<span class="tool-badge badge-web">Web App</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">On-Page SEO</div>
+        <div class="tool-name">Meta Tag Extractor</div>
+        <div class="tool-desc">Bulk-extract and audit title tags, meta descriptions, canonical URLs, and OG tags from any list of URLs. Exports to Excel for fast team review.</div>
+        <a href="tool-01-meta-tag-extractor.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d2 up">
+      <div class="tool-card-top tc2">🔍<span class="tool-badge badge-web">Web App</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">On-Page SEO</div>
+        <div class="tool-name">SERP Preview Tool</div>
+        <div class="tool-desc">Visualize how your title tag and meta description appear in Google search results — with character count validation and mobile/desktop preview.</div>
+        <a href="tool-02-serp-preview.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d3 up">
+      <div class="tool-card-top tc3">🌍<span class="tool-badge badge-web">Web App</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Technical &amp; GEO</div>
+        <div class="tool-name">SEO / GEO Audit Tool</div>
+        <div class="tool-desc">Audit pages for both traditional SEO signals and Generative Engine Optimization readiness — structured data, E-E-A-T, AI-friendly content structure.</div>
+        <a href="tool-03-seo-geo-audit.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d4 up">
+      <div class="tool-card-top tc4">✦<span class="tool-badge badge-web">Web App</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">AEO &amp; Structured Data</div>
+        <div class="tool-name">FAQ Schema Generator</div>
+        <div class="tool-desc">Instant browser-based FAQ JSON-LD schema generator. Type your Q&amp;A pairs, get Google-ready structured data in seconds — no API key, no backend needed.</div>
+        <a href="tool-04-faq-schema-generator.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d5 up">
+      <div class="tool-card-top" style="background:linear-gradient(135deg,#064e3b,#065f46)">❓<span class="tool-badge badge-py">Python</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">AEO &amp; Content</div>
+        <div class="tool-name">FAQs Auto-Builder</div>
+        <div class="tool-desc">Scrapes Google "People Also Ask" and auto-generates FAQ schema markup. Speeds up AEO content production. Requires Python + Chrome backend.</div>
+        <div class="tool-offline">🐍 Run locally · Python + Flask</div>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d6 up">
+      <div class="tool-card-top tc5">🔗<span class="tool-badge badge-py">Python</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Technical SEO</div>
+        <div class="tool-name">Broken Links Auditor</div>
+        <div class="tool-desc">Python crawler that scans an entire domain for broken internal and external links (4xx/5xx). Outputs a structured Excel report with anchor text and source pages.</div>
+        <div class="tool-offline">🐍 Run locally · Python script</div>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d1 up" style="animation-delay:.4s">
+      <div class="tool-card-top tc6">🔄<span class="tool-badge badge-py">Python</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Keyword Strategy</div>
+        <div class="tool-name">Cannibalization Detector</div>
+        <div class="tool-desc">Detects keyword cannibalization across a site by analyzing GSC export data. Flags competing pages targeting the same keyword cluster with fix recommendations.</div>
+        <div class="tool-offline">🐍 Run locally · Python + Web Dashboard</div>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d1 up">
+      <div class="tool-card-top tc7">🔀<span class="tool-badge badge-py">Python</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Technical SEO</div>
+        <div class="tool-name">Internal Links Auditor</div>
+        <div class="tool-desc">Maps the entire internal link graph of a website. Identifies orphan pages, link equity distribution issues, and opportunities for better crawl depth.</div>
+        <div class="tool-offline">🐍 Run locally · Python script</div>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d2 up">
+      <div class="tool-card-top tc8">⚡<span class="tool-badge badge-xl">Excel</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Technical SEO</div>
+        <div class="tool-name">Lighthouse Audit Tracker</div>
+        <div class="tool-desc">Tracks Core Web Vitals and Lighthouse performance scores over time. Visualizes trends in CLS, LCP, FID, and overall performance for any set of URLs.</div>
+        <div class="tool-offline">📊 Excel dashboard · Audit data tracker</div>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d3 up">
+      <div class="tool-card-top tc9">🖼️<span class="tool-badge badge-py">Python</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Content Operations</div>
+        <div class="tool-name">BankBazaar Image Scraper</div>
+        <div class="tool-desc">Bulk-scrapes and downloads images from BankBazaar pages for content audit workflows. Includes URL templating and organized folder output.</div>
+        <div class="tool-offline">🐍 Run locally · Python script</div>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d4 up">
+      <div class="tool-card-top tc10">📱<span class="tool-badge badge-py">Python</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">App Store SEO</div>
+        <div class="tool-name">Play Store Rankings Tracker</div>
+        <div class="tool-desc">Tracks keyword rankings across Google Play Store search results. Monitors position changes for target keywords and generates weekly ranking dashboards.</div>
+        <div class="tool-offline">🐍 Run locally · Python + Dashboard</div>
+      </div>
+    </div>
+
+    <!-- NEW WEB TOOLS -->
+    <div class="tool-card rv rv-d1 up">
+      <div class="tool-card-top" style="background:linear-gradient(135deg,#78350f,#b45309)">🏷️<span class="tool-badge badge-web">Web App</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Structured Data · AEO</div>
+        <div class="tool-name">Schema Markup Generator</div>
+        <div class="tool-desc">Generate JSON-LD schema for 8 types — Article, HowTo, LocalBusiness, Product, Review, BreadcrumbList, Organization, VideoObject. Form-based, instant, validation checklist included.</div>
+        <a href="tool-05-schema-markup-generator.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d2 up">
+      <div class="tool-card-top" style="background:linear-gradient(135deg,#064e3b,#065f46)">📊<span class="tool-badge badge-web">Web App</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Content SEO</div>
+        <div class="tool-name">Keyword Density Analyzer</div>
+        <div class="tool-desc">Paste any content and get instant keyword frequency table, Flesch-Kincaid readability score, 2-word phrase analysis, stuffing alerts, word cloud, and reading time.</div>
+        <a href="tool-06-keyword-density-analyzer.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d3 up">
+      <div class="tool-card-top" style="background:linear-gradient(135deg,#4c1d95,#6d28d9)">🤖<span class="tool-badge badge-web">Web App</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Technical SEO</div>
+        <div class="tool-name">Robots.txt Generator &amp; Tester</div>
+        <div class="tool-desc">Visual rule builder with 6 industry presets (Fintech, E-Commerce, AI-blocking, Blog). Test any URL path against your rules instantly. One-click download.</div>
+        <a href="tool-07-robots-txt-generator.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card rv rv-d4 up">
+      <div class="tool-card-top" style="background:linear-gradient(135deg,#0c4a6e,#0369a1)">🌐<span class="tool-badge badge-web">Web App</span></div>
+      <div class="tool-card-body">
+        <div class="tool-cat">International SEO</div>
+        <div class="tool-name">Hreflang Tag Generator</div>
+        <div class="tool-desc">Generate hreflang &lt;link&gt; tags, HTTP headers, and XML sitemap entries for multilingual sites. Presets for India, Global English, APAC, Europe, and Latin America.</div>
+        <a href="tool-08-hreflang-generator.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ RESUME ══ -->
+<section id="resume">
+  <div class="center rv up">
+    <div class="eyebrow">My Background</div>
+    <h2 class="sec-title">Resume</h2>
+    <p class="sec-sub">6+ years of progressive experience growing organic channels for India's leading fintech and digital brands.</p>
+  </div>
+  <div class="resume-cols">
+    <div class="rv up">
+      <div class="rc-title"><div class="rc-ico">💼</div> Work Experience</div>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-card"><div class="tl-period">Jul 2022 – Present</div><div class="tl-title">Lead SEO Analyst</div><div class="tl-org">BankBazaar · Bangalore, India</div><div class="tl-body"><ul><li>Lead comprehensive SEO audits improving crawlability, indexation, and site health.</li><li>Analyze Google's core &amp; AI-driven algorithm updates and implement growth strategies.</li><li>Build GA4 report structures for tracking SEO KPIs and conversion performance.</li><li>Optimize Core Web Vitals and Lighthouse scores across financial product pages.</li><li>Conduct competitor analysis and keyword research in the fintech/BFSI domain.</li><li>Built 10+ custom SEO automation tools adopted by the team.</li></ul></div></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-card"><div class="tl-period">Mar 2020 – Mar 2022</div><div class="tl-title">Junior SEO Analyst</div><div class="tl-org">AI Labs Pvt Ltd · India</div><div class="tl-body"><ul><li>Executed on-page and off-page strategies driving first-page Google rankings.</li><li>Conducted keyword research using Ahrefs, SEMrush, and Google Keyword Planner.</li><li>Audited websites for technical issues and coordinated with developers.</li><li>Managed affiliate marketing partnerships on coupon websites.</li><li>Monitored analytics via Google Search Console and GA4.</li></ul></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rv rv-d2 up">
+      <div class="rc-title"><div class="rc-ico">🎓</div> Education</div>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-card"><div class="tl-period">2014 – 2018</div><div class="tl-title">B.E. in Computer Science &amp; Engineering</div><div class="tl-org">Cambridge Institute of Technology · 60%</div><div class="tl-body">Technical foundation powering a developer-minded approach to SEO, site architecture, and Core Web Vitals.</div></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-card"><div class="tl-period">2012 – 2014</div><div class="tl-title">Intermediate — MPC</div><div class="tl-org">Sri Chaithanya Bharathi Arts &amp; Science · 77.55%</div><div class="tl-body">Strong foundation in Mathematics, Physics, and Chemistry.</div></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-card"><div class="tl-period">Up to 2012</div><div class="tl-title">Secondary School (10th)</div><div class="tl-org">Priyadarshini Vidya Mandir · GPA 8.0</div><div class="tl-body">Consistent academic performance from an early age.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="center rv up">
+    <div class="eyebrow">What I Know</div>
+    <h2 class="sec-title">Skills &amp; Tools</h2>
+    <p class="sec-sub">A comprehensive toolkit covering every dimension of modern, enterprise-grade SEO.</p>
+  </div>
+  <div class="skills-layout">
+    <div class="rv up">
+      <div class="skill-section-title">⚡ Core SEO Proficiency</div>
+      <div class="skill-bars">
+        <div class="sb-item"><div class="sb-top"><span class="sb-name">Technical SEO</span><span class="sb-pct">95%</span></div><div class="sb-track"><div class="sb-fill" data-w="95"></div></div></div>
+        <div class="sb-item"><div class="sb-top"><span class="sb-name">On-Page Optimization</span><span class="sb-pct">92%</span></div><div class="sb-track"><div class="sb-fill" data-w="92"></div></div></div>
+        <div class="sb-item"><div class="sb-top"><span class="sb-name">Keyword Research &amp; Strategy</span><span class="sb-pct">90%</span></div><div class="sb-track"><div class="sb-fill" data-w="90"></div></div></div>
+        <div class="sb-item"><div class="sb-top"><span class="sb-name">GA4 &amp; Analytics</span><span class="sb-pct">88%</span></div><div class="sb-track"><div class="sb-fill" data-w="88"></div></div></div>
+        <div class="sb-item"><div class="sb-top"><span class="sb-name">AEO &amp; GEO Optimization</span><span class="sb-pct">85%</span></div><div class="sb-track"><div class="sb-fill" data-w="85"></div></div></div>
+        <div class="sb-item"><div class="sb-top"><span class="sb-name">Core Web Vitals Optimization</span><span class="sb-pct">87%</span></div><div class="sb-track"><div class="sb-fill" data-w="87"></div></div></div>
+        <div class="sb-item"><div class="sb-top"><span class="sb-name">SEO Automation (Python)</span><span class="sb-pct">80%</span></div><div class="sb-track"><div class="sb-fill" data-w="80"></div></div></div>
+      </div>
+    </div>
+    <div class="tags-block rv rv-d2 up">
+      <div><div class="tb-cat-label">🔧 SEO Tools</div><div class="tag-row"><span class="skill-chip">Ahrefs</span><span class="skill-chip">SEMrush</span><span class="skill-chip">Moz</span><span class="skill-chip">Screaming Frog</span><span class="skill-chip">Google Search Console</span><span class="skill-chip">Keyword Planner</span></div></div>
+      <div><div class="tb-cat-label">📊 Analytics &amp; Reporting</div><div class="tag-row"><span class="skill-chip">Google Analytics 4</span><span class="skill-chip">Looker Studio</span><span class="skill-chip">Google Tag Manager</span><span class="skill-chip">BigQuery</span></div></div>
+      <div><div class="tb-cat-label">⚙️ Technical SEO</div><div class="tag-row"><span class="skill-chip">Site Audits</span><span class="skill-chip">Core Web Vitals</span><span class="skill-chip">Lighthouse</span><span class="skill-chip">Schema Markup</span><span class="skill-chip">XML Sitemaps</span><span class="skill-chip">Robots.txt</span></div></div>
+      <div><div class="tb-cat-label">🤖 AI &amp; Modern SEO</div><div class="tag-row"><span class="skill-chip">AEO</span><span class="skill-chip">GEO</span><span class="skill-chip">E-E-A-T</span><span class="skill-chip">AI Content Optimization</span><span class="skill-chip">Featured Snippets</span></div></div>
+      <div><div class="tb-cat-label">🛠️ Development &amp; Automation</div><div class="tag-row"><span class="skill-chip">Python</span><span class="skill-chip">HTML/CSS</span><span class="skill-chip">WordPress</span><span class="skill-chip">Google Sheets</span><span class="skill-chip">Excel</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO ══ -->
+<section id="portfolio">
+  <div class="center rv up">
+    <div class="eyebrow">My Work</div>
+    <h2 class="sec-title">Portfolio &amp; Case Studies</h2>
+    <p class="sec-sub">Key SEO projects and campaigns — from technical overhauls to content strategy and algorithm recovery.</p>
+  </div>
+  <div class="pf-filter rv up">
+    <button class="pf-btn on" data-filter="all">All</button>
+    <button class="pf-btn" data-filter="technical">Technical SEO</button>
+    <button class="pf-btn" data-filter="analytics">Analytics</button>
+    <button class="pf-btn" data-filter="content">Content &amp; AEO</button>
+    <button class="pf-btn" data-filter="links">Link Building</button>
+  </div>
+  <div class="pf-grid">
+    <div class="pf-card rv rv-d1 up" data-cat="technical"><div class="pf-top c1">📈<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Technical SEO · Fintech</div><div class="pf-name">BankBazaar — Site Health Overhaul</div><div class="pf-desc">Led full technical audit across BankBazaar's financial product pages — resolving crawlability issues, indexation errors, and boosting Core Web Vitals site-wide.</div><div class="pf-metric">+40% Organic Traffic</div></div></div>
+    <div class="pf-card rv rv-d2 up" data-cat="analytics"><div class="pf-top c2">📊<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Analytics · Reporting</div><div class="pf-name">GA4 Reporting Architecture</div><div class="pf-desc">Designed custom GA4 + Looker Studio framework giving leadership real-time visibility into organic KPIs, traffic trends, and conversion performance.</div><div class="pf-metric">Saved 10hrs/Week</div></div></div>
+    <div class="pf-card rv rv-d3 up" data-cat="content"><div class="pf-top c3">🎯<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Keyword Strategy · BFSI</div><div class="pf-name">BFSI Keyword Mapping Framework</div><div class="pf-desc">Built a comprehensive keyword mapping and competitor analysis framework for the BFSI domain covering loans, insurance, credit cards, and investment products.</div><div class="pf-metric">50+ Page-1 Rankings</div></div></div>
+    <div class="pf-card rv rv-d4 up" data-cat="links"><div class="pf-top c4">🔗<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Link Building · Off-Page</div><div class="pf-name">Domain Authority Growth Campaign</div><div class="pf-desc">Managed multi-channel link acquisition — guest posting, local listings, directory submissions — growing domain authority in highly competitive fintech space.</div><div class="pf-metric">DA 42 → 61</div></div></div>
+    <div class="pf-card rv rv-d5 up" data-cat="technical"><div class="pf-top c5">🤖<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Algorithm Response</div><div class="pf-name">Google Core Update Recovery</div><div class="pf-desc">Led rapid response strategy after a Google Core Update impacted rankings. Analyzed affected pages and implemented fixes to recover and grow traffic.</div><div class="pf-metric">Recovered in 6 Weeks</div></div></div>
+    <div class="pf-card rv rv-d6 up" data-cat="content"><div class="pf-top c6">✍️<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">AEO · Content Strategy</div><div class="pf-name">Answer Engine Optimization</div><div class="pf-desc">Structured BankBazaar's financial FAQs and content for AI-powered answers — boosting featured snippet capture and improving visibility in ChatGPT and Gemini responses.</div><div class="pf-metric">3× Featured Snippet CTR</div></div></div>
+  </div>
+</section>
+
+<!-- ══ BLOG PREVIEW ══ -->
+<section id="blog-preview">
+  <div class="center rv up">
+    <div class="eyebrow">Insights &amp; Articles</div>
+    <h2 class="sec-title">SEO Blog</h2>
+    <p class="sec-sub">Practical SEO insights from the frontlines of fintech — covering AEO, GEO, technical SEO, and the future of organic search.</p>
+  </div>
+  <div class="blog-grid">
+    <a href="blog.html#aeo" class="blog-card rv rv-d1 up" style="text-decoration:none">
+      <div class="blog-card-img bi1">🎯</div>
+      <div class="blog-card-body">
+        <span class="blog-cat cat-aeo">AEO</span>
+        <div class="blog-title">AEO: The Strategy That Gets You Into AI Answers (Not Just Google Rankings)</div>
+        <div class="blog-exc">Answer Engine Optimization is how you get cited by ChatGPT, Gemini, and Perplexity. Here's exactly what it means for fintech brands and how BankBazaar is applying it.</div>
+        <div class="blog-footer">
+          <span class="blog-meta">May 2026 · 9 min read</span>
+          <span class="blog-read">Read Article →</span>
+        </div>
+      </div>
+    </a>
+    <a href="blog.html#geo" class="blog-card rv rv-d2 up" style="text-decoration:none">
+      <div class="blog-card-img bi2">🌍</div>
+      <div class="blog-card-body">
+        <span class="blog-cat cat-geo">GEO</span>
+        <div class="blog-title">GEO: Optimizing for AI-Generated Search Results in 2025</div>
+        <div class="blog-exc">Generative Engine Optimization is the new SEO frontier. When Google AI Overviews and ChatGPT summarize a topic, you want to be the source they cite. Here's how.</div>
+        <div class="blog-footer">
+          <span class="blog-meta">Apr 2026 · 11 min read</span>
+          <span class="blog-read">Read Article →</span>
+        </div>
+      </div>
+    </a>
+    <a href="blog.html#technical" class="blog-card rv rv-d3 up" style="text-decoration:none">
+      <div class="blog-card-img bi3">⚙️</div>
+      <div class="blog-card-body">
+        <span class="blog-cat cat-tech">Technical SEO</span>
+        <div class="blog-title">Why Technical SEO Still Wins in the Age of AI: Lessons from Fintech</div>
+        <div class="blog-exc">AI wrote the content. But without solid technical foundations — crawlability, Core Web Vitals, structured data — none of it gets found. Here's what still matters most.</div>
+        <div class="blog-footer">
+          <span class="blog-meta">Mar 2026 · 10 min read</span>
+          <span class="blog-read">Read Article →</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="blog-cta-wrap rv up">
+    <a href="blog.html" class="btn-primary">📚 Read All Articles</a>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials">
+  <div class="center rv up">
+    <div class="eyebrow">What People Say</div>
+    <h2 class="sec-title">Testimonials</h2>
+    <p class="sec-sub">Words from colleagues, managers, and teammates at BankBazaar.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card rv rv-d1 up"><div class="testi-q">"</div><div class="testi-txt">Lochan has a rare ability to combine technical depth with strategic SEO thinking. His Core Web Vitals work led to measurable improvements in both rankings and user experience. A true asset to any SEO team.</div><div class="testi-author"><div class="testi-av">👨‍💼</div><div><div class="testi-name">Senior Manager</div><div class="testi-role">BankBazaar — Replace with real name &amp; title</div></div></div></div>
+    <div class="testi-card rv rv-d2 up"><div class="testi-q">"</div><div class="testi-txt">Working with Lochan on keyword strategy was a game-changer. His data-driven approach and deep BFSI domain knowledge helped us identify ranking opportunities we had completely overlooked.</div><div class="testi-author"><div class="testi-av">👩‍💼</div><div><div class="testi-name">Product Manager</div><div class="testi-role">BankBazaar — Replace with real name &amp; title</div></div></div></div>
+    <div class="testi-card rv rv-d3 up"><div class="testi-q">"</div><div class="testi-txt">Lochan's GA4 reporting framework gave our entire team visibility into organic performance we never had before. His cross-functional collaboration and communication skills are exceptional.</div><div class="testi-author"><div class="testi-av">👨‍💼</div><div><div class="testi-name">Team Lead</div><div class="testi-role">BankBazaar — Replace with real name &amp; title</div></div></div></div>
+    <div class="testi-card rv rv-d4 up"><div class="testi-q">"</div><div class="testi-txt">The SEO automation tools Lochan built have saved our team hours every week. What used to take manual effort now runs in minutes. He bridges SEO expertise with real engineering thinking.</div><div class="testi-author"><div class="testi-av">👩‍💼</div><div><div class="testi-name">Junior SEO Analyst</div><div class="testi-role">BankBazaar — Replace with real name &amp; title</div></div></div></div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<section id="education">
+  <div class="center rv up">
+    <div class="eyebrow">Academic Background</div>
+    <h2 class="sec-title">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card rv rv-d1 up"><div class="edu-ico">🎓</div><div class="edu-deg">B.E. in Computer Science &amp; Engineering</div><div class="edu-school">Cambridge Institute of Technology</div><div class="edu-yr">2014 – 2018 · 60%</div></div>
+    <div class="edu-card rv rv-d2 up"><div class="edu-ico">📚</div><div class="edu-deg">Intermediate — MPC</div><div class="edu-school">Sri Chaithanya Bharathi Arts &amp; Science</div><div class="edu-yr">2012 – 2014 · 77.55%</div></div>
+    <div class="edu-card rv rv-d3 up"><div class="edu-ico">🏫</div><div class="edu-deg">Secondary School (10th)</div><div class="edu-school">Priyadarshini Vidya Mandir</div><div class="edu-yr">Up to 2012 · GPA 8.0</div></div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="center rv up">
+    <div class="eyebrow">Get in Touch</div>
+    <h2 class="sec-title">Contact Me</h2>
+    <p class="sec-sub">Open to full-time roles, consulting, and SEO advisory. Let's talk about growing your organic presence.</p>
+  </div>
+  <div class="contact-layout">
+    <div class="rv up">
+      <h3 class="contact-left" style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:var(--ink);margin-bottom:12px">Let's Work Together 🚀</h3>
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:28px">Whether you're a startup scaling organic or an enterprise defending rankings through algorithm updates — I'd love to connect and explore how I can help drive measurable SEO growth.</p>
+      <div class="contact-items">
+        <div class="ci"><div class="ci-box">📍</div><div><div class="ci-label">Location</div><div class="ci-val">Hindupur, Andhra Pradesh, India</div></div></div>
+        <div class="ci"><div class="ci-box">📧</div><div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:lochan.yadavgolla@gmail.com">lochan.yadavgolla@gmail.com</a></div></div></div>
+        <div class="ci"><div class="ci-box">📞</div><div><div class="ci-label">Phone</div><div class="ci-val"><a href="tel:+918951712138">+91-8951712138</a></div></div></div>
+        <div class="ci"><div class="ci-box">💼</div><div><div class="ci-label">LinkedIn</div><div class="ci-val"><a href="https://linkedin.com/in/lochan-yadav-0a26261a3" target="_blank">linkedin.com/in/lochan-yadav-0a26261a3</a></div></div></div>
+        <div class="ci"><div class="ci-box">🐙</div><div><div class="ci-label">GitHub</div><div class="ci-val"><a href="https://github.com/yadavgollalochan-blip/Lochan-Projects" target="_blank">Lochan-Projects →</a></div></div></div>
+      </div>
+    </div>
+    <div class="rv rv-d2 up">
+      <form class="contact-form" onsubmit="sendForm(event)">
+        <div class="form-row">
+          <div class="fg"><label>First Name</label><input type="text" placeholder="John" required></div>
+          <div class="fg"><label>Last Name</label><input type="text" placeholder="Doe" required></div>
+        </div>
+        <div class="fg"><label>Email Address</label><input type="email" placeholder="john@company.com" required></div>
+        <div class="fg"><label>Subject</label><input type="text" placeholder="Job Opportunity / SEO Consultation" required></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Tell me about the opportunity or project..." required></textarea></div>
+        <button type="submit" class="submit-btn">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="foot-brand">
+      <h3>Lochan <span>Yadav</span></h3>
+      <p>Lead SEO Analyst driving organic growth for fintech &amp; e-commerce brands. Based in Hindupur, Andhra Pradesh.</p>
+      <div class="foot-social">
+        <a href="https://linkedin.com/in/lochan-yadav-0a26261a3" class="foot-soc" target="_blank">in</a>
+        <a href="https://github.com/yadavgollalochan-blip/Lochan-Projects" class="foot-soc" target="_blank">gh</a>
+        <a href="mailto:lochan.yadavgolla@gmail.com" class="foot-soc">✉</a>
+        <a href="tel:+918951712138" class="foot-soc">☎</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Navigation</h4>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#tools">Tools</a>
+      <a href="#resume">Resume</a>
+      <a href="#skills">Skills</a>
+    </div>
+    <div class="foot-col">
+      <h4>Work</h4>
+      <a href="#portfolio">Portfolio</a>
+      <a href="blog.html">Blog</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Tools</h4>
+      <a href="tool-01-meta-tag-extractor.html">Meta Tag Extractor</a>
+      <a href="tool-02-serp-preview.html">SERP Preview</a>
+      <a href="tool-03-seo-geo-audit.html">SEO/GEO Audit</a>
+      <a href="tool-04-faq-schema-generator.html">FAQ Schema Generator</a>
+      <a href="tool-05-schema-markup-generator.html">Schema Generator</a>
+      <a href="tool-06-keyword-density-analyzer.html">Keyword Analyzer</a>
+      <a href="tool-07-robots-txt-generator.html">Robots.txt Builder</a>
+      <a href="tool-08-hreflang-generator.html">Hreflang Generator</a>
+      <a href="FAQs Auto-Builder 1/FAQs Auto-Builder/faqs_index.html">FAQs Builder</a>
+    </div>
+  </div>
+  <p class="foot-copy">© 2026 <strong>Lochan Yadav</strong> · Lead SEO Analyst · Crafted with care · <a href="sitemap.xml" style="color:rgba(255,255,255,.4)">Sitemap</a></p>
+</footer>
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script>
+/* Progress bar + nav scroll */
+window.addEventListener('scroll',()=>{
+  const st=document.documentElement.scrollTop;
+  const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('prog').style.width=(st/sh*100)+'%';
+  document.getElementById('navbar').classList.toggle('scrolled',st>60);
+  document.getElementById('btt').classList.toggle('show',st>400);
+},{passive:true});
+
+/* Typed text */
+const roles=['Technical SEO','Keyword Strategy','GA4 Analytics','Core Web Vitals','AEO & GEO','Fintech SEO','Link Building','Python Automation'];
+let ri=0,ci=0,del=false;
+const tc=document.getElementById('tcur');
+function type(){
+  const w=roles[ri];
+  if(!del){tc.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(type,2000);return}}
+  else{tc.textContent=w.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%roles.length}}
+  setTimeout(type,del?50:80);
+}
+type();
+
+/* Animated counters */
+const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  const t=parseInt(e.target.dataset.c);let c=0;
+  const iv=setInterval(()=>{c=Math.min(c+Math.max(1,Math.floor(t/40)),t);e.target.textContent=c+'+';if(c>=t)clearInterval(iv)},28);
+  cObs.unobserve(e.target);
+}})},{threshold:.5});
+document.querySelectorAll('[data-c]').forEach(el=>cObs.observe(el));
+
+/* Skill bars */
+const bObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';bObs.unobserve(e.target)}})},{threshold:.3});
+document.querySelectorAll('.sb-fill').forEach(b=>bObs.observe(b));
+
+/* Reveal on scroll */
+const rObs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('up'),i*60);rObs.unobserve(e.target)}})},{threshold:.06});
+document.querySelectorAll('.rv').forEach(el=>rObs.observe(el));
+
+/* Active nav */
+const secs=document.querySelectorAll('section[id]');
+const nas=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-180)cur=s.id});
+  nas.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+
+/* Mobile nav */
+const ham=document.getElementById('ham');
+const mn=document.getElementById('mobNav');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mn.classList.toggle('open')});
+function cn(){ham.classList.remove('open');mn.classList.remove('open')}
+
+/* Portfolio filter */
+document.querySelectorAll('.pf-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.pf-btn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const f=b.dataset.filter;
+    document.querySelectorAll('.pf-card').forEach(c=>{
+      c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';
+    });
+  });
+});
+
+/* Contact form */
+function sendForm(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.submit-btn');
+  btn.textContent='✓ Message Sent!';
+  btn.style.background='var(--green)';
+  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';e.target.reset()},3000);
+}
+</script>
+</body>
+</html>

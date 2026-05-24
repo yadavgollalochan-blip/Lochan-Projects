@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hreflang Tag Generator – SEO Tools by Lochan Yadav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b12;--s1:#13131f;--s2:#1a1a2a;--s3:#22223a;
+  --bd:#2a2a42;--bd2:#3a3a5a;
+  --txt:#e8e8f4;--txt2:#aaaacc;--txt3:#666688;
+  --acc:#38bdf8;--acc2:#0ea5e9;--acc-glow:rgba(56,189,248,.18);
+  --gr:#34d399;--gr-bg:rgba(52,211,153,.1);
+  --ye:#fbbf24;--ye-bg:rgba(251,191,36,.08);
+  --rd:#f87171;--rd-bg:rgba(248,113,113,.1);
+  --r:10px;--rs:7px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);font-size:14px;line-height:1.55;min-height:100vh}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--s1)}::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
+.hdr{background:var(--s1);border-bottom:1px solid var(--bd);padding:0 28px;height:62px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100}
+.hlogo{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--acc2),var(--acc));display:flex;align-items:center;justify-content:center;font-size:21px;box-shadow:0 0 18px var(--acc-glow)}
+.htitle{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.hsub{font-size:12px;color:var(--txt3);margin-top:1px}
+.hbadge{padding:5px 12px;border-radius:20px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.3);color:var(--acc);font-size:11px;font-weight:700;letter-spacing:.5px}
+.hero{background:linear-gradient(135deg,rgba(14,165,233,.06),rgba(56,189,248,.03));border-bottom:1px solid var(--bd);padding:36px 28px 28px;text-align:center}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--acc);background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+.hero h1{font-size:clamp(22px,4vw,36px);font-weight:800;margin-bottom:10px;background:linear-gradient(135deg,#fff 30%,var(--acc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--txt2);font-size:14px;max-width:640px;margin:0 auto;line-height:1.7}
+.wrap{max-width:1260px;margin:0 auto;padding:28px 20px}
+.layout{display:grid;grid-template-columns:480px 1fr;gap:22px;align-items:start}
+@media(max-width:960px){.layout{grid-template-columns:1fr}}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-hd{padding:12px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:700;color:var(--acc);letter-spacing:.3px;text-transform:uppercase;background:rgba(56,189,248,.04)}
+.card-bd{padding:18px}
+input[type=text],input[type=url],select{width:100%;padding:9px 12px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);color:var(--txt);font-family:inherit;font-size:13px;outline:none;transition:border-color .2s}
+input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-glow)}
+input::placeholder{color:var(--txt3)}
+select{cursor:pointer} select option{background:var(--s2)}
+.field{margin-bottom:10px}
+.flbl{font-size:11px;color:var(--txt2);font-weight:600;display:block;margin-bottom:4px;letter-spacing:.2px;text-transform:uppercase}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border:none;border-radius:var(--rs);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,var(--acc2),var(--acc));color:#000}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 4px 20px var(--acc-glow)}
+.btn-outline{background:transparent;border:1px solid var(--bd);color:var(--txt2)}
+.btn-outline:hover{border-color:var(--acc);color:var(--acc)}
+.btn-green{background:linear-gradient(135deg,#065f46,#059669);color:#fff}
+.btn-green:hover{opacity:.9;transform:translateY(-1px)}
+.btn-sm{padding:7px 13px;font-size:12px}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+/* LANG ROWS */
+.lang-row{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:11px 14px;margin-bottom:8px;display:grid;grid-template-columns:180px 1fr 34px;gap:8px;align-items:center}
+.del-btn{background:none;border:none;color:var(--txt3);cursor:pointer;font-size:18px;line-height:1;width:34px;transition:color .2s;text-align:center}
+.del-btn:hover{color:var(--rd)}
+.add-lang-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--txt3);background:none;border:1px dashed var(--bd);border-radius:7px;padding:8px 14px;cursor:pointer;width:100%;justify-content:center;transition:all .2s}
+.add-lang-btn:hover{border-color:var(--acc);color:var(--acc)}
+/* CODE */
+.code-wrap{position:relative}
+.code-block{background:#080810;border:1px solid var(--bd2);border-radius:10px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#c4c4e0;white-space:pre;overflow-x:auto;max-height:400px;overflow-y:auto}
+.code-block .hl{color:#38bdf8}
+.code-block .hr{color:#34d399}
+.code-block .cm{color:#4b5563;font-style:italic}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:5px 13px;color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;transition:all .2s}
+.copy-btn:hover{border-color:var(--acc);color:var(--acc)}
+.copy-btn.copied{border-color:var(--gr);color:var(--gr)}
+/* TABS */
+.tabs{display:flex;gap:3px;margin-bottom:14px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);padding:3px}
+.tab{flex:1;padding:8px;background:transparent;border:none;color:var(--txt3);cursor:pointer;border-radius:5px;font-size:12px;font-weight:600;font-family:inherit;transition:all .2s;text-align:center}
+.tab.on{background:linear-gradient(135deg,var(--acc2),var(--acc));color:#000}
+.tab:hover:not(.on){color:var(--txt);background:rgba(255,255,255,.05)}
+.tab-pane{display:none}.tab-pane.on{display:block}
+/* ERROR CARD */
+.err-card{background:var(--rd-bg);border:1px solid rgba(248,113,113,.25);border-radius:8px;padding:11px 14px;font-size:12px;color:var(--rd);line-height:1.6;margin-bottom:10px;display:none}
+/* PREVIEW TABLE */
+.preview-table{width:100%;border-collapse:collapse;font-size:12px}
+.preview-table th{padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--bd);background:var(--s2)}
+.preview-table td{padding:8px 12px;border-bottom:1px solid var(--bd);font-family:'JetBrains Mono',monospace}
+.preview-table tr:last-child td{border-bottom:none}
+/* TIP */
+.tip{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.18);border-radius:8px;padding:11px 14px;font-size:12px;color:var(--txt2);line-height:1.6}
+.tip strong{color:var(--acc)}
+/* PRESETS */
+.preset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.preset-btn{padding:8px 6px;border:1px solid var(--bd);border-radius:7px;background:var(--s2);color:var(--txt2);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;text-align:center}
+.preset-btn:hover{border-color:var(--acc);color:var(--acc)}
+.footer{text-align:center;padding:24px;color:var(--txt3);font-size:12px;border-top:1px solid var(--bd);margin-top:28px;letter-spacing:.4px}
+.footer span{color:var(--acc);font-weight:600}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hlogo">🌐</div>
+  <div>
+    <div class="htitle">Hreflang Tag Generator</div>
+    <div class="hsub">International SEO · Multi-language link tags · XML sitemap entries</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+    <a href="index.html" style="font-size:12px;font-weight:600;color:var(--txt3);text-decoration:none;border:1px solid var(--bd);padding:5px 12px;border-radius:6px;transition:all .2s" onmouseover="this.style.color='var(--acc)';this.style.borderColor='var(--acc)'" onmouseout="this.style.color='var(--txt3)';this.style.borderColor='var(--bd)'">← Portfolio</a>
+    <div class="hbadge">TOOL #08</div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-cat">🌐 International SEO</div>
+  <h1>Hreflang Tag Generator</h1>
+  <p>Generate correct hreflang link tags for multilingual and multi-regional websites. Add language/country pairs, enter URLs, and get &lt;link&gt; tags, HTTP headers, and XML sitemap code — instantly.</p>
+</section>
+
+<div class="wrap">
+<div class="layout">
+<!-- ══ LEFT ══ -->
+<div>
+
+  <!-- PRESETS -->
+  <div class="card">
+    <div class="card-hd">⚡ Quick Language Sets</div>
+    <div class="card-bd">
+      <div class="preset-grid">
+        <button class="preset-btn" onclick="loadPreset('india')">🇮🇳 India Multilingual</button>
+        <button class="preset-btn" onclick="loadPreset('global-en')">🌍 Global English</button>
+        <button class="preset-btn" onclick="loadPreset('apac')">🌏 Asia Pacific</button>
+        <button class="preset-btn" onclick="loadPreset('europe')">🇪🇺 Europe</button>
+        <button class="preset-btn" onclick="loadPreset('latam')">🌎 Latin America</button>
+        <button class="preset-btn" onclick="loadPreset('clear')">✕ Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BASE URL -->
+  <div class="card">
+    <div class="card-hd">⚙️ Base Settings</div>
+    <div class="card-bd">
+      <div class="field"><label class="flbl">Page Base Path <span style="color:var(--txt3);font-weight:400;text-transform:none;font-size:10px">(used as default URL prefix)</span></label>
+        <input type="url" id="base-url" placeholder="https://www.bankbazaar.com/home-loan" oninput="renderAll()">
+      </div>
+      <div class="tip">
+        <strong>How it works:</strong> Add one row per language/region version of your page. The "x-default" tag tells Google which URL to show when no other language matches — usually point it to your English or primary version.
+      </div>
+    </div>
+  </div>
+
+  <!-- LANG ROWS -->
+  <div class="card">
+    <div class="card-hd">🗣️ Language / Region Pairs <button class="btn btn-outline btn-sm" onclick="addRow()" style="margin-left:auto;text-transform:none;letter-spacing:0">＋ Add Language</button></div>
+    <div class="card-bd">
+      <div style="display:grid;grid-template-columns:180px 1fr 34px;gap:8px;margin-bottom:8px">
+        <span style="font-size:10px;color:var(--txt3);font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding-left:2px">Language Code</span>
+        <span style="font-size:10px;color:var(--txt3);font-weight:700;text-transform:uppercase;letter-spacing:.3px">Page URL</span>
+        <span></span>
+      </div>
+      <div id="lang-list"></div>
+      <button class="add-lang-btn" onclick="addRow()">＋ Add Language / Region</button>
+    </div>
+  </div>
+
+</div>
+<!-- ══ RIGHT ══ -->
+<div>
+  <div id="error-area"></div>
+
+  <!-- OUTPUT TABS -->
+  <div class="card">
+    <div class="card-hd">📄 Generated Output</div>
+    <div class="card-bd">
+      <div class="tabs">
+        <button class="tab on" onclick="switchTab('link',this)">&lt;link&gt; Tags</button>
+        <button class="tab" onclick="switchTab('http',this)">HTTP Headers</button>
+        <button class="tab" onclick="switchTab('xml',this)">XML Sitemap</button>
+        <button class="tab" onclick="switchTab('preview',this)">Preview Table</button>
+      </div>
+
+      <div class="tab-pane on" id="tab-link">
+        <div class="code-wrap">
+          <pre class="code-block" id="out-link"><!-- Add language pairs on the left to generate tags --></pre>
+          <button class="copy-btn" id="copy-link" onclick="copyOut('out-link','copy-link')">Copy</button>
+        </div>
+        <div class="tip" style="margin-top:12px"><strong>Where to paste:</strong> Inside the &lt;head&gt; section of EVERY language version of the page. Each page must include ALL the hreflang tags (including its own).</div>
+      </div>
+
+      <div class="tab-pane" id="tab-http">
+        <div class="code-wrap">
+          <pre class="code-block" id="out-http"><!-- Add language pairs to generate HTTP Link headers --></pre>
+          <button class="copy-btn" id="copy-http" onclick="copyOut('out-http','copy-http')">Copy</button>
+        </div>
+        <div class="tip" style="margin-top:12px"><strong>For Apache (.htaccess):</strong> Add these Header directives to your .htaccess. Alternative to &lt;link&gt; tags — useful for PDFs and non-HTML resources.</div>
+      </div>
+
+      <div class="tab-pane" id="tab-xml">
+        <div class="code-wrap">
+          <pre class="code-block" id="out-xml"><!-- Add language pairs to generate XML sitemap entries --></pre>
+          <button class="copy-btn" id="copy-xml" onclick="copyOut('out-xml','copy-xml')">Copy</button>
+        </div>
+        <div class="tip" style="margin-top:12px"><strong>Usage:</strong> Add this &lt;url&gt; block to your sitemap.xml. Don't forget to add the xhtml namespace to your urlset: <code style="color:var(--acc)">xmlns:xhtml="http://www.w3.org/1999/xhtml"</code></div>
+      </div>
+
+      <div class="tab-pane" id="tab-preview">
+        <div id="preview-wrap">
+          <div style="text-align:center;padding:30px;color:var(--txt3);font-size:13px">Add language pairs to see a preview table</div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-green btn-sm" onclick="downloadAll()">⬇ Download All as .txt</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUIDE -->
+  <div class="card">
+    <div class="card-hd">📚 Language Codes Reference</div>
+    <div class="card-bd">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:12px;margin-bottom:12px">
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">en</code> — English</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">en-IN</code> — English (India)</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">en-US</code> — English (US)</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">hi</code> — Hindi</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">ta</code> — Tamil</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">te</code> — Telugu</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">kn</code> — Kannada</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">ml</code> — Malayalam</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">mr</code> — Marathi</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">de</code> — German</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">fr</code> — French</div>
+        <div style="padding:6px 10px;background:var(--s2);border-radius:7px"><code style="color:var(--acc)">x-default</code> — Fallback</div>
+      </div>
+      <div class="tip">
+        <strong>💡 Key rules:</strong> Every page must self-reference its own hreflang. Include x-default pointing to your primary/default page. Language codes must match exactly on all pages. Test with Google Search Console after deployment.
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<div class="footer">
+  SEO Pro Tools &nbsp;·&nbsp; Tool #08: Hreflang Tag Generator &nbsp;·&nbsp; 100% Free · No API Key · International SEO
+  <div style="margin-top:6px">✦ Designed by <span>Lochan Yadav</span> · 6+ Years SEO &amp; Digital Marketing Expert ✦</div>
+</div>
+
+<script>
+let rows=[];
+let rowSeq=0;
+
+const PRESETS={
+  india:[
+    {lang:'x-default',url:'/home-loan'},
+    {lang:'en-IN',url:'/home-loan'},
+    {lang:'hi',url:'/hi/home-loan'},
+    {lang:'ta',url:'/ta/home-loan'},
+    {lang:'te',url:'/te/home-loan'},
+    {lang:'kn',url:'/kn/home-loan'},
+    {lang:'ml',url:'/ml/home-loan'},
+    {lang:'mr',url:'/mr/home-loan'},
+  ],
+  'global-en':[
+    {lang:'x-default',url:''},
+    {lang:'en',url:''},
+    {lang:'en-US',url:'/us'},
+    {lang:'en-GB',url:'/uk'},
+    {lang:'en-AU',url:'/au'},
+    {lang:'en-CA',url:'/ca'},
+    {lang:'en-IN',url:'/in'},
+    {lang:'en-SG',url:'/sg'},
+  ],
+  apac:[
+    {lang:'x-default',url:''},
+    {lang:'en',url:''},
+    {lang:'en-IN',url:'/in'},
+    {lang:'en-SG',url:'/sg'},
+    {lang:'en-AU',url:'/au'},
+    {lang:'zh-CN',url:'/cn'},
+    {lang:'zh-TW',url:'/tw'},
+    {lang:'ja',url:'/jp'},
+    {lang:'ko',url:'/kr'},
+  ],
+  europe:[
+    {lang:'x-default',url:''},
+    {lang:'en',url:''},
+    {lang:'de',url:'/de'},
+    {lang:'fr',url:'/fr'},
+    {lang:'es',url:'/es'},
+    {lang:'it',url:'/it'},
+    {lang:'nl',url:'/nl'},
+    {lang:'pl',url:'/pl'},
+  ],
+  latam:[
+    {lang:'x-default',url:''},
+    {lang:'es',url:''},
+    {lang:'es-MX',url:'/mx'},
+    {lang:'es-AR',url:'/ar'},
+    {lang:'es-CO',url:'/co'},
+    {lang:'es-CL',url:'/cl'},
+    {lang:'pt-BR',url:'/br'},
+  ],
+  clear:[]
+};
+
+window.addEventListener('load',()=>{ loadPreset('india'); document.getElementById('base-url').value='https://www.bankbazaar.com'; });
+
+function loadPreset(key){
+  rows=PRESETS[key].map(r=>({id:++rowSeq,lang:r.lang,url:r.url}));
+  renderRows();
+  renderAll();
+}
+
+function addRow(){
+  rows.push({id:++rowSeq,lang:'en',url:''});
+  renderRows();
+  renderAll();
+}
+function removeRow(id){ rows=rows.filter(r=>r.id!==id); renderRows(); renderAll(); }
+function updateRow(id,field,val){ const r=rows.find(x=>x.id===id); if(r){r[field]=val; renderAll();} }
+
+function renderRows(){
+  const list=document.getElementById('lang-list');
+  if(!rows.length){ list.innerHTML='<div style="text-align:center;color:var(--txt3);padding:16px;font-size:13px">No language pairs yet. Load a preset or click "Add Language".</div>'; return; }
+  list.innerHTML=rows.map(r=>`
+    <div class="lang-row">
+      <input type="text" value="${esc(r.lang)}" placeholder="en-IN" oninput="updateRow(${r.id},'lang',this.value)">
+      <input type="text" value="${esc(r.url)}" placeholder="/path or full URL" oninput="updateRow(${r.id},'url',this.value)">
+      <button class="del-btn" onclick="removeRow(${r.id})">×</button>
+    </div>`).join('');
+}
+
+function buildUrl(path){
+  const base=document.getElementById('base-url').value.trim();
+  if(!path) return base||'https://example.com/page';
+  if(path.startsWith('http')) return path;
+  // combine base domain + path
+  try{
+    const u=new URL(base||'https://example.com');
+    return u.origin+path;
+  }catch(e){ return (base||'https://example.com')+path; }
+}
+
+function renderAll(){
+  const errors=[];
+  const hasXDefault=rows.some(r=>r.lang==='x-default');
+  if(rows.length>0&&!hasXDefault) errors.push('⚠ No x-default row found. Add one pointing to your primary/default page.');
+  document.getElementById('error-area').innerHTML=errors.map(e=>`<div class="err-card" style="display:block">${e}</div>`).join('');
+
+  if(!rows.length){ ['link','http','xml'].forEach(t=>{ document.getElementById('out-'+t).innerHTML='<span style="color:var(--txt3);font-style:italic">Add language pairs to generate output…</span>'; }); return; }
+
+  /* LINK TAGS */
+  const linkLines=['<!-- Hreflang tags — paste in <head> of EVERY language version -->',...rows.map(r=>`<link rel="alternate" hreflang="${esc(r.lang)}" href="${esc(buildUrl(r.url))}">`), '<!-- Generated by lochan.online SEO Tools -->'];
+  document.getElementById('out-link').innerHTML=hlLink(linkLines.join('\n'));
+
+  /* HTTP HEADERS */
+  const httpLines=['# .htaccess — Apache HTTP Link headers for hreflang','# Add inside appropriate VirtualHost or Directory block','','<IfModule mod_headers.c>','  Header add Link '+rows.map(r=>`"<${buildUrl(r.url)}>; rel=\\"alternate\\"; hreflang=\\"${r.lang}\\""`).join(' \\'+'\n    '),'</IfModule>'];
+  document.getElementById('out-http').innerHTML=hlCode(httpLines.join('\n'));
+
+  /* XML SITEMAP */
+  const xmlLines=['<!-- Add this xmlns to your <urlset>: xmlns:xhtml="http://www.w3.org/1999/xhtml" -->','','<url>','  <loc>'+esc(buildUrl(rows.find(r=>r.lang==='en'||r.lang==='en-IN'||r.lang==='x-default')?.url||rows[0]?.url||''))+'</loc>',...rows.map(r=>`  <xhtml:link rel="alternate" hreflang="${esc(r.lang)}" href="${esc(buildUrl(r.url))}"/>`),'  <changefreq>weekly</changefreq>','  <priority>0.9</priority>','</url>'];
+  document.getElementById('out-xml').innerHTML=hlCode(xmlLines.join('\n'));
+
+  /* PREVIEW TABLE */
+  document.getElementById('preview-wrap').innerHTML=`
+    <div style="overflow-x:auto">
+      <table class="preview-table">
+        <thead><tr><th>Lang Code</th><th>Full URL</th><th>Status</th></tr></thead>
+        <tbody>${rows.map(r=>{
+          const url=buildUrl(r.url);
+          const isDefault=r.lang==='x-default';
+          const valid=r.lang&&url;
+          return `<tr>
+            <td style="color:${isDefault?'var(--ye)':'var(--acc)'};font-weight:${isDefault?700:400}">${esc(r.lang)}</td>
+            <td style="color:var(--txt2);font-size:11px;word-break:break-all">${esc(url)}</td>
+            <td><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;background:${valid?'var(--gr-bg)':'var(--rd-bg)'};color:${valid?'var(--gr)':'var(--rd)'}">${valid?'✓ Valid':'✗ Missing URL'}</span></td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table>
+    </div>`;
+}
+
+function hlLink(txt){
+  return txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(rel="alternate")/g,'<span class="hl">$1</span>')
+    .replace(/(hreflang="[^"]*")/g,'<span class="hr">$1</span>')
+    .replace(/(href="[^"]*")/g,'<span class="hl">$1</span>')
+    .replace(/(<!--.*?-->)/g,'<span class="cm">$1</span>');
+}
+function hlCode(txt){
+  return txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(hreflang="[^"]*")/g,'<span class="hr">$1</span>')
+    .replace(/(href="[^"]*")/g,'<span class="hl">$1</span>')
+    .replace(/(<!--.*?-->)/g,'<span class="cm">$1</span>')
+    .replace(/(#.*$)/gm,'<span class="cm">$1</span>');
+}
+
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on'); btn.classList.add('on');
+}
+function copyOut(blockId,btnId){
+  navigator.clipboard.writeText(document.getElementById(blockId).innerText).then(()=>{
+    const b=document.getElementById(btnId);
+    b.textContent='Copied!'; b.classList.add('copied');
+    setTimeout(()=>{ b.textContent='Copy'; b.classList.remove('copied'); },2000);
+  });
+}
+function downloadAll(){
+  const base=document.getElementById('base-url').value;
+  const content=['=== HREFLANG TAGS — Generated by lochan.online SEO Tools ===','Page: '+base,'','--- LINK TAGS (paste in <head>) ---',document.getElementById('out-link').innerText,'','--- HTTP HEADERS (.htaccess) ---',document.getElementById('out-http').innerText,'','--- XML SITEMAP ENTRY ---',document.getElementById('out-xml').innerText].join('\n');
+  const b=new Blob([content],{type:'text/plain'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='hreflang-tags.txt'; a.click(); URL.revokeObjectURL(a.href);
+}
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</body>
+</html>

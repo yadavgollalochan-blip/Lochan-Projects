@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,follow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page Not Found · Lochan Yadav</title>
+<meta name="description" content="The page you're looking for doesn't exist on lochan.online. Head back to the portfolio, blog or SEO tools.">
+<link rel="canonical" href="https://lochan.online/404.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F6F1;
+  --bg2:#F0EDE5;
+  --bg3:#E8E3D8;
+  --border:#DDD8CC;
+  --border2:#C9C2B4;
+  --ink:#1A1612;
+  --ink2:#3D3529;
+  --muted:#6B6152;
+  --muted2:#9E9285;
+  --accent:#7C3AED;
+  --accent2:#6D28D9;
+  --accent-lt:rgba(124,58,237,0.08);
+  --gold:#C07C2A;
+  --gold-lt:#F5ECD8;
+  --shadow:0 4px 14px rgba(26,22,18,.07);
+  --shadow-lg:0 16px 40px rgba(26,22,18,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── HEADER ── */
+header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
+.bar{max-width:1160px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.2rem;color:var(--ink);text-decoration:none}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:6px;align-items:center;font-size:.82rem;font-weight:500;color:var(--muted)}
+header nav a{color:var(--ink2);padding:6px 10px;border-radius:5px;transition:all .18s}
+header nav a:hover{color:var(--accent);background:var(--accent-lt);text-decoration:none}
+.badge-hire{background:var(--accent);color:#fff !important;padding:7px 16px;border-radius:6px;font-size:.8rem;font-weight:700}
+.badge-hire:hover{background:var(--accent2) !important;background:var(--accent2)}
+.head-cta{display:flex;gap:16px;align-items:center;font-size:.82rem;font-weight:500}
+.head-cta a{color:var(--ink2);transition:color .18s}
+.head-cta a:hover{color:var(--accent);text-decoration:none}
+@media(max-width:840px){header nav{display:none}.head-cta{display:none}}
+
+/* ── HERO SHELL ── */
+.shell{max-width:1160px;margin:0 auto;padding:60px 24px 0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:32px}.compass-wrap{order:-1}}
+
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:1px solid var(--border);padding:7px 16px;
+  border-radius:50px;font-size:.72rem;color:var(--ink2);font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px;
+  box-shadow:var(--shadow);
+}
+.kicker::before{content:'';width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.06;
+  letter-spacing:-1.2px;margin:0 0 16px;font-weight:900;color:var(--ink);
+}
+h1 .u{position:relative;white-space:nowrap;color:var(--accent)}
+.lead{font-size:.95rem;color:var(--muted);max-width:480px;margin:0 0 28px;line-height:1.9}
+.lead b{color:var(--ink);font-weight:600}
+
+/* Search bar */
+form.search{
+  display:flex;background:#fff;border:1.5px solid var(--border2);
+  border-radius:10px;padding:6px 6px 6px 18px;max-width:480px;
+  margin-bottom:24px;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s;
+}
+form.search:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(124,58,237,.1)}
+form.search svg{align-self:center;color:var(--muted2);flex-shrink:0}
+form.search input{flex:1;border:0;outline:0;font:inherit;font-size:.9rem;padding:10px 12px;background:transparent;color:var(--ink)}
+form.search button{background:var(--ink);color:#fff;border:0;padding:0 22px;border-radius:7px;font-weight:700;font-size:.82rem;cursor:pointer;transition:background .15s;font-family:'Inter',sans-serif}
+form.search button:hover{background:var(--accent)}
+
+/* CTAs */
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:8px;font-weight:700;font-size:.84rem;transition:all .18s;border:1.5px solid transparent;text-decoration:none}
+.btn.p{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.25)}
+.btn.p:hover{background:var(--accent2);transform:translateY(-1px);text-decoration:none}
+.btn.g{background:transparent;color:var(--ink2);border-color:var(--border2)}
+.btn.g:hover{border-color:var(--ink2);background:#fff;text-decoration:none}
+.micro{font-size:.76rem;color:var(--muted2);margin:0 0 32px}
+.micro b{color:var(--teal,#167A4A)}
+
+/* Routes (quick links grid) */
+.routes{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:480px}
+@media(max-width:560px){.routes{grid-template-columns:1fr}}
+.route{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:12px 14px;display:flex;align-items:center;gap:12px;
+  text-decoration:none;color:var(--ink);transition:all .18s;
+}
+.route:hover{border-color:var(--accent);transform:translateX(3px);text-decoration:none;background:var(--accent-lt)}
+.route .ico{width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.route .label{font-weight:700;font-size:.85rem;line-height:1.2;color:var(--ink)}
+.route .desc{font-size:.72rem;color:var(--muted2);margin-top:1px}
+.route .arr{margin-left:auto;color:var(--muted2);font-size:.82rem;flex-shrink:0;transition:color .18s}
+.route:hover .arr{color:var(--accent)}
+
+/* ── COMPASS ── */
+.compass-wrap{display:flex;justify-content:center;align-items:center}
+.dial{position:relative;width:360px;height:360px}
+.dial-bg{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 35%,#fff 0%,var(--bg2) 100%);border:1px solid var(--border);box-shadow:0 14px 48px rgba(26,22,18,.1),inset 0 1px 0 #fff}
+.dial-ring{position:absolute;inset:20px;border-radius:50%;border:1px dashed var(--border)}
+.dial-ring-2{position:absolute;inset:40px;border-radius:50%;border:1px solid var(--bg3)}
+.dial-center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:96px;height:96px;border-radius:50%;
+  background:linear-gradient(135deg,var(--ink) 0%,var(--ink2) 100%);
+  color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:28px;letter-spacing:-1px;
+  box-shadow:inset 0 -4px 12px rgba(255,255,255,.06),0 8px 28px rgba(26,22,18,.3);
+}
+.dial-center .lbl{font-size:.55rem;letter-spacing:.18em;color:rgba(192,124,42,.9);margin-top:2px;font-weight:800;font-family:'Inter',sans-serif;text-transform:uppercase}
+.dial-n,.dial-e,.dial-s,.dial-w{position:absolute;font-weight:800;font-size:.9rem;color:var(--muted2)}
+.dial-n{transform:translateX(-50%);top:14px;left:50%;color:var(--accent);font-size:1rem}
+.dial-e{transform:translateY(-50%);right:14px;top:50%}
+.dial-s{transform:translateX(-50%);bottom:14px;left:50%}
+.dial-w{transform:translateY(-50%);left:14px;top:50%}
+
+/* Ticks */
+.tick{position:absolute;left:50%;top:0;transform-origin:center 180px;width:2px;height:8px;background:var(--border);margin-left:-1px}
+.tick.major{height:14px;background:var(--border2);width:2.5px;margin-left:-1.25px}
+
+/* Needle */
+.needle{
+  position:absolute;left:50%;top:50%;
+  width:6px;height:140px;
+  transform-origin:bottom center;
+  transform:translate(-50%,-100%) rotate(-32deg);
+  border-radius:100px;
+  background:linear-gradient(180deg,var(--accent) 0%,var(--accent) 48%,var(--ink) 48%,var(--ink) 52%,var(--bg3) 52%,var(--bg3) 100%);
+  box-shadow:0 4px 10px rgba(26,22,18,.15);
+  animation:spin 8s ease-in-out infinite;
+}
+@keyframes spin{0%,100%{transform:translate(-50%,-100%) rotate(-32deg)}50%{transform:translate(-50%,-100%) rotate(38deg)}}
+
+/* Coord labels */
+.coord{position:absolute;font-size:.68rem;color:var(--muted2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.4px}
+.coord-1{top:8%;right:-14px;background:#fff;padding:4px 10px;border-radius:5px;border:1px solid var(--border);box-shadow:var(--shadow)}
+.coord-2{bottom:8%;left:-14px;background:#fff;padding:4px 10px;border-radius:5px;border:1px solid var(--border);box-shadow:var(--shadow)}
+@media(max-width:580px){.dial{width:260px;height:260px}.dial-center{width:74px;height:74px;font-size:20px}.coord{display:none}.needle{height:100px;transform-origin:bottom center}}
+
+/* ── POPULAR ── */
+.popular{max-width:1160px;margin:0 auto;padding:60px 24px 0}
+.popular .label{font-size:.68rem;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.14em;margin:0 0 18px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.tile{
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:18px;text-decoration:none;color:var(--ink);transition:all .18s;display:block;
+}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:rgba(124,58,237,.2);text-decoration:none}
+.tile .ico{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:10px}
+.tile .name{font-weight:700;font-size:.84rem;margin-bottom:2px;color:var(--ink)}
+.tile .meta{font-size:.72rem;color:var(--muted2)}
+
+/* ── HELP STRIP ── */
+.help{max-width:1160px;margin:36px auto 0;padding:0 24px}
+.help-card{
+  background:var(--ink);color:#fff;border-radius:14px;
+  padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.help-card h3{margin:0 0 5px;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800}
+.help-card p{margin:0;color:rgba(255,255,255,.5);font-size:.83rem}
+.help-actions{display:flex;gap:8px;flex-wrap:wrap}
+.help-btn{
+  background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.15);
+  padding:9px 16px;border-radius:7px;font-size:.8rem;font-weight:600;
+  transition:background .15s;text-decoration:none;
+}
+.help-btn:hover{background:rgba(255,255,255,.14);text-decoration:none;color:#fff}
+.help-btn.primary{background:var(--accent);border-color:transparent}
+.help-btn.primary:hover{background:var(--accent2)}
+
+/* ── FOOTER ── */
+footer{margin-top:56px;background:var(--ink);color:rgba(255,255,255,.4);padding:32px 24px 24px}
+.foot-inner{max-width:1160px;margin:0 auto}
+.foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.06)}
+@media(max-width:680px){.foot-grid{grid-template-columns:repeat(2,1fr)}}
+.foot-grid h4{color:rgba(255,255,255,.65);font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;margin:0 0 12px;font-weight:700}
+.foot-grid a{color:rgba(255,255,255,.4);font-size:.8rem;display:block;padding:3px 0;transition:color .18s}
+.foot-grid a:hover{color:#fff;text-decoration:none}
+.foot-end{padding-top:18px;color:rgba(255,255,255,.25);font-size:.72rem;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="bar">
+    <a href="index.html" class="logo">Lochan <span>Yadav</span></a>
+    <nav>
+      <a href="index.html#about">About</a>
+      <a href="index.html#tools">Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="mailto:lochan.yadavgolla@gmail.com" class="badge-hire">Hire Me</a>
+    </nav>
+    <div class="head-cta">
+      <a href="mailto:lochan.yadavgolla@gmail.com">Email Me</a>
+      <a href="https://linkedin.com/in/lochan-yadav-0a26261a3" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="shell">
+  <div class="split">
+    <div>
+      <span class="kicker">404 · Off-Route</span>
+      <h1>You've wandered<br><span class="u">off the map</span>.</h1>
+      <p class="lead">The page you were looking for has moved, been renamed, or never existed. <b>Let's get you re-oriented.</b></p>
+
+      <!-- Search -->
+      <form class="search" id="search-form" action="https://www.google.com/search" method="get">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" name="q" type="search" placeholder="Search lochan.online..." autocomplete="off" required>
+        <button type="submit">Go</button>
+      </form>
+
+      <!-- CTAs -->
+      <div class="cta">
+        <a class="btn p" href="index.html">← Back to Home</a>
+        <a class="btn g" href="blog.html">Read the Blog</a>
+      </div>
+      <p class="micro">Or jump to one of the sections below.</p>
+
+      <!-- Routes -->
+      <div class="routes">
+        <a class="route" href="index.html#about">
+          <div class="ico">👨‍💻</div><div><div class="label">About Me</div><div class="desc">Who I am & what I do</div></div><span class="arr">→</span>
+        </a>
+        <a class="route" href="index.html#tools">
+          <div class="ico">🔧</div><div><div class="label">SEO Tools</div><div class="desc">10 custom-built tools</div></div><span class="arr">→</span>
+        </a>
+        <a class="route" href="index.html#portfolio">
+          <div class="ico">📈</div><div><div class="label">Portfolio</div><div class="desc">Case studies & results</div></div><span class="arr">→</span>
+        </a>
+        <a class="route" href="index.html#contact">
+          <div class="ico">✉️</div><div><div class="label">Contact</div><div class="desc">Let's work together</div></div><span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── COMPASS ── -->
+    <div class="compass-wrap">
+      <div class="dial">
+        <div class="dial-bg"></div>
+        <div class="dial-ring"></div>
+        <div class="dial-ring-2"></div>
+
+        <!-- Tick marks (36 ticks every 10°) -->
+        <script>
+          for(let i=0;i<36;i++){
+            const t=document.createElement('div');
+            t.className='tick'+(i%9===0?' major':'');
+            t.style.transform=`rotate(${i*10}deg) translateX(-50%)`;
+            document.currentScript.parentElement.appendChild(t);
+          }
+        </script>
+
+        <span class="dial-n">N</span>
+        <span class="dial-e">E</span>
+        <span class="dial-s">S</span>
+        <span class="dial-w">W</span>
+        <div class="needle"></div>
+        <div class="dial-center">404<span class="lbl">Off Route</span></div>
+        <span class="coord coord-1">13.0827° N</span>
+        <span class="coord coord-2">77.5877° E</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── POPULAR ── -->
+<section class="popular">
+  <p class="label">Or explore my work</p>
+  <div class="tiles">
+    <a class="tile" href="index.html#services"><div class="ico" style="background:rgba(124,58,237,.08);color:var(--accent)">⚙️</div><div class="name">Services</div><div class="meta">What I offer</div></a>
+    <a class="tile" href="tool-01-meta-tag-extractor.html"><div class="ico" style="background:rgba(22,122,74,.08);color:#167A4A">🏷️</div><div class="name">Meta Tag Tool</div><div class="meta">Free web tool</div></a>
+    <a class="tile" href="tool-02-serp-preview.html"><div class="ico" style="background:rgba(192,124,42,.1);color:var(--gold)">🔍</div><div class="name">SERP Preview</div><div class="meta">Free web tool</div></a>
+    <a class="tile" href="tool-03-seo-geo-audit.html"><div class="ico" style="background:rgba(26,95,168,.08);color:#1A5FA8">🌍</div><div class="name">GEO Audit</div><div class="meta">Free web tool</div></a>
+    <a class="tile" href="blog.html#aeo"><div class="ico" style="background:rgba(192,124,42,.1);color:var(--gold)">🎯</div><div class="name">AEO Guide</div><div class="meta">Blog article</div></a>
+    <a class="tile" href="blog.html#geo"><div class="ico" style="background:rgba(124,58,237,.08);color:var(--accent)">🌐</div><div class="name">GEO Guide</div><div class="meta">Blog article</div></a>
+    <a class="tile" href="blog.html#technical"><div class="ico" style="background:rgba(22,122,74,.08);color:#167A4A">🔩</div><div class="name">Technical SEO</div><div class="meta">Blog article</div></a>
+    <a class="tile" href="index.html#resume"><div class="ico" style="background:rgba(26,22,18,.05);color:var(--ink2)">📄</div><div class="name">Resume</div><div class="meta">Experience & edu</div></a>
+  </div>
+</section>
+
+<!-- ── HELP ── -->
+<section class="help">
+  <div class="help-card">
+    <div>
+      <h3>Still can't find what you need?</h3>
+      <p>Drop me a message — I reply within one business day.</p>
+    </div>
+    <div class="help-actions">
+      <a href="sitemap.xml" class="help-btn">Browse Sitemap</a>
+      <a href="mailto:lochan.yadavgolla@gmail.com?subject=Broken+link+on+lochan.online" class="help-btn">Report Broken Link</a>
+      <a href="index.html#contact" class="help-btn primary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-grid">
+      <div>
+        <h4>Portfolio</h4>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#resume">Resume</a>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="tool-01-meta-tag-extractor.html">Meta Tag Extractor</a>
+        <a href="tool-02-serp-preview.html">SERP Preview</a>
+        <a href="tool-03-seo-geo-audit.html">SEO/GEO Audit</a>
+        <a href="FAQs Auto-Builder 1/FAQs Auto-Builder/faqs_index.html">FAQs Builder</a>
+      </div>
+      <div>
+        <h4>Blog</h4>
+        <a href="blog.html#aeo">AEO Guide</a>
+        <a href="blog.html#geo">GEO Guide</a>
+        <a href="blog.html#technical">Technical SEO</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="mailto:lochan.yadavgolla@gmail.com">Email Me</a>
+        <a href="https://linkedin.com/in/lochan-yadav-0a26261a3" target="_blank">LinkedIn</a>
+        <a href="https://github.com/yadavgollalochan-blip/Lochan-Projects" target="_blank">GitHub</a>
+        <a href="sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+    <div class="foot-end">© 2026 Lochan Yadav · Lead SEO Analyst · lochan.online</div>
+  </div>
+</footer>
+
+<script>
+/* Search — site: prefix for Google */
+document.getElementById('search-form').addEventListener('submit', function(e){
+  const input=document.getElementById('q');
+  const q=input.value.trim();
+  if(!q){e.preventDefault();return;}
+  input.value='site:lochan.online '+q;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Affiliate Marketing Course Guide | Lochan Yadav</title>
+<meta name="description" content="A practical 2-minute guide to affiliate marketing — publishers, networks, commission models, and how to build a performance-based affiliate strategy.">
+<link rel="canonical" href="https://lochan.online/course-affiliate-marketing.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FAFAF8;--bg2:#F3F1EB;--card:#FFFFFF;--border:#DDD9CE;--border2:#C9C4B5;
+  --ink:#1A1612;--ink2:#3D3529;--muted:#6B6152;--muted2:#9E9285;
+  --accent:#7C3AED;--gold:#C07C2A;--gold-lt:#F5ECD8;--nav-h:62px;
+  --c:#7C3AED;--c2:#6D28D9;--c-lt:rgba(124,58,237,.08);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+.topbar{background:var(--ink);color:rgba(255,255,255,.6);font-size:.7rem;text-align:center;padding:7px 20px;letter-spacing:.04em}
+.topbar a{color:var(--gold-lt);text-decoration:underline}
+.nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 32px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--ink)}
+.nav-logo span{color:var(--accent)}
+.nav-center{display:flex;gap:4px}
+.nav-center a{font-size:.8rem;font-weight:500;color:var(--muted);padding:6px 12px;border-radius:6px;transition:all .18s}
+.nav-center a:hover{color:var(--ink);background:var(--bg2)}
+.nav-center a.active{color:var(--c);font-weight:600;background:var(--c-lt)}
+.nav-right a{background:var(--c);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;font-size:.78rem;transition:background .18s}
+.nav-right a:hover{background:var(--c2)}
+
+.course-hero{background:var(--ink);padding:48px 32px 56px;text-align:center;position:relative;overflow:hidden}
+.course-hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--c-lt) 1px,transparent 1px),linear-gradient(90deg,var(--c-lt) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;opacity:.6}
+.course-hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:20px;transition:color .18s}
+.back-link:hover{color:rgba(255,255,255,.8)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--c-lt);border:1px solid rgba(124,58,237,.3);color:rgba(124,58,237,.9);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:5px 14px;border-radius:20px;margin-bottom:18px}
+.course-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
+.course-hero p{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.85}
+.hero-meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.hero-meta-item{font-size:.74rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:5px}
+
+.course-body{max-width:1160px;margin:0 auto;padding:56px 32px 80px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
+.course-content h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--ink);margin:36px 0 12px;line-height:1.25}
+.course-content h3{font-size:1rem;font-weight:700;color:var(--ink);margin:24px 0 8px}
+.course-content p{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:14px}
+.course-content strong{color:var(--ink2)}
+
+.callout{background:var(--c-lt);border-left:3px solid var(--c);border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0;font-size:.84rem;color:var(--ink2);line-height:1.7}
+.callout strong{color:var(--c)}
+
+.visual-box{background:linear-gradient(135deg,var(--c-lt),rgba(255,255,255,.5));border:1px solid rgba(124,58,237,.15);border-radius:14px;padding:28px;margin:24px 0;text-align:center}
+.visual-box .visual-icon{font-size:3.5rem;margin-bottom:12px}
+.visual-box p{font-size:.8rem;color:var(--muted);margin:0}
+
+.steps{display:flex;flex-direction:column;gap:0;margin:20px 0}
+.step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-content h4{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+.step-content p{font-size:.8rem;color:var(--muted);margin:0;line-height:1.65}
+
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.tool-chip{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.78rem}
+.tool-chip strong{display:block;color:var(--ink);font-weight:700;margin-bottom:2px}
+.tool-chip span{color:var(--muted);font-size:.72rem}
+
+.provider-list{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+.provider-item{display:flex;gap:12px;align-items:flex-start;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:10px}
+.provider-icon{font-size:1.4rem;flex-shrink:0}
+.provider-name{font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:2px}
+.provider-desc{font-size:.74rem;color:var(--muted)}
+.provider-tag{display:inline-block;background:var(--c-lt);color:var(--c);font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;margin-top:4px}
+
+.course-cta-box{background:var(--ink);border-radius:16px;padding:32px;text-align:center;margin-top:40px}
+.course-cta-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:10px}
+.course-cta-box p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:20px}
+.cta-btn{display:inline-flex;align-items:center;gap:6px;background:var(--c);color:#fff;padding:11px 24px;border-radius:8px;font-weight:700;font-size:.82rem;transition:all .18s}
+.cta-btn:hover{background:var(--c2)}
+
+.course-sidebar{display:flex;flex-direction:column;gap:20px;position:sticky;top:80px}
+.sb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.sb-title{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:14px}
+.toc-link{display:block;font-size:.78rem;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);transition:color .18s}
+.toc-link:last-child{border-bottom:none}
+.toc-link:hover{color:var(--c)}
+.other-course{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);text-decoration:none}
+.other-course:last-child{border-bottom:none}
+.oc-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.oc-name{font-size:.78rem;font-weight:600;color:var(--ink);line-height:1.2}
+.oc-time{font-size:.68rem;color:var(--muted2)}
+
+footer{background:var(--ink);padding:32px;text-align:center}
+.footer-top{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:#fff}
+.footer-logo span{color:var(--accent)}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:.78rem;color:rgba(255,255,255,.4);transition:color .18s}
+.footer-links a:hover{color:rgba(255,255,255,.8)}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);max-width:1160px;margin:0 auto}
+
+@media(max-width:900px){.course-body{grid-template-columns:1fr}.course-sidebar{position:static}}
+@media(max-width:600px){.nav-center{display:none}.tools-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">📚 Part of the <a href="courses.html">Digital Marketing Courses</a> series by Lochan Yadav · BankBazaar</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
+    <div class="nav-center">
+      <a href="index.html">Home</a>
+      <a href="index.html#tools">Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="courses.html" class="active">Courses</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-right"><a href="mailto:lochan.yadavgolla@gmail.com">Hire Me</a></div>
+  </div>
+</nav>
+
+<div class="course-hero">
+  <div class="course-hero-grid"></div>
+  <div class="course-hero-inner">
+    <a href="courses.html" class="back-link">← Back to All Courses</a>
+    <div class="hero-badge">🤝 Affiliate · Performance</div>
+    <h1>Affiliate Marketing</h1>
+    <p>Understand how publishers, networks, and advertisers work together — and how to build a scalable, low-risk performance channel.</p>
+    <div class="hero-meta">
+      <span class="hero-meta-item">⏱ 2 min read</span>
+      <span class="hero-meta-item">✍️ Lochan Yadav · BankBazaar</span>
+      <span class="hero-meta-item">📅 May 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="course-body">
+<div class="course-content">
+
+  <h2>What Is Affiliate Marketing?</h2>
+  <p>Affiliate marketing is a <strong>performance-based acquisition model</strong> where an advertiser pays a commission to a publisher (the affiliate) only when that publisher drives a measurable result — a lead, a sale, an app install, or another agreed conversion event. The key word is <em>performance</em>: unlike display advertising where you pay for impressions or clicks regardless of outcome, affiliate marketing means you only pay for results you actually get.</p>
+  <p>Three parties make the ecosystem work. The <strong>Advertiser</strong> (e.g., BankBazaar) defines the offer and pays commissions. The <strong>Publisher / Affiliate</strong> (a finance blog, comparison site, coupon platform, or YouTube channel) promotes the advertiser's products to their audience. The <strong>Network</strong> (Commission Junction, Impact, Admitad) sits in the middle — hosting the tracking infrastructure, managing payments, and providing the marketplace where advertisers and publishers find each other.</p>
+
+  <div class="callout"><strong>Simple definition:</strong> Affiliate marketing = you pay only when you win. Publishers take on the marketing risk and earn a commission for every conversion they deliver.</div>
+
+  <h2>Real-World Example</h2>
+  <p>BankBazaar works with <strong>1,000+ affiliate publishers</strong> — finance blogs, product comparison sites, and YouTube personal finance channels — who earn a commission every time a user they refer successfully applies for a credit card or loan. The advertiser pays only on <strong>approved applications</strong>, making it one of the highest-ROI acquisition channels in Indian fintech. There is no wasted spend on unqualified traffic — every rupee pays for a verified outcome.</p>
+
+  <div class="visual-box">
+    <div class="visual-icon">🔗</div>
+    <p><strong>Affiliate Flow</strong><br>Advertiser sets offer → Affiliate promotes → User clicks tracked link → Converts → Network records event → Commission paid to affiliate</p>
+  </div>
+
+  <h2>Key Affiliate Marketing Concepts</h2>
+
+  <h3>Commission Models</h3>
+  <p>The three most common models define how and when affiliates get paid. <strong>CPA (Cost Per Acquisition)</strong> pays a fixed amount for each conversion — ideal for lead generation (e.g., ₹500 per approved credit card application). <strong>CPC (Cost Per Click)</strong> pays per click regardless of conversion — less common in performance marketing, higher risk for the advertiser. <strong>Revenue Share</strong> pays the affiliate a percentage of the sale value — common in e-commerce and SaaS, where the lifetime value of a customer is predictable and worth sharing.</p>
+
+  <h3>Cookie Window</h3>
+  <p>The cookie window defines how long after a user's first click the affiliate gets credit if that user converts. A <strong>30-day cookie</strong> means if a user clicks an affiliate link today and applies for a credit card 28 days later, the affiliate still earns the commission. Longer windows favor affiliates and encourage content publishers. Shorter windows (7 days or less) favor advertisers and suit high-intent, fast-converting products.</p>
+
+  <h3>Attribution in Affiliate</h3>
+  <p>Most affiliate programs use <strong>last-click attribution</strong> — the affiliate whose link was clicked most recently before conversion gets 100% of the commission. This is simple but can undervalue content affiliates who introduce users early in the journey. Some sophisticated programs use <strong>assisted attribution</strong> or <strong>multi-touch models</strong> to share commission across all contributing publishers. Understanding attribution is critical when evaluating which affiliates are truly driving value vs. those winning on last-click alone.</p>
+
+  <h3>Affiliate Fraud</h3>
+  <p>Affiliate fraud is a real risk in performance marketing. Common tactics include <strong>click stuffing</strong> (firing fake clicks to steal last-click credit), <strong>cookie dropping</strong> (setting affiliate cookies without a genuine user interaction), and <strong>fake leads</strong> (submitting fabricated form data). Reputable networks provide fraud detection at the network level — but advertisers should also monitor for unusual conversion patterns and validate lead quality independently.</p>
+
+  <h2>Step-by-Step: Building an Affiliate Program</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Choose Your Model: In-House vs Network</h4><p>An in-house program (using Post Affiliate Pro or similar) gives you full control and lower costs but requires you to recruit and manage affiliates yourself. A network (Impact, CJ, Admitad) provides instant access to thousands of publishers and handles tracking and payments — better for scale, but comes with network fees.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Define Your Commission Structure</h4><p>Set a commission that makes economic sense. For leads: calculate your average customer value and decide what percentage you can pay as acquisition cost. For revenue share: 5–30% is typical depending on margin. Set performance tiers — top affiliates earn higher commissions — to incentivize your best publishers.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Recruit Affiliates</h4><p>Use the network marketplace to list your program and attract publishers. Supplement with direct outreach to niche sites in your vertical — finance blogs, comparison sites, and review channels that already have your target audience. Personalize your outreach; the best affiliates receive dozens of program invitations daily.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Provide Creatives, Tracking Links &amp; Data Feeds</h4><p>Equip affiliates for success: branded banner ads in multiple sizes, text link copies, product data feeds (for comparison sites), and deep links to specific product pages. The easier you make it for affiliates to promote you accurately, the better your conversion rates and brand consistency.</p></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-content"><h4>Monitor Performance &amp; Optimise Top Relationships</h4><p>Review affiliate performance monthly. Identify your top 20% of publishers driving 80% of conversions. Invest in those relationships — offer exclusive commission boosts, co-branded landing pages, or early access to new products. Let underperforming affiliates churn naturally. Quality of publisher relationships beats raw volume every time.</p></div></div>
+  </div>
+
+  <div class="callout"><strong>Fintech benchmark:</strong> In fintech, affiliate marketing delivers 25–40% of total acquisition for many lenders and insurance platforms. It is a scale channel, not a side project — and it deserves dedicated programme management to perform at that level.</div>
+
+  <h2>Essential Affiliate Tools</h2>
+  <div class="tools-grid">
+    <div class="tool-chip"><strong>Impact.com</strong><span>Leading affiliate network — enterprise-grade tracking</span></div>
+    <div class="tool-chip"><strong>Commission Junction (CJ)</strong><span>One of the world's largest affiliate networks</span></div>
+    <div class="tool-chip"><strong>Admitad</strong><span>Popular in India &amp; emerging markets — strong fintech network</span></div>
+    <div class="tool-chip"><strong>Post Affiliate Pro</strong><span>Run an in-house program with full control</span></div>
+    <div class="tool-chip"><strong>Google Analytics (UTM)</strong><span>Track affiliate traffic quality via UTM parameters</span></div>
+    <div class="tool-chip"><strong>Voluum</strong><span>Advanced affiliate tracking &amp; fraud detection</span></div>
+  </div>
+
+  <h2>Where to Learn More</h2>
+  <div class="provider-list">
+    <div class="provider-item">
+      <div class="provider-icon">🏛️</div>
+      <div><div class="provider-name">Performance Marketing Association (PMA)</div><div class="provider-desc">The industry body for performance and affiliate marketing. Free resources, whitepapers, and best-practice guides written by senior practitioners in the field.</div><div class="provider-tag">Free · Industry Body</div></div>
+    </div>
+    <div class="provider-item">
+      <div class="provider-icon">📚</div>
+      <div><div class="provider-name">Coursera — Introduction to Performance Marketing</div><div class="provider-desc">Structured course covering performance channels including affiliate, display, and paid social. Good grounding in measurement frameworks and campaign economics.</div><div class="provider-tag">Paid · Certificate</div></div>
+    </div>
+    <div class="provider-item">
+      <div class="provider-icon">💼</div>
+      <div><div class="provider-name">LinkedIn Learning — Affiliate Marketing Foundations</div><div class="provider-desc">Covers affiliate programme setup, publisher recruitment, commission models, and fraud prevention. Practical and concise — useful for marketers new to the channel.</div><div class="provider-tag">Paid · Certificate</div></div>
+    </div>
+    <div class="provider-item">
+      <div class="provider-icon">🎯</div>
+      <div><div class="provider-name">ClickBank University</div><div class="provider-desc">Focused on launching affiliate campaigns as a publisher or vendor. Best for beginners who want to understand the affiliate ecosystem from the publisher side before managing a programme.</div><div class="provider-tag">Paid · Beginner-Friendly</div></div>
+    </div>
+  </div>
+
+  <div class="course-cta-box">
+    <h3>Digital Marketing Strategy Insights</h3>
+    <p>Read the blog for deep-dives into performance marketing, SEO strategy, and the data-driven thinking behind BankBazaar's growth channels.</p>
+    <a href="blog.html" class="cta-btn">Read the Blog →</a>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<aside class="course-sidebar">
+  <div class="sb-card">
+    <div class="sb-title">In This Guide</div>
+    <a href="#" class="toc-link">What Is Affiliate Marketing?</a>
+    <a href="#" class="toc-link">Real-World Example</a>
+    <a href="#" class="toc-link">Commission Models</a>
+    <a href="#" class="toc-link">Cookie Window &amp; Attribution</a>
+    <a href="#" class="toc-link">Affiliate Fraud</a>
+    <a href="#" class="toc-link">Step-by-Step Setup</a>
+    <a href="#" class="toc-link">Tools &amp; Networks</a>
+    <a href="#" class="toc-link">Where to Learn More</a>
+  </div>
+  <div class="sb-card">
+    <div class="sb-title">Other Courses</div>
+    <a href="course-seo.html" class="other-course"><div class="oc-icon" style="background:rgba(124,58,237,.1)">🔍</div><div><div class="oc-name">Search Engine Optimization</div><div class="oc-time">3 min · SEO</div></div></a>
+    <a href="course-sem.html" class="other-course"><div class="oc-icon" style="background:rgba(37,99,235,.1)">💰</div><div><div class="oc-name">SEM &amp; Google Ads</div><div class="oc-time">3 min · Paid Search</div></div></a>
+    <a href="course-social-media.html" class="other-course"><div class="oc-icon" style="background:rgba(225,29,72,.1)">📱</div><div><div class="oc-name">Social Media Marketing</div><div class="oc-time">3 min · Organic Social</div></div></a>
+    <a href="course-content-marketing.html" class="other-course"><div class="oc-icon" style="background:rgba(217,119,6,.1)">✍️</div><div><div class="oc-name">Content Marketing</div><div class="oc-time">3 min · Strategy</div></div></a>
+    <a href="course-web-analytics.html" class="other-course"><div class="oc-icon" style="background:rgba(8,145,178,.1)">📊</div><div><div class="oc-name">Web Analytics (GA4)</div><div class="oc-time">3 min · Data</div></div></a>
+    <a href="course-power-bi.html" class="other-course"><div class="oc-icon" style="background:rgba(192,54,74,.1)">📉</div><div><div class="oc-name">Power BI for Marketers</div><div class="oc-time">3 min · Dashboards</div></div></a>
+  </div>
+  <div class="sb-card" style="background:linear-gradient(135deg,var(--c-lt),rgba(255,255,255,.5));border-color:rgba(124,58,237,.15)">
+    <div class="sb-title">Free SEO Tools</div>
+    <p style="font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:12px">8 browser-based SEO tools — analytics, schema, keyword density, and more.</p>
+    <a href="index.html#tools" style="display:block;background:var(--c);color:#fff;padding:8px 14px;border-radius:7px;font-weight:700;font-size:.75rem;text-align:center">Open the Toolbox →</a>
+  </div>
+</aside>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Lochan <span>Yadav</span></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="index.html#tools">Tools</a><a href="blog.html">Blog</a>
+      <a href="courses.html">Courses</a><a href="index.html#contact">Contact</a><a href="sitemap.xml">Sitemap</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Lochan Yadav · Lead SEO Analyst · BankBazaar · lochan.online</div>
+</footer>
+</body>
+</html>

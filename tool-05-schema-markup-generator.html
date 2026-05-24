@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schema Markup Generator – SEO Tools by Lochan Yadav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b12;--s1:#13131f;--s2:#1a1a2a;--s3:#22223a;
+  --bd:#2a2a42;--bd2:#3a3a5a;
+  --txt:#e8e8f4;--txt2:#aaaacc;--txt3:#666688;
+  --acc:#f59e0b;--acc2:#d97706;--acc-glow:rgba(245,158,11,.18);
+  --gr:#34d399;--gr-bg:rgba(52,211,153,.1);
+  --ye:#fbbf24;--ye-bg:rgba(251,191,36,.08);
+  --rd:#f87171;--rd-bg:rgba(248,113,113,.1);
+  --bl:#60a5fa;--bl-bg:rgba(96,165,250,.08);
+  --r:10px;--rs:7px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);font-size:14px;line-height:1.55;min-height:100vh}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--s1)}
+::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
+/* HEADER */
+.hdr{background:var(--s1);border-bottom:1px solid var(--bd);padding:0 28px;height:62px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100}
+.hlogo{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--acc2),var(--acc));display:flex;align-items:center;justify-content:center;font-size:21px;box-shadow:0 0 18px var(--acc-glow)}
+.htitle{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.hsub{font-size:12px;color:var(--txt3);margin-top:1px}
+.hbadge{padding:5px 12px;border-radius:20px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--acc);font-size:11px;font-weight:700;letter-spacing:.5px}
+/* HERO */
+.hero{background:linear-gradient(135deg,rgba(217,119,6,.06),rgba(245,158,11,.03));border-bottom:1px solid var(--bd);padding:36px 28px 28px;text-align:center}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--acc);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+.hero h1{font-size:clamp(22px,4vw,36px);font-weight:800;margin-bottom:10px;background:linear-gradient(135deg,#fff 30%,var(--acc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--txt2);font-size:14px;max-width:620px;margin:0 auto 14px;line-height:1.7}
+.type-pills{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.type-pill{font-size:11px;font-weight:600;padding:4px 11px;border-radius:12px;background:var(--s2);border:1px solid var(--bd);color:var(--txt3);cursor:pointer;transition:all .2s}
+.type-pill:hover,.type-pill.sel{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.4);color:var(--acc)}
+/* LAYOUT */
+.wrap{max-width:1260px;margin:0 auto;padding:28px 20px}
+.layout{display:grid;grid-template-columns:420px 1fr;gap:22px;align-items:start}
+@media(max-width:920px){.layout{grid-template-columns:1fr}}
+/* CARD */
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-hd{padding:12px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:700;color:var(--acc);letter-spacing:.3px;text-transform:uppercase;background:rgba(245,158,11,.04)}
+.card-bd{padding:18px}
+/* SCHEMA TYPE SELECTOR */
+.type-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.type-btn{padding:11px 10px;border:1.5px solid var(--bd);border-radius:8px;background:var(--s2);color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.type-btn .ti{font-size:20px}
+.type-btn .tn{font-size:11px}
+.type-btn:hover{border-color:var(--acc);color:var(--acc);background:rgba(245,158,11,.06)}
+.type-btn.active{border-color:var(--acc);background:rgba(245,158,11,.12);color:var(--acc)}
+/* FORM */
+.field{margin-bottom:12px}
+.flbl{font-size:11px;color:var(--txt2);font-weight:600;display:block;margin-bottom:5px;letter-spacing:.2px;text-transform:uppercase}
+.flbl .opt{color:var(--txt3);font-weight:400;text-transform:none;font-size:10px}
+input[type=text],input[type=url],input[type=number],input[type=email],textarea,select{width:100%;padding:9px 12px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);color:var(--txt);font-family:inherit;font-size:13px;outline:none;transition:border-color .2s,box-shadow .2s;resize:vertical}
+input:focus,textarea:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-glow)}
+input::placeholder,textarea::placeholder{color:var(--txt3)}
+select{cursor:pointer}
+select option{background:var(--s2)}
+textarea{min-height:72px;line-height:1.5}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+/* REPEAT ROWS */
+.rep-row{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;margin-bottom:8px;position:relative}
+.rep-row .del-btn{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--txt3);cursor:pointer;font-size:16px;transition:color .2s}
+.rep-row .del-btn:hover{color:var(--rd)}
+.add-row-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--txt3);background:var(--s2);border:1px dashed var(--bd);border-radius:8px;padding:8px 14px;cursor:pointer;width:100%;justify-content:center;transition:all .2s}
+.add-row-btn:hover{border-color:var(--acc);color:var(--acc)}
+/* BTNS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border:none;border-radius:var(--rs);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,var(--acc2),var(--acc));color:#000}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 4px 20px var(--acc-glow)}
+.btn-outline{background:transparent;border:1px solid var(--bd);color:var(--txt2)}
+.btn-outline:hover{border-color:var(--acc);color:var(--acc)}
+.btn-green{background:linear-gradient(135deg,#065f46,#059669);color:#fff}
+.btn-green:hover{opacity:.9;transform:translateY(-1px)}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn-sm{padding:7px 13px;font-size:12px}
+/* OUTPUT */
+.out-tabs{display:flex;gap:3px;margin-bottom:14px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);padding:3px}
+.out-tab{flex:1;padding:8px;background:transparent;border:none;color:var(--txt3);cursor:pointer;border-radius:5px;font-size:12px;font-weight:600;font-family:inherit;transition:all .2s}
+.out-tab.on{background:linear-gradient(135deg,var(--acc2),var(--acc));color:#000}
+.out-tab:hover:not(.on){color:var(--txt);background:rgba(255,255,255,.05)}
+.out-pane{display:none}.out-pane.on{display:block}
+.code-wrap{position:relative}
+.code-block{background:#080810;border:1px solid var(--bd2);border-radius:10px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#c4c4e0;white-space:pre;overflow-x:auto;max-height:500px;overflow-y:auto}
+.code-block .kw{color:#fbbf24}
+.code-block .str{color:#86efac}
+.code-block .num{color:#93c5fd}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:5px 13px;color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;transition:all .2s}
+.copy-btn:hover{border-color:var(--acc);color:var(--acc)}
+.copy-btn.copied{border-color:var(--gr);color:var(--gr)}
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:6px}
+.check-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--txt2);line-height:1.5}
+.check-icon{flex-shrink:0;margin-top:1px}
+.check-ok{color:var(--gr)}
+.check-warn{color:var(--ye)}
+.check-err{color:var(--rd)}
+/* FOOTER */
+.footer{text-align:center;padding:24px;color:var(--txt3);font-size:12px;border-top:1px solid var(--bd);margin-top:28px;letter-spacing:.4px}
+.footer span{color:var(--acc);font-weight:600}
+/* TIP BOX */
+.tip{background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.2);border-radius:8px;padding:11px 14px;font-size:12px;color:var(--txt2);line-height:1.6;margin-top:12px}
+.tip strong{color:var(--bl)}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hlogo">🏷️</div>
+  <div>
+    <div class="htitle">Schema Markup Generator</div>
+    <div class="hsub">7 schema types · Instant JSON-LD · Google Rich Results ready</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+    <a href="index.html" style="font-size:12px;font-weight:600;color:var(--txt3);text-decoration:none;border:1px solid var(--bd);padding:5px 12px;border-radius:6px;transition:all .2s" onmouseover="this.style.color='var(--acc)';this.style.borderColor='var(--acc)'" onmouseout="this.style.color='var(--txt3)';this.style.borderColor='var(--bd)'">← Portfolio</a>
+    <div class="hbadge">TOOL #05</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-cat">🏷️ Structured Data</div>
+  <h1>Schema Markup Generator</h1>
+  <p>Select a schema type, fill the form, get valid JSON-LD instantly. Paste into your page's &lt;head&gt; to unlock Google Rich Results — zero code knowledge needed.</p>
+  <div class="type-pills">
+    <span class="type-pill">📰 Article</span><span class="type-pill">🔢 HowTo</span>
+    <span class="type-pill">🏢 LocalBusiness</span><span class="type-pill">🛒 Product</span>
+    <span class="type-pill">⭐ Review</span><span class="type-pill">🔗 BreadcrumbList</span>
+    <span class="type-pill">🏛️ Organization</span>
+  </div>
+</section>
+
+<div class="wrap">
+<div class="layout">
+
+<!-- ══ LEFT ══ -->
+<div>
+  <!-- Type Selector -->
+  <div class="card">
+    <div class="card-hd">① Select Schema Type</div>
+    <div class="card-bd">
+      <div class="type-grid">
+        <button class="type-btn active" onclick="switchType('article',this)"><span class="ti">📰</span><span class="tn">Article</span></button>
+        <button class="type-btn" onclick="switchType('howto',this)"><span class="ti">🔢</span><span class="tn">HowTo</span></button>
+        <button class="type-btn" onclick="switchType('localbusiness',this)"><span class="ti">🏢</span><span class="tn">LocalBusiness</span></button>
+        <button class="type-btn" onclick="switchType('product',this)"><span class="ti">🛒</span><span class="tn">Product</span></button>
+        <button class="type-btn" onclick="switchType('review',this)"><span class="ti">⭐</span><span class="tn">Review</span></button>
+        <button class="type-btn" onclick="switchType('breadcrumb',this)"><span class="ti">🔗</span><span class="tn">BreadcrumbList</span></button>
+        <button class="type-btn" onclick="switchType('organization',this)"><span class="ti">🏛️</span><span class="tn">Organization</span></button>
+        <button class="type-btn" onclick="switchType('video',this)"><span class="ti">🎬</span><span class="tn">VideoObject</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Form -->
+  <div class="card">
+    <div class="card-hd">② Fill in the Details <span id="type-label" style="color:var(--txt3);font-weight:500;text-transform:none;letter-spacing:0;font-size:11px">— Article</span></div>
+    <div class="card-bd" id="form-area">
+      <!-- injected by JS -->
+    </div>
+  </div>
+
+  <!-- Generate Button -->
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="generate()">⚡ Generate Schema</button>
+    <button class="btn btn-outline btn-sm" onclick="clearForm()">✕ Clear</button>
+  </div>
+</div>
+
+<!-- ══ RIGHT ══ -->
+<div>
+  <!-- Validation -->
+  <div class="card">
+    <div class="card-hd">✔ Validation Checklist <span id="score-tag" style="margin-left:auto;font-size:11px;padding:2px 8px;border-radius:10px;background:var(--s2);color:var(--txt3);font-weight:600;text-transform:none;letter-spacing:0">Fill form first</span></div>
+    <div class="card-bd">
+      <div class="checklist" id="checklist">
+        <div class="check-item"><span class="check-icon check-warn">○</span> Select a schema type and fill the required fields</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Output -->
+  <div class="card">
+    <div class="card-hd">📄 Generated Output</div>
+    <div class="card-bd">
+      <div class="out-tabs">
+        <button class="out-tab on" onclick="switchOut('json',this)">JSON-LD</button>
+        <button class="out-tab" onclick="switchOut('head',this)">HTML &lt;script&gt; tag</button>
+      </div>
+      <div class="out-pane on" id="out-json">
+        <div class="code-wrap">
+          <pre class="code-block" id="json-out"><span style="color:var(--txt3);font-style:italic">// Fill the form on the left and click Generate…</span></pre>
+          <button class="copy-btn" id="copy-j" onclick="copyIt('json-out','copy-j')">Copy</button>
+        </div>
+      </div>
+      <div class="out-pane" id="out-head">
+        <div class="code-wrap">
+          <pre class="code-block" id="head-out"><span style="color:var(--txt3);font-style:italic">// Fill the form and click Generate…</span></pre>
+          <button class="copy-btn" id="copy-h" onclick="copyIt('head-out','copy-h')">Copy</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-green btn-sm" onclick="downloadJSON()">⬇ Download .json</button>
+        <button class="btn btn-outline btn-sm" onclick="window.open('https://search.google.com/test/rich-results','_blank')">🔍 Test in Google</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rich Results Info -->
+  <div class="card">
+    <div class="card-hd">💡 Rich Results This Unlocks</div>
+    <div class="card-bd" id="rich-info">
+      <div style="color:var(--txt2);font-size:13px;line-height:1.7">
+        Select a schema type to see what rich results it enables in Google Search.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+  SEO Pro Tools &nbsp;·&nbsp; Tool #05: Schema Markup Generator &nbsp;·&nbsp; 100% Free · No API Key · 8 Schema Types
+  <div style="margin-top:6px">✦ Designed by <span>Lochan Yadav</span> · 6+ Years SEO &amp; Digital Marketing Expert ✦</div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   SCHEMA DEFINITIONS
+═══════════════════════════════════════════════════════ */
+const SCHEMAS = {
+  article:{
+    label:'Article',
+    richInfo:'<strong style="color:var(--gr)">Unlocks:</strong> Article rich result with author, publish date, headline, and image in Google News and Search. Boosts E-E-A-T signals significantly.',
+    fields:`
+      <div class="field"><label class="flbl">Headline / Title *</label><input type="text" id="f-headline" placeholder="Best Home Loan Rates in India 2025"></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Article Type</label>
+          <select id="f-arttype"><option value="Article">Article</option><option value="NewsArticle">NewsArticle</option><option value="BlogPosting">BlogPosting</option><option value="TechArticle">TechArticle</option></select>
+        </div>
+        <div class="field"><label class="flbl">Language</label><input type="text" id="f-lang" placeholder="en-IN" value="en-IN"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Date Published *</label><input type="text" id="f-pubdate" placeholder="2025-05-24"></div>
+        <div class="field"><label class="flbl">Date Modified</label><input type="text" id="f-moddate" placeholder="2025-05-24"></div>
+      </div>
+      <div class="field"><label class="flbl">Page URL *</label><input type="url" id="f-url" placeholder="https://example.com/article-slug"></div>
+      <div class="field"><label class="flbl">Description *</label><textarea id="f-desc" placeholder="Brief description of the article (used as description in schema)"></textarea></div>
+      <div class="field"><label class="flbl">Featured Image URL</label><input type="url" id="f-img" placeholder="https://example.com/images/article-hero.jpg"></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Author Name *</label><input type="text" id="f-author" placeholder="Lochan Yadav"></div>
+        <div class="field"><label class="flbl">Author URL <span class="opt">(optional)</span></label><input type="url" id="f-authorurl" placeholder="https://lochan.online"></div>
+      </div>
+      <div class="field"><label class="flbl">Publisher / Organization Name *</label><input type="text" id="f-publisher" placeholder="BankBazaar"></div>
+      <div class="field"><label class="flbl">Publisher Logo URL</label><input type="url" id="f-publogo" placeholder="https://example.com/logo.png"></div>
+    `,
+    build(){
+      const h=v('headline'),url=v('url'),desc=v('desc'),author=v('author'),pub=v('publisher');
+      const type=v('arttype')||'Article';
+      const obj={'@context':'https://schema.org','@type':type,headline:h,url:url,description:desc,datePublished:v('pubdate'),dateModified:v('moddate')||v('pubdate'),inLanguage:v('lang')||'en-IN',author:{'@type':'Person',name:author}};
+      if(v('authorurl')) obj.author.url=v('authorurl');
+      if(v('img')) obj.image={'@type':'ImageObject',url:v('img')};
+      if(pub){ obj.publisher={'@type':'Organization',name:pub}; if(v('publogo')) obj.publisher.logo={'@type':'ImageObject',url:v('publogo')}; }
+      return obj;
+    },
+    required:['headline','url','desc','author','publisher','pubdate'],
+    checks:['headline','url','desc','author','publisher','pubdate','img']
+  },
+  howto:{
+    label:'HowTo',
+    richInfo:'<strong style="color:var(--gr)">Unlocks:</strong> Step-by-step rich result with numbered steps, images per step, and total time. Ideal for guides, tutorials, and process pages.',
+    fields:`
+      <div class="field"><label class="flbl">How-To Name / Title *</label><input type="text" id="f-name" placeholder="How to Apply for a Home Loan Online"></div>
+      <div class="field"><label class="flbl">Description *</label><textarea id="f-desc" placeholder="Brief description of what this guide helps users accomplish"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Total Time <span class="opt">(ISO 8601)</span></label><input type="text" id="f-time" placeholder="PT10M"></div>
+        <div class="field"><label class="flbl">Estimated Cost <span class="opt">(optional)</span></label><input type="text" id="f-cost" placeholder="Free"></div>
+      </div>
+      <div class="field"><label class="flbl">Image URL <span class="opt">(optional)</span></label><input type="url" id="f-img" placeholder="https://example.com/howto-hero.jpg"></div>
+      <div class="field"><label class="flbl">Steps * <span class="opt">(add at least 2)</span></label></div>
+      <div id="steps-list"></div>
+      <button class="add-row-btn" onclick="addStep()">＋ Add Step</button>
+      <div class="tip" style="margin-top:12px"><strong>Time format:</strong> PT5M = 5 mins · PT1H = 1 hr · PT1H30M = 1 hr 30 mins</div>
+    `,
+    build(){
+      const steps=[];
+      document.querySelectorAll('.step-item').forEach((el,i)=>{
+        const n=el.querySelector('.step-name')?.value.trim();
+        const t=el.querySelector('.step-text')?.value.trim();
+        if(n||t) steps.push({'@type':'HowToStep',name:n||'Step '+(i+1),text:t||''});
+      });
+      const obj={'@context':'https://schema.org','@type':'HowTo',name:v('name'),description:v('desc'),totalTime:v('time')||undefined,step:steps};
+      if(v('img')) obj.image=v('img');
+      if(v('cost')) obj.estimatedCost={'@type':'MonetaryAmount',currency:'INR',value:v('cost')};
+      return obj;
+    },
+    required:['name','desc'],
+    checks:['name','desc','time','img']
+  },
+  localbusiness:{
+    label:'LocalBusiness',
+    richInfo:'<strong style="color:var(--gr)">Unlocks:</strong> Business knowledge panel with address, hours, phone, rating, and map integration. Critical for local SEO and Google Business visibility.',
+    fields:`
+      <div class="field"><label class="flbl">Business Name *</label><input type="text" id="f-name" placeholder="BankBazaar Financial Services"></div>
+      <div class="field"><label class="flbl">Business Type *</label>
+        <select id="f-biztype"><option>LocalBusiness</option><option>FinancialService</option><option>Bank</option><option>Restaurant</option><option>Store</option><option>MedicalBusiness</option><option>LodgingBusiness</option><option>AutoDealer</option></select>
+      </div>
+      <div class="field"><label class="flbl">Description</label><textarea id="f-desc" placeholder="Brief description of the business"></textarea></div>
+      <div class="field"><label class="flbl">Street Address *</label><input type="text" id="f-street" placeholder="123 MG Road"></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">City *</label><input type="text" id="f-city" placeholder="Bangalore"></div>
+        <div class="field"><label class="flbl">State</label><input type="text" id="f-state" placeholder="Karnataka"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Postal Code</label><input type="text" id="f-pin" placeholder="560001"></div>
+        <div class="field"><label class="flbl">Country</label><input type="text" id="f-country" value="IN" placeholder="IN"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Phone *</label><input type="text" id="f-phone" placeholder="+91-80-12345678"></div>
+        <div class="field"><label class="flbl">Email <span class="opt">(optional)</span></label><input type="email" id="f-email" placeholder="info@example.com"></div>
+      </div>
+      <div class="field"><label class="flbl">Website URL *</label><input type="url" id="f-url" placeholder="https://www.bankbazaar.com"></div>
+      <div class="field"><label class="flbl">Opening Hours <span class="opt">(e.g. Mo-Fr 09:00-18:00)</span></label><input type="text" id="f-hours" placeholder="Mo-Fr 09:00-18:00"></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Rating (1–5)</label><input type="number" id="f-rating" min="1" max="5" step="0.1" placeholder="4.5"></div>
+        <div class="field"><label class="flbl">Review Count</label><input type="number" id="f-rcount" placeholder="1240"></div>
+      </div>
+      <div class="field"><label class="flbl">Logo URL <span class="opt">(optional)</span></label><input type="url" id="f-logo" placeholder="https://example.com/logo.png"></div>
+    `,
+    build(){
+      const obj={'@context':'https://schema.org','@type':v('biztype')||'LocalBusiness',name:v('name'),url:v('url'),telephone:v('phone'),address:{'@type':'PostalAddress',streetAddress:v('street'),addressLocality:v('city'),addressRegion:v('state'),postalCode:v('pin'),addressCountry:v('country')||'IN'}};
+      if(v('desc')) obj.description=v('desc');
+      if(v('email')) obj.email=v('email');
+      if(v('hours')) obj.openingHours=v('hours');
+      if(v('logo')) obj.logo=v('logo');
+      if(v('rating')) obj.aggregateRating={'@type':'AggregateRating',ratingValue:parseFloat(v('rating')),reviewCount:parseInt(v('rcount'))||0,bestRating:5,worstRating:1};
+      return obj;
+    },
+    required:['name','url','phone','street','city'],
+    checks:['name','url','phone','street','city','hours','rating','logo']
+  },
+  product:{
+    label:'Product',
+    richInfo:'<strong style="color:var(--gr)">Unlocks:</strong> Product rich result with price, availability, rating stars, and review count directly in search results. Huge CTR boost for e-commerce and finance pages.',
+    fields:`
+      <div class="field"><label class="flbl">Product Name *</label><input type="text" id="f-name" placeholder="Home Loan by SBI — Best Rates 2025"></div>
+      <div class="field"><label class="flbl">Description *</label><textarea id="f-desc" placeholder="Short product description visible in rich results"></textarea></div>
+      <div class="field"><label class="flbl">Product Image URL</label><input type="url" id="f-img" placeholder="https://example.com/product.jpg"></div>
+      <div class="field"><label class="flbl">Page URL *</label><input type="url" id="f-url" placeholder="https://example.com/product-page"></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Brand / Provider</label><input type="text" id="f-brand" placeholder="SBI"></div>
+        <div class="field"><label class="flbl">SKU / ID <span class="opt">(optional)</span></label><input type="text" id="f-sku" placeholder="SBI-HOMELOAN-01"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Price *</label><input type="number" id="f-price" placeholder="8.50"></div>
+        <div class="field"><label class="flbl">Currency</label><input type="text" id="f-currency" value="INR" placeholder="INR"></div>
+      </div>
+      <div class="field"><label class="flbl">Availability</label>
+        <select id="f-avail"><option value="InStock">In Stock</option><option value="OutOfStock">Out of Stock</option><option value="PreOrder">Pre-Order</option></select>
+      </div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Rating (1–5)</label><input type="number" id="f-rating" min="1" max="5" step="0.1" placeholder="4.7"></div>
+        <div class="field"><label class="flbl">Review Count</label><input type="number" id="f-rcount" placeholder="842"></div>
+      </div>
+    `,
+    build(){
+      const obj={'@context':'https://schema.org','@type':'Product',name:v('name'),description:v('desc'),url:v('url')};
+      if(v('img')) obj.image=v('img');
+      if(v('brand')) obj.brand={'@type':'Brand',name:v('brand')};
+      if(v('sku')) obj.sku=v('sku');
+      if(v('price')) obj.offers={'@type':'Offer',price:v('price'),priceCurrency:v('currency')||'INR',availability:'https://schema.org/'+(v('avail')||'InStock'),url:v('url')};
+      if(v('rating')) obj.aggregateRating={'@type':'AggregateRating',ratingValue:parseFloat(v('rating')),reviewCount:parseInt(v('rcount'))||0,bestRating:5,worstRating:1};
+      return obj;
+    },
+    required:['name','desc','url','price'],
+    checks:['name','desc','url','price','brand','img','rating']
+  },
+  review:{
+    label:'Review',
+    richInfo:'<strong style="color:var(--gr)">Unlocks:</strong> Star rating display in search results (as part of a review or review snippet). Dramatically increases CTR by showing visual trust signals.',
+    fields:`
+      <div class="field"><label class="flbl">Item Being Reviewed *</label><input type="text" id="f-item" placeholder="HDFC Home Loan"></div>
+      <div class="field"><label class="flbl">Item Type</label>
+        <select id="f-itemtype"><option value="Product">Product</option><option value="Service">Service</option><option value="Organization">Organization</option><option value="Book">Book</option><option value="Movie">Movie</option></select>
+      </div>
+      <div class="field"><label class="flbl">Review Headline *</label><input type="text" id="f-headline" placeholder="Excellent interest rates and fast approval"></div>
+      <div class="field"><label class="flbl">Review Body *</label><textarea id="f-body" placeholder="Detailed review text visible in rich results…" style="min-height:100px"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Rating Given *</label><input type="number" id="f-rating" min="1" max="5" step="0.5" placeholder="4.5"></div>
+        <div class="field"><label class="flbl">Best Rating</label><input type="number" id="f-best" value="5" placeholder="5"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Reviewer Name *</label><input type="text" id="f-author" placeholder="Lochan Yadav"></div>
+        <div class="field"><label class="flbl">Review Date *</label><input type="text" id="f-date" placeholder="2025-05-24"></div>
+      </div>
+      <div class="field"><label class="flbl">Publisher / Site Name</label><input type="text" id="f-publisher" placeholder="BankBazaar"></div>
+      <div class="field"><label class="flbl">Page URL</label><input type="url" id="f-url" placeholder="https://example.com/hdfc-home-loan-review"></div>
+    `,
+    build(){
+      const obj={'@context':'https://schema.org','@type':'Review',name:v('headline'),reviewBody:v('body'),itemReviewed:{'@type':v('itemtype')||'Product',name:v('item')},author:{'@type':'Person',name:v('author')},datePublished:v('date'),reviewRating:{'@type':'Rating',ratingValue:parseFloat(v('rating')),bestRating:parseFloat(v('best'))||5}};
+      if(v('publisher')) obj.publisher={'@type':'Organization',name:v('publisher')};
+      if(v('url')) obj.url=v('url');
+      return obj;
+    },
+    required:['item','headline','body','rating','author','date'],
+    checks:['item','headline','body','rating','author','date','publisher']
+  },
+  breadcrumb:{
+    label:'BreadcrumbList',
+    richInfo:'<strong style="color:var(--gr)">Unlocks:</strong> Breadcrumb trail shown in Google search results below the page title — replaces the URL with a clean, hierarchical path that improves CTR and navigation clarity.',
+    fields:`
+      <div class="field"><label class="flbl">Breadcrumb Items * <span class="opt">(add in order from Home to current page)</span></label></div>
+      <div id="crumb-list"></div>
+      <button class="add-row-btn" onclick="addCrumb()">＋ Add Breadcrumb Level</button>
+      <div class="tip" style="margin-top:12px"><strong>Example:</strong> Home → Loans → Home Loan → Apply Online</div>
+    `,
+    build(){
+      const items=[];
+      document.querySelectorAll('.crumb-item').forEach((el,i)=>{
+        const n=el.querySelector('.crumb-name')?.value.trim();
+        const u=el.querySelector('.crumb-url')?.value.trim();
+        if(n) items.push({'@type':'ListItem',position:i+1,name:n,item:u||undefined});
+      });
+      return {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:items};
+    },
+    required:[],
+    checks:[]
+  },
+  organization:{
+    label:'Organization',
+    richInfo:'<strong style="color:var(--gr)">Unlocks:</strong> Organization knowledge panel with logo, contact details, social profiles, and site links. Essential for brand authority and E-E-A-T signals.',
+    fields:`
+      <div class="field"><label class="flbl">Organization Name *</label><input type="text" id="f-name" placeholder="BankBazaar"></div>
+      <div class="field"><label class="flbl">Organization Type</label>
+        <select id="f-orgtype"><option value="Organization">Organization</option><option value="Corporation">Corporation</option><option value="FinancialService">FinancialService</option><option value="EducationalOrganization">EducationalOrganization</option><option value="NGO">NGO</option></select>
+      </div>
+      <div class="field"><label class="flbl">Website URL *</label><input type="url" id="f-url" placeholder="https://www.bankbazaar.com"></div>
+      <div class="field"><label class="flbl">Description</label><textarea id="f-desc" placeholder="What does this organization do?"></textarea></div>
+      <div class="field"><label class="flbl">Logo URL</label><input type="url" id="f-logo" placeholder="https://example.com/logo.png"></div>
+      <div class="field"><label class="flbl">Founded Year <span class="opt">(optional)</span></label><input type="text" id="f-founded" placeholder="2008"></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Phone</label><input type="text" id="f-phone" placeholder="+91-80-12345678"></div>
+        <div class="field"><label class="flbl">Email</label><input type="email" id="f-email" placeholder="contact@example.com"></div>
+      </div>
+      <div class="field"><label class="flbl">LinkedIn URL <span class="opt">(optional)</span></label><input type="url" id="f-linkedin" placeholder="https://linkedin.com/company/bankbazaar"></div>
+      <div class="field"><label class="flbl">Twitter / X URL <span class="opt">(optional)</span></label><input type="url" id="f-twitter" placeholder="https://twitter.com/bankbazaar"></div>
+    `,
+    build(){
+      const sameAs=[];
+      if(v('linkedin')) sameAs.push(v('linkedin'));
+      if(v('twitter')) sameAs.push(v('twitter'));
+      const obj={'@context':'https://schema.org','@type':v('orgtype')||'Organization',name:v('name'),url:v('url')};
+      if(v('desc')) obj.description=v('desc');
+      if(v('logo')) obj.logo=v('logo');
+      if(v('founded')) obj.foundingDate=v('founded');
+      if(v('phone')) obj.contactPoint={'@type':'ContactPoint',telephone:v('phone'),contactType:'customer service'};
+      if(v('email')) obj.email=v('email');
+      if(sameAs.length) obj.sameAs=sameAs;
+      return obj;
+    },
+    required:['name','url'],
+    checks:['name','url','logo','desc','phone','founded']
+  },
+  video:{
+    label:'VideoObject',
+    richInfo:'<strong style="color:var(--gr)">Unlocks:</strong> Video rich result with thumbnail, duration, and upload date in search results. Also enables video carousels. Critical for YouTube-embedded content pages.',
+    fields:`
+      <div class="field"><label class="flbl">Video Name / Title *</label><input type="text" id="f-name" placeholder="How to Get a Home Loan in 5 Steps"></div>
+      <div class="field"><label class="flbl">Description *</label><textarea id="f-desc" placeholder="Full description of what the video covers"></textarea></div>
+      <div class="field"><label class="flbl">Thumbnail URL *</label><input type="url" id="f-thumb" placeholder="https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg"></div>
+      <div class="field"><label class="flbl">Video URL / Embed URL *</label><input type="url" id="f-url" placeholder="https://www.youtube.com/watch?v=VIDEO_ID"></div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Upload Date *</label><input type="text" id="f-date" placeholder="2025-05-24"></div>
+        <div class="field"><label class="flbl">Duration <span class="opt">(ISO 8601)</span></label><input type="text" id="f-dur" placeholder="PT5M30S"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label class="flbl">Publisher Name</label><input type="text" id="f-pub" placeholder="Lochan Yadav"></div>
+        <div class="field"><label class="flbl">View Count <span class="opt">(optional)</span></label><input type="number" id="f-views" placeholder="12500"></div>
+      </div>
+      <div class="tip"><strong>Duration:</strong> PT5M30S = 5 min 30 sec · PT1H10M = 1 hr 10 min</div>
+    `,
+    build(){
+      const obj={'@context':'https://schema.org','@type':'VideoObject',name:v('name'),description:v('desc'),thumbnailUrl:v('thumb'),uploadDate:v('date'),url:v('url')};
+      if(v('dur')) obj.duration=v('dur');
+      if(v('views')) obj.interactionStatistic={'@type':'InteractionCounter',interactionType:'https://schema.org/WatchAction',userInteractionCount:parseInt(v('views'))};
+      if(v('pub')) obj.publisher={'@type':'Organization',name:v('pub')};
+      return obj;
+    },
+    required:['name','desc','thumb','url','date'],
+    checks:['name','desc','thumb','url','date','dur','pub']
+  }
+};
+
+/* ═══ STATE ═══ */
+let currentType='article';
+let lastSchema=null;
+let stepCount=0;
+let crumbCount=0;
+
+/* ═══ INIT ═══ */
+window.addEventListener('load',()=>{
+  renderForm('article');
+  initCrumbs(); initSteps();
+});
+
+/* ═══ UTILS ═══ */
+function v(id){ const el=document.getElementById('f-'+id); return el?el.value.trim():''; }
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderForm(type){
+  currentType=type;
+  const s=SCHEMAS[type];
+  document.getElementById('type-label').textContent='— '+s.label;
+  document.getElementById('form-area').innerHTML=s.fields;
+  document.getElementById('rich-info').innerHTML='<div style="font-size:13px;color:var(--txt2);line-height:1.7">'+s.richInfo+'</div>';
+  document.getElementById('checklist').innerHTML='<div class="check-item"><span class="check-icon check-warn">○</span> Fill required fields and click Generate</div>';
+  document.getElementById('score-tag').textContent='Fill form first';
+  document.getElementById('json-out').innerHTML='<span style="color:var(--txt3);font-style:italic">// Fill the form on the left and click Generate…</span>';
+  document.getElementById('head-out').innerHTML='<span style="color:var(--txt3);font-style:italic">// Fill the form and click Generate…</span>';
+  if(type==='howto'){ stepCount=0; initSteps(); }
+  if(type==='breadcrumb'){ crumbCount=0; initCrumbs(); }
+}
+
+function switchType(type,btn){
+  document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderForm(type);
+}
+
+/* ═══ STEPS (HowTo) ═══ */
+function initSteps(){ stepCount=0; document.getElementById('steps-list') && (document.getElementById('steps-list').innerHTML=''); addStep(); addStep(); }
+function addStep(){
+  if(!document.getElementById('steps-list')) return;
+  stepCount++;
+  const id=stepCount;
+  const div=document.createElement('div');
+  div.className='rep-row step-item';
+  div.innerHTML=`
+    <div style="font-size:11px;font-weight:700;color:var(--acc);margin-bottom:8px">Step ${id}</div>
+    <button class="del-btn" onclick="this.closest('.step-item').remove()">×</button>
+    <div class="field"><input type="text" class="step-name" placeholder="Step name (short)"></div>
+    <div class="field" style="margin-top:6px"><textarea class="step-text" placeholder="Detailed instructions for this step…" rows="2"></textarea></div>`;
+  document.getElementById('steps-list').appendChild(div);
+}
+
+/* ═══ CRUMBS (BreadcrumbList) ═══ */
+function initCrumbs(){ crumbCount=0; const l=document.getElementById('crumb-list'); if(l) l.innerHTML=''; addCrumb(); addCrumb(); addCrumb(); }
+function addCrumb(){
+  if(!document.getElementById('crumb-list')) return;
+  crumbCount++;
+  const div=document.createElement('div');
+  div.className='rep-row crumb-item';
+  div.style.cssText='padding:8px 12px';
+  div.innerHTML=`
+    <button class="del-btn" onclick="this.closest('.crumb-item').remove()">×</button>
+    <div class="field-row">
+      <div class="field"><input type="text" class="crumb-name" placeholder="Label (e.g. Home Loan)"></div>
+      <div class="field"><input type="url" class="crumb-url" placeholder="URL (e.g. https://…/home-loan)"></div>
+    </div>`;
+  document.getElementById('crumb-list').appendChild(div);
+}
+
+/* ═══ GENERATE ═══ */
+function generate(){
+  const s=SCHEMAS[currentType];
+  let schema;
+  try{ schema=s.build(); }catch(e){ alert('Error building schema: '+e.message); return; }
+  schema=cleanObj(schema);
+  lastSchema=schema;
+  const json=JSON.stringify(schema,null,2);
+  document.getElementById('json-out').innerHTML=highlight(json);
+  document.getElementById('head-out').innerHTML=highlight(`<script type="application/ld+json">\n${json}\n<\/script>`);
+  buildChecklist(s,schema);
+}
+
+function cleanObj(obj){
+  if(Array.isArray(obj)) return obj.map(cleanObj).filter(x=>x!==undefined&&x!==null&&x!=='');
+  if(typeof obj==='object'&&obj!==null){
+    const out={};
+    for(const k in obj){
+      const val=cleanObj(obj[k]);
+      if(val!==undefined&&val!==null&&val!=='') out[k]=val;
+    }
+    return Object.keys(out).length?out:undefined;
+  }
+  return obj===''?undefined:obj;
+}
+
+/* ═══ CHECKLIST ═══ */
+function buildChecklist(s,schema){
+  const json=JSON.stringify(schema);
+  const checks=[];
+  const req=s.required||[];
+  let passed=0;
+  const fieldMap={headline:'headline',url:'url',desc:'description',author:'author',publisher:'publisher',pubdate:'datePublished',img:'image',name:'name',phone:'telephone',street:'streetAddress',city:'addressLocality',price:'price',brand:'brand',rating:'aggregateRating',item:'itemReviewed',body:'reviewBody',logo:'logo',founded:'foundingDate',thumb:'thumbnailUrl',date:'uploadDate',dur:'duration',pub:'publisher'};
+  s.checks.forEach(fid=>{
+    const label=document.querySelector(`[id="f-${fid}"]`)?.previousElementSibling?.textContent?.replace('*','').replace(/\(.*\)/,'').trim()||fid;
+    const filled=v(fid)!=='';
+    const isReq=req.includes(fid);
+    if(filled){ checks.push({ok:true,msg:label+' ✓'}); passed++; }
+    else if(isReq){ checks.push({ok:false,warn:false,msg:label+' — required for rich results'}); }
+    else{ checks.push({ok:false,warn:true,msg:label+' — optional but recommended'}); }
+  });
+  if(!s.checks.length){ checks.push({ok:true,msg:'Schema built successfully'}); passed=1; }
+  const total=Math.max(s.checks.length,1);
+  const pct=Math.round((passed/total)*100);
+  const scoreTag=document.getElementById('score-tag');
+  scoreTag.textContent=pct+'% complete';
+  scoreTag.style.background=pct>=80?'var(--gr-bg)':pct>=50?'var(--ye-bg)':'var(--rd-bg)';
+  scoreTag.style.color=pct>=80?'var(--gr)':pct>=50?'var(--ye)':'var(--rd)';
+  document.getElementById('checklist').innerHTML=checks.map(c=>`
+    <div class="check-item">
+      <span class="check-icon ${c.ok?'check-ok':c.warn?'check-warn':'check-err'}">${c.ok?'✓':c.warn?'○':'✗'}</span>
+      <span>${esc(c.msg)}</span>
+    </div>`).join('');
+}
+
+/* ═══ HIGHLIGHT ═══ */
+function highlight(json){
+  return json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,m=>{
+      if(/^"/.test(m)){
+        if(/:$/.test(m)) return `<span class="kw">${m}</span>`;
+        return `<span class="str">${m}</span>`;
+      }
+      if(/true|false|null/.test(m)) return `<span class="kw">${m}</span>`;
+      return `<span class="num">${m}</span>`;
+    });
+}
+
+/* ═══ COPY ═══ */
+function copyIt(blockId,btnId){
+  navigator.clipboard.writeText(document.getElementById(blockId).innerText).then(()=>{
+    const btn=document.getElementById(btnId);
+    btn.textContent='Copied!'; btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('copied'); },2000);
+  });
+}
+
+/* ═══ DOWNLOAD ═══ */
+function downloadJSON(){
+  if(!lastSchema){ alert('Generate schema first.'); return; }
+  const b=new Blob([JSON.stringify(lastSchema,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='schema-'+currentType+'.json'; a.click(); URL.revokeObjectURL(a.href);
+}
+
+/* ═══ OUTPUT TAB ═══ */
+function switchOut(n,btn){
+  document.querySelectorAll('.out-pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.out-tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('out-'+n).classList.add('on'); btn.classList.add('on');
+}
+
+/* ═══ CLEAR ═══ */
+function clearForm(){ renderForm(currentType); }
+</script>
+</body>
+</html>

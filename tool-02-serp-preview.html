@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SERP Preview Tool – SEO Tools by Lochan Yadav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{
+  --bg:#0a0a0a;--bg2:#111;--bg3:#161616;--bg4:#1c1c1c;--bg5:#222;
+  --bdr:#252525;--bdr2:#2e2e2e;
+  --txt:#efefef;--txt2:#aaa;--txt3:#666;
+  --cy:#00e5ff;--cy2:#00b8d4;--cy-glow:rgba(0,229,255,0.18);
+  --gr:#00e676;--gr-bg:rgba(0,230,118,0.09);
+  --ye:#ffd600;--ye-bg:rgba(255,214,0,0.09);
+  --rd:#ff5252;--rd-bg:rgba(255,82,82,0.09);
+  --bl:#448aff;--bl-bg:rgba(68,138,255,0.09);
+  --r:10px;--rs:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);font-size:14px;line-height:1.55;min-height:100vh}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#444}
+
+/* HEADER */
+.hdr{background:linear-gradient(90deg,#0a0a0a,#0f1a1c 50%,#0a0a0a);border-bottom:1px solid var(--bdr2);padding:0 28px;height:64px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.hlogo{width:40px;height:40px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,var(--cy),var(--cy2));display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 16px rgba(0,229,255,0.3)}
+.htitle{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.hsub{font-size:12px;color:var(--txt3);margin-top:1px}
+.hbadge{margin-left:auto;padding:5px 12px;border-radius:20px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);color:var(--cy);font-size:11px;font-weight:700;letter-spacing:.5px}
+
+/* LAYOUT */
+.wrap{max-width:1320px;margin:0 auto;padding:24px 22px}
+.cols{display:grid;grid-template-columns:400px 1fr;gap:22px;align-items:start}
+@media(max-width:960px){.cols{grid-template-columns:1fr}}
+
+/* CARD */
+.card{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden}
+.card-hd{padding:13px 18px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--cy);letter-spacing:.3px;text-transform:uppercase;background:rgba(0,229,255,0.03)}
+.card-bd{padding:18px}
+
+/* INPUT TABS */
+.itabs{display:flex;background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rs);padding:3px;gap:2px;margin-bottom:18px}
+.itab{flex:1;padding:8px 6px;background:transparent;border:none;color:var(--txt3);cursor:pointer;border-radius:4px;font-size:11px;font-weight:600;font-family:inherit;transition:all .2s;white-space:nowrap;letter-spacing:.2px}
+.itab.on{background:linear-gradient(135deg,var(--cy),var(--cy2));color:#000}
+.itab:hover:not(.on){color:var(--txt);background:rgba(255,255,255,0.04)}
+.tpane{display:none}.tpane.on{display:block}
+
+/* FORM */
+.field{margin-bottom:14px}
+.flbl{font-size:11px;color:var(--txt2);font-weight:600;display:block;margin-bottom:5px;letter-spacing:.2px;text-transform:uppercase}
+input,textarea{width:100%;padding:10px 13px;background:var(--bg);border:1px solid var(--bdr2);border-radius:var(--rs);color:var(--txt);font-family:inherit;font-size:13px;outline:none;transition:border-color .2s,box-shadow .2s;resize:vertical}
+input:focus,textarea:focus{border-color:var(--cy);box-shadow:0 0 0 3px var(--cy-glow)}
+input::placeholder,textarea::placeholder{color:var(--txt3)}
+textarea{min-height:80px}
+.cbar-bg{height:3px;background:var(--bdr2);border-radius:2px;margin-top:5px;overflow:hidden}
+.cbar-fill{height:100%;border-radius:2px;transition:width .25s,background .25s}
+.cbar-row{display:flex;justify-content:space-between;margin-top:3px;font-size:11px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border:none;border-radius:var(--rs);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-cta{background:linear-gradient(135deg,var(--cy),var(--cy2));color:#000;width:100%;justify-content:center;box-shadow:0 2px 16px rgba(0,229,255,0.25)}
+.btn-cta:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 4px 24px rgba(0,229,255,0.35)}
+.btn-cta:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-green{background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;font-size:12px;padding:9px 16px}
+.btn-green:hover{opacity:.9}
+
+/* LOADING */
+.lbar{display:none;height:4px;background:var(--bg);border-radius:2px;overflow:hidden;margin:8px 0}
+.lbar.on{display:block}
+.lfill{height:100%;width:28%;background:linear-gradient(90deg,transparent,var(--cy),transparent);animation:lshim 1.4s infinite}
+@keyframes lshim{0%{transform:translateX(-200%)}100%{transform:translateX(440%)}}
+.lmsg{font-size:11px;color:var(--cy);margin-bottom:4px}
+
+/* PROGRESS */
+.prog-wrap{display:none;margin:14px 0}
+.prog-bg{background:var(--bdr2);border-radius:4px;height:7px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--cy),var(--cy2));border-radius:4px;transition:width .3s}
+.prog-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--txt3);margin-bottom:4px}
+.prog-stat{font-size:11px;color:var(--cy);margin-top:4px;min-height:14px}
+
+/* ERROR */
+.err{background:var(--rd-bg);border:1px solid rgba(255,82,82,0.25);border-radius:var(--rs);padding:10px 14px;color:var(--rd);font-size:12px;margin-bottom:12px;display:none;line-height:1.5}
+
+/* QUICK STATS */
+.qstats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.qchip{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--rs);padding:11px 14px}
+.qchip .ql{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.qchip .qv{font-size:20px;font-weight:800;margin-top:3px;line-height:1}
+.qv.g{color:var(--gr)}.qv.w{color:var(--ye)}.qv.b{color:var(--rd)}
+
+/* OUTPUT TABS */
+.otabs{display:flex;border-bottom:1px solid var(--bdr);overflow-x:auto;background:rgba(0,229,255,0.015)}
+.otab{padding:12px 16px;background:transparent;border:none;color:var(--txt3);cursor:pointer;border-bottom:2px solid transparent;font-family:inherit;font-size:12px;font-weight:600;white-space:nowrap;transition:all .2s;letter-spacing:.2px}
+.otab.on{color:var(--cy);border-bottom-color:var(--cy)}
+.otab:hover:not(.on){color:var(--txt2)}
+.opane{display:none;padding:22px}.opane.on{display:block}
+
+/* EMPTY */
+.empty{padding:70px 20px;text-align:center;color:var(--txt3)}
+.empty .ei{font-size:52px;opacity:.35;margin-bottom:16px}
+.empty h3{font-size:16px;color:var(--txt2);margin-bottom:8px;font-weight:600}
+.empty p{font-size:13px;line-height:1.7}
+
+/* SECTION TITLE */
+.stitle{font-size:11px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.stitle::after{content:'';flex:1;height:1px;background:var(--bdr)}
+hr{border:none;border-top:1px solid var(--bdr);margin:16px 0}
+
+/* ─── DESKTOP SERP ─── */
+.desktop-frame{background:#fff;border-radius:12px;box-shadow:0 12px 48px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.05);overflow:hidden;max-width:700px}
+.df-chrome{background:#f8f9fa;border-bottom:1px solid #e0e0e0;padding:10px 16px;display:flex;align-items:center;gap:10px}
+.df-dots{display:flex;gap:6px}
+.df-dot{width:11px;height:11px;border-radius:50%}
+.df-dot:nth-child(1){background:#ff5f57}.df-dot:nth-child(2){background:#ffbd2e}.df-dot:nth-child(3){background:#28c840}
+.df-bar{flex:1;background:#fff;border:1px solid #dadce0;border-radius:22px;padding:5px 14px;font-size:12px;color:#5f6368;display:flex;align-items:center;gap:6px;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.df-body{padding:18px 22px 28px;background:#fff}
+.g-hdr{display:flex;align-items:center;gap:14px;padding-bottom:16px;border-bottom:1px solid #ebebeb;margin-bottom:16px}
+.g-logo{font-size:26px;font-weight:700;letter-spacing:-1px}
+.g-lb{color:#4285f4}.g-lr{color:#ea4335}.g-ly{color:#fbbc05}.g-lg{color:#34a853}
+.g-sbar{flex:1;border:1px solid #dfe1e5;border-radius:24px;padding:9px 18px;font-size:13px;color:#3c4043;display:flex;align-items:center;gap:8px;box-shadow:0 1px 6px rgba(32,33,36,0.1)}
+.g-meta{font-size:13px;color:#70757a;margin-bottom:14px}
+.g-res{padding:0 0 14px;margin-bottom:14px;border-bottom:1px solid #ebebeb}
+.g-res:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+.g-bc{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.g-fav{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0;font-weight:700}
+.g-site{font-size:14px;color:#202124}
+.g-path{font-size:13px;color:#5f6368}
+.g-title{font-size:20px;color:#1a0dab;line-height:1.3;margin-bottom:5px;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.g-title:hover{text-decoration:underline}
+.g-desc{font-size:14px;color:#4d5156;line-height:1.6}
+.fade1{opacity:.35}.fade2{opacity:.18}
+
+/* ─── PHONE FRAME ─── */
+.phone-wrap{display:flex;justify-content:center;padding:8px 0 16px}
+.phone{
+  width:300px;
+  background:linear-gradient(170deg,#2c2c30,#1a1a1e);
+  border-radius:44px;
+  padding:14px 10px 18px;
+  box-shadow:0 0 0 2px #3c3c40,0 0 0 5px #111,0 20px 60px rgba(0,0,0,0.75),inset 0 1px 0 rgba(255,255,255,0.06);
+  position:relative;
+}
+/* side buttons */
+.phone::before{content:'';position:absolute;left:-5px;top:80px;width:4px;height:34px;background:#2a2a2e;border-radius:2px 0 0 2px;box-shadow:0 46px 0 #2a2a2e,0 86px 0 #2a2a2e}
+.phone::after{content:'';position:absolute;right:-5px;top:120px;width:4px;height:58px;background:#2a2a2e;border-radius:0 2px 2px 0}
+.phone-notch-row{display:flex;justify-content:center;margin-bottom:8px}
+.phone-notch{width:96px;height:26px;background:#0d0d0d;border-radius:0 0 16px 16px;display:flex;align-items:center;justify-content:center;gap:7px}
+.p-cam{width:10px;height:10px;background:#181818;border-radius:50%;border:2px solid #222}
+.p-spk{width:34px;height:5px;background:#181818;border-radius:3px}
+.phone-screen{background:#fff;border-radius:30px;overflow:hidden}
+/* Status bar */
+.p-status{background:#fff;padding:8px 16px 3px;display:flex;justify-content:space-between;align-items:center}
+.p-time{font-size:12px;font-weight:800;color:#111;font-family:sans-serif}
+.p-icons{font-size:10px;color:#111;display:flex;gap:3px;align-items:center;letter-spacing:-.5px}
+/* Chrome bar */
+.p-chrome{background:#f8f9fa;border-bottom:1px solid #e0e0e0;padding:6px 10px;display:flex;align-items:center;gap:7px}
+.p-addr{flex:1;background:#fff;border:1px solid #dadce0;border-radius:18px;padding:5px 11px;font-size:11px;color:#5f6368;display:flex;align-items:center;gap:5px;overflow:hidden}
+.p-addr-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.p-dots{font-size:15px;color:#5f6368;line-height:1;flex-shrink:0}
+/* Body */
+.p-body{padding:10px 12px 14px;max-height:440px;overflow-y:auto}
+.p-gsearch{display:flex;align-items:center;gap:7px;border:1px solid #dfe1e5;border-radius:22px;padding:7px 14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.08);font-size:12px;color:#3c4043}
+.p-gmeta{font-size:11px;color:#70757a;margin-bottom:10px;padding-left:2px}
+/* Mobile SERP result */
+.p-res{margin-bottom:13px;padding-bottom:13px;border-bottom:1px solid #f0f0f0}
+.p-res:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.p-bc{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.p-fav{width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;flex-shrink:0;font-weight:700}
+.p-site{font-size:11px;color:#202124}
+.p-path{font-size:10px;color:#5f6368}
+.p-title{font-size:16px;color:#1a0dab;line-height:1.3;margin-bottom:3px;font-weight:400}
+.p-desc{font-size:12px;color:#4d5156;line-height:1.5}
+.p-home{height:4px;background:#ddd;border-radius:3px;width:70px;margin:12px auto 0}
+
+/* ANALYSIS */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+@media(max-width:640px){.agrid{grid-template-columns:1fr}}
+.mc{background:var(--bg4);border:1px solid var(--bdr);border-radius:var(--rs);padding:13px}
+.mc-lbl{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px;font-weight:700}
+.mc-val{font-size:13px;color:var(--txt);word-break:break-all;margin-bottom:7px;line-height:1.5}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.badge.g{background:var(--gr-bg);color:var(--gr)}.badge.w{background:var(--ye-bg);color:var(--ye)}
+.badge.b{background:var(--rd-bg);color:var(--rd)}.badge.i{background:var(--bl-bg);color:var(--bl)}
+
+/* RECS */
+.rlist{list-style:none}
+.ritem{padding:11px 14px;margin-bottom:8px;border-radius:var(--rs);display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.55}
+.ritem.g{background:var(--gr-bg);border-left:3px solid var(--gr)}
+.ritem.w{background:var(--ye-bg);border-left:3px solid var(--ye)}
+.ritem.b{background:var(--rd-bg);border-left:3px solid var(--rd)}
+.ricon{flex-shrink:0;margin-top:1px}
+
+/* TIPS TABLE */
+.ttbl{width:100%;border-collapse:collapse;font-size:12px}
+.ttbl th{background:rgba(0,229,255,0.05);color:var(--cy);font-weight:700;padding:9px 12px;text-align:left;border-bottom:1px solid var(--bdr)}
+.ttbl td{padding:9px 12px;border-bottom:1px solid var(--bdr);vertical-align:middle}
+.ttbl tr:last-child td{border-bottom:none}
+.ttbl tr:hover td{background:rgba(255,255,255,0.02)}
+
+/* BULK */
+.sum-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}
+.scard{background:var(--bg4);border:1px solid var(--bdr);border-radius:var(--rs);padding:12px;text-align:center}
+.scard-v{font-size:24px;font-weight:800;line-height:1}
+.scard-l{font-size:10px;color:var(--txt3);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.scard-v.g{color:var(--gr)}.scard-v.w{color:var(--ye)}.scard-v.b{color:var(--rd)}.scard-v.i{color:var(--cy)}
+.ftabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.ftab{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--bdr);background:transparent;color:var(--txt3);font-family:inherit;transition:all .2s}
+.ftab.on{background:var(--cy);border-color:var(--cy);color:#000}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--bdr);border-radius:var(--rs);background:var(--bg4)}
+.btbl{width:100%;border-collapse:collapse;font-size:12px;min-width:960px}
+.btbl th{background:rgba(0,229,255,0.05);color:var(--cy);font-weight:700;padding:10px 12px;text-align:left;border-bottom:1px solid var(--bdr);white-space:nowrap}
+.btbl td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:middle;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btbl tr:last-child td{border-bottom:none}
+.btbl tr:hover td{background:rgba(255,255,255,0.025)}
+.nores{padding:32px;text-align:center;color:var(--txt3);font-size:13px}
+.hint{font-size:11px;color:var(--txt3);margin-top:6px;line-height:1.6}
+
+/* FOOTER */
+.footer{text-align:center;padding:26px 20px;color:var(--txt3);font-size:12px;letter-spacing:.5px;border-top:1px solid var(--bdr);margin-top:32px}
+.footer span{color:var(--cy);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hlogo">🔍</div>
+  <div><div class="htitle">SERP Preview Tool</div><div class="hsub">See exactly how Google displays your page in search results</div></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+    <a href="index.html" style="font-size:12px;font-weight:600;color:var(--txt3);text-decoration:none;display:flex;align-items:center;gap:5px;border:1px solid var(--bdr2);padding:5px 12px;border-radius:6px;transition:all .2s;" onmouseover="this.style.color='var(--cy)';this.style.borderColor='var(--cy)'" onmouseout="this.style.color='var(--txt3)';this.style.borderColor='var(--bdr2)'">← Portfolio</a>
+    <div class="hbadge">TOOL #02</div>
+  </div>
+</header>
+
+<div class="wrap"><div class="cols">
+
+<!-- ══ LEFT INPUT ══ -->
+<div>
+  <div class="card">
+    <div class="card-hd">⚙️ &nbsp;Input Settings</div>
+    <div class="card-bd">
+      <div class="itabs">
+        <button class="itab on" onclick="switchIT('single',this)">🌐 Single URL</button>
+        <button class="itab" onclick="switchIT('bulk',this)">📊 Bulk Analyzer</button>
+        <button class="itab" onclick="switchIT('source',this)">📄 HTML Source</button>
+      </div>
+
+      <!-- SINGLE URL -->
+      <div class="tpane on" id="it-single">
+        <div class="field">
+          <label class="flbl">Page URL</label>
+          <input type="url" id="inp-url" placeholder="https://example.com/your-page">
+        </div>
+        <div class="err" id="err-single"></div>
+        <div id="ld-single" style="display:none">
+          <div class="lmsg" id="ld-msg">Connecting…</div>
+          <div class="lbar on"><div class="lfill"></div></div>
+        </div>
+        <button class="btn btn-cta" id="btn-fetch" onclick="doFetch()" style="margin-bottom:16px">🌐 Fetch &amp; Preview</button>
+
+        <div style="border-top:1px solid var(--bdr);padding-top:16px">
+          <div style="font-size:10px;color:var(--txt3);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px">— Or Enter Manually —</div>
+          <div class="field">
+            <label class="flbl">SEO Title</label>
+            <input type="text" id="inp-title" placeholder="Enter your page title here…" oninput="liveM();cbar('inp-title',60,'tb-f','tb-l',50,60,70)">
+            <div class="cbar-bg"><div class="cbar-fill" id="tb-f" style="width:0;background:var(--gr)"></div></div>
+            <div class="cbar-row"><span id="tb-l" style="color:var(--txt3);font-weight:600;font-size:11px">0 chars</span><span style="color:var(--txt3);font-size:11px">Ideal: 50–60</span></div>
+          </div>
+          <div class="field">
+            <label class="flbl">Meta Description</label>
+            <textarea id="inp-desc" rows="3" placeholder="Enter meta description…" oninput="liveM();cbar('inp-desc',160,'db-f','db-l',120,160,180)"></textarea>
+            <div class="cbar-bg"><div class="cbar-fill" id="db-f" style="width:0;background:var(--gr)"></div></div>
+            <div class="cbar-row"><span id="db-l" style="color:var(--txt3);font-weight:600;font-size:11px">0 chars</span><span style="color:var(--txt3);font-size:11px">Ideal: 120–160</span></div>
+          </div>
+          <button class="btn btn-cta" onclick="doManual()">🔍 Generate Preview</button>
+        </div>
+        <p class="hint" style="margin-top:12px">Uses 3 free CORS proxies in parallel for faster fetch. If all fail, switch to HTML Source tab.</p>
+      </div>
+
+      <!-- BULK -->
+      <div class="tpane" id="it-bulk">
+        <div class="field">
+          <label class="flbl">URLs – one per line (max 50)</label>
+          <textarea id="bulk-in" rows="11" placeholder="https://example.com/page-1&#10;https://example.com/page-2&#10;https://example.com/page-3"></textarea>
+          <p class="hint">Paste up to 50 URLs. Each will be fetched &amp; analyzed for SERP data.</p>
+        </div>
+        <div class="err" id="err-bulk"></div>
+        <div class="prog-wrap" id="prog-wrap">
+          <div class="prog-lbl"><span>Analyzing URLs…</span><span id="prog-cnt">0 / 0</span></div>
+          <div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:0"></div></div>
+          <div class="prog-stat" id="prog-stat"></div>
+        </div>
+        <button class="btn btn-cta" id="btn-bulk" onclick="doBulk()">📊 Analyze All URLs</button>
+      </div>
+
+      <!-- HTML SOURCE -->
+      <div class="tpane" id="it-source">
+        <div class="field">
+          <label class="flbl">Page URL (for breadcrumb)</label>
+          <input type="url" id="src-url" placeholder="https://example.com/your-page">
+        </div>
+        <div class="field">
+          <label class="flbl">Paste Raw HTML Source</label>
+          <textarea id="src-html" rows="9" placeholder="Open browser → Ctrl+U (View Source) → paste here…"></textarea>
+        </div>
+        <button class="btn btn-cta" onclick="doSource()">📄 Parse &amp; Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="qstats" id="qstats" style="display:none">
+    <div class="qchip"><div class="ql">Title Length</div><div class="qv" id="qs-tl">—</div></div>
+    <div class="qchip"><div class="ql">Desc Length</div><div class="qv" id="qs-dl">—</div></div>
+    <div class="qchip"><div class="ql">Title Status</div><div style="margin-top:6px" id="qs-ts"></div></div>
+    <div class="qchip"><div class="ql">Desc Status</div><div style="margin-top:6px" id="qs-ds"></div></div>
+  </div>
+</div>
+
+<!-- ══ RIGHT OUTPUT ══ -->
+<div class="card" id="out-card">
+
+  <div class="empty" id="empty-st">
+    <div class="ei">🔎</div>
+    <h3>SERP Preview will appear here</h3>
+    <p>Enter a URL or type your title &amp; description on the left<br>to preview how Google shows your page.</p>
+  </div>
+
+  <!-- Single result -->
+  <div id="single-res" style="display:none">
+    <div class="otabs">
+      <button class="otab on" onclick="switchOT('desktop',this)">🖥️ Desktop</button>
+      <button class="otab" onclick="switchOT('mobile',this)">📱 Mobile</button>
+      <button class="otab" onclick="switchOT('analysis',this)">📊 Analysis</button>
+      <button class="otab" onclick="switchOT('recs',this)">💡 Recommendations</button>
+      <button class="otab" onclick="switchOT('guide',this)">📋 Guide</button>
+    </div>
+
+    <!-- DESKTOP TAB -->
+    <div class="opane on" id="op-desktop">
+      <div class="stitle">Google Desktop Preview</div>
+      <div class="desktop-frame">
+        <div class="df-chrome">
+          <div class="df-dots"><div class="df-dot"></div><div class="df-dot"></div><div class="df-dot"></div></div>
+          <div class="df-bar">🔒 <span id="d-barurl" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">google.com/search?q=…</span></div>
+        </div>
+        <div class="df-body">
+          <div class="g-hdr">
+            <div class="g-logo"><span class="g-lb">G</span><span class="g-lr">o</span><span class="g-ly">o</span><span class="g-lb">g</span><span class="g-lg">l</span><span class="g-lr">e</span></div>
+            <div class="g-sbar">🔍 &nbsp;<span id="d-query" style="color:#3c4043;font-size:13px">your page topic</span></div>
+          </div>
+          <div class="g-meta">About 2,140,000 results (0.42 seconds)</div>
+          <div class="g-res">
+            <div class="g-bc">
+              <div class="g-fav" id="d-fav" style="background:linear-gradient(135deg,#4285f4,#34a853)">W</div>
+              <span class="g-site" id="d-site">example.com</span>
+              <span class="g-path" id="d-path"></span>
+            </div>
+            <div class="g-title" id="d-title">Your Page Title Will Appear Here</div>
+            <div class="g-desc" id="d-desc">Your meta description will appear here. Write something compelling to improve your click-through rate.</div>
+          </div>
+          <div class="g-res fade1">
+            <div class="g-bc"><div class="g-fav" style="background:linear-gradient(135deg,#ea4335,#fbbc05)">C</div><span class="g-site">competitor-site.com</span></div>
+            <div class="g-title" style="color:#1a0dab">Best Competitor Example – See How You Compare</div>
+            <div class="g-desc" style="color:#4d5156">This is a sample competitor result. Your snippet should stand out with a clear value proposition.</div>
+          </div>
+          <div class="g-res fade2">
+            <div class="g-bc"><div class="g-fav" style="background:linear-gradient(135deg,#34a853,#0f9d58)">A</div><span class="g-site">another-result.com</span></div>
+            <div class="g-title" style="color:#1a0dab">Another Search Result Below Yours</div>
+            <div class="g-desc" style="color:#4d5156">Seeing your snippet alongside others helps craft titles and descriptions that attract more clicks.</div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--txt3);margin-top:12px">ℹ️ Google truncates title at ~580px (~60 chars) · description at ~920px (~160 chars) on desktop.</p>
+    </div>
+
+    <!-- MOBILE TAB -->
+    <div class="opane" id="op-mobile">
+      <div class="stitle">Google Mobile Preview</div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch-row">
+            <div class="phone-notch"><div class="p-cam"></div><div class="p-spk"></div><div class="p-cam"></div></div>
+          </div>
+          <div class="phone-screen">
+            <!-- Status bar -->
+            <div class="p-status">
+              <span class="p-time">9:41</span>
+              <span class="p-icons">▲ ●● 🔋</span>
+            </div>
+            <!-- Chrome bar -->
+            <div class="p-chrome">
+              <div class="p-addr">
+                <span>🔒</span>
+                <span class="p-addr-text" id="mob-barurl">google.com/search</span>
+              </div>
+              <span class="p-dots">⋮</span>
+            </div>
+            <!-- Google search body -->
+            <div class="p-body">
+              <div class="p-gsearch">🔍 &nbsp;<span id="mob-query" style="color:#3c4043;font-size:12px">your search</span></div>
+              <div class="p-gmeta">About 2,140,000 results</div>
+
+              <!-- ★ YOUR RESULT — uses mob-* IDs, never clash with inputs ★ -->
+              <div class="p-res">
+                <div class="p-bc">
+                  <div class="p-fav" id="mob-fav" style="background:linear-gradient(135deg,#4285f4,#34a853)">W</div>
+                  <span class="p-site" id="mob-site">example.com</span>
+                  <span class="p-path" id="mob-path"></span>
+                </div>
+                <div class="p-title" id="mob-title">Your Page Title</div>
+                <div class="p-desc" id="mob-desc">Your meta description will appear here on mobile search.</div>
+              </div>
+
+              <!-- Fake #2 -->
+              <div class="p-res" style="opacity:.35">
+                <div class="p-bc"><div class="p-fav" style="background:linear-gradient(135deg,#ea4335,#fbbc05)">C</div><span class="p-site">competitor.com</span></div>
+                <div class="p-title" style="color:#1a0dab">Competitor Result on Mobile</div>
+                <div class="p-desc" style="color:#4d5156">This is how competing pages look in mobile search.</div>
+              </div>
+              <!-- Fake #3 -->
+              <div class="p-res" style="opacity:.18">
+                <div class="p-bc"><div class="p-fav" style="background:linear-gradient(135deg,#34a853,#4285f4)">A</div><span class="p-site">another.com</span></div>
+                <div class="p-title" style="color:#1a0dab">Third Result Comparison</div>
+                <div class="p-desc" style="color:#4d5156">Seen alongside others, your result should stand out clearly.</div>
+              </div>
+
+              <div class="p-home"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--txt3);text-align:center;margin-top:4px">ℹ️ Mobile truncates title at ~50 chars · description at ~130 chars.</p>
+    </div>
+
+    <!-- ANALYSIS TAB -->
+    <div class="opane" id="op-analysis">
+      <div class="stitle">Meta Tag Analysis</div>
+      <div class="agrid" id="agrid"></div>
+      <hr>
+      <div class="stitle">Pixel Width Estimate</div>
+      <div id="px-out"></div>
+    </div>
+
+    <!-- RECS TAB -->
+    <div class="opane" id="op-recs">
+      <div class="stitle">SEO Recommendations</div>
+      <ul class="rlist" id="rlist"></ul>
+    </div>
+
+    <!-- GUIDE TAB -->
+    <div class="opane" id="op-guide">
+      <div class="stitle">SERP Snippet Optimization Guide</div>
+      <table class="ttbl">
+        <thead><tr><th>Element</th><th>Ideal</th><th>Best Practice</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Title Tag</strong></td><td><span class="badge g">50–60 chars</span></td><td>Include primary keyword near start. Append brand at end.</td></tr>
+          <tr><td><strong>Meta Description</strong></td><td><span class="badge g">120–160 chars</span></td><td>Compelling CTA + target keyword. Unique per page.</td></tr>
+          <tr><td><strong>Title Pixel Width</strong></td><td><span class="badge g">&lt;580px</span></td><td>Google truncates at ~580px. Wide chars (W,M) take more space.</td></tr>
+          <tr><td><strong>Desc Pixel Width</strong></td><td><span class="badge g">&lt;920px</span></td><td>Wraps to 2 lines on desktop. 160 chars is safe limit.</td></tr>
+          <tr><td><strong>Mobile Title</strong></td><td><span class="badge w">≤50 chars</span></td><td>Front-load keywords — mobile shows fewer characters.</td></tr>
+          <tr><td><strong>Mobile Desc</strong></td><td><span class="badge w">≤130 chars</span></td><td>Keep key message in first 120 chars for mobile users.</td></tr>
+          <tr><td><strong>URL Slug</strong></td><td><span class="badge i">3–5 words</span></td><td>Short, hyphen-separated, keyword-rich. No stop words.</td></tr>
+          <tr><td><strong>OG Image</strong></td><td><span class="badge g">1200×630px</span></td><td>Required for rich previews on Facebook, LinkedIn, Twitter/X.</td></tr>
+          <tr><td><strong>Numbers in Title</strong></td><td><span class="badge i">CTR boost</span></td><td>"10 Best…" or "2024 Guide" — numbers lift click-through rates.</td></tr>
+          <tr><td><strong>Duplicate Titles</strong></td><td><span class="badge b">Avoid</span></td><td>Each page must have a unique title. Duplicates dilute rankings.</td></tr>
+          <tr><td><strong>Brand in Title</strong></td><td><span class="badge i">Recommended</span></td><td>Add " | Brand" or " – Brand" at the end for SERP recognition.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!-- /single-res -->
+
+  <!-- BULK RESULT -->
+  <div id="bulk-res" style="display:none;padding:22px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="stitle" style="margin-bottom:0;flex:1">Bulk SERP Analysis Results</div>
+      <button class="btn btn-green" onclick="doExcel()">📥 Download Excel</button>
+    </div>
+    <div class="sum-grid">
+      <div class="scard"><div class="scard-v i" id="sc-tot">0</div><div class="scard-l">Total URLs</div></div>
+      <div class="scard"><div class="scard-v g" id="sc-gt">0</div><div class="scard-l">Good Titles</div></div>
+      <div class="scard"><div class="scard-v g" id="sc-gd">0</div><div class="scard-l">Good Descs</div></div>
+      <div class="scard"><div class="scard-v w" id="sc-nog">0</div><div class="scard-l">No OG Image</div></div>
+      <div class="scard"><div class="scard-v b" id="sc-iss">0</div><div class="scard-l">Issues</div></div>
+    </div>
+    <div class="ftabs">
+      <button class="ftab on" onclick="filterB('all',this)">All</button>
+      <button class="ftab" onclick="filterB('issues',this)">⚠️ Issues Only</button>
+      <button class="ftab" onclick="filterB('good',this)">✅ Good Only</button>
+      <button class="ftab" onclick="filterB('notitle',this)">No Title</button>
+      <button class="ftab" onclick="filterB('nodesc',this)">No Desc</button>
+    </div>
+    <div class="tbl-wrap">
+      <table class="btbl">
+        <thead>
+          <tr><th>#</th><th>URL</th><th>Title</th><th>T.Len</th><th>Title</th><th>Description</th><th>D.Len</th><th>Desc</th><th>OG Img</th><th>H1</th><th>Issues</th></tr>
+        </thead>
+        <tbody id="bulk-tbody"></tbody>
+      </table>
+      <div class="nores" id="no-res" style="display:none">No results match this filter.</div>
+    </div>
+  </div>
+
+</div><!-- /out-card -->
+</div></div><!-- /cols /wrap -->
+
+<div class="footer">✦ Designed by <span>Lochan Yadav</span> · 6+ Years SEO &amp; Digital Marketing Expert ✦</div>
+
+<script>
+/* ── STATE ── */
+let curData=null, bulkRows=[];
+
+/* ── TAB SWITCHES ── */
+function switchIT(n,btn){
+  document.querySelectorAll('.tpane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.itab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('it-'+n).classList.add('on'); btn.classList.add('on');
+  if(n!=='bulk'){
+    document.getElementById('bulk-res').style.display='none';
+    if(curData){document.getElementById('single-res').style.display='block';document.getElementById('empty-st').style.display='none';}
+  } else {
+    document.getElementById('single-res').style.display='none';
+    document.getElementById('qstats').style.display='none';
+    if(bulkRows.length){document.getElementById('bulk-res').style.display='block';document.getElementById('empty-st').style.display='none';}
+    else{document.getElementById('bulk-res').style.display='none';document.getElementById('empty-st').style.display='block';}
+  }
+}
+function switchOT(n,btn){
+  document.querySelectorAll('.opane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.otab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('op-'+n).classList.add('on'); btn.classList.add('on');
+}
+
+/* ── CHAR BAR ── */
+function cbar(id,ideal,barId,lblId,min,max,hard){
+  const len=(document.getElementById(id)||{}).value?.length||0;
+  const pct=Math.min((len/(hard*1.35))*100,100);
+  let col,lbl;
+  if(len===0){col='var(--txt3)';lbl='0 chars';}
+  else if(len<min){col='var(--ye)';lbl=`${len} chars – Too Short`;}
+  else if(len<=max){col='var(--gr)';lbl=`${len} chars – Good ✓`;}
+  else if(len<=hard){col='var(--ye)';lbl=`${len} chars – Slightly Long`;}
+  else{col='var(--rd)';lbl=`${len} chars – Too Long`;}
+  const bf=document.getElementById(barId); if(bf){bf.style.width=pct+'%';bf.style.background=col;}
+  const bl=document.getElementById(lblId); if(bl){bl.textContent=lbl;bl.style.color=col;}
+}
+
+/* ── PROXIES (parallel – first success wins) ── */
+const PROXIES=[
+  {n:'corsproxy.io', b:u=>'https://corsproxy.io/?'+encodeURIComponent(u), p:async r=>await r.text()},
+  {n:'allorigins',   b:u=>'https://api.allorigins.win/get?url='+encodeURIComponent(u), p:async r=>{const d=await r.json();return d.contents||'';}},
+  {n:'codetabs',     b:u=>'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(u), p:async r=>await r.text()}
+];
+
+async function fetchProxy(url, msgEl){
+  if(msgEl) msgEl.textContent='Fetching via 3 proxies in parallel…';
+  // Try all 3 proxies simultaneously; use the first one that succeeds
+  const attempts=PROXIES.map(async px=>{
+    const ctrl=new AbortController();
+    const t=setTimeout(()=>ctrl.abort(),9000);
+    try{
+      const res=await fetch(px.b(url),{signal:ctrl.signal});
+      clearTimeout(t);
+      if(!res.ok) throw new Error('bad');
+      const html=await px.p(res);
+      if(!html||html.trim().length<100) throw new Error('empty');
+      return html;
+    }catch(e){clearTimeout(t);throw e;}
+  });
+  try{return await Promise.any(attempts);}
+  catch(e){throw new Error('All 3 proxies failed. Try the HTML Source tab instead.');}
+}
+
+/* ── EXTRACT ── */
+function extractDoc(doc,url){
+  const ga=(s,a)=>{const e=doc.querySelector(s);return e?(e.getAttribute(a)||'').trim():''};
+  const gc=s=>{const e=doc.querySelector(s);return e?e.textContent.trim():''};
+  return{
+    title:gc('title')||'',
+    desc: ga('meta[name="description"]','content')||ga('meta[property="og:description"]','content')||'',
+    url:  ga('link[rel="canonical"]','href')||url,
+    ogTitle:ga('meta[property="og:title"]','content')||'',
+    ogDesc: ga('meta[property="og:description"]','content')||'',
+    ogImage:ga('meta[property="og:image"]','content')||'',
+    robots: ga('meta[name="robots"]','content')||'',
+    h1:     gc('h1')||'',
+    twitterCard:ga('meta[name="twitter:card"]','content')||''
+  };
+}
+
+/* ── FETCH SINGLE ── */
+async function doFetch(){
+  const url=document.getElementById('inp-url').value.trim();
+  if(!url.startsWith('http')){showErr('err-single','Enter a valid URL starting with http:// or https://');return;}
+  hideErr('err-single');
+  const ld=document.getElementById('ld-single'); ld.style.display='block';
+  const btn=document.getElementById('btn-fetch'); btn.disabled=true;
+  try{
+    const html=await fetchProxy(url, document.getElementById('ld-msg'));
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    const d=extractDoc(doc,url);
+    // populate manual fields
+    document.getElementById('inp-title').value=d.title;
+    document.getElementById('inp-desc').value=d.desc;
+    cbar('inp-title',60,'tb-f','tb-l',50,60,70);
+    cbar('inp-desc',160,'db-f','db-l',120,160,180);
+    renderSingle(d);
+  }catch(e){showErr('err-single',e.message);}
+  finally{ld.style.display='none';btn.disabled=false;}
+}
+
+/* ── MANUAL ── */
+function liveM(){
+  const t=document.getElementById('inp-title').value.trim();
+  const d=document.getElementById('inp-desc').value.trim();
+  const u=document.getElementById('inp-url').value.trim()||'https://example.com';
+  if(!t&&!d) return;
+  renderSingle({title:t,desc:d,url:u,ogTitle:'',ogDesc:'',ogImage:'',robots:'',h1:'',twitterCard:''});
+}
+function doManual(){
+  const t=document.getElementById('inp-title').value.trim();
+  const d=document.getElementById('inp-desc').value.trim();
+  const u=document.getElementById('inp-url').value.trim()||'https://example.com';
+  if(!t&&!d){alert('Enter at least a title or description.');return;}
+  renderSingle({title:t,desc:d,url:u,ogTitle:'',ogDesc:'',ogImage:'',robots:'',h1:'',twitterCard:''});
+}
+
+/* ── HTML SOURCE ── */
+function doSource(){
+  const html=document.getElementById('src-html').value.trim();
+  const url=document.getElementById('src-url').value.trim()||'https://example.com';
+  if(!html){alert('Paste HTML source code first.');return;}
+  renderSingle(extractDoc(new DOMParser().parseFromString(html,'text/html'),url));
+}
+
+/* ── RENDER SINGLE ── */
+function renderSingle(data){
+  curData=data;
+  const {title,desc,url}=data;
+  let domain='',path='';
+  try{const u=new URL(url);domain=u.hostname.replace(/^www\./,'');path=u.pathname&&u.pathname!='/'?u.pathname:'';}
+  catch(e){domain=url;}
+  const fav=domain.charAt(0).toUpperCase()||'W';
+
+  // Desktop (IDs: d-*)
+  set('d-barurl','google.com/search?q='+domain);
+  set('d-query', domain);
+  set('d-fav',  fav);  set('d-site', domain);
+  set('d-path', path?'› '+path.replace(/^\//,'').substring(0,45):'');
+  set('d-title',trunc(title,60)||'No title found');
+  set('d-desc', trunc(desc,160)||'No meta description found.');
+  document.getElementById('d-title').style.color=title?'#1a0dab':'#999';
+
+  // Mobile (IDs: mob-*)  ← completely separate from inp-title / inp-desc
+  set('mob-barurl','google.com/search?q='+domain);
+  set('mob-query', domain);
+  set('mob-fav',   fav); set('mob-site', domain);
+  set('mob-path',  path?'› '+path.replace(/^\//,'').substring(0,28):'');
+  set('mob-title', trunc(title,50)||'No title found');
+  set('mob-desc',  trunc(desc,130)||'No description.');
+  document.getElementById('mob-title').style.color=title?'#1a0dab':'#999';
+
+  renderAnalysis(data);
+  renderRecs(data);
+  renderQS(data);
+
+  document.getElementById('empty-st').style.display='none';
+  document.getElementById('bulk-res').style.display='none';
+  document.getElementById('single-res').style.display='block';
+  document.getElementById('qstats').style.display='grid';
+}
+
+/* ── ANALYSIS ── */
+function renderAnalysis(d){
+  const{title,desc,url,ogTitle,ogDesc,ogImage,robots,h1}=d;
+  const tl=title.length,dl=desc.length;
+  document.getElementById('agrid').innerHTML=
+    mc('📝 Title Tag',title||'—',tl,50,60,70)+
+    mc('📄 Meta Description',desc||'—',dl,120,160,180)+
+    mc('📢 OG Title',ogTitle||'—',ogTitle.length,40,60,80)+
+    mc('📝 OG Description',ogDesc||'—',ogDesc.length,0,160,200,true)+
+    mc('🖼️ OG Image',ogImage?'✅ Set':'❌ Missing',0,0,0,0,true)+
+    mc('🤖 Robots',robots||'index, follow (default)',0,0,0,0,true)+
+    mc('📰 H1 Tag',h1||'—',h1.length,10,70,100)+
+    mc('🔗 Canonical',url||'—',url.length,0,100,200,true);
+  const tp=Math.round(tl*6.2),dp=Math.round(dl*6.0);
+  const tc=tp<580?'g':tp<700?'w':'b',dc=dp<920?'g':dp<1100?'w':'b';
+  const tcol=tp<580?'var(--gr)':tp<700?'var(--ye)':'var(--rd)';
+  const dcol=dp<920?'var(--gr)':dp<1100?'var(--ye)':'var(--rd)';
+  document.getElementById('px-out').innerHTML=`
+    <div class="mc" style="margin-bottom:10px">
+      <div class="mc-lbl">📐 Title Pixel Width</div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <span style="font-size:26px;font-weight:800;color:${tcol}">${tp}px</span>
+        <div><div style="font-size:11px;color:var(--txt3)">Limit: ~580px</div><span class="badge ${tc}">${tp<580?'Within Limit':tp<700?'Near Limit':'Exceeds Limit'}</span></div>
+        <div style="flex:1;min-width:120px"><div class="cbar-bg"><div class="cbar-fill" style="width:${Math.min(tp/700*100,100)}%;background:${tcol}"></div></div><div class="cbar-row"><span style="color:${tcol};font-weight:600;font-size:11px">${tp}px</span><span style="font-size:11px;color:var(--txt3)">580px max</span></div></div>
+      </div>
+    </div>
+    <div class="mc">
+      <div class="mc-lbl">📐 Description Pixel Width</div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <span style="font-size:26px;font-weight:800;color:${dcol}">${dp}px</span>
+        <div><div style="font-size:11px;color:var(--txt3)">Limit: ~920px</div><span class="badge ${dc}">${dp<920?'Within Limit':dp<1100?'Near Limit':'Exceeds Limit'}</span></div>
+        <div style="flex:1;min-width:120px"><div class="cbar-bg"><div class="cbar-fill" style="width:${Math.min(dp/1100*100,100)}%;background:${dcol}"></div></div><div class="cbar-row"><span style="color:${dcol};font-weight:600;font-size:11px">${dp}px</span><span style="font-size:11px;color:var(--txt3)">920px max</span></div></div>
+      </div>
+    </div>`;
+}
+function mc(lbl,val,len,min,ideal,max,noBar){
+  let badge='',bar='';
+  if(!noBar&&len>0){
+    const sc=len<min?'w':len<=ideal?'g':len<=max?'w':'b';
+    const sl=len<min?`Too Short (${len})`:len<=ideal?`Good (${len})`:len<=max?`Slightly Long (${len})`:`Too Long (${len})`;
+    const col=sc==='g'?'var(--gr)':sc==='w'?'var(--ye)':'var(--rd)';
+    badge=`<span class="badge ${sc}">${sl}</span>`;
+    bar=`<div class="cbar-bg" style="margin-top:8px"><div class="cbar-fill" style="width:${Math.min((len/(max||200))*100,100)}%;background:${col}"></div></div>`;
+  }
+  const dv=val.length>80?val.substring(0,80)+'…':val;
+  return `<div class="mc"><div class="mc-lbl">${lbl}</div><div class="mc-val" title="${esc(val)}">${esc(dv)}</div>${badge}${bar}</div>`;
+}
+
+/* ── RECS ── */
+function renderRecs(d){
+  const{title,desc,url,ogImage,h1}=d;
+  const tl=title.length,dl=desc.length,r=[];
+  if(!title) r.push({c:'b',i:'❌',m:'<strong>Missing Title Tag:</strong> No title found. Critical — Google uses it as your search headline.'});
+  else if(tl<30) r.push({c:'w',i:'⚠️',m:`<strong>Title Too Short (${tl} chars):</strong> Aim for 50–60 characters to fully use SERP space.`});
+  else if(tl>70) r.push({c:'b',i:'❌',m:`<strong>Title Too Long (${tl} chars):</strong> Google truncates beyond ~580px. Trim to under 60 characters.`});
+  else r.push({c:'g',i:'✅',m:`<strong>Title Optimal (${tl} chars):</strong> Well within the 50–60 character sweet spot.`});
+  if(!desc) r.push({c:'b',i:'❌',m:'<strong>No Meta Description:</strong> Google auto-generates one — may not represent your page well.'});
+  else if(dl<70) r.push({c:'w',i:'⚠️',m:`<strong>Description Too Short (${dl} chars):</strong> Aim for 120–160 characters to maximize SERP real estate.`});
+  else if(dl>160) r.push({c:'w',i:'⚠️',m:`<strong>Description Too Long (${dl} chars):</strong> Will be cut off with "…". Keep under 160 characters.`});
+  else r.push({c:'g',i:'✅',m:`<strong>Description Optimal (${dl} chars):</strong> Perfect — within the 120–160 character range.`});
+  if(!ogImage) r.push({c:'w',i:'⚠️',m:'<strong>No OG Image:</strong> Social shares show no preview image. Add og:image (1200×630px).'});
+  else r.push({c:'g',i:'✅',m:'<strong>OG Image Present:</strong> Rich preview will appear on social media shares.'});
+  if(!h1) r.push({c:'w',i:'⚠️',m:'<strong>No H1 Tag:</strong> Every page needs one H1. Helps Google understand your main topic.'});
+  else r.push({c:'g',i:'✅',m:`<strong>H1 Present:</strong> "${h1.length>50?h1.substring(0,50)+'…':h1}" — ensure it aligns with your title keyword.`});
+  try{
+    const u=new URL(url);
+    if(u.pathname.length>80) r.push({c:'w',i:'⚠️',m:'<strong>Long URL Slug:</strong> Keep slugs to 3–5 words for better SERP readability.'});
+    else r.push({c:'g',i:'✅',m:`<strong>URL OK:</strong> "${u.pathname||'/'}" — verify primary keyword is in the slug.`});
+  }catch(e){}
+  if(title&&/\d/.test(title)) r.push({c:'g',i:'✅',m:'<strong>Number in Title:</strong> Numbers like "10 Best…" or "2024 Guide" are proven CTR boosters.'});
+  const tp=Math.round(tl*6.2);
+  if(tp>580) r.push({c:'w',i:'⚠️',m:`<strong>Title May Exceed Pixel Limit:</strong> ~${tp}px vs 580px. Trim or replace wide chars (W, M).`});
+  document.getElementById('rlist').innerHTML=r.map(x=>`<li class="ritem ${x.c}"><span class="ricon">${x.i}</span><span>${x.m}</span></li>`).join('');
+}
+
+/* ── QUICK STATS ── */
+function renderQS(d){
+  const tl=d.title.length,dl=d.desc.length;
+  set('qs-tl',tl); set('qs-dl',dl);
+  document.getElementById('qs-tl').className='qv '+(tl===0?'b':tl<30||tl>70?'w':'g');
+  document.getElementById('qs-dl').className='qv '+(dl===0?'b':dl<70||dl>160?'w':'g');
+  const ts=tl===0?'Missing':tl<30?'Too Short':tl>70?'Too Long':'Good';
+  const ds=dl===0?'Missing':dl<70?'Too Short':dl>160?'Too Long':'Good';
+  const tc=tl===0||tl>70?'b':tl<30?'w':'g';
+  const dc=dl===0||dl>160?'b':dl<70?'w':'g';
+  document.getElementById('qs-ts').innerHTML=`<span class="badge ${tc}">${ts}</span>`;
+  document.getElementById('qs-ds').innerHTML=`<span class="badge ${dc}">${ds}</span>`;
+}
+
+/* ── BULK ── */
+async function doBulk(){
+  const lines=document.getElementById('bulk-in').value.trim().split('\n').map(l=>l.trim()).filter(l=>l.startsWith('http'));
+  if(!lines.length){showErr('err-bulk','No valid URLs found. Each must start with http:// or https://');return;}
+  if(lines.length>50){showErr('err-bulk','Maximum 50 URLs per batch.');return;}
+  hideErr('err-bulk');
+  bulkRows=[];
+  document.getElementById('btn-bulk').disabled=true;
+  document.getElementById('bulk-res').style.display='none';
+  const pw=document.getElementById('prog-wrap'); pw.style.display='block';
+  const pf=document.getElementById('prog-fill'),pc=document.getElementById('prog-cnt'),ps=document.getElementById('prog-stat');
+  for(let i=0;i<lines.length;i++){
+    const url=lines[i];
+    pf.style.width=Math.round((i/lines.length)*100)+'%';
+    pc.textContent=`${i} / ${lines.length}`;
+    ps.textContent='Fetching: '+(url.length>55?url.substring(0,55)+'…':url);
+    let row={url,title:'',desc:'',ogImage:'',h1:'',canonical:'',robots:'',status:'ok',issues:[]};
+    try{const html=await fetchProxy(url,null);Object.assign(row,extractDoc(new DOMParser().parseFromString(html,'text/html'),url));}
+    catch(e){row.status='error';row.issues.push('Fetch failed');}
+    if(!row.title)            row.issues.push('Missing title');
+    else if(row.title.length<30) row.issues.push('Title too short');
+    else if(row.title.length>70) row.issues.push('Title too long');
+    if(!row.desc)             row.issues.push('Missing description');
+    else if(row.desc.length<70)  row.issues.push('Desc too short');
+    else if(row.desc.length>160) row.issues.push('Desc too long');
+    if(!row.ogImage)          row.issues.push('No OG image');
+    bulkRows.push(row);
+  }
+  pf.style.width='100%'; pc.textContent=`${lines.length} / ${lines.length}`; ps.textContent='✅ Analysis complete!';
+  setTimeout(()=>pw.style.display='none',1500);
+  document.getElementById('btn-bulk').disabled=false;
+  renderBT('all'); renderBS();
+  document.getElementById('empty-st').style.display='none';
+  document.getElementById('single-res').style.display='none';
+  document.getElementById('bulk-res').style.display='block';
+  document.getElementById('qstats').style.display='none';
+}
+function renderBS(){
+  set('sc-tot',bulkRows.length);
+  set('sc-gt',bulkRows.filter(r=>r.title&&r.title.length>=30&&r.title.length<=70).length);
+  set('sc-gd',bulkRows.filter(r=>r.desc&&r.desc.length>=70&&r.desc.length<=160).length);
+  set('sc-nog',bulkRows.filter(r=>!r.ogImage).length);
+  set('sc-iss',bulkRows.filter(r=>r.issues.length>0).length);
+}
+function renderBT(f){
+  let rows=bulkRows;
+  if(f==='issues') rows=bulkRows.filter(r=>r.issues.length>0);
+  else if(f==='good') rows=bulkRows.filter(r=>r.issues.length===0);
+  else if(f==='notitle') rows=bulkRows.filter(r=>!r.title);
+  else if(f==='nodesc')  rows=bulkRows.filter(r=>!r.desc);
+  const tb=document.getElementById('bulk-tbody'),nr=document.getElementById('no-res');
+  if(!rows.length){tb.innerHTML='';nr.style.display='block';return;}
+  nr.style.display='none';
+  tb.innerHTML=rows.map(r=>{
+    const tl=r.title.length,dl=r.desc.length;
+    const ts=!r.title?'b':tl<30?'w':tl>70?'w':'g';
+    const ds=!r.desc?'b':dl<70?'w':dl>160?'w':'g';
+    const tlab=!r.title?'Missing':tl<30?'Short':tl>70?'Long':'Good';
+    const dlab=!r.desc?'Missing':dl<70?'Short':dl>160?'Long':'Good';
+    const og=r.ogImage?'<span class="badge g">✅</span>':'<span class="badge b">❌</span>';
+    const ib=r.issues.length===0?'<span class="badge g">0</span>':`<span class="badge b" title="${esc(r.issues.join(', '))}">${r.issues.length}</span>`;
+    const tcol=tl===0?'var(--rd)':tl<30||tl>70?'var(--ye)':'var(--gr)';
+    const dcol=dl===0?'var(--rd)':dl<70||dl>160?'var(--ye)':'var(--gr)';
+    return `<tr>
+      <td style="color:var(--txt3)">${bulkRows.indexOf(r)+1}</td>
+      <td title="${esc(r.url)}" style="color:var(--cy);font-size:11px">${r.url.length>42?r.url.substring(0,42)+'…':r.url}</td>
+      <td title="${esc(r.title)}">${r.title?(r.title.length>32?r.title.substring(0,32)+'…':r.title):'<span style="color:var(--rd)">—</span>'}</td>
+      <td><span style="font-weight:700;color:${tcol}">${tl}</span></td>
+      <td><span class="badge ${ts}">${tlab}</span></td>
+      <td title="${esc(r.desc)}">${r.desc?(r.desc.length>38?r.desc.substring(0,38)+'…':r.desc):'<span style="color:var(--rd)">—</span>'}</td>
+      <td><span style="font-weight:700;color:${dcol}">${dl}</span></td>
+      <td><span class="badge ${ds}">${dlab}</span></td>
+      <td>${og}</td>
+      <td style="color:var(--txt2)" title="${esc(r.h1)}">${r.h1?(r.h1.length>22?r.h1.substring(0,22)+'…':r.h1):'—'}</td>
+      <td>${ib}</td>
+    </tr>`;
+  }).join('');
+}
+function filterB(f,btn){document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderBT(f);}
+
+/* ── EXCEL ── */
+function doExcel(){
+  if(!bulkRows.length) return;
+  const hdr=['#','URL','Title','Title Length','Title Status','Description','Desc Length','Desc Status','OG Image','H1','Canonical','Robots','Issues'];
+  const data=[hdr,...bulkRows.map((r,i)=>{
+    const tl=r.title.length,dl=r.desc.length;
+    return[i+1,r.url,r.title,tl,!r.title?'Missing':tl<30?'Too Short':tl>70?'Too Long':'Good',r.desc,dl,!r.desc?'Missing':dl<70?'Too Short':dl>160?'Too Long':'Good',r.ogImage?'Yes':'No',r.h1,r.url,r.robots||'index,follow',r.issues.join('; ')];
+  })];
+  const ws=XLSX.utils.aoa_to_sheet(data);
+  ws['!cols']=[{wch:4},{wch:50},{wch:40},{wch:12},{wch:14},{wch:55},{wch:10},{wch:14},{wch:10},{wch:30},{wch:40},{wch:20},{wch:40}];
+  const sum=[['SERP Bulk Analysis Summary'],['Generated:',new Date().toLocaleString()],[''],['Metric','Count'],['Total',bulkRows.length],['Good Titles',bulkRows.filter(r=>r.title&&r.title.length>=30&&r.title.length<=70).length],['Good Descriptions',bulkRows.filter(r=>r.desc&&r.desc.length>=70&&r.desc.length<=160).length],['Missing Title',bulkRows.filter(r=>!r.title).length],['Missing Description',bulkRows.filter(r=>!r.desc).length],['No OG Image',bulkRows.filter(r=>!r.ogImage).length],['Pages With Issues',bulkRows.filter(r=>r.issues.length>0).length]];
+  const ws2=XLSX.utils.aoa_to_sheet(sum); ws2['!cols']=[{wch:35},{wch:20}];
+  const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,'SERP Data',ws);
+  XLSX.utils.book_append_sheet(wb,'Summary',ws2);
+  XLSX.writeFile(wb,'SERP_Analysis_'+new Date().toISOString().slice(0,10)+'.xlsx');
+}
+
+/* ── HELPERS ── */
+function trunc(s,n){if(!s)return '';return s.length<=n?s:s.substring(0,n-1)+'…';}
+function set(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function showErr(id,msg){const e=document.getElementById(id);if(e){e.textContent='⚠️ '+msg;e.style.display='block';}}
+function hideErr(id){const e=document.getElementById(id);if(e)e.style.display='none';}
+</script>
+</body>
+</html>

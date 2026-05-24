@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Meta Tag Extractor – SEO Pro Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0b12;--surface:#13131f;--surface2:#1c1c2e;--border:#2a2a42;
+  --accent:#00d4ff;--green:#00e676;--yellow:#ffd740;--red:#ff5252;
+  --purple:#7c4dff;--text:#e8e8f4;--muted:#7878a0;--radius:10px;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;min-height:100vh;}
+
+/* ── Navbar ── */
+.navbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-brand{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;color:var(--accent);text-decoration:none;}
+.nav-brand span{color:var(--text);font-weight:600;}
+.nav-num{font-size:11px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--purple));color:#000;padding:3px 10px;border-radius:20px;}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(135deg,rgba(0,212,255,.07),rgba(124,77,255,.07));border-bottom:1px solid var(--border);padding:34px 28px 28px;text-align:center;}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--accent);background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.hero h1{font-size:clamp(22px,4vw,34px);font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{color:var(--muted);font-size:14px;max-width:600px;margin:0 auto;line-height:1.7;}
+
+/* ── Container ── */
+.container{max-width:1060px;margin:0 auto;padding:26px 20px;}
+
+/* ── Input Card ── */
+.input-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:22px;}
+
+/* ── Input Tabs ── */
+.input-tabs{display:flex;border-bottom:1px solid var(--border);}
+.input-tab{flex:1;padding:13px 10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border:none;background:none;font-family:inherit;transition:all .2s;border-bottom:3px solid transparent;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;}
+.input-tab.active{color:var(--accent);border-bottom-color:var(--accent);background:rgba(0,212,255,.05);}
+.input-tab:hover:not(.active){color:var(--text);}
+.tab-pane{display:none;padding:20px;}
+.tab-pane.active{display:block;}
+
+/* ── Forms ── */
+input[type=url],input[type=text]{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;font-family:inherit;padding:11px 14px;outline:none;transition:border-color .2s;}
+input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,255,.08);}
+input::placeholder{color:var(--muted);}
+textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:'Courier New',monospace;padding:12px 14px;resize:vertical;min-height:140px;outline:none;transition:border-color .2s;line-height:1.6;}
+textarea:focus{border-color:var(--accent);}
+textarea::placeholder{color:var(--muted);font-family:'Inter',sans-serif;}
+.hint{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5;}
+.url-counter{font-size:12px;color:var(--accent);font-weight:700;float:right;margin-top:4px;}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#0098b8);color:#000;}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,212,255,.35);}
+.btn-secondary{background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+.btn-excel{background:linear-gradient(135deg,#1d6f42,#2e7d32);color:#fff;}
+.btn-excel:hover{box-shadow:0 5px 18px rgba(29,111,66,.4);transform:translateY(-1px);}
+.btn-row{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap;}
+
+/* ── Spinner ── */
+#loadingBox{display:none;text-align:center;padding:36px 20px;}
+.spinner{width:38px;height:38px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loadingMsg{color:var(--muted);font-size:14px;}
+
+/* ── Progress bar ── */
+.progress-wrap{width:100%;background:var(--border);border-radius:4px;height:6px;margin-top:12px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--purple));border-radius:4px;transition:width .3s;width:0%;}
+
+/* ── Validation legend ── */
+.legend{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+.legend-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-right:4px;}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+.leg-dot{width:10px;height:10px;border-radius:50%;}
+
+/* ── Summary cards ── */
+.summary-cards{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+.s-card{flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 16px;text-align:center;}
+.s-card-num{font-size:32px;font-weight:800;line-height:1;margin-bottom:6px;}
+.s-card-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;}
+
+/* ── Results ── */
+#resultsBox{display:none;}
+#bulkResultsBox{display:none;}
+
+/* ── Score strip ── */
+.score-strip{display:flex;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 22px;margin-bottom:20px;flex-wrap:wrap;}
+.score-circle{width:68px;height:68px;border-radius:50%;border:4px solid var(--green);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+.score-num{font-size:22px;font-weight:800;color:var(--green);line-height:1;}
+.score-sub{font-size:10px;color:var(--muted);}
+.score-bars{flex:1;min-width:200px;}
+.sbar{margin-bottom:8px;}
+.sbar:last-child{margin-bottom:0;}
+.sbar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px;}
+.sbar-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+.sbar-fill{height:100%;border-radius:3px;transition:width .7s ease;}
+.score-info{font-size:13px;color:var(--muted);}
+.score-info strong{color:var(--text);font-size:15px;}
+
+/* ── Output Tabs ── */
+.out-tabs-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.out-tabs{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;}
+.out-tab{padding:12px 20px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border:none;background:none;font-family:inherit;white-space:nowrap;border-bottom:3px solid transparent;transition:all .15s;display:flex;align-items:center;gap:6px;}
+.out-tab.active{color:var(--accent);border-bottom-color:var(--accent);background:rgba(0,212,255,.05);}
+.out-tab:hover:not(.active){color:var(--text);}
+.out-pane{display:none;}
+.out-pane.active{display:block;}
+
+/* ── Meta table ── */
+.meta-table{width:100%;border-collapse:collapse;}
+.meta-table tr{border-bottom:1px solid var(--border);}
+.meta-table tr:last-child{border-bottom:none;}
+.meta-table td{padding:14px 18px;vertical-align:top;}
+.meta-table td:first-child{width:155px;border-right:1px solid var(--border);}
+.mt-label{font-weight:700;font-size:14px;color:var(--text);}
+.mt-chars{font-size:12px;font-weight:600;margin-top:4px;}
+.mt-value{font-size:14px;color:var(--text);line-height:1.6;word-break:break-word;}
+.mt-value.missing{color:var(--muted);font-style:italic;}
+.mt-badge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.bg-green{background:rgba(0,230,118,.12);color:var(--green);border:1px solid rgba(0,230,118,.25);}
+.bg-yellow{background:rgba(255,215,64,.12);color:var(--yellow);border:1px solid rgba(255,215,64,.25);}
+.bg-red{background:rgba(255,82,82,.12);color:var(--red);border:1px solid rgba(255,82,82,.25);}
+.bg-blue{background:rgba(0,212,255,.12);color:var(--accent);border:1px solid rgba(0,212,255,.25);}
+
+/* ── Counts row ── */
+.counts-row{display:flex;flex-wrap:wrap;border-top:1px solid var(--border);}
+.count-cell{flex:1;min-width:70px;padding:14px 10px;text-align:center;border-right:1px solid var(--border);}
+.count-cell:last-child{border-right:none;}
+.count-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.count-value{font-size:22px;font-weight:800;color:var(--accent);}
+
+/* ── Bulk results table ── */
+.bulk-table-wrap{overflow-x:auto;}
+.bulk-table{width:100%;border-collapse:collapse;font-size:13px;min-width:900px;}
+.bulk-table th{background:var(--surface2);padding:10px 12px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;position:sticky;top:0;}
+.bulk-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle;word-break:break-word;}
+.bulk-table tr:hover td{background:rgba(255,255,255,.02);}
+.bulk-table tr:last-child td{border-bottom:none;}
+.url-cell{max-width:200px;word-break:break-all;font-size:12px;color:var(--muted);}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;flex-shrink:0;}
+
+/* ── Generic section table ── */
+.sec-table{width:100%;border-collapse:collapse;font-size:13px;}
+.sec-table th{background:var(--surface2);padding:10px 14px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;text-align:left;border-bottom:1px solid var(--border);}
+.sec-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;word-break:break-word;}
+.sec-table tr:last-child td{border-bottom:none;}
+.sec-table tr:hover td{background:rgba(255,255,255,.02);}
+
+/* ── Social previews ── */
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px;}
+@media(max-width:640px){.social-grid{grid-template-columns:1fr;}}
+.preview-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.preview-header{background:var(--surface2);padding:8px 14px;font-size:12px;font-weight:700;color:var(--muted);border-bottom:1px solid var(--border);}
+.preview-img{background:#2a2a3a;height:110px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;overflow:hidden;}
+.preview-img img{width:100%;height:100%;object-fit:cover;}
+.preview-body{padding:12px;background:#fff;}
+.p-domain{font-size:11px;color:#606770;text-transform:uppercase;margin-bottom:3px;font-family:Arial,sans-serif;}
+.p-title{font-size:15px;font-weight:700;color:#1c1e21;margin-bottom:3px;line-height:1.3;font-family:Arial,sans-serif;}
+.p-desc{font-size:13px;color:#606770;line-height:1.4;font-family:Arial,sans-serif;}
+
+/* ── Issues ── */
+.issues-list{padding:16px 18px;}
+.issue-item{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-radius:8px;margin-bottom:9px;font-size:13px;line-height:1.5;}
+.issue-item:last-child{margin-bottom:0;}
+.iss-icon{font-size:16px;flex-shrink:0;}
+.iss-success{background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.2);color:var(--green);}
+.iss-warn{background:rgba(255,215,64,.07);border:1px solid rgba(255,215,64,.2);color:var(--yellow);}
+.iss-error{background:rgba(255,82,82,.07);border:1px solid rgba(255,82,82,.2);color:var(--red);}
+
+/* ── SERP preview ── */
+.serp-box{padding:18px;background:#fff;border-bottom:1px solid var(--border);}
+.serp-url{font-size:13px;color:#202124;margin-bottom:2px;font-family:Arial,sans-serif;}
+.serp-title{font-size:20px;color:#1a0dab;line-height:1.3;margin-bottom:4px;font-family:Arial,sans-serif;font-weight:400;}
+.serp-desc{font-size:14px;color:#4d5156;line-height:1.6;font-family:Arial,sans-serif;}
+
+/* ── Footer ── */
+.footer{text-align:center;padding:22px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);margin-top:24px;}
+.footer-designer{color:var(--accent);font-weight:700;font-size:13px;margin-top:6px;}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--surface);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="#">⚡ <span>SEO Pro Tools</span></a>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="index.html" style="font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;border:1px solid var(--border);padding:5px 12px;border-radius:6px;transition:all .2s;" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">← Portfolio</a>
+    <span class="nav-num">Tool #01</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-cat">🏷️ On-Page SEO</div>
+  <h1>Meta Tag Extractor & Analyzer</h1>
+  <p>Extract and audit every meta tag from single URLs, bulk URLs, or pasted HTML. Check title, description, Open Graph, Twitter Card, headings, images, and links.</p>
+</section>
+
+<div class="container">
+
+  <!-- ── Input Card ── -->
+  <div class="input-card">
+    <div class="input-tabs">
+      <button class="input-tab" id="itab-single" onclick="switchInputTab('single',this)">🌐 Single URL</button>
+      <button class="input-tab" id="itab-bulk"   onclick="switchInputTab('bulk',this)">📊 Bulk URLs</button>
+      <button class="input-tab active" id="itab-html"   onclick="switchInputTab('html',this)">⚡ Paste HTML <span style="font-size:10px;background:var(--green);color:#000;padding:2px 6px;border-radius:10px;font-weight:700;margin-left:4px;">INSTANT</span></button>
+    </div>
+
+    <!-- Single URL -->
+    <div class="tab-pane" id="pane-single">
+      <label style="font-size:13px;color:var(--muted);margin-bottom:8px;display:block">Enter page URL to extract all meta tags instantly</label>
+      <div style="display:flex;gap:10px;">
+        <input type="url" id="urlInput" placeholder="https://example.com/page" onkeydown="if(event.key==='Enter')analyzeSingle()"/>
+        <button class="btn btn-primary" onclick="analyzeSingle()">⚡ Extract Tags</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('urlInput').value='https://en.wikipedia.org/wiki/Search_engine_optimization'">Sample</button>
+      </div>
+      <p class="hint">ℹ️ Fetches via free CORS proxy (3 fallbacks, 10s timeout each) — no API key needed.</p>
+    </div>
+
+    <!-- Bulk URLs -->
+    <div class="tab-pane" id="pane-bulk">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <label style="font-size:13px;color:var(--muted);">🔗 Enter URLs to Audit &nbsp;·&nbsp; One URL per line &nbsp;·&nbsp; Max 50 URLs &nbsp;·&nbsp; Include https://</label>
+        <span class="url-counter" id="urlCounter">0 URLs</span>
+      </div>
+      <textarea id="bulkInput" placeholder="https://example.com/page-1&#10;https://example.com/page-2&#10;https://example.com/page-3&#10;https://example.com/about&#10;https://example.com/services" oninput="countUrls()" style="min-height:160px;"></textarea>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="analyzeBulk()">⚡ Extract Meta Tags</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('bulkInput').value='';countUrls();">✕ Clear</button>
+        <button class="btn btn-secondary" onclick="loadBulkSample()">📋 Load Sample</button>
+      </div>
+    </div>
+
+    <!-- HTML Source -->
+    <div class="tab-pane active" id="pane-html">
+      <label style="font-size:13px;color:var(--muted);margin-bottom:8px;display:block">Paste full HTML source of any page</label>
+      <textarea id="htmlInput" placeholder="Paste HTML source here (Ctrl+U in browser → Ctrl+A → Ctrl+C → paste)..."></textarea>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="analyzeHtml()">⚡ Extract Tags</button>
+        <button class="btn btn-secondary" onclick="loadSampleHtml()">📋 Sample HTML</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('htmlInput').value=''">✕ Clear</button>
+      </div>
+      <p class="hint">ℹ️ In your browser press <kbd style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">Ctrl+U</kbd> → Select All → Copy → paste here.</p>
+    </div>
+  </div>
+
+  <!-- ── Loading ── -->
+  <div id="loadingBox">
+    <div class="spinner"></div>
+    <div id="loadingMsg" style="color:var(--muted);font-size:14px;">Processing...</div>
+    <div class="progress-wrap" id="progressWrap" style="display:none;max-width:400px;margin:10px auto 0;">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div id="progressText" style="font-size:12px;color:var(--muted);margin-top:6px;"></div>
+  </div>
+
+  <!-- ── Single URL / HTML Results ── -->
+  <div id="resultsBox">
+
+    <div class="score-strip">
+      <div class="score-circle" id="scoreCircle">
+        <span class="score-num" id="scoreNum">—</span>
+        <span class="score-sub">/ 100</span>
+      </div>
+      <div class="score-bars" id="scoreBars"></div>
+      <div class="score-info" id="scoreInfo"></div>
+    </div>
+
+    <div class="out-tabs-wrap">
+      <div class="out-tabs">
+        <button class="out-tab active" onclick="switchOutTab('summary',this)">📋 Summary</button>
+        <button class="out-tab" onclick="switchOutTab('headers',this)">🔤 Headers</button>
+        <button class="out-tab" onclick="switchOutTab('images',this)">🖼️ Images</button>
+        <button class="out-tab" onclick="switchOutTab('links',this)">🔗 Links</button>
+        <button class="out-tab" onclick="switchOutTab('social',this)">📣 Social</button>
+        <button class="out-tab" id="issuesTab" onclick="switchOutTab('issues',this)">⚠️ Issues</button>
+      </div>
+
+      <div class="out-pane active" id="opane-summary">
+        <div class="serp-box">
+          <div class="serp-url" id="serpUrl"></div>
+          <div class="serp-title" id="serpTitle"></div>
+          <div class="serp-desc" id="serpDesc"></div>
+        </div>
+        <table class="meta-table" id="summaryTable"></table>
+        <div class="counts-row" id="countsRow"></div>
+      </div>
+
+      <div class="out-pane" id="opane-headers">
+        <table class="sec-table">
+          <thead><tr><th>Tag</th><th>Text Content</th><th>Note</th></tr></thead>
+          <tbody id="headersTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="out-pane" id="opane-images">
+        <table class="sec-table">
+          <thead><tr><th>#</th><th>Image SRC</th><th>Alt Text</th><th>Status</th></tr></thead>
+          <tbody id="imagesTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="out-pane" id="opane-links">
+        <table class="sec-table">
+          <thead><tr><th>#</th><th>Anchor Text</th><th>URL</th><th>Type</th><th>Follow</th></tr></thead>
+          <tbody id="linksTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="out-pane" id="opane-social">
+        <div class="social-grid" id="socialPreviews"></div>
+        <table class="sec-table">
+          <thead><tr><th>Property</th><th>Content</th><th>Status</th></tr></thead>
+          <tbody id="socialTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="out-pane" id="opane-issues">
+        <div class="issues-list" id="issuesList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Bulk Results ── -->
+  <div id="bulkResultsBox">
+
+    <!-- Legend -->
+    <div class="legend">
+      <span class="legend-label">VALIDATION</span>
+      <span class="leg-item"><span class="leg-dot" style="background:var(--green)"></span> Good / Ideal range</span>
+      <span class="leg-item"><span class="leg-dot" style="background:var(--yellow)"></span> Too short or too long</span>
+      <span class="leg-item"><span class="leg-dot" style="background:var(--red)"></span> Missing / Critical issue</span>
+      <span class="leg-item"><span class="leg-dot" style="background:var(--accent)"></span> Informational</span>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="summary-cards" id="bulkSummaryCards"></div>
+
+    <!-- Table header row -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px;">
+      <div style="font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;">📊 Extraction Results</div>
+      <button class="btn btn-excel" onclick="downloadExcel()">📥 Download Excel Report</button>
+    </div>
+
+    <!-- Bulk data table -->
+    <div class="out-tabs-wrap">
+      <div class="out-tabs">
+        <button class="out-tab active" onclick="switchBulkTab('all',this)">All URLs</button>
+        <button class="out-tab" onclick="switchBulkTab('issues',this)">Issues Only</button>
+        <button class="out-tab" onclick="switchBulkTab('good',this)">Good Only</button>
+      </div>
+      <div class="bulk-table-wrap">
+        <table class="bulk-table" id="bulkTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>URL</th>
+              <th>Title</th>
+              <th>Title Len</th>
+              <th>Description</th>
+              <th>Desc Len</th>
+              <th>H1</th>
+              <th>Canonical</th>
+              <th>Robots</th>
+              <th>OG Image</th>
+              <th>Images</th>
+              <th>Links</th>
+              <th>Issues</th>
+            </tr>
+          </thead>
+          <tbody id="bulkTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  SEO Pro Tools &nbsp;·&nbsp; Tool #01: Meta Tag Extractor &nbsp;·&nbsp; 100% Free · No API Key · No Login
+  <div class="footer-designer">✦ Designed by Lochan Yadav &nbsp;·&nbsp; 6+ Years SEO & Digital Marketing Expert ✦</div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function trunc(s,n){ s=String(s||''); return s.length>n?s.slice(0,n-3)+'…':s; }
+function qAttr(doc,sel,attr){ const el=doc.querySelector(sel); if(!el)return ''; return attr==='_text'?el.textContent.trim():(el.getAttribute(attr)||''); }
+function badge(txt,cls){ return `<span class="mt-badge ${cls}">${txt}</span>`; }
+function bG(t){ return badge('✓ '+t,'bg-green'); }
+function bY(t){ return badge('⚠ '+t,'bg-yellow'); }
+function bR(t){ return badge('✗ '+t,'bg-red'); }
+function bB(t){ return badge(t,'bg-blue'); }
+
+// Title/Desc status helpers
+function titleStatus(v){
+  if(!v) return bR('Missing');
+  if(v.length>=50&&v.length<=60) return bG('Good');
+  if(v.length<50) return bY('Too Short');
+  return bY('Too Long');
+}
+function descStatus(v){
+  if(!v) return bR('Missing');
+  if(v.length>=140&&v.length<=160) return bG('Good');
+  if(v.length<120) return bY('Short');
+  if(v.length>160) return bY('Too Long');
+  return bB('Acceptable');
+}
+function charColor(n,min,max){
+  return n>=min&&n<=max?'var(--green)':n<min?'var(--yellow)':'var(--red)';
+}
+
+// Dot colors for bulk table
+function dotColor(val,min,max){
+  if(!val) return 'var(--red)';
+  const n=val.length;
+  if(n>=min&&n<=max) return 'var(--green)';
+  return 'var(--yellow)';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CORS PROXY FETCHER — 3 fallbacks, 10s timeout each
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchWithProxy(url) {
+  const PROXIES = [
+    { name:'Proxy 1', build: u=>'https://corsproxy.io/?'+encodeURIComponent(u),     parse: async r=>await r.text() },
+    { name:'Proxy 2', build: u=>'https://api.allorigins.win/get?url='+encodeURIComponent(u), parse: async r=>{ const d=await r.json(); return d.contents||''; } },
+    { name:'Proxy 3', build: u=>'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(u), parse: async r=>await r.text() }
+  ];
+  for(let i=0;i<PROXIES.length;i++){
+    const p=PROXIES[i];
+    setLoadingMsg(`Fetching page… (${p.name} of 3)`);
+    try{
+      const ctrl=new AbortController();
+      const t=setTimeout(()=>ctrl.abort(),10000);
+      const res=await fetch(p.build(url),{signal:ctrl.signal});
+      clearTimeout(t);
+      if(!res.ok) continue;
+      const html=await p.parse(res);
+      if(html&&html.trim().length>200) return html;
+    }catch(e){ if(i<PROXIES.length-1) continue; }
+  }
+  throw new Error('All 3 proxies failed');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INPUT TAB SWITCHING
+// ─────────────────────────────────────────────────────────────────────────────
+let activeInputTab='single';
+function switchInputTab(id,btn){
+  activeInputTab=id;
+  document.querySelectorAll('.input-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pane-'+id).classList.add('active');
+  hideAll();
+}
+function switchOutTab(id,btn){
+  document.querySelectorAll('.out-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.out-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('opane-'+id).classList.add('active');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BULK TAB FILTER
+// ─────────────────────────────────────────────────────────────────────────────
+let bulkData=[];
+function switchBulkTab(filter,btn){
+  document.querySelectorAll('.out-tabs .out-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBulkTable(filter);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SHOW / HIDE helpers
+// ─────────────────────────────────────────────────────────────────────────────
+function showLoading(show){
+  document.getElementById('loadingBox').style.display=show?'block':'none';
+  hideAll();
+}
+function hideAll(){
+  document.getElementById('resultsBox').style.display='none';
+  document.getElementById('bulkResultsBox').style.display='none';
+}
+function setLoadingMsg(msg){ document.getElementById('loadingMsg').textContent=msg; }
+function setProgress(done,total){
+  const pct=Math.round(done/total*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressText').textContent=`${done} / ${total} URLs processed`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// URL COUNTER
+// ─────────────────────────────────────────────────────────────────────────────
+function countUrls(){
+  const lines=document.getElementById('bulkInput').value.trim().split('\n').filter(l=>l.trim().startsWith('http'));
+  document.getElementById('urlCounter').textContent=lines.length+' URL'+(lines.length!==1?'s':'');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SINGLE URL ANALYZE
+// ─────────────────────────────────────────────────────────────────────────────
+async function analyzeSingle(){
+  const url=document.getElementById('urlInput').value.trim();
+  if(!url){ alert('Please enter a URL.'); return; }
+  if(!url.startsWith('http')){ alert('Please enter a full URL starting with https://'); return; }
+  showLoading(true);
+  document.getElementById('progressWrap').style.display='none';
+  try{
+    const html=await fetchWithProxy(url);
+    processAndShow(html, url);
+  }catch(e){
+    showLoading(false);
+    alert('⚠️ Could not fetch URL.\n\nAll 3 proxy services failed.\n\n✅ FIX: Open the page → Ctrl+U → Ctrl+A → Ctrl+C → use "Paste HTML Source" tab.');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HTML SOURCE ANALYZE
+// ─────────────────────────────────────────────────────────────────────────────
+function analyzeHtml(){
+  const html=document.getElementById('htmlInput').value.trim();
+  if(!html){ alert('Please paste HTML source code.'); return; }
+  showLoading(true);
+  document.getElementById('progressWrap').style.display='none';
+  setLoadingMsg('Analyzing HTML source…');
+  setTimeout(()=>processAndShow(html,''),200);
+}
+
+function processAndShow(html, url){
+  setLoadingMsg('Building results…');
+  setTimeout(()=>{
+    try{
+      const parser=new DOMParser();
+      const doc=parser.parseFromString(html,'text/html');
+      buildSingleResults(doc, url);
+      showLoading(false);
+      document.getElementById('resultsBox').style.display='block';
+      document.getElementById('resultsBox').scrollIntoView({behavior:'smooth',block:'start'});
+    }catch(e){
+      showLoading(false);
+      alert('Parse error: '+e.message);
+    }
+  },200);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BULK URL ANALYZE
+// ─────────────────────────────────────────────────────────────────────────────
+async function analyzeBulk(){
+  const lines=document.getElementById('bulkInput').value.trim().split('\n').map(l=>l.trim()).filter(l=>l.startsWith('http'));
+  if(!lines.length){ alert('Please enter at least one URL starting with https://'); return; }
+  if(lines.length>50){ alert('Maximum 50 URLs allowed. Please reduce the list.'); return; }
+
+  showLoading(true);
+  document.getElementById('progressWrap').style.display='block';
+  setProgress(0,lines.length);
+  bulkData=[];
+
+  for(let i=0;i<lines.length;i++){
+    const url=lines[i];
+    setLoadingMsg(`Analyzing URL ${i+1} of ${lines.length}: ${trunc(url,50)}`);
+    let rowData={ url, error:false };
+    try{
+      const html=await fetchWithProxy(url);
+      const parser=new DOMParser();
+      const doc=parser.parseFromString(html,'text/html');
+      rowData=extractData(doc,url);
+    }catch(e){
+      rowData={ url, error:true, title:'', desc:'', robots:'', canonical:'', h1Count:0, h1Text:'', ogImage:'', imgCount:0, linkCount:0, issueCount:1 };
+    }
+    bulkData.push(rowData);
+    setProgress(i+1,lines.length);
+  }
+
+  showLoading(false);
+  buildBulkResults();
+  document.getElementById('bulkResultsBox').style.display='block';
+  document.getElementById('bulkResultsBox').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// EXTRACT DATA FROM DOC (used by bulk)
+// ─────────────────────────────────────────────────────────────────────────────
+function extractData(doc, url){
+  const title     = qAttr(doc,'title','_text')||doc.title||'';
+  const desc      = qAttr(doc,'meta[name="description"]','content');
+  const robots    = qAttr(doc,'meta[name="robots"]','content');
+  const canonical = qAttr(doc,'link[rel="canonical"]','href');
+  const ogImage   = qAttr(doc,'meta[property="og:image"]','content');
+  const h1Els     = Array.from(doc.querySelectorAll('h1'));
+  const h1Count   = h1Els.length;
+  const h1Text    = h1Els.map(h=>h.textContent.trim()).join(' | ').slice(0,120);
+  const imgCount  = doc.querySelectorAll('img').length;
+  const linkCount = doc.querySelectorAll('a[href]').length;
+
+  // Count issues
+  let issueCount=0;
+  if(!title||title.length<40||title.length>60) issueCount++;
+  if(!desc||desc.length<120||desc.length>160) issueCount++;
+  if(!canonical) issueCount++;
+  if(h1Count!==1) issueCount++;
+  if(!ogImage) issueCount++;
+
+  return { url, error:false, title, desc, robots:robots||'INDEX,FOLLOW', canonical, h1Count, h1Text, ogImage, imgCount, linkCount, issueCount };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BUILD BULK RESULTS
+// ─────────────────────────────────────────────────────────────────────────────
+function buildBulkResults(){
+  // Summary cards
+  const total=bulkData.length;
+  const goodTitles=bulkData.filter(d=>d.title&&d.title.length>=50&&d.title.length<=60).length;
+  const goodDescs=bulkData.filter(d=>d.desc&&d.desc.length>=140&&d.desc.length<=160).length;
+  const h1Issues=bulkData.filter(d=>d.h1Count!==1).length;
+  const totalIssues=bulkData.reduce((s,d)=>s+(d.issueCount||0),0);
+
+  document.getElementById('bulkSummaryCards').innerHTML=`
+    <div class="s-card"><div class="s-card-num" style="color:var(--accent)">${total}</div><div class="s-card-label">Total URLs</div></div>
+    <div class="s-card"><div class="s-card-num" style="color:var(--green)">${goodTitles}</div><div class="s-card-label">Good Titles</div></div>
+    <div class="s-card"><div class="s-card-num" style="color:var(--green)">${goodDescs}</div><div class="s-card-label">Good Descriptions</div></div>
+    <div class="s-card"><div class="s-card-num" style="color:${h1Issues>0?'var(--red)':'var(--green)'}">${h1Issues}</div><div class="s-card-label">H1 Issues</div></div>
+    <div class="s-card"><div class="s-card-num" style="color:${totalIssues>0?'var(--yellow)':'var(--green)'}">${totalIssues}</div><div class="s-card-label">Total Issues</div></div>
+  `;
+  renderBulkTable('all');
+}
+
+function renderBulkTable(filter){
+  let data=bulkData;
+  if(filter==='issues') data=bulkData.filter(d=>d.issueCount>0||d.error);
+  if(filter==='good')   data=bulkData.filter(d=>d.issueCount===0&&!d.error);
+
+  document.getElementById('bulkTbody').innerHTML=data.map((d,i)=>{
+    if(d.error) return `<tr>
+      <td>${i+1}</td>
+      <td class="url-cell" title="${esc(d.url)}">${esc(trunc(d.url,40))}</td>
+      <td colspan="10" style="color:var(--red);font-style:italic">⚠ Could not fetch — page may be blocked or private</td>
+      <td><span style="color:var(--red);font-weight:700">Error</span></td>
+    </tr>`;
+
+    const tCol=dotColor(d.title,50,60);
+    const dCol=dotColor(d.desc,140,160);
+    const h1Col=d.h1Count===1?'var(--green)':d.h1Count===0?'var(--red)':'var(--yellow)';
+
+    return `<tr>
+      <td style="color:var(--muted);text-align:center">${i+1}</td>
+      <td class="url-cell" title="${esc(d.url)}">${esc(trunc(d.url,45))}</td>
+      <td>
+        <span class="status-dot" style="background:${tCol}"></span>
+        <span title="${esc(d.title)}">${esc(trunc(d.title,50))}</span>
+      </td>
+      <td style="text-align:center;font-weight:700;color:${tCol}">${d.title?d.title.length:'—'}</td>
+      <td>
+        <span class="status-dot" style="background:${dCol}"></span>
+        <span title="${esc(d.desc)}">${esc(trunc(d.desc,60))}</span>
+      </td>
+      <td style="text-align:center;font-weight:700;color:${dCol}">${d.desc?d.desc.length:'—'}</td>
+      <td style="text-align:center"><span style="font-weight:800;color:${h1Col}">${d.h1Count}</span></td>
+      <td style="font-size:11px;color:${d.canonical?'var(--green)':'var(--red)'}">${d.canonical?'✓ Set':'✗ Missing'}</td>
+      <td style="font-size:12px;color:var(--muted)">${esc(trunc(d.robots,20))}</td>
+      <td style="color:${d.ogImage?'var(--green)':'var(--red)'};">${d.ogImage?'✓ Set':'✗ Missing'}</td>
+      <td style="text-align:center">${d.imgCount}</td>
+      <td style="text-align:center">${d.linkCount}</td>
+      <td style="text-align:center"><span style="font-weight:700;color:${d.issueCount>2?'var(--red)':d.issueCount>0?'var(--yellow)':'var(--green)'}">${d.issueCount}</span></td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="13" style="text-align:center;padding:20px;color:var(--muted)">No data for this filter.</td></tr>';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// EXCEL DOWNLOAD
+// ─────────────────────────────────────────────────────────────────────────────
+function downloadExcel(){
+  if(!bulkData.length){ alert('No data to export.'); return; }
+  const rows=[['#','URL','Title','Title Length','Title Status','Meta Description','Desc Length','Desc Status','H1 Count','H1 Text','Canonical','Robots','OG Image','Images','Links','Issues Count']];
+  bulkData.forEach((d,i)=>{
+    function tStatus(v){ if(!v)return 'Missing'; if(v.length>=50&&v.length<=60)return 'Good'; if(v.length<50)return 'Too Short'; return 'Too Long'; }
+    function dStatus(v){ if(!v)return 'Missing'; if(v.length>=140&&v.length<=160)return 'Good'; if(v.length<120)return 'Short'; if(v.length>160)return 'Too Long'; return 'Acceptable'; }
+    rows.push([
+      i+1, d.url, d.title||'', d.title?d.title.length:'', tStatus(d.title),
+      d.desc||'', d.desc?d.desc.length:'', dStatus(d.desc),
+      d.h1Count||0, d.h1Text||'', d.canonical?'Set':'Missing',
+      d.robots||'', d.ogImage?'Set':'Missing', d.imgCount||0, d.linkCount||0, d.issueCount||0
+    ]);
+  });
+  const ws=XLSX.utils.aoa_to_sheet(rows);
+  // Column widths
+  ws['!cols']=[{wch:4},{wch:50},{wch:60},{wch:12},{wch:14},{wch:80},{wch:10},{wch:14},{wch:8},{wch:60},{wch:14},{wch:18},{wch:14},{wch:8},{wch:8},{wch:10}];
+  const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,'Meta Tag Report',ws);
+  XLSX.writeFile(wb,'Meta_Tag_Report_'+new Date().toISOString().slice(0,10)+'.xlsx');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BUILD SINGLE RESULTS
+// ─────────────────────────────────────────────────────────────────────────────
+function buildSingleResults(doc, pageUrl){
+  const title    = qAttr(doc,'title','_text')||doc.title||'';
+  const desc     = qAttr(doc,'meta[name="description"]','content');
+  const keywords = qAttr(doc,'meta[name="keywords"]','content');
+  const robots   = qAttr(doc,'meta[name="robots"]','content');
+  const canonical= qAttr(doc,'link[rel="canonical"]','href');
+  const author   = qAttr(doc,'meta[name="author"]','content');
+  const publisher= qAttr(doc,'meta[name="publisher"]','content')||qAttr(doc,'meta[property="article:publisher"]','content');
+  const lang     = doc.documentElement.getAttribute('lang')||'';
+  const viewport = qAttr(doc,'meta[name="viewport"]','content');
+  const charset  = (()=>{ const el=doc.querySelector('meta[charset]'); return el?el.getAttribute('charset')||'':''; })();
+  const ogTitle  = qAttr(doc,'meta[property="og:title"]','content');
+  const ogDesc   = qAttr(doc,'meta[property="og:description"]','content');
+  const ogImage  = qAttr(doc,'meta[property="og:image"]','content');
+  const ogUrl    = qAttr(doc,'meta[property="og:url"]','content');
+  const ogType   = qAttr(doc,'meta[property="og:type"]','content');
+  const ogSite   = qAttr(doc,'meta[property="og:site_name"]','content');
+  const ogLocale = qAttr(doc,'meta[property="og:locale"]','content');
+  const twCard   = qAttr(doc,'meta[name="twitter:card"]','content');
+  const twTitle  = qAttr(doc,'meta[name="twitter:title"]','content');
+  const twDesc   = qAttr(doc,'meta[name="twitter:description"]','content');
+  const twImage  = qAttr(doc,'meta[name="twitter:image"]','content');
+  const twSite   = qAttr(doc,'meta[name="twitter:site"]','content');
+  const twCreator= qAttr(doc,'meta[name="twitter:creator"]','content');
+  const imgs     = Array.from(doc.querySelectorAll('img'));
+  const links    = Array.from(doc.querySelectorAll('a[href]'));
+  const hCount   = [1,2,3,4,5,6].map(n=>doc.querySelectorAll('h'+n).length);
+
+  const domain = (ogUrl||canonical||pageUrl||'').replace(/https?:\/\//,'').split('/')[0]||'example.com';
+
+  // SERP
+  document.getElementById('serpUrl').textContent   = domain+' › …';
+  document.getElementById('serpTitle').textContent = title.length>60?title.slice(0,57)+'…':title||'(No title tag)';
+  document.getElementById('serpTitle').style.color = title?'#1a0dab':'#999';
+  document.getElementById('serpDesc').textContent  = desc.length>160?desc.slice(0,157)+'…':desc||'(No meta description)';
+
+  // Summary table
+  const rows=[
+    {label:'Title',     chars:title?title.length+' characters':null, charCol:title?charColor(title.length,50,60):null, value:title||null, status:titleStatus(title)},
+    {label:'Description',chars:desc?desc.length+' characters':null, charCol:desc?charColor(desc.length,140,160):null,  value:desc||null,  status:descStatus(desc)},
+    {label:'Keywords',  chars:keywords?keywords.split(',').length+' value(s)':null, charCol:'var(--muted)', value:keywords||null, status:keywords?bB('Set'):bB('Not set')},
+    {label:'URL',       chars:null, value:ogUrl||canonical||pageUrl||null, status:(ogUrl||canonical)?bG('Present'):bY('Not found')},
+    {label:'Canonical', chars:null, value:canonical||null, status:canonical?bG('Present'):bY('Missing')},
+    {label:'Robots Tag',chars:null, value:robots||'INDEX, FOLLOW (default)', status:robots?(robots.toLowerCase().includes('noindex')?bY('Noindex'):bG('Follow')):bB('Default')},
+    {label:'Author',    chars:null, value:author||null,    status:author?bG('Present'):bB('Missing')},
+    {label:'Publisher', chars:null, value:publisher||null, status:publisher?bG('Present'):bY('Missing')},
+    {label:'Lang',      chars:null, value:lang||null,      status:lang?bG(lang):bY('Missing')},
+    {label:'Viewport',  chars:null, value:viewport||null,  status:viewport?bG('Set'):bR('Missing')},
+    {label:'Charset',   chars:null, value:charset||null,   status:charset?bG(charset):bY('Missing')},
+  ];
+
+  document.getElementById('summaryTable').innerHTML=rows.map(r=>`
+    <tr>
+      <td>
+        <div class="mt-label">${r.label}</div>
+        ${r.chars?`<div class="mt-chars" style="color:${r.charCol||'var(--muted)'}">${r.chars}</div>`:''}
+      </td>
+      <td>
+        ${r.value?`<div class="mt-value">${esc(trunc(r.value,300))}</div>`:`<div class="mt-value missing">${r.label} is missing.</div>`}
+        <div style="margin-top:6px">${r.status}</div>
+      </td>
+    </tr>`).join('');
+
+  // Counts row
+  document.getElementById('countsRow').innerHTML=[
+    ...['H1','H2','H3','H4','H5','H6'].map((h,i)=>`<div class="count-cell"><div class="count-label">${h}</div><div class="count-value" style="color:${i===0&&hCount[i]!==1?'var(--red)':'var(--accent)'}">${hCount[i]}</div></div>`),
+    `<div class="count-cell"><div class="count-label">Images</div><div class="count-value">${imgs.length}</div></div>`,
+    `<div class="count-cell"><div class="count-label">Links</div><div class="count-value">${links.length}</div></div>`,
+  ].join('');
+
+  // Score
+  const bars=[
+    {label:'Title',       pts:title?(title.length>=50&&title.length<=60?25:title.length>=40?15:8):0,max:25},
+    {label:'Description', pts:desc?(desc.length>=140&&desc.length<=160?25:desc.length>=100?15:8):0,max:25},
+    {label:'Technical',   pts:(canonical?10:0)+(viewport?5:0)+(charset?5:0)+(lang?5:0),max:25},
+    {label:'Social Tags', pts:Math.min([ogTitle,ogDesc,ogImage,ogUrl,ogType].filter(Boolean).length*3+(twCard?5:0),25),max:25},
+  ];
+  let score=Math.min(bars.reduce((s,b)=>s+b.pts,0),100);
+  const scCol=score>=80?'var(--green)':score>=50?'var(--yellow)':'var(--red)';
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('scoreCircle').style.borderColor=scCol;
+  document.getElementById('scoreNum').style.color=scCol;
+  document.getElementById('scoreInfo').innerHTML=`<strong>${score>=80?'Great':score>=50?'Needs Work':'Poor'}</strong><br><span>SEO meta score</span>`;
+  document.getElementById('scoreBars').innerHTML=bars.map(b=>{
+    const pct=Math.round(b.pts/b.max*100);
+    const c=pct>=80?'var(--green)':pct>=40?'var(--yellow)':'var(--red)';
+    return `<div class="sbar"><div class="sbar-label"><span>${b.label}</span><span style="color:${c}">${b.pts}/${b.max}</span></div><div class="sbar-track"><div class="sbar-fill" style="width:${pct}%;background:${c}"></div></div></div>`;
+  }).join('');
+
+  // Headers
+  const hEls=Array.from(doc.querySelectorAll('h1,h2,h3,h4,h5,h6'));
+  const hCols={H1:'var(--accent)',H2:'var(--green)',H3:'var(--yellow)',H4:'var(--purple)',H5:'var(--muted)',H6:'var(--muted)'};
+  document.getElementById('headersTbody').innerHTML=hEls.length
+    ?hEls.map(h=>`<tr><td><span style="font-weight:800;color:${hCols[h.tagName]||'var(--muted)'}">${h.tagName}</span></td><td>${esc(trunc(h.textContent.trim(),120))}</td><td>${h.tagName==='H1'&&hEls.filter(x=>x.tagName==='H1').length>1?bR('Multiple H1'):h.tagName==='H1'?bG('Primary'):bB('—')}</td></tr>`).join('')
+    :'<tr><td colspan="3" style="color:var(--muted);text-align:center;padding:20px">No heading tags found.</td></tr>';
+
+  // Images
+  document.getElementById('imagesTbody').innerHTML=imgs.length
+    ?imgs.slice(0,100).map((img,i)=>{
+      const src=img.getAttribute('src')||'';
+      const alt=img.getAttribute('alt');
+      const st=alt===null?bR('No alt'):alt===''?bY('Empty'):alt.length<5?bY('Too Short'):bG('OK');
+      return `<tr><td>${i+1}</td><td style="font-size:12px;color:var(--muted)">${esc(trunc(src,60))}</td><td>${alt!==null?esc(trunc(alt,60)):'<em style="color:var(--red)">Missing</em>'}</td><td>${st}</td></tr>`;
+    }).join('')
+    :'<tr><td colspan="4" style="color:var(--muted);text-align:center;padding:20px">No images found.</td></tr>';
+
+  // Links
+  document.getElementById('linksTbody').innerHTML=links.length
+    ?links.slice(0,150).map((a,i)=>{
+      const href=a.getAttribute('href')||'';
+      const text=a.textContent.trim()||'(no text)';
+      const nofo=(a.getAttribute('rel')||'').includes('nofollow');
+      const ext=href.startsWith('http')&&!href.includes(domain);
+      return `<tr><td>${i+1}</td><td>${esc(trunc(text,50))}</td><td style="font-size:12px;color:var(--muted)">${esc(trunc(href,70))}</td><td>${ext?bB('External'):bG('Internal')}</td><td>${nofo?bY('Nofollow'):bG('Follow')}</td></tr>`;
+    }).join('')
+    :'<tr><td colspan="5" style="color:var(--muted);text-align:center;padding:20px">No links found.</td></tr>';
+
+  // Social previews
+  const imgHtml=src=>src?`<div class="preview-img"><img src="${esc(src)}" alt="preview" onerror="this.parentElement.innerHTML='<span>Image not loadable</span>'"/></div>`:`<div class="preview-img">📷 No image set</div>`;
+  document.getElementById('socialPreviews').innerHTML=`
+    <div class="preview-card">
+      <div class="preview-header">📘 Facebook / LinkedIn Preview</div>
+      ${imgHtml(ogImage)}
+      <div class="preview-body">
+        <div class="p-domain">${esc(domain)}</div>
+        <div class="p-title">${esc(trunc(ogTitle||title||'(No title)',50))}</div>
+        <div class="p-desc">${esc(trunc(ogDesc||desc||'(No description)',120))}</div>
+      </div>
+    </div>
+    <div class="preview-card">
+      <div class="preview-header">🐦 Twitter/X Card Preview</div>
+      ${imgHtml(twImage||ogImage)}
+      <div class="preview-body">
+        <div class="p-domain">${esc(domain)}</div>
+        <div class="p-title">${esc(trunc(twTitle||ogTitle||title||'(No title)',50))}</div>
+        <div class="p-desc">${esc(trunc(twDesc||ogDesc||desc||'(No description)',120))}</div>
+      </div>
+    </div>`;
+
+  const socialTags=[
+    ['og:title',ogTitle,ogTitle?bG('Set'):bR('Missing')],['og:description',ogDesc,ogDesc?bG('Set'):bR('Missing')],
+    ['og:image',ogImage,ogImage?bG('Set'):bR('Missing')],['og:url',ogUrl,ogUrl?bG('Set'):bY('Missing')],
+    ['og:type',ogType,ogType?bG(ogType):bY('Missing')],['og:site_name',ogSite,ogSite?bG('Set'):bB('Optional')],
+    ['og:locale',ogLocale,ogLocale?bG(ogLocale):bB('Optional')],
+    ['twitter:card',twCard,twCard?bG(twCard):bR('Missing')],['twitter:title',twTitle,twTitle?bG('Set'):bB('Falls back to OG')],
+    ['twitter:description',twDesc,twDesc?bG('Set'):bB('Falls back to OG')],['twitter:image',twImage,twImage?bG('Set'):bB('Falls back to OG')],
+    ['twitter:site',twSite,twSite?bG(twSite):bB('Optional')],['twitter:creator',twCreator,twCreator?bG(twCreator):bB('Optional')],
+  ];
+  document.getElementById('socialTbody').innerHTML=socialTags.map(([p,v,s])=>`<tr><td style="font-family:monospace;font-size:12px;color:var(--accent)">${p}</td><td>${v?esc(trunc(v,200)):'<em style="color:var(--muted)">not set</em>'}</td><td>${s}</td></tr>`).join('');
+
+  // Issues
+  const issues=[];
+  const push=(t,m)=>issues.push({type:t,msg:m});
+  if(!title) push('error','Title tag is <strong>missing</strong>. Every page must have a unique &lt;title&gt; (50–60 chars).');
+  else if(title.length<40) push('warn',`Title is too short (${title.length} chars). Expand to 50–60 characters.`);
+  else if(title.length>60) push('warn',`Title is too long (${title.length} chars). Google truncates at ~60 chars.`);
+  else push('success',`Title length is perfect: <strong>${title.length} characters</strong>.`);
+  if(!desc) push('error','Meta description is <strong>missing</strong>. Add a 140–160 char description with a CTA.');
+  else if(desc.length<120) push('warn',`Meta description is short (${desc.length} chars). Expand to 140–160 chars.`);
+  else if(desc.length>160) push('warn',`Meta description is too long (${desc.length} chars). Trim to 160 chars.`);
+  else push('success',`Meta description is <strong>perfect</strong>: ${desc.length} chars.`);
+  if(!canonical) push('warn','Canonical tag is <strong>missing</strong>. Add &lt;link rel="canonical"&gt; to prevent duplicate content.');
+  else push('success','Canonical tag is present and correctly set.');
+  if(!viewport) push('error','Viewport meta is <strong>missing</strong>. Required for mobile SEO.');
+  else push('success','Viewport meta tag is correctly set for mobile.');
+  if(!lang) push('warn','HTML <strong>lang attribute</strong> is missing. Add lang="en" to &lt;html&gt; tag.');
+  if(hCount[0]===0) push('error','<strong>No H1</strong> tag found. Every page needs exactly one H1.');
+  else if(hCount[0]>1) push('warn',`<strong>${hCount[0]} H1 tags</strong> found. Use only one H1 per page.`);
+  else push('success','Exactly one H1 tag found — correct.');
+  if(!ogImage) push('warn','<strong>og:image</strong> is missing. Use 1200×630px images for social sharing.');
+  if(!ogTitle) push('warn','<strong>og:title</strong> is missing — required for Facebook/LinkedIn previews.');
+  if(!twCard)  push('warn','<strong>twitter:card</strong> is missing. Add summary_large_image for rich Twitter previews.');
+  const missingAlt=imgs.filter(img=>!img.hasAttribute('alt')).length;
+  if(missingAlt>0) push('warn',`<strong>${missingAlt} image(s)</strong> are missing alt attributes. Add descriptive alt text.`);
+  else if(imgs.length>0) push('success','All images have alt attributes — good for accessibility and SEO.');
+
+  document.getElementById('issuesList').innerHTML=issues.map(i=>`
+    <div class="issue-item iss-${i.type}">
+      <span class="iss-icon">${i.type==='success'?'✅':i.type==='error'?'🚨':'⚠️'}</span>
+      <span>${i.msg}</span>
+    </div>`).join('');
+
+  const ec=issues.filter(i=>i.type==='error').length;
+  const wc=issues.filter(i=>i.type==='warn').length;
+  document.getElementById('issuesTab').textContent=`⚠️ Issues (${ec+wc})`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SAMPLES
+// ─────────────────────────────────────────────────────────────────────────────
+function loadBulkSample(){
+  document.getElementById('bulkInput').value=`https://en.wikipedia.org/wiki/Search_engine_optimization
+https://en.wikipedia.org/wiki/Digital_marketing
+https://en.wikipedia.org/wiki/Keyword_research`;
+  countUrls();
+}
+function loadSampleHtml(){
+  document.getElementById('htmlInput').value=`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best SEO Tools for Digital Marketers in 2025 | SEO Blog</title>
+  <meta name="description" content="Discover the 10 best SEO tools every digital marketer needs in 2025. Keyword research, rank tracking, backlink analysis and more — honest expert reviews.">
+  <meta name="author" content="Lochan Yadav">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://seoblog.com/best-seo-tools-2025">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best SEO Tools for Digital Marketers in 2025">
+  <meta property="og:description" content="Discover the 10 best SEO tools every digital marketer needs in 2025.">
+  <meta property="og:image" content="https://seoblog.com/images/seo-tools-og.jpg">
+  <meta property="og:url" content="https://seoblog.com/best-seo-tools-2025">
+  <meta property="og:site_name" content="SEO Blog">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@SEOBlog">
+</head>
+<body>
+  <h1>Best SEO Tools for 2025</h1>
+  <h2>Keyword Research Tools</h2>
+  <p><a href="/ahrefs-review">Ahrefs</a> — best overall tool.</p>
+  <h2>Technical SEO</h2>
+  <h3>Screaming Frog</h3>
+  <p><a href="https://screamingfrog.co.uk" rel="nofollow">Visit Screaming Frog</a></p>
+  <img src="/images/seo-tools.jpg" alt="SEO tools comparison 2025"/>
+  <img src="/images/keyword.jpg" alt=""/>
+  <img src="/images/backlinks.png"/>
+</body>
+</html>`;
+}
+</script>
+</body>
+</html>

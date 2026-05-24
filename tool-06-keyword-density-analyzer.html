@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyword Density & Content Analyzer – SEO Tools by Lochan Yadav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b12;--s1:#13131f;--s2:#1a1a2a;--s3:#22223a;
+  --bd:#2a2a42;--bd2:#3a3a5a;
+  --txt:#e8e8f4;--txt2:#aaaacc;--txt3:#666688;
+  --acc:#10b981;--acc2:#059669;--acc-glow:rgba(16,185,129,.18);
+  --gr:#34d399;--gr-bg:rgba(52,211,153,.1);
+  --ye:#fbbf24;--ye-bg:rgba(251,191,36,.08);
+  --rd:#f87171;--rd-bg:rgba(248,113,113,.1);
+  --bl:#60a5fa;--bl-bg:rgba(96,165,250,.08);
+  --pu:#a78bfa;--pu-bg:rgba(167,139,250,.08);
+  --r:10px;--rs:7px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);font-size:14px;line-height:1.55;min-height:100vh}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:var(--s1)}::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
+/* HEADER */
+.hdr{background:var(--s1);border-bottom:1px solid var(--bd);padding:0 28px;height:62px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100}
+.hlogo{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--acc2),var(--acc));display:flex;align-items:center;justify-content:center;font-size:21px;box-shadow:0 0 18px var(--acc-glow)}
+.htitle{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.hsub{font-size:12px;color:var(--txt3);margin-top:1px}
+.hbadge{padding:5px 12px;border-radius:20px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:var(--acc);font-size:11px;font-weight:700;letter-spacing:.5px}
+/* HERO */
+.hero{background:linear-gradient(135deg,rgba(5,150,105,.06),rgba(16,185,129,.03));border-bottom:1px solid var(--bd);padding:36px 28px 28px;text-align:center}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--acc);background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+.hero h1{font-size:clamp(22px,4vw,36px);font-weight:800;margin-bottom:10px;background:linear-gradient(135deg,#fff 30%,var(--acc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--txt2);font-size:14px;max-width:620px;margin:0 auto;line-height:1.7}
+/* LAYOUT */
+.wrap{max-width:1260px;margin:0 auto;padding:28px 20px}
+.layout{display:grid;grid-template-columns:480px 1fr;gap:22px;align-items:start}
+@media(max-width:960px){.layout{grid-template-columns:1fr}}
+/* CARD */
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-hd{padding:12px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:700;color:var(--acc);letter-spacing:.3px;text-transform:uppercase;background:rgba(16,185,129,.04)}
+.card-bd{padding:18px}
+/* FORMS */
+textarea{width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);color:var(--txt);font-family:inherit;font-size:13px;outline:none;resize:vertical;transition:border-color .2s}
+textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-glow)}
+textarea::placeholder{color:var(--txt3)}
+input[type=text]{width:100%;padding:9px 12px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);color:var(--txt);font-family:inherit;font-size:13px;outline:none;transition:border-color .2s}
+input:focus{border-color:var(--acc)}
+input::placeholder{color:var(--txt3)}
+/* OPTIONS */
+.opt-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:12px}
+.opt-label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt2);cursor:pointer;user-select:none}
+.opt-label input[type=checkbox]{accent-color:var(--acc);width:14px;height:14px}
+.kw-focus{display:flex;gap:8px;margin-top:10px}
+.kw-focus input{flex:1}
+.kw-focus .btn{flex-shrink:0}
+/* BTNS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border:none;border-radius:var(--rs);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,var(--acc2),var(--acc));color:#fff}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 4px 20px var(--acc-glow)}
+.btn-outline{background:transparent;border:1px solid var(--bd);color:var(--txt2)}
+.btn-outline:hover{border-color:var(--acc);color:var(--acc)}
+.btn-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn-sm{padding:7px 13px;font-size:12px}
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-card{background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:14px;text-align:center}
+.stat-v{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:var(--acc);display:block}
+.stat-l{color:var(--txt3);font-size:10px;text-transform:uppercase;letter-spacing:.4px;margin-top:3px;display:block}
+/* READABILITY */
+.read-bar{margin-bottom:14px}
+.read-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}
+.read-label span:last-child{font-weight:700}
+.bar-bg{background:var(--s2);border-radius:4px;height:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .5s ease}
+.score-ring{width:90px;height:90px;position:relative;flex-shrink:0}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace}
+/* KEYWORD TABLE */
+.kw-table{width:100%;border-collapse:collapse;font-size:13px}
+.kw-table th{padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--txt3);border-bottom:1px solid var(--bd);background:var(--s2)}
+.kw-table td{padding:9px 12px;border-bottom:1px solid var(--bd);vertical-align:middle}
+.kw-table tr:last-child td{border-bottom:none}
+.kw-table tr:hover td{background:rgba(16,185,129,.03)}
+.kw-bar-cell{width:100px}
+.kw-mini-bar{background:var(--s3);border-radius:3px;height:5px;overflow:hidden}
+.kw-mini-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--acc2),var(--acc))}
+.den-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:8px}
+.den-ok{background:var(--gr-bg);color:var(--gr)}
+.den-hi{background:var(--ye-bg);color:var(--ye)}
+.den-vhi{background:var(--rd-bg);color:var(--rd)}
+.den-lo{background:var(--bl-bg);color:var(--bl)}
+/* FOCUS KW */
+.focus-box{background:var(--pu-bg);border:1px solid rgba(167,139,250,.25);border-radius:9px;padding:14px;margin-bottom:14px}
+.focus-box-title{font-size:11px;font-weight:700;color:var(--pu);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
+.focus-row{display:flex;gap:10px;flex-wrap:wrap}
+.focus-item{display:flex;flex-direction:column;gap:3px;font-size:12px}
+.focus-item .fv{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--pu)}
+.focus-item .fl{color:var(--txt3);font-size:10px}
+/* TAGS */
+.tag-cloud{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px;background:var(--s2);border:1px solid var(--bd);color:var(--txt3);cursor:default;transition:all .2s}
+.tag:hover{border-color:var(--acc);color:var(--acc)}
+/* ALERT */
+.alert{border-radius:8px;padding:11px 14px;font-size:12px;line-height:1.6;margin-top:10px}
+.alert-warn{background:var(--ye-bg);border:1px solid rgba(251,191,36,.25);color:var(--ye)}
+.alert-ok{background:var(--gr-bg);border:1px solid rgba(52,211,153,.25);color:var(--gr)}
+.alert-err{background:var(--rd-bg);border:1px solid rgba(248,113,113,.25);color:var(--rd)}
+/* TABS */
+.tabs{display:flex;gap:3px;margin-bottom:14px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);padding:3px}
+.tab{flex:1;padding:8px;background:transparent;border:none;color:var(--txt3);cursor:pointer;border-radius:5px;font-size:12px;font-weight:600;font-family:inherit;transition:all .2s}
+.tab.on{background:linear-gradient(135deg,var(--acc2),var(--acc));color:#fff}
+.tab:hover:not(.on){color:var(--txt);background:rgba(255,255,255,.05)}
+.tab-pane{display:none}.tab-pane.on{display:block}
+/* EMPTY */
+.empty{text-align:center;padding:40px 20px;color:var(--txt3)}
+.empty-icon{font-size:36px;margin-bottom:10px}
+/* FOOTER */
+.footer{text-align:center;padding:24px;color:var(--txt3);font-size:12px;border-top:1px solid var(--bd);margin-top:28px;letter-spacing:.4px}
+.footer span{color:var(--acc);font-weight:600}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hlogo">🔍</div>
+  <div>
+    <div class="htitle">Keyword Density &amp; Content Analyzer</div>
+    <div class="hsub">Instant analysis · Readability · TF scores · Keyword stuffing detection</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+    <a href="index.html" style="font-size:12px;font-weight:600;color:var(--txt3);text-decoration:none;border:1px solid var(--bd);padding:5px 12px;border-radius:6px;transition:all .2s" onmouseover="this.style.color='var(--acc)';this.style.borderColor='var(--acc)'" onmouseout="this.style.color='var(--txt3)';this.style.borderColor='var(--bd)'">← Portfolio</a>
+    <div class="hbadge">TOOL #06</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-cat">📊 Content Analysis</div>
+  <h1>Keyword Density &amp; Content Analyzer</h1>
+  <p>Paste any content — blog post, landing page, article — and get instant keyword frequency, density scores, readability grade, stop-word filtering, and stuffing alerts.</p>
+</section>
+
+<div class="wrap">
+<div class="layout">
+
+<!-- ══ LEFT ══ -->
+<div>
+  <div class="card">
+    <div class="card-hd">① Paste Content to Analyze</div>
+    <div class="card-bd">
+      <textarea id="content-input" style="min-height:220px" placeholder="Paste your full page content here — blog post, landing page copy, article body text, product description, anything. The more content, the more accurate the analysis.&#10;&#10;Tip: Paste just the body text (not HTML tags) for best results."></textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:11px;color:var(--txt3)" id="char-count">0 characters · 0 words</span>
+        <button class="btn btn-outline btn-sm" onclick="loadSample()">📋 Load Sample</button>
+      </div>
+      <div class="opt-row">
+        <label class="opt-label"><input type="checkbox" id="opt-stop" checked> Filter stop words</label>
+        <label class="opt-label"><input type="checkbox" id="opt-stem"> Merge word stems</label>
+        <label class="opt-label"><input type="checkbox" id="opt-bigrams" checked> Show 2-word phrases</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">② Target Keyword <span style="color:var(--txt3);font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">(optional — for focus analysis)</span></div>
+    <div class="card-bd">
+      <div class="kw-focus">
+        <input type="text" id="focus-kw" placeholder="e.g. home loan interest rate">
+        <button class="btn btn-outline btn-sm" onclick="analyze()">Analyze</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px" onclick="analyze()">⚡ Analyze Content</button>
+
+  <div id="alerts-area" style="margin-top:12px"></div>
+</div>
+
+<!-- ══ RIGHT ══ -->
+<div id="results-area">
+  <div class="empty">
+    <div class="empty-icon">📊</div>
+    <div style="font-size:13px;color:var(--txt3)">Paste content and click Analyze<br>to see keyword density, readability scores,<br>and content insights.</div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">
+  SEO Pro Tools &nbsp;·&nbsp; Tool #06: Keyword Density Analyzer &nbsp;·&nbsp; 100% Free · No API Key · Instant Results
+  <div style="margin-top:6px">✦ Designed by <span>Lochan Yadav</span> · 6+ Years SEO &amp; Digital Marketing Expert ✦</div>
+</div>
+
+<script>
+/* ══ STOP WORDS ══ */
+const STOPS=new Set(['a','an','the','and','or','but','in','on','at','to','for','of','with','by','from','is','was','are','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','shall','can','need','ought','used','this','that','these','those','i','me','my','myself','we','our','ours','ourselves','you','your','yours','yourself','yourselves','he','him','his','himself','she','her','hers','herself','it','its','itself','they','them','their','theirs','themselves','what','which','who','whom','when','where','why','how','all','each','few','more','most','other','some','such','no','not','only','same','so','than','too','very','s','t','just','don','now','here','there','about','above','after','before','between','into','through','during','until','while','of','as','if','then','because','though','although','however','therefore','thus','hence','accordingly','consequently','furthermore','moreover','nevertheless','nonetheless','otherwise','whereas','whereby']);
+
+/* ══ LIVE CHAR COUNT ══ */
+document.getElementById('content-input').addEventListener('input',()=>{
+  const t=document.getElementById('content-input').value;
+  const words=t.trim()?t.trim().split(/\s+/).length:0;
+  document.getElementById('char-count').textContent=t.length.toLocaleString()+' characters · '+words.toLocaleString()+' words';
+});
+
+/* ══ SAMPLE ══ */
+function loadSample(){
+  document.getElementById('content-input').value=`Home Loan Interest Rates in India 2025
+
+Getting a home loan in India requires careful comparison of home loan interest rates across banks. The current home loan interest rate starts at 8.40% per annum. Banks like SBI, HDFC, and ICICI offer competitive home loan rates to salaried and self-employed individuals.
+
+When applying for a home loan, you need to check your CIBIL score, income stability, and loan-to-value ratio. A higher CIBIL score helps you get a better interest rate on your home loan. Most banks offer home loans up to 80% of the property value.
+
+The home loan EMI calculation depends on the principal amount, interest rate, and loan tenure. You can use a home loan EMI calculator to estimate your monthly payments. A 20-year home loan of ₹50 lakhs at 8.5% interest rate would result in an EMI of approximately ₹43,000.
+
+For first-time home buyers, the government offers subsidies under the PMAY scheme. Home loan tax benefits under Section 80C and Section 24 can save you up to ₹3.5 lakhs per year. Always compare home loan interest rates before applying.`;
+  document.getElementById('content-input').dispatchEvent(new Event('input'));
+}
+
+/* ══ ANALYZE ══ */
+function analyze(){
+  const raw=document.getElementById('content-input').value.trim();
+  if(!raw){ alert('Please paste some content first.'); return; }
+  const useStop=document.getElementById('opt-stop').checked;
+  const useBigrams=document.getElementById('opt-bigrams').checked;
+  const focusKw=document.getElementById('focus-kw').value.trim().toLowerCase();
+
+  // Tokenize
+  const cleanText=raw.replace(/<[^>]*>/g,' ').replace(/[^a-zA-Z\s'-]/g,' ').replace(/\s+/g,' ').trim();
+  const allWords=cleanText.toLowerCase().split(/\s+/).filter(w=>w.length>1);
+  const filteredWords=useStop?allWords.filter(w=>!STOPS.has(w)):allWords;
+
+  // Word frequency
+  const freq={};
+  filteredWords.forEach(w=>{freq[w]=(freq[w]||0)+1;});
+
+  // Bigrams
+  const bigrams={};
+  if(useBigrams){
+    for(let i=0;i<allWords.length-1;i++){
+      const a=allWords[i],b=allWords[i+1];
+      if((!useStop||(!STOPS.has(a)&&!STOPS.has(b)))&&a.length>2&&b.length>2){
+        const bg=a+' '+b;
+        bigrams[bg]=(bigrams[bg]||0)+1;
+      }
+    }
+  }
+
+  const totalWords=allWords.length;
+  const totalFiltered=filteredWords.length;
+  const sentences=raw.split(/[.!?]+/).filter(s=>s.trim().length>10);
+  const avgWordsPerSent=totalWords/(sentences.length||1);
+
+  // Top keywords
+  const sorted=Object.entries(freq).filter(([,c])=>c>1).sort((a,b)=>b[1]-a[1]).slice(0,30);
+  const topBigrams=Object.entries(bigrams).filter(([,c])=>c>1).sort((a,b)=>b[1]-a[1]).slice(0,20);
+  const maxCount=sorted[0]?sorted[0][1]:1;
+
+  // Readability (Flesch-Kincaid approximation)
+  const syllables=countSyllables(cleanText);
+  const fk=206.835-(1.015*(totalWords/Math.max(sentences.length,1)))-(84.6*(syllables/Math.max(totalWords,1)));
+  const fkGrade=0.39*(totalWords/Math.max(sentences.length,1))+11.8*(syllables/Math.max(totalWords,1))-15.59;
+  const readScore=Math.min(100,Math.max(0,Math.round(fk)));
+  const readLabel=readScore>=70?'Easy':readScore>=60?'Standard':readScore>=50?'Fairly Difficult':readScore>=30?'Difficult':'Very Difficult';
+  const readColor=readScore>=70?'var(--gr)':readScore>=50?'var(--ye)':'var(--rd)';
+
+  // Focus keyword analysis
+  let focusData=null;
+  if(focusKw){
+    const kwWords=focusKw.split(/\s+/);
+    let kwCount=0;
+    const lcText=raw.toLowerCase();
+    let pos=0;
+    while((pos=lcText.indexOf(focusKw,pos))!==-1){kwCount++;pos+=focusKw.length;}
+    const density=((kwCount*kwWords.length)/Math.max(totalWords,1)*100).toFixed(2);
+    const inTitle=raw.split('\n')[0].toLowerCase().includes(focusKw);
+    const inFirst100=raw.slice(0,500).toLowerCase().includes(focusKw);
+    focusData={kw:focusKw,count:kwCount,density,inTitle,inFirst100};
+  }
+
+  // Stuffing detection
+  const alerts=[];
+  sorted.slice(0,5).forEach(([w,c])=>{
+    const den=(c/totalWords)*100;
+    if(den>3.5) alerts.push({type:'err',msg:`"${w}" appears ${c}× (${den.toFixed(1)}%) — possible keyword stuffing`});
+    else if(den>2.5) alerts.push({type:'warn',msg:`"${w}" appears ${c}× (${den.toFixed(1)}%) — slightly high density`});
+  });
+  if(totalWords<300) alerts.push({type:'warn',msg:`Content is short (${totalWords} words). Google prefers 600+ words for ranking.`});
+  if(avgWordsPerSent>25) alerts.push({type:'warn',msg:`Average sentence length is ${Math.round(avgWordsPerSent)} words — consider shorter sentences for readability.`});
+
+  renderResults({sorted,topBigrams,totalWords,totalFiltered,sentences,avgWordsPerSent,readScore,readLabel,readColor,fkGrade,focusData,maxCount,raw,syllables});
+  renderAlerts(alerts);
+}
+
+/* ══ SYLLABLE COUNT (approximation) ══ */
+function countSyllables(text){
+  return text.toLowerCase().split(/\s+/).reduce((sum,word)=>{
+    word=word.replace(/[^a-z]/g,'');
+    if(!word) return sum;
+    const vowels=word.match(/[aeiouy]+/g);
+    let count=vowels?vowels.length:1;
+    if(word.endsWith('e')&&count>1) count--;
+    return sum+Math.max(1,count);
+  },0);
+}
+
+/* ══ RENDER RESULTS ══ */
+function renderResults({sorted,topBigrams,totalWords,totalFiltered,sentences,avgWordsPerSent,readScore,readLabel,readColor,fkGrade,focusData,maxCount,raw}){
+  const readTime=Math.ceil(totalWords/238);
+  const uniqueWords=Object.keys(Object.fromEntries(sorted)).length;
+
+  let html=`
+  <!-- STATS GRID -->
+  <div class="stats-grid">
+    <div class="stat-card"><span class="stat-v">${totalWords.toLocaleString()}</span><span class="stat-l">Total Words</span></div>
+    <div class="stat-card"><span class="stat-v">${sentences.length}</span><span class="stat-l">Sentences</span></div>
+    <div class="stat-card"><span class="stat-v">${readTime} min</span><span class="stat-l">Read Time</span></div>
+    <div class="stat-card"><span class="stat-v">${Math.round(avgWordsPerSent)}</span><span class="stat-l">Avg Sent. Length</span></div>
+    <div class="stat-card"><span class="stat-v">${uniqueWords}</span><span class="stat-l">Unique Keywords</span></div>
+    <div class="stat-card"><span class="stat-v" style="color:${readColor}">${readScore}</span><span class="stat-l">Readability</span></div>
+  </div>
+
+  <!-- READABILITY -->
+  <div class="card">
+    <div class="card-hd">📖 Readability Score (Flesch–Kincaid)</div>
+    <div class="card-bd">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div class="score-ring">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <circle cx="45" cy="45" r="38" fill="none" stroke="var(--s2)" stroke-width="8"/>
+            <circle cx="45" cy="45" r="38" fill="none" stroke="${readColor}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${2*Math.PI*38}" stroke-dashoffset="${2*Math.PI*38*(1-readScore/100)}" style="transition:stroke-dashoffset .6s"/>
+          </svg>
+          <div class="num" style="color:${readColor}">${readScore}</div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:20px;font-weight:800;color:${readColor};margin-bottom:4px">${readLabel}</div>
+          <div style="font-size:12px;color:var(--txt2);margin-bottom:12px">Flesch Reading Ease · Grade Level: ${Math.max(0,Math.round(fkGrade))}</div>
+          <div class="read-bar"><div class="read-label"><span>Score</span><span style="color:${readColor}">${readScore}/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:${readScore}%;background:${readColor}"></div></div></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;font-size:11px">
+        <div style="background:var(--gr-bg);border:1px solid rgba(52,211,153,.2);border-radius:7px;padding:7px 10px;color:var(--gr)"><strong>70–100</strong><br>Easy Read</div>
+        <div style="background:var(--ye-bg);border:1px solid rgba(251,191,36,.2);border-radius:7px;padding:7px 10px;color:var(--ye)"><strong>50–69</strong><br>Standard</div>
+        <div style="background:var(--rd-bg);border:1px solid rgba(248,113,113,.2);border-radius:7px;padding:7px 10px;color:var(--rd)"><strong>0–49</strong><br>Difficult</div>
+      </div>
+    </div>
+  </div>`;
+
+  /* FOCUS KEYWORD */
+  if(focusData){
+    const fden=parseFloat(focusData.density);
+    const fColor=fden>=0.5&&fden<=2.5?'var(--gr)':fden>2.5&&fden<=3.5?'var(--ye)':fden>3.5?'var(--rd)':'var(--bl)';
+    html+=`
+  <div class="card">
+    <div class="card-hd">🎯 Focus Keyword Analysis — "${esc(focusData.kw)}"</div>
+    <div class="card-bd">
+      <div class="focus-row">
+        <div class="focus-item"><span class="fv" style="color:${fColor}">${focusData.count}×</span><span class="fl">Occurrences</span></div>
+        <div class="focus-item"><span class="fv" style="color:${fColor}">${focusData.density}%</span><span class="fl">Density</span></div>
+        <div class="focus-item"><span class="fv" style="color:${focusData.inTitle?'var(--gr)':'var(--rd)'}">${focusData.inTitle?'Yes':'No'}</span><span class="fl">In First Line</span></div>
+        <div class="focus-item"><span class="fv" style="color:${focusData.inFirst100?'var(--gr)':'var(--ye)'}">${focusData.inFirst100?'Yes':'No'}</span><span class="fl">In First 500 chars</span></div>
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:var(--txt2)">
+        ${fden<0.5?'<span style="color:var(--bl)">⚠ Density is low — include the keyword more naturally.</span>':fden<=2.5?'<span style="color:var(--gr)">✓ Density is in the ideal range (0.5–2.5%). Good balance.</span>':fden<=3.5?'<span style="color:var(--ye)">⚠ Density is slightly high — consider reducing usage.</span>':'<span style="color:var(--rd)">✗ Keyword stuffing detected. Google may penalize this page.</span>'}
+      </div>
+    </div>
+  </div>`;
+  }
+
+  /* KEYWORD TABLE */
+  html+=`
+  <div class="card">
+    <div class="card-hd">📋 Keyword Frequency</div>
+    <div class="card-bd" style="padding:0">
+      <div class="tabs" style="margin:14px 14px 0">
+        <button class="tab on" onclick="switchTab('unigrams',this)">Single Words</button>
+        <button class="tab" onclick="switchTab('bigrams',this)">2-Word Phrases</button>
+      </div>
+      <div class="tab-pane on" id="tab-unigrams">
+        <div style="overflow-x:auto;max-height:380px;overflow-y:auto">
+          <table class="kw-table">
+            <thead><tr><th>#</th><th>Keyword</th><th>Count</th><th>Density</th><th>Bar</th></tr></thead>
+            <tbody>`;
+  sorted.forEach(([w,c],i)=>{
+    const den=((c/Math.max(totalWords,1))*100);
+    const denStr=den.toFixed(2)+'%';
+    const cls=den>3.5?'den-vhi':den>2.5?'den-hi':den>=0.5?'den-ok':'den-lo';
+    html+=`<tr>
+      <td style="color:var(--txt3);font-size:11px;font-family:'JetBrains Mono',monospace">${i+1}</td>
+      <td style="font-weight:500">${esc(w)}</td>
+      <td style="font-family:'JetBrains Mono',monospace;color:var(--acc)">${c}</td>
+      <td><span class="den-badge ${cls}">${denStr}</span></td>
+      <td class="kw-bar-cell"><div class="kw-mini-bar"><div class="kw-mini-fill" style="width:${Math.round((c/maxCount)*100)}%"></div></div></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div></div>
+      <div class="tab-pane" id="tab-bigrams"><div style="overflow-x:auto;max-height:380px;overflow-y:auto"><table class="kw-table">
+        <thead><tr><th>#</th><th>Phrase</th><th>Count</th><th>Density</th></tr></thead><tbody>`;
+  const maxBi=topBigrams[0]?topBigrams[0][1]:1;
+  topBigrams.forEach(([w,c],i)=>{
+    const den=((c*2/Math.max(totalWords,1))*100);
+    const cls=den>3?'den-hi':den>=0.5?'den-ok':'den-lo';
+    html+=`<tr><td style="color:var(--txt3);font-size:11px;font-family:'JetBrains Mono',monospace">${i+1}</td><td style="font-weight:500">${esc(w)}</td><td style="font-family:'JetBrains Mono',monospace;color:var(--acc)">${c}</td><td><span class="den-badge ${cls}">${den.toFixed(2)}%</span></td></tr>`;
+  });
+  html+=`</tbody></table></div></div></div></div>`;
+
+  /* TOP KEYWORDS TAG CLOUD */
+  const topTags=sorted.slice(0,20).map(([w])=>w);
+  if(topTags.length){
+    html+=`<div class="card"><div class="card-hd">☁ Top Keyword Cloud</div><div class="card-bd"><div class="tag-cloud">`;
+    topTags.forEach((w,i)=>{
+      const size=Math.max(11,Math.round(18-(i*0.3)));
+      html+=`<span class="tag" style="font-size:${size}px">${esc(w)}</span>`;
+    });
+    html+=`</div></div></div>`;
+  }
+
+  document.getElementById('results-area').innerHTML=html;
+}
+
+function renderAlerts(alerts){
+  const area=document.getElementById('alerts-area');
+  if(!alerts.length){ area.innerHTML='<div class="alert alert-ok">✓ No keyword stuffing detected. Content density looks healthy.</div>'; return; }
+  area.innerHTML=alerts.map(a=>`<div class="alert alert-${a.type==='err'?'err':'warn'}" style="margin-bottom:6px">${a.type==='err'?'✗':'⚠'} ${esc(a.msg)}</div>`).join('');
+}
+
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on'); btn.classList.add('on');
+}
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Power BI for Marketers Course Guide | Lochan Yadav</title>
+<meta name="description" content="A practical 3-minute guide to Power BI — connecting data sources, building dashboards, and visualizing SEO, paid, and social performance.">
+<link rel="canonical" href="https://lochan.online/course-power-bi.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FAFAF8;--bg2:#F3F1EB;--card:#FFFFFF;--border:#DDD9CE;--border2:#C9C4B5;
+  --ink:#1A1612;--ink2:#3D3529;--muted:#6B6152;--muted2:#9E9285;
+  --accent:#7C3AED;--gold:#C07C2A;--gold-lt:#F5ECD8;--nav-h:62px;
+  --c:#C0364A;--c2:#9F1239;--c-lt:rgba(192,54,74,.1);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+.topbar{background:var(--ink);color:rgba(255,255,255,.6);font-size:.7rem;text-align:center;padding:7px 20px;letter-spacing:.04em}
+.topbar a{color:var(--gold-lt);text-decoration:underline}
+.nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 32px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--ink)}
+.nav-logo span{color:var(--accent)}
+.nav-center{display:flex;gap:4px}
+.nav-center a{font-size:.8rem;font-weight:500;color:var(--muted);padding:6px 12px;border-radius:6px;transition:all .18s}
+.nav-center a:hover{color:var(--ink);background:var(--bg2)}
+.nav-center a.active{color:var(--c);font-weight:600;background:var(--c-lt)}
+.nav-right a{background:var(--c);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;font-size:.78rem;transition:background .18s}
+.nav-right a:hover{background:var(--c2)}
+
+.course-hero{background:var(--ink);padding:48px 32px 56px;text-align:center;position:relative;overflow:hidden}
+.course-hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--c-lt) 1px,transparent 1px),linear-gradient(90deg,var(--c-lt) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;opacity:.6}
+.course-hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:20px;transition:color .18s}
+.back-link:hover{color:rgba(255,255,255,.8)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--c-lt);border:1px solid rgba(192,54,74,.3);color:rgba(192,54,74,.9);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:5px 14px;border-radius:20px;margin-bottom:18px}
+.course-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
+.course-hero p{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.85}
+.hero-meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.hero-meta-item{font-size:.74rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:5px}
+
+.course-body{max-width:1160px;margin:0 auto;padding:56px 32px 80px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
+.course-content h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--ink);margin:36px 0 12px;line-height:1.25}
+.course-content h3{font-size:1rem;font-weight:700;color:var(--ink);margin:24px 0 8px}
+.course-content p{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:14px}
+.course-content strong{color:var(--ink2)}
+
+.callout{background:var(--c-lt);border-left:3px solid var(--c);border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0;font-size:.84rem;color:var(--ink2);line-height:1.7}
+.callout strong{color:var(--c)}
+
+.visual-box{background:linear-gradient(135deg,var(--c-lt),rgba(255,255,255,.5));border:1px solid rgba(192,54,74,.15);border-radius:14px;padding:28px;margin:24px 0;text-align:center}
+.visual-box .visual-icon{font-size:3.5rem;margin-bottom:12px}
+.visual-box p{font-size:.8rem;color:var(--muted);margin:0}
+
+.steps{display:flex;flex-direction:column;gap:0;margin:20px 0}
+.step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-content h4{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+.step-content p{font-size:.8rem;color:var(--muted);margin:0;line-height:1.65}
+
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.tool-chip{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.78rem}
+.tool-chip strong{display:block;color:var(--ink);font-weight:700;margin-bottom:2px}
+.tool-chip span{color:var(--muted);font-size:.72rem}
+
+.provider-list{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+.provider-item{display:flex;gap:12px;align-items:flex-start;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:10px}
+.provider-icon{font-size:1.4rem;flex-shrink:0}
+.provider-name{font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:2px}
+.provider-desc{font-size:.74rem;color:var(--muted)}
+.provider-tag{display:inline-block;background:var(--c-lt);color:var(--c);font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;margin-top:4px}
+
+.course-cta-box{background:var(--ink);border-radius:16px;padding:32px;text-align:center;margin-top:40px}
+.course-cta-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:10px}
+.course-cta-box p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:20px}
+.cta-btn{display:inline-flex;align-items:center;gap:6px;background:var(--c);color:#fff;padding:11px 24px;border-radius:8px;font-weight:700;font-size:.82rem;transition:all .18s}
+.cta-btn:hover{background:var(--c2)}
+
+.course-sidebar{display:flex;flex-direction:column;gap:20px;position:sticky;top:80px}
+.sb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.sb-title{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:14px}
+.toc-link{display:block;font-size:.78rem;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);transition:color .18s}
+.toc-link:last-child{border-bottom:none}
+.toc-link:hover{color:var(--c)}
+.other-course{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);text-decoration:none}
+.other-course:last-child{border-bottom:none}
+.oc-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.oc-name{font-size:.78rem;font-weight:600;color:var(--ink);line-height:1.2}
+.oc-time{font-size:.68rem;color:var(--muted2)}
+
+footer{background:var(--ink);padding:32px;text-align:center}
+.footer-top{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:#fff}
+.footer-logo span{color:var(--accent)}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:.78rem;color:rgba(255,255,255,.4);transition:color .18s}
+.footer-links a:hover{color:rgba(255,255,255,.8)}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);max-width:1160px;margin:0 auto}
+
+@media(max-width:900px){.course-body{grid-template-columns:1fr}.course-sidebar{position:static}}
+@media(max-width:600px){.nav-center{display:none}.tools-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">📚 Part of the <a href="courses.html">Digital Marketing Courses</a> series by Lochan Yadav · BankBazaar</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
+    <div class="nav-center">
+      <a href="index.html">Home</a>
+      <a href="index.html#tools">Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="courses.html" class="active">Courses</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-right"><a href="mailto:lochan.yadavgolla@gmail.com">Hire Me</a></div>
+  </div>
+</nav>
+
+<div class="course-hero">
+  <div class="course-hero-grid"></div>
+  <div class="course-hero-inner">
+    <a href="courses.html" class="back-link">← Back to All Courses</a>
+    <div class="hero-badge">📉 Power BI · Dashboards</div>
+    <h1>Power BI for Digital Marketers</h1>
+    <p>Connect GA4, Google Ads, Search Console, and social data into one live dashboard — without writing code.</p>
+    <div class="hero-meta">
+      <span class="hero-meta-item">⏱ 3 min read</span>
+      <span class="hero-meta-item">✍️ Lochan Yadav · BankBazaar</span>
+      <span class="hero-meta-item">📅 May 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="course-body">
+<div class="course-content">
+
+  <h2>What Is Power BI?</h2>
+  <p>Power BI is Microsoft's business intelligence platform that pulls data from multiple sources, transforms it, and visualizes it in interactive dashboards. It comes in two forms: <strong>Power BI Desktop</strong> (free Windows app for building reports) and <strong>Power BI Service</strong> (paid cloud platform for sharing and collaboration). For digital marketers, it replaces dozens of manual Excel reports with a single, always-updated source of truth.</p>
+  <p>Where GA4 tells you what happened on your website, Power BI tells you what it <em>means</em> — by combining data from every channel (SEO, paid, social, email, CRM) into one place and letting you slice it any way you need.</p>
+
+  <div class="callout"><strong>Simple definition:</strong> Power BI = your marketing data, all in one place, always live, drillable by any dimension — built once, used every Monday morning forever.</div>
+
+  <h2>Real-World Example</h2>
+  <p>At BankBazaar, we built a Power BI dashboard that pulls simultaneously from <strong>Google Search Console</strong>, <strong>GA4</strong>, and our <strong>CRM</strong>. Every Monday, the entire SEO team sees organic clicks, conversions, and revenue impact in a single view — no manual data pulling required. <strong>Weekly reporting time dropped from 4 hours to 15 minutes.</strong> The dashboard also lets leadership filter by product category, device type, or landing page — without touching a spreadsheet.</p>
+
+  <div class="visual-box">
+    <div class="visual-icon">🔄</div>
+    <p><strong>Power BI Pipeline</strong><br>Data Sources → Power Query (Transform) → Data Model → Visuals → Dashboard → Share with Team</p>
+  </div>
+
+  <h2>Core Power BI Concepts</h2>
+
+  <h3>Data Sources</h3>
+  <p>Power BI connects to virtually any data source via built-in connectors: <strong>GA4</strong>, <strong>Google Ads</strong>, <strong>Google Search Console</strong>, <strong>Facebook Ads</strong>, Excel files, SQL databases, SharePoint, Salesforce, and hundreds more. You can refresh data on a schedule (hourly, daily, weekly) so dashboards always show current numbers without manual effort.</p>
+
+  <h3>Power Query (ETL Layer)</h3>
+  <p>Power Query is the data transformation engine inside Power BI. Before your data reaches any visual, Power Query lets you clean it — remove null rows, rename columns, unpivot tables, merge data from different sources, and apply custom transformations. Think of it as Excel's Power Query, but purpose-built for live data pipelines. Good Power Query work is what separates reliable dashboards from chaotic ones.</p>
+
+  <h3>DAX (Data Analysis Expressions)</h3>
+  <p>DAX is Power BI's formula language for calculated columns and measures. It looks similar to Excel formulas but is designed for relational data models. Common marketing uses: calculating <strong>conversion rate</strong> (Conversions / Sessions), <strong>cost per acquisition</strong> (Ad Spend / Conversions), <strong>month-over-month growth</strong>, and <strong>rolling 30-day averages</strong>. You don't need to master DAX to use Power BI, but knowing the basics unlocks 80% of what marketers need.</p>
+
+  <h3>Visuals</h3>
+  <p>Power BI includes a rich library of built-in visuals: <strong>bar and column charts</strong> (channel comparison), <strong>line charts</strong> (traffic trends over time), <strong>KPI cards</strong> (big numbers for sessions, conversions, revenue), <strong>tables</strong> (keyword-level data), and <strong>slicers</strong> (filter the entire dashboard by date, device, or channel with one click). Custom visuals from the AppSource marketplace expand this further.</p>
+
+  <h2>Step-by-Step: Building Your First Marketing Dashboard</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Download Power BI Desktop</h4><p>It's free — download directly from Microsoft. No subscription needed for building reports. Windows-only; Mac users can use Power BI Service via browser for most tasks.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Connect Your First Data Source</h4><p>Start simple: connect an Excel file with your GSC or GA4 export. Once comfortable, use the native GA4 connector (Get Data → Google Analytics) for a live connection that refreshes automatically.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Clean Data in Power Query</h4><p>Open Power Query Editor and remove null rows, rename columns to readable names (e.g., "ga:sessions" → "Sessions"), and set correct data types. This step is critical — garbage in means garbage out.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Build a Simple Date-Based Line Chart</h4><p>Drag "Date" to the X-axis and "Sessions" (or Clicks) to the Y-axis. Add a slicer for date range. You now have a functional, interactive traffic trend chart. This alone is more useful than most Excel reports.</p></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-content"><h4>Add Filters and Slicers for Channel and Device</h4><p>Add slicer visuals for "Source/Medium" and "Device Category." Connect them to all visuals on the page so clicking a filter updates every chart simultaneously — this is the Power BI magic moment.</p></div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-content"><h4>Publish to Power BI Service and Share with Team</h4><p>Click "Publish" to upload your report to Power BI Service. Set up a scheduled refresh (daily) and share the dashboard link with your team. Everyone sees the same live data — no version conflicts, no emailing Excel files.</p></div></div>
+  </div>
+
+  <div class="callout"><strong>The #1 use case for SEO teams:</strong> a single dashboard that shows organic clicks, impressions, CTR, and conversions side-by-side with keyword rankings — updated automatically each morning. If you build nothing else, build this.</div>
+
+  <h2>Essential Power BI Tools &amp; Connectors</h2>
+  <div class="tools-grid">
+    <div class="tool-chip"><strong>Power BI Desktop</strong><span>Free Windows app — build all your reports here</span></div>
+    <div class="tool-chip"><strong>Power BI Service</strong><span>Paid cloud sharing — ₹600/user/month approx.</span></div>
+    <div class="tool-chip"><strong>GA4 Connector</strong><span>Native connector for live Google Analytics data</span></div>
+    <div class="tool-chip"><strong>Google Sheets Connector</strong><span>Connect live spreadsheets as data sources</span></div>
+    <div class="tool-chip"><strong>Supermetrics</strong><span>Pulls ad data from Facebook, LinkedIn, TikTok — paid</span></div>
+    <div class="tool-chip"><strong>DAX Studio</strong><span>Free tool for writing and optimizing DAX formulas</span></div>
+  </div>
+
+  <h2>Where to Learn More</h2>
+  <div class="provider-list">
+    <div class="provider-item">
+      <div class="provider-icon">🎓</div>
+      <div><div class="provider-name">Microsoft Learn — Power BI Learning Path</div><div class="provider-desc">Official free learning path from Microsoft covering Power BI Desktop, Power Query, DAX basics, and publishing to the service. Modular and self-paced.</div><div class="provider-tag">Free · Microsoft</div></div>
+    </div>
+    <div class="provider-item">
+      <div class="provider-icon">📚</div>
+      <div><div class="provider-name">Coursera — Microsoft Power BI Data Analyst</div><div class="provider-desc">Comprehensive 8-course professional certificate program. Covers the full PL-300 exam content — the official Microsoft Power BI certification. Highly respected by employers.</div><div class="provider-tag">Paid · Microsoft Certified</div></div>
+    </div>
+    <div class="provider-item">
+      <div class="provider-icon">💼</div>
+      <div><div class="provider-name">LinkedIn Learning — Power BI Essential Training</div><div class="provider-desc">Structured video curriculum covering data modeling, DAX, and report design. Good for professionals who prefer guided, chapter-by-chapter learning.</div><div class="provider-tag">Paid · Certificate</div></div>
+    </div>
+    <div class="provider-item">
+      <div class="provider-icon">▶️</div>
+      <div><div class="provider-name">Guy in a Cube (YouTube)</div><div class="provider-desc">The best free Power BI YouTube channel. Hundreds of practical tutorials by former Microsoft Power BI team members. Covers everything from beginner basics to advanced DAX patterns.</div><div class="provider-tag">Free · Excellent</div></div>
+    </div>
+  </div>
+
+  <div class="course-cta-box">
+    <h3>See the Data in Action</h3>
+    <p>Explore the free SEO tools I've built for BankBazaar — they demonstrate the kind of data thinking that goes into a good analytics or Power BI workflow.</p>
+    <a href="index.html#tools" class="cta-btn">Explore SEO Tools →</a>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<aside class="course-sidebar">
+  <div class="sb-card">
+    <div class="sb-title">In This Guide</div>
+    <a href="#" class="toc-link">What Is Power BI?</a>
+    <a href="#" class="toc-link">Real-World Example</a>
+    <a href="#" class="toc-link">Data Sources</a>
+    <a href="#" class="toc-link">Power Query &amp; DAX</a>
+    <a href="#" class="toc-link">Visuals &amp; Slicers</a>
+    <a href="#" class="toc-link">Step-by-Step Setup</a>
+    <a href="#" class="toc-link">Tools &amp; Connectors</a>
+    <a href="#" class="toc-link">Where to Learn More</a>
+  </div>
+  <div class="sb-card">
+    <div class="sb-title">Other Courses</div>
+    <a href="course-seo.html" class="other-course"><div class="oc-icon" style="background:rgba(124,58,237,.1)">🔍</div><div><div class="oc-name">Search Engine Optimization</div><div class="oc-time">3 min · SEO</div></div></a>
+    <a href="course-sem.html" class="other-course"><div class="oc-icon" style="background:rgba(37,99,235,.1)">💰</div><div><div class="oc-name">SEM &amp; Google Ads</div><div class="oc-time">3 min · Paid Search</div></div></a>
+    <a href="course-social-media.html" class="other-course"><div class="oc-icon" style="background:rgba(225,29,72,.1)">📱</div><div><div class="oc-name">Social Media Marketing</div><div class="oc-time">3 min · Organic Social</div></div></a>
+    <a href="course-content-marketing.html" class="other-course"><div class="oc-icon" style="background:rgba(217,119,6,.1)">✍️</div><div><div class="oc-name">Content Marketing</div><div class="oc-time">3 min · Strategy</div></div></a>
+    <a href="course-web-analytics.html" class="other-course"><div class="oc-icon" style="background:rgba(8,145,178,.1)">📊</div><div><div class="oc-name">Web Analytics (GA4)</div><div class="oc-time">3 min · Data</div></div></a>
+    <a href="course-affiliate-marketing.html" class="other-course"><div class="oc-icon" style="background:rgba(124,58,237,.08)">🤝</div><div><div class="oc-name">Affiliate Marketing</div><div class="oc-time">2 min · Performance</div></div></a>
+  </div>
+  <div class="sb-card" style="background:linear-gradient(135deg,var(--c-lt),rgba(255,255,255,.5));border-color:rgba(192,54,74,.15)">
+    <div class="sb-title">Free SEO Tools</div>
+    <p style="font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:12px">8 browser-based SEO tools — built for analysts and marketers, completely free.</p>
+    <a href="index.html#tools" style="display:block;background:var(--c);color:#fff;padding:8px 14px;border-radius:7px;font-weight:700;font-size:.75rem;text-align:center">Open the Toolbox →</a>
+  </div>
+</aside>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Lochan <span>Yadav</span></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="index.html#tools">Tools</a><a href="blog.html">Blog</a>
+      <a href="courses.html">Courses</a><a href="index.html#contact">Contact</a><a href="sitemap.xml">Sitemap</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Lochan Yadav · Lead SEO Analyst · BankBazaar · lochan.online</div>
+</footer>
+</body>
+</html>
