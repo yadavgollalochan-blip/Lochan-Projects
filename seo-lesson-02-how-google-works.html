@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>How Google Works: Crawling, Indexing & Ranking Explained | SEO Course — Lochan Yadav</title>
+  <meta name="description" content="Understand exactly how Google discovers, indexes, and ranks pages — with visual pipeline diagrams and real BankBazaar examples.">
+  <link rel="canonical" href="https://lochan.online/seo-lesson-02-how-google-works.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FAFAF8;--bg2:#F3F1EB;--bg3:#ECEAE3;--card:#FFFFFF;
+  --border:#DDD9CE;--border2:#C9C4B5;--ink:#1A1612;--ink2:#3D3529;
+  --muted:#6B6152;--muted2:#9E9285;
+  --accent:#7C3AED;--accent2:#6D28D9;--accent-lt:rgba(124,58,237,.08);--accent-mid:rgba(124,58,237,.18);
+  --gold:#C07C2A;--gold-lt:#F5ECD8;
+  --teal:#167A4A;--teal-lt:rgba(22,122,74,.08);
+  --rose:#C0364A;--rose-lt:rgba(192,54,74,.08);
+  --nav-h:62px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;transition:width .1s}
+/* TOP BAR */
+.top-bar{background:var(--ink);color:rgba(255,255,255,.6);font-size:.74rem;text-align:center;padding:8px 20px;position:sticky;top:0;z-index:1000}
+.top-bar a{color:#c4b5fd;text-decoration:none;font-weight:600}
+.top-bar a:hover{color:#fff}
+/* NAV */
+nav{position:sticky;top:37px;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(250,250,248,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s}
+nav.scrolled{box-shadow:0 2px 20px rgba(26,22,18,.06)}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.15rem;text-decoration:none;color:var(--ink)}
+.nav-logo span{color:var(--accent)}
+.nav-links{list-style:none;display:flex;align-items:center;gap:2px}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;padding:7px 12px;border-radius:6px;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);background:var(--bg2)}
+.nav-links .hire{background:var(--accent);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;margin-left:8px}
+.nav-links .hire:hover{background:var(--accent2);color:#fff}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mob-nav{display:none;position:fixed;top:calc(37px + var(--nav-h));left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:800;flex-direction:column;padding:16px 5% 24px;gap:2px}
+.mob-nav.open{display:flex}
+.mob-nav a{display:block;padding:11px 14px;border-radius:8px;text-decoration:none;color:var(--ink2);font-size:.92rem;font-weight:500;transition:all .2s;border-bottom:1px solid var(--border)}
+.mob-nav a:last-child{border:none}
+.mob-nav a:hover{color:var(--accent);background:var(--accent-lt)}
+/* LESSON HERO */
+.lesson-hero{background:var(--ink);color:#fff;padding:52px 32px 44px;position:relative;overflow:hidden}
+.lesson-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.06) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.lesson-hero-inner{max-width:820px;margin:0 auto;position:relative;z-index:1}
+.lesson-breadcrumb{font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:16px}
+.lesson-breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .18s}
+.lesson-breadcrumb a:hover{color:rgba(255,255,255,.8)}
+.lesson-badge{display:inline-block;background:rgba(124,58,237,.3);border:1px solid rgba(124,58,237,.5);color:#c4b5fd;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:4px;margin-bottom:14px}
+.lesson-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.1;margin-bottom:14px;color:#fff}
+.lesson-sub{font-size:.92rem;color:rgba(255,255,255,.55);line-height:1.85;max-width:640px;margin-bottom:18px}
+.lesson-meta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.76rem;color:rgba(255,255,255,.4)}
+/* 3-COLUMN LAYOUT */
+.lesson-wrap{max-width:1200px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:220px 1fr 260px;gap:40px;align-items:start}
+.lesson-nav-sidebar{position:sticky;top:110px}
+.lesson-main{min-width:0}
+.lesson-sidebar{position:sticky;top:110px;display:flex;flex-direction:column;gap:20px}
+@media(max-width:1100px){.lesson-wrap{grid-template-columns:1fr 260px}.lesson-nav-sidebar{display:none}}
+@media(max-width:800px){.lesson-wrap{grid-template-columns:1fr;padding:24px 20px 60px}.lesson-sidebar{position:static}.nav-links{display:none}.ham{display:flex}}
+/* LEFT NAV */
+.lnav-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;overflow:hidden}
+.lnav-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:2px}
+.lnav-subtitle{font-size:.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+.lnav-list{display:flex;flex-direction:column;gap:2px}
+.lnav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;text-decoration:none;color:var(--muted);font-size:.78rem;transition:all .18s;border-left:2px solid transparent}
+.lnav-item:hover{color:var(--ink);background:var(--bg2)}
+.lnav-item.active{color:var(--accent);background:var(--accent-lt);border-left-color:var(--accent);font-weight:600}
+.lnav-num{font-size:.65rem;font-weight:800;color:var(--muted2);min-width:20px}
+.lnav-item.active .lnav-num{color:var(--accent)}
+/* VISUAL */
+.lesson-visual{border-radius:14px;overflow:hidden;margin-bottom:32px;border:1px solid var(--border);height:260px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--bg2)}
+/* LEARN BOX */
+.learn-box{background:var(--accent-lt);border:1px solid var(--accent-mid);border-radius:12px;padding:22px 26px;margin-bottom:32px}
+.learn-box-title{font-weight:800;font-size:.88rem;color:var(--accent);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.learn-box ul{margin-left:18px;display:flex;flex-direction:column;gap:7px}
+.learn-box li{font-size:.88rem;color:var(--ink2);line-height:1.6}
+/* LESSON BODY */
+.lesson-body{font-size:.95rem;color:var(--ink2);line-height:1.95}
+.lesson-body h2{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:var(--ink);margin:44px 0 14px;line-height:1.25;letter-spacing:-.02em;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.lesson-body h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin:28px 0 10px;line-height:1.3}
+.lesson-body p{margin-bottom:20px}
+.lesson-body strong{color:var(--ink);font-weight:700}
+.lesson-body a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.lesson-body ul,.lesson-body ol{margin:0 0 20px 22px}
+.lesson-body li{margin-bottom:8px;line-height:1.8}
+.lesson-body blockquote{border-left:3px solid var(--accent);padding:16px 20px;background:var(--accent-lt);border-radius:0 8px 8px 0;margin:28px 0;font-style:italic;color:var(--ink2)}
+/* CALLOUTS */
+.callout{padding:18px 22px;border-radius:10px;margin:28px 0;display:flex;gap:14px;align-items:flex-start}
+.callout-info{background:var(--accent-lt);border:1px solid rgba(124,58,237,.15)}
+.callout-tip{background:var(--gold-lt);border:1px solid rgba(192,124,42,.2)}
+.callout-warn{background:var(--teal-lt);border:1px solid rgba(22,122,74,.2)}
+.callout-example{background:#F0FDF4;border:1px solid rgba(22,122,74,.2)}
+.callout-ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.callout-body{font-size:.88rem;color:var(--ink2);line-height:1.75}
+.callout-body strong{color:var(--ink)}
+/* STATS */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
+.stat-block{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.stat-block .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
+.stat-block .lbl{font-size:.75rem;color:var(--muted);margin-top:6px;line-height:1.4}
+/* TABLES */
+.lesson-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.87rem}
+.lesson-table th{text-align:left;padding:10px 14px;background:var(--bg2);color:var(--ink);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--border2)}
+.lesson-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top}
+.lesson-table tr:last-child td{border-bottom:none}
+.lesson-table tr:hover td{background:var(--bg2)}
+/* EXAMPLE BOX */
+.example-box{background:#f0fdf4;border:1px solid rgba(22,122,74,.2);border-radius:10px;padding:20px 24px;margin:24px 0}
+.example-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);margin-bottom:10px}
+.example-box p{font-size:.88rem;color:var(--ink2);line-height:1.75;margin:0}
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:16px;margin:24px 0}
+.step{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+.step-num{width:32px;height:32px;border-radius:8px;background:var(--accent);color:#fff;font-weight:800;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-title{font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:5px}
+.step-desc{font-size:.84rem;color:var(--muted);line-height:1.7}
+/* TAKEAWAYS */
+.takeaways-box{background:var(--ink);color:#fff;border-radius:12px;padding:24px 28px;margin:40px 0}
+.takeaways-title{font-weight:800;font-size:.88rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.takeaways-box ul{margin-left:18px;display:flex;flex-direction:column;gap:8px}
+.takeaways-box li{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.65}
+/* PREV/NEXT */
+.lesson-nav-bottom{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:32px;border-top:2px solid var(--border)}
+.lnb-prev,.lnb-next{padding:13px 20px;border-radius:8px;border:1.5px solid var(--border2);font-weight:600;font-size:.82rem;color:var(--ink2);text-decoration:none;transition:all .2s;flex:1;text-align:center}
+.lnb-prev:hover,.lnb-next:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
+.lnb-next{background:var(--accent);color:#fff;border-color:var(--accent);text-align:right}
+.lnb-next:hover{background:var(--accent2);color:#fff}
+/* PROGRESS */
+.progress-info{font-size:.78rem;color:var(--muted);margin-bottom:8px}
+.progress-bar-wrap{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:3px;transition:width .5s}
+/* SIDEBAR */
+.sb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.sb-title{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sb-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sb-tool{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink2);padding:7px 10px;border-radius:6px;background:var(--bg2);text-decoration:none;transition:background .18s;margin-bottom:6px}
+.sb-tool:hover{background:var(--bg3);color:var(--accent)}
+.sb-link{display:block;font-size:.8rem;color:var(--ink2);padding:5px 0;text-decoration:none;border-bottom:1px solid var(--border);line-height:1.5}
+.sb-link:last-child{border-bottom:none}
+.sb-link:hover{color:var(--accent)}
+.inst-name{font-family:'Playfair Display',serif;font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:3px}
+.inst-role{font-size:.76rem;color:var(--muted);margin-bottom:10px}
+.inst-bio{font-size:.8rem;color:var(--ink2);line-height:1.7}
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.55);padding:52px 6% 32px}
+.footer-inner{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:28px}
+.foot-brand h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:8px}
+.foot-brand h3 span{color:var(--accent)}
+.foot-brand p{font-size:.8rem;line-height:1.8;max-width:220px;margin-bottom:18px}
+.foot-social{display:flex;gap:8px}
+.foot-soc{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(255,255,255,.5);font-size:.85rem;transition:all .2s;font-weight:700}
+.foot-soc:hover{border-color:rgba(124,58,237,.5);color:var(--accent);background:rgba(124,58,237,.1)}
+.foot-col h4{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.7);margin-bottom:16px}
+.foot-col a{display:block;font-size:.8rem;color:rgba(255,255,255,.45);text-decoration:none;padding:3px 0;transition:color .2s}
+.foot-col a:hover{color:rgba(255,255,255,.85)}
+.foot-copy{text-align:center;font-size:.74rem;color:rgba(255,255,255,.3)}
+.foot-copy strong{color:rgba(255,255,255,.55)}
+.btt{position:fixed;bottom:28px;right:28px;z-index:800;width:44px;height:44px;border-radius:10px;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:1rem;box-shadow:0 4px 16px rgba(124,58,237,.35);transition:all .3s;opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.btt.show{opacity:1;pointer-events:all}
+.btt:hover{transform:translateY(-3px)}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.footer-inner{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="top-bar">📚 SEO Course &nbsp;·&nbsp; 15 Lessons &nbsp;·&nbsp; <a href="course-seo.html">View All Lessons →</a></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="index.html#resume">Resume</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="courses.html" class="active">Courses</a></li>
+    <li><a href="index.html#contact" class="hire">Hire Me</a></li>
+  </ul>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobnav">
+  <a href="index.html#about">About</a>
+  <a href="index.html#services">Services</a>
+  <a href="tools.html">Tools</a>
+  <a href="index.html#resume">Resume</a>
+  <a href="blog.html">Blog</a>
+  <a href="courses.html">Courses</a>
+  <a href="index.html#contact" class="m-hire">Hire Me</a>
+</div>
+<div class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="lesson-breadcrumb"><a href="index.html">Home</a> › <a href="courses.html">Courses</a> › <a href="course-seo.html">SEO Course</a> › Lesson 02</div>
+    <div class="lesson-badge">Lesson 02 of 15</div>
+    <h1>How Google Works: Crawling, Indexing & Ranking Explained</h1>
+    <p class="lesson-sub">Inside Google's three-stage pipeline — crawl, index, rank — with the exact signals it uses to decide who appears on page one for any given search.</p>
+    <div class="lesson-meta-row">
+      <span>👨‍💻 Lochan Yadav</span><span>·</span>
+      <span>🕐 13 min read</span><span>·</span>
+      <span>📅 May 2026</span><span>·</span>
+      <span>📊 Beginner</span>
+    </div>
+  </div>
+</div>
+<div class="lesson-wrap">
+  <aside class="lesson-nav-sidebar">
+    <div class="lnav-box">
+      <div class="lnav-title">SEO Course</div>
+      <div class="lnav-subtitle">15 Lessons</div>
+      <nav class="lnav-list"><a href="seo-lesson-01-what-is-seo.html" class="lnav-item "><span class="lnav-num">01</span><span class="lnav-text">What Is SEO?</span></a>
+<a href="seo-lesson-02-how-google-works.html" class="lnav-item active"><span class="lnav-num">02</span><span class="lnav-text">How Google Works</span></a>
+<a href="seo-lesson-03-keyword-research.html" class="lnav-item "><span class="lnav-num">03</span><span class="lnav-text">Keyword Research</span></a>
+<a href="seo-lesson-04-on-page-seo.html" class="lnav-item "><span class="lnav-num">04</span><span class="lnav-text">On-Page SEO</span></a>
+<a href="seo-lesson-05-technical-seo.html" class="lnav-item "><span class="lnav-num">05</span><span class="lnav-text">Technical SEO</span></a>
+<a href="seo-lesson-06-core-web-vitals.html" class="lnav-item "><span class="lnav-num">06</span><span class="lnav-text">Core Web Vitals</span></a>
+<a href="seo-lesson-07-link-building.html" class="lnav-item "><span class="lnav-num">07</span><span class="lnav-text">Link Building</span></a>
+<a href="seo-lesson-08-local-seo.html" class="lnav-item "><span class="lnav-num">08</span><span class="lnav-text">Local SEO</span></a>
+<a href="seo-lesson-09-eeat.html" class="lnav-item "><span class="lnav-num">09</span><span class="lnav-text">E-E-A-T</span></a>
+<a href="seo-lesson-10-schema-markup.html" class="lnav-item "><span class="lnav-num">10</span><span class="lnav-text">Schema Markup</span></a>
+<a href="seo-lesson-11-aeo.html" class="lnav-item "><span class="lnav-num">11</span><span class="lnav-text">AEO</span></a>
+<a href="seo-lesson-12-geo.html" class="lnav-item "><span class="lnav-num">12</span><span class="lnav-text">GEO</span></a>
+<a href="seo-lesson-13-ai-seo.html" class="lnav-item "><span class="lnav-num">13</span><span class="lnav-text">AI in SEO</span></a>
+<a href="seo-lesson-14-seo-analytics.html" class="lnav-item "><span class="lnav-num">14</span><span class="lnav-text">SEO Analytics</span></a>
+<a href="seo-lesson-15-seo-strategy.html" class="lnav-item "><span class="lnav-num">15</span><span class="lnav-text">SEO Strategy</span></a></nav>
+    </div>
+  </aside>
+  <main class="lesson-main">
+    <div class="lesson-visual"><svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" width="100%" height="260">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1A1612"/><stop offset="100%" style="stop-color:#2a2218"/></linearGradient>
+  </defs>
+  <rect width="800" height="260" fill="url(#bg2)"/>
+  <!-- Stage 1: Crawl -->
+  <rect x="40" y="70" width="160" height="120" rx="12" fill="rgba(124,58,237,.12)" stroke="rgba(124,58,237,.4)" stroke-width="1.5"/>
+  <text x="120" y="105" font-family="Inter,sans-serif" font-size="28" text-anchor="middle">🤖</text>
+  <text x="120" y="130" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,.9)" font-weight="700" text-anchor="middle">CRAWLING</text>
+  <text x="120" y="148" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle">Googlebot discovers</text>
+  <text x="120" y="162" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle">pages via links</text>
+  <!-- Arrow 1 -->
+  <line x1="205" y1="130" x2="255" y2="130" stroke="rgba(124,58,237,.6)" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="255,124 265,130 255,136" fill="rgba(124,58,237,.8)"/>
+  <!-- Stage 2: Index -->
+  <rect x="270" y="70" width="160" height="120" rx="12" fill="rgba(192,124,42,.1)" stroke="rgba(192,124,42,.4)" stroke-width="1.5"/>
+  <text x="350" y="105" font-family="Inter,sans-serif" font-size="28" text-anchor="middle">📚</text>
+  <text x="350" y="130" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,.9)" font-weight="700" text-anchor="middle">INDEXING</text>
+  <text x="350" y="148" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle">Parsed &amp; stored in</text>
+  <text x="350" y="162" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle">Google's database</text>
+  <!-- Arrow 2 -->
+  <line x1="435" y1="130" x2="485" y2="130" stroke="rgba(192,124,42,.6)" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="485,124 495,130 485,136" fill="rgba(192,124,42,.8)"/>
+  <!-- Stage 3: Rank -->
+  <rect x="500" y="70" width="160" height="120" rx="12" fill="rgba(22,122,74,.1)" stroke="rgba(22,122,74,.4)" stroke-width="1.5"/>
+  <text x="580" y="105" font-family="Inter,sans-serif" font-size="28" text-anchor="middle">🏆</text>
+  <text x="580" y="130" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,.9)" font-weight="700" text-anchor="middle">RANKING</text>
+  <text x="580" y="148" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle">200+ signals determine</text>
+  <text x="580" y="162" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle">search position</text>
+  <!-- Labels below -->
+  <text x="120" y="210" font-family="Inter,sans-serif" font-size="9" fill="rgba(124,58,237,.8)" text-anchor="middle" letter-spacing="2">DISCOVERY</text>
+  <text x="350" y="210" font-family="Inter,sans-serif" font-size="9" fill="rgba(192,124,42,.8)" text-anchor="middle" letter-spacing="2">STORAGE</text>
+  <text x="580" y="210" font-family="Inter,sans-serif" font-size="9" fill="rgba(22,122,74,.8)" text-anchor="middle" letter-spacing="2">RELEVANCE</text>
+  <text x="400" y="240" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.25)" text-anchor="middle" letter-spacing="3">HOW GOOGLE PROCESSES EVERY PAGE ON THE WEB</text>
+</svg></div>
+    <div class="learn-box">
+      <div class="learn-box-title">🎯 What You'll Learn</div>
+      <ul>
+        <li>The exact three-stage process Google uses to turn web pages into ranked search results</li>
+        <li>How Googlebot discovers your pages and why internal linking and sitemaps are critical</li>
+        <li>The difference between crawling and indexing — and how to diagnose failures at each stage</li>
+        <li>The 8 categories of ranking signals Google weighs and how to prioritize your optimization work</li>
+      </ul>
+    </div>
+    <div class="lesson-body">
+<h2>The 3 Stages: Crawling, Indexing, Ranking</h2>
+<p>Google's job is to organize the world's information and make it universally accessible. To do this for billions of pages, it operates a three-stage pipeline: <strong>crawling</strong> (discovery), <strong>indexing</strong> (storage and parsing), and <strong>ranking</strong> (relevance scoring). Understanding each stage tells you exactly where your SEO can break down — and why.</p>
+<p>Most SEO failures happen at one of these three stages. A page might be blocked from crawling by a misconfigured robots.txt. It might be crawled but excluded from the index by a noindex tag. Or it might be indexed but ranked on page 10 because it lacks relevance signals. Each issue has a different diagnosis and fix — which is why understanding the pipeline is so important for practitioners.</p>
+
+<div class="callout callout-info">
+  <div class="callout-ico">ℹ️</div>
+  <div class="callout-body"><strong>Key Principle:</strong> Google does not "visit" your website the way a human does. Googlebot is a software program that downloads your page's HTML, follows links to discover more pages, and sends the content back to Google's servers for processing. The entire process is automated and happens at massive scale — Google crawls billions of pages every day.</div>
+</div>
+
+<h2>How Googlebot Discovers Pages</h2>
+<p>Googlebot's starting point is a list of known URLs from its previous crawls. From each page it downloads, it extracts all the links and adds new ones to a crawl queue. This is why <strong>internal linking</strong> is so critical: if a page on your site has no links pointing to it from other pages, Googlebot may never find it — even if it exists.</p>
+<p>You can also submit URLs directly to Google via <strong>XML Sitemaps</strong> in Google Search Console. This is especially important for large sites and for new pages you want indexed quickly. BankBazaar, for example, has multiple sitemaps — one for blog posts, one for financial product comparison pages, one for city-specific landing pages — each submitted to GSC so Google knows exactly what to crawl.</p>
+<p>Crawl frequency is not equal across all pages. Google's crawl budget — the number of pages it will crawl from your site in a given period — is finite and determined by your site's authority and server capacity. High-authority domains like BankBazaar get crawled multiple times per day. A new site might wait weeks between crawls. Improving your site's technical health directly increases how often and how deeply Google crawls your content.</p>
+
+<div class="example-box">
+  <div class="example-label">Real Example — BankBazaar Crawl Architecture</div>
+  <p>BankBazaar has a structured internal linking system where their home loan section links to RBI-regulated lenders, EMI calculators, and eligibility guides. Each of these pages links to related comparison pages. This web of internal links ensures Googlebot can discover and re-crawl all pages efficiently, and that link equity flows through the site's most important commercial pages. When BankBazaar publishes a new "SBI home loan 2026" page, it is internally linked from at least 3–4 existing high-traffic pages so Googlebot discovers it within hours.</p>
+</div>
+
+<h2>The Index: Google's Library</h2>
+<p>Once Googlebot downloads your page, it sends the content to Google's indexing system. Here, the page's text is parsed, HTML is analyzed, structured data is extracted, and the page is stored in Google's index — a database of hundreds of billions of web pages. Think of it as a library catalogue: every book (page) is given a record with keywords, topics, quality signals, and metadata.</p>
+<p>Not every crawled page gets indexed. Google applies quality filters: pages that are too thin (low word count), duplicate content, or have technical issues like a <code>noindex</code> meta tag will be crawled but excluded from the index. In Google Search Console, you can see exactly which of your pages are indexed vs. excluded, and why.</p>
+<p>The index is also constantly updated. When you change a page's content, Googlebot will eventually recrawl it and update its index entry. Major changes to high-authority pages can be reflected in rankings within hours. Minor changes on low-authority pages might take weeks. This is why you should always re-request indexing via GSC when you make significant improvements to a page.</p>
+
+<h2>Ranking Signals — What Google Actually Measures</h2>
+<p>With billions of indexed pages, how does Google decide which 10 to show on page 1? It uses a complex algorithm with over 200 ranking signals. These signals fall into several categories, and understanding them lets you prioritize your SEO efforts correctly.</p>
+
+<table class="lesson-table">
+  <thead><tr><th>Signal Category</th><th>Examples</th><th>Weight</th></tr></thead>
+  <tbody>
+    <tr><td>Relevance</td><td>Keyword in title, headings, body text, URL, image alt tags</td><td>Very High</td></tr>
+    <tr><td>Authority</td><td>Backlinks from high-DR domains, referring domain diversity, anchor text variety</td><td>Very High</td></tr>
+    <tr><td>E-E-A-T</td><td>Author credentials, site reputation, factual accuracy, citations</td><td>High (especially YMYL)</td></tr>
+    <tr><td>User Experience</td><td>Core Web Vitals (LCP, INP, CLS), mobile-friendliness, page depth</td><td>High</td></tr>
+    <tr><td>Content Quality</td><td>Depth, freshness, comprehensiveness, originality</td><td>High</td></tr>
+    <tr><td>Search Intent Match</td><td>Does the page format match what users want for this query?</td><td>Critical</td></tr>
+    <tr><td>Behavioral Signals</td><td>Click-through rate, dwell time, pogo-sticking</td><td>Medium</td></tr>
+    <tr><td>Technical</td><td>HTTPS, crawlability, structured data, canonical tags</td><td>Medium</td></tr>
+  </tbody>
+</table>
+
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Understand Search Intent First</div><div class="step-desc">Before optimizing anything, determine what type of result Google is currently showing for your target keyword. If all top results are comparison tools but your page is a blog post, you need to change format — not just keywords.</div></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Check Your Pages Are Actually Indexed</div><div class="step-desc">Search for site:yourdomain.com/your-page in Google. If it doesn't appear, your page isn't indexed. Go to Google Search Console › URL Inspection to find out why.</div></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Fix Crawl Errors Before Anything Else</div><div class="step-desc">In GSC, check Coverage report for pages with crawl errors. A single misconfigured robots.txt rule once blocked PolicyBazaar's entire /insurance/ section for 3 weeks — fix these first.</div></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Ensure Mobile-First Rendering</div><div class="step-desc">Google uses mobile-first indexing — it crawls and indexes the mobile version of your site. Check that your mobile pages contain all the same content and structured data as your desktop pages.</div></div></div>
+</div>
+
+<h2>How AI Is Changing Google's Algorithm</h2>
+<p>Google's ranking algorithm has evolved dramatically from its original PageRank model. Today, AI systems like <strong>BERT</strong>, <strong>MUM</strong>, and the neural networks powering <strong>RankBrain</strong> are central to how Google understands queries and matches them to content. These systems don't just match keywords — they understand <em>meaning</em>, <em>context</em>, and <em>relationships between concepts</em>.</p>
+<p>The practical implication for SEO: you can no longer rank by placing a keyword in the right spots on a thin page. Google now understands whether your content genuinely covers a topic comprehensively or whether it just mentions keywords superficially. A well-structured 2,000-word guide on "home loan eligibility criteria in India" that covers income requirements, CIBIL scores, property age limits, and co-applicant rules will consistently outrank five separate thin pages on each subtopic.</p>
+<p>Google's <strong>AI Overviews</strong> (formerly Search Generative Experience) now appear at the top of results for many informational queries, pulling information from multiple sources into a synthesized answer. This makes it even more important that your content is structured for direct answers — with clear questions, concise definitions, and properly marked-up data — as these elements are what AI systems parse and cite.</p>
+
+<div class="callout callout-tip">
+  <div class="callout-ico">💡</div>
+  <div class="callout-body"><strong>Pro Tip:</strong> Use the URL Inspection tool in Google Search Console to see exactly how Googlebot renders your page. It shows you what Googlebot actually "sees" — which can be very different from what you see in your browser if your site uses JavaScript heavily. Many Indian e-commerce and fintech sites lose rankings because critical content is rendered by JavaScript that Googlebot can't process.</div>
+</div>
+</div>
+    <div class="takeaways-box">
+      <div class="takeaways-title">📌 Key Takeaways</div>
+      <ul>
+  <li>Google's three-stage pipeline — Crawling, Indexing, Ranking — is where all SEO problems originate. Diagnose issues at each stage separately.</li>
+  <li>Internal linking and XML sitemaps are how you ensure Googlebot discovers all your important pages, especially new ones.</li>
+  <li>Not all crawled pages get indexed. Use Google Search Console to see which pages are excluded and why.</li>
+  <li>Modern ranking uses 200+ signals — but relevance (intent match), authority (links), and E-E-A-T are the three most important levers.</li>
+  <li>Google's AI systems understand meaning, not just keywords — comprehensive, well-structured content wins over keyword-stuffed thin pages.</li>
+</ul>
+    </div>
+    <div class="lesson-nav-bottom"><a href="seo-lesson-01-what-is-seo.html" class="lnb-prev">← What Is SEO?</a><a href="seo-lesson-03-keyword-research.html" class="lnb-next">Keyword Research →</a></div>
+  </main>
+  <aside class="lesson-sidebar">
+  <div class="sb-card">
+    <div class="sb-title">Your Progress</div>
+    <div class="progress-info">Lesson 02 of 15 — 13% complete</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:13%"></div></div>
+  </div>
+  <div class="sb-card">
+    <div class="sb-title">Instructor</div>
+    <div class="inst-name">Lochan Yadav</div>
+    <div class="inst-role">Lead SEO Analyst · 6+ Years</div>
+    <div class="inst-bio">Lochan has driven organic growth for Indian fintech brands including BankBazaar, with expertise in technical SEO, AEO, GEO, and content strategy.</div>
+  </div>
+  <div class="sb-card">
+    <div class="sb-title">Practice Tools</div>
+    <a href="tool-02-serp-preview.html" class="sb-tool">🔍 SERP Preview</a><a href="tool-07-robots-txt-generator.html" class="sb-tool">🤖 Robots.txt Generator</a><a href="tool-03-seo-geo-audit.html" class="sb-tool">📊 SEO/GEO Audit</a>
+  </div>
+  <div class="sb-card">
+    <div class="sb-title">Related Reading</div>
+    <a href="blog-technical-seo.html" class="sb-link">Technical SEO Deep Dive</a><a href="blog-seo-2026.html" class="sb-link">SEO Trends 2026</a><a href="blog-aeo.html" class="sb-link">AEO: Answer Engine Optimization</a>
+  </div>
+</aside>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="foot-brand">
+      <h3>Lochan <span>Yadav</span></h3>
+      <p>Lead SEO Analyst driving organic growth for fintech &amp; e-commerce brands. Based in Hindupur, Andhra Pradesh.</p>
+      <div class="foot-social">
+        <a href="https://linkedin.com/in/lochan-yadav-0a26261a3" class="foot-soc" target="_blank">in</a>
+        <a href="https://github.com/yadavgollalochan-blip/Lochan-Projects" class="foot-soc" target="_blank">gh</a>
+        <a href="mailto:lochan.yadavgolla@gmail.com" class="foot-soc">✉</a>
+        <a href="tel:+918951712138" class="foot-soc">☎</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>SEO Course</h4>
+      <a href="seo-lesson-01-what-is-seo.html">What Is SEO?</a>
+      <a href="seo-lesson-02-how-google-works.html">How Google Works</a>
+      <a href="seo-lesson-03-keyword-research.html">Keyword Research</a>
+      <a href="seo-lesson-04-on-page-seo.html">On-Page SEO</a>
+      <a href="course-seo.html">View All 15 Lessons →</a>
+    </div>
+    <div class="foot-col">
+      <h4>Tools</h4>
+      <a href="tool-01-meta-tag-extractor.html">Meta Tag Extractor</a>
+      <a href="tool-02-serp-preview.html">SERP Preview</a>
+      <a href="tool-04-faq-schema-generator.html">FAQ Schema</a>
+      <a href="tool-07-robots-txt-generator.html">Robots.txt Generator</a>
+      <a href="tools.html">All 9 Tools →</a>
+    </div>
+    <div class="foot-col">
+      <h4>Blog</h4>
+      <a href="blog-aeo.html">AEO Guide</a>
+      <a href="blog-geo.html">GEO Guide</a>
+      <a href="blog-technical-seo.html">Technical SEO</a>
+      <a href="blog-seo-2026.html">SEO in 2026</a>
+      <a href="blog.html">All Articles →</a>
+    </div>
+  </div>
+  <p class="foot-copy">© 2026 <strong>Lochan Yadav</strong> · Lead SEO Analyst · <a href="sitemap.xml" style="color:rgba(255,255,255,.4)">Sitemap</a></p>
+</footer>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<script>
+window.addEventListener('scroll',()=>{
+  const st=document.documentElement.scrollTop;
+  const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('prog').style.width=(st/sh*100)+'%';
+  document.getElementById('navbar').classList.toggle('scrolled',st>60);
+  document.getElementById('btt').classList.toggle('show',st>400);
+},{passive:true});
+document.getElementById('ham').addEventListener('click',function(){
+  this.classList.toggle('open');
+  document.getElementById('mobnav').classList.toggle('open');
+});
+</script>
+</body>
+</html>

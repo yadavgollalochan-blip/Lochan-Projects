@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Core Web Vitals: Measure, Fix & Rank | SEO Course — Lochan Yadav</title>
+  <meta name="description" content="Master LCP, INP, and CLS — Google's Core Web Vitals. Real fintech examples, measurement tools, and step-by-step fixes for Indian websites.">
+  <link rel="canonical" href="https://lochan.online/seo-lesson-06-core-web-vitals.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FAFAF8;--bg2:#F3F1EB;--bg3:#ECEAE3;--card:#FFFFFF;
+  --border:#DDD9CE;--border2:#C9C4B5;--ink:#1A1612;--ink2:#3D3529;
+  --muted:#6B6152;--muted2:#9E9285;
+  --accent:#7C3AED;--accent2:#6D28D9;--accent-lt:rgba(124,58,237,.08);--accent-mid:rgba(124,58,237,.18);
+  --gold:#C07C2A;--gold-lt:#F5ECD8;
+  --teal:#167A4A;--teal-lt:rgba(22,122,74,.08);
+  --rose:#C0364A;--rose-lt:rgba(192,54,74,.08);
+  --nav-h:62px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;transition:width .1s}
+/* TOP BAR */
+.top-bar{background:var(--ink);color:rgba(255,255,255,.6);font-size:.74rem;text-align:center;padding:8px 20px;position:sticky;top:0;z-index:1000}
+.top-bar a{color:#c4b5fd;text-decoration:none;font-weight:600}
+.top-bar a:hover{color:#fff}
+/* NAV */
+nav{position:sticky;top:37px;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(250,250,248,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s}
+nav.scrolled{box-shadow:0 2px 20px rgba(26,22,18,.06)}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.15rem;text-decoration:none;color:var(--ink)}
+.nav-logo span{color:var(--accent)}
+.nav-links{list-style:none;display:flex;align-items:center;gap:2px}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;padding:7px 12px;border-radius:6px;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);background:var(--bg2)}
+.nav-links .hire{background:var(--accent);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;margin-left:8px}
+.nav-links .hire:hover{background:var(--accent2);color:#fff}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mob-nav{display:none;position:fixed;top:calc(37px + var(--nav-h));left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:800;flex-direction:column;padding:16px 5% 24px;gap:2px}
+.mob-nav.open{display:flex}
+.mob-nav a{display:block;padding:11px 14px;border-radius:8px;text-decoration:none;color:var(--ink2);font-size:.92rem;font-weight:500;transition:all .2s;border-bottom:1px solid var(--border)}
+.mob-nav a:last-child{border:none}
+.mob-nav a:hover{color:var(--accent);background:var(--accent-lt)}
+/* LESSON HERO */
+.lesson-hero{background:var(--ink);color:#fff;padding:52px 32px 44px;position:relative;overflow:hidden}
+.lesson-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.06) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.lesson-hero-inner{max-width:820px;margin:0 auto;position:relative;z-index:1}
+.lesson-breadcrumb{font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:16px}
+.lesson-breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .18s}
+.lesson-breadcrumb a:hover{color:rgba(255,255,255,.8)}
+.lesson-badge{display:inline-block;background:rgba(124,58,237,.3);border:1px solid rgba(124,58,237,.5);color:#c4b5fd;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:4px;margin-bottom:14px}
+.lesson-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.1;margin-bottom:14px;color:#fff}
+.lesson-sub{font-size:.92rem;color:rgba(255,255,255,.55);line-height:1.85;max-width:640px;margin-bottom:18px}
+.lesson-meta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.76rem;color:rgba(255,255,255,.4)}
+/* 3-COLUMN LAYOUT */
+.lesson-wrap{max-width:1200px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:220px 1fr 260px;gap:40px;align-items:start}
+.lesson-nav-sidebar{position:sticky;top:110px}
+.lesson-main{min-width:0}
+.lesson-sidebar{position:sticky;top:110px;display:flex;flex-direction:column;gap:20px}
+@media(max-width:1100px){.lesson-wrap{grid-template-columns:1fr 260px}.lesson-nav-sidebar{display:none}}
+@media(max-width:800px){.lesson-wrap{grid-template-columns:1fr;padding:24px 20px 60px}.lesson-sidebar{position:static}.nav-links{display:none}.ham{display:flex}}
+/* LEFT NAV */
+.lnav-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;overflow:hidden}
+.lnav-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:2px}
+.lnav-subtitle{font-size:.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+.lnav-list{display:flex;flex-direction:column;gap:2px}
+.lnav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;text-decoration:none;color:var(--muted);font-size:.78rem;transition:all .18s;border-left:2px solid transparent}
+.lnav-item:hover{color:var(--ink);background:var(--bg2)}
+.lnav-item.active{color:var(--accent);background:var(--accent-lt);border-left-color:var(--accent);font-weight:600}
+.lnav-num{font-size:.65rem;font-weight:800;color:var(--muted2);min-width:20px}
+.lnav-item.active .lnav-num{color:var(--accent)}
+/* VISUAL */
+.lesson-visual{border-radius:14px;overflow:hidden;margin-bottom:32px;border:1px solid var(--border);height:260px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--bg2)}
+/* LEARN BOX */
+.learn-box{background:var(--accent-lt);border:1px solid var(--accent-mid);border-radius:12px;padding:22px 26px;margin-bottom:32px}
+.learn-box-title{font-weight:800;font-size:.88rem;color:var(--accent);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.learn-box ul{margin-left:18px;display:flex;flex-direction:column;gap:7px}
+.learn-box li{font-size:.88rem;color:var(--ink2);line-height:1.6}
+/* LESSON BODY */
+.lesson-body{font-size:.95rem;color:var(--ink2);line-height:1.95}
+.lesson-body h2{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:var(--ink);margin:44px 0 14px;line-height:1.25;letter-spacing:-.02em;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.lesson-body h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin:28px 0 10px;line-height:1.3}
+.lesson-body p{margin-bottom:20px}
+.lesson-body strong{color:var(--ink);font-weight:700}
+.lesson-body a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.lesson-body ul,.lesson-body ol{margin:0 0 20px 22px}
+.lesson-body li{margin-bottom:8px;line-height:1.8}
+.lesson-body blockquote{border-left:3px solid var(--accent);padding:16px 20px;background:var(--accent-lt);border-radius:0 8px 8px 0;margin:28px 0;font-style:italic;color:var(--ink2)}
+/* CALLOUTS */
+.callout{padding:18px 22px;border-radius:10px;margin:28px 0;display:flex;gap:14px;align-items:flex-start}
+.callout-info{background:var(--accent-lt);border:1px solid rgba(124,58,237,.15)}
+.callout-tip{background:var(--gold-lt);border:1px solid rgba(192,124,42,.2)}
+.callout-warn{background:var(--teal-lt);border:1px solid rgba(22,122,74,.2)}
+.callout-example{background:#F0FDF4;border:1px solid rgba(22,122,74,.2)}
+.callout-ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.callout-body{font-size:.88rem;color:var(--ink2);line-height:1.75}
+.callout-body strong{color:var(--ink)}
+/* STATS */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
+.stat-block{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.stat-block .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
+.stat-block .lbl{font-size:.75rem;color:var(--muted);margin-top:6px;line-height:1.4}
+/* TABLES */
+.lesson-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.87rem}
+.lesson-table th{text-align:left;padding:10px 14px;background:var(--bg2);color:var(--ink);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--border2)}
+.lesson-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top}
+.lesson-table tr:last-child td{border-bottom:none}
+.lesson-table tr:hover td{background:var(--bg2)}
+/* EXAMPLE BOX */
+.example-box{background:#f0fdf4;border:1px solid rgba(22,122,74,.2);border-radius:10px;padding:20px 24px;margin:24px 0}
+.example-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);margin-bottom:10px}
+.example-box p{font-size:.88rem;color:var(--ink2);line-height:1.75;margin:0}
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:16px;margin:24px 0}
+.step{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+.step-num{width:32px;height:32px;border-radius:8px;background:var(--accent);color:#fff;font-weight:800;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-title{font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:5px}
+.step-desc{font-size:.84rem;color:var(--muted);line-height:1.7}
+/* TAKEAWAYS */
+.takeaways-box{background:var(--ink);color:#fff;border-radius:12px;padding:24px 28px;margin:40px 0}
+.takeaways-title{font-weight:800;font-size:.88rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.takeaways-box ul{margin-left:18px;display:flex;flex-direction:column;gap:8px}
+.takeaways-box li{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.65}
+/* PREV/NEXT */
+.lesson-nav-bottom{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:32px;border-top:2px solid var(--border)}
+.lnb-prev,.lnb-next{padding:13px 20px;border-radius:8px;border:1.5px solid var(--border2);font-weight:600;font-size:.82rem;color:var(--ink2);text-decoration:none;transition:all .2s;flex:1;text-align:center}
+.lnb-prev:hover,.lnb-next:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
+.lnb-next{background:var(--accent);color:#fff;border-color:var(--accent);text-align:right}
+.lnb-next:hover{background:var(--accent2);color:#fff}
+/* PROGRESS */
+.progress-info{font-size:.78rem;color:var(--muted);margin-bottom:8px}
+.progress-bar-wrap{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:3px;transition:width .5s}
+/* SIDEBAR */
+.sb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.sb-title{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sb-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sb-tool{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink2);padding:7px 10px;border-radius:6px;background:var(--bg2);text-decoration:none;transition:background .18s;margin-bottom:6px}
+.sb-tool:hover{background:var(--bg3);color:var(--accent)}
+.sb-link{display:block;font-size:.8rem;color:var(--ink2);padding:5px 0;text-decoration:none;border-bottom:1px solid var(--border);line-height:1.5}
+.sb-link:last-child{border-bottom:none}
+.sb-link:hover{color:var(--accent)}
+.inst-name{font-family:'Playfair Display',serif;font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:3px}
+.inst-role{font-size:.76rem;color:var(--muted);margin-bottom:10px}
+.inst-bio{font-size:.8rem;color:var(--ink2);line-height:1.7}
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.55);padding:52px 6% 32px}
+.footer-inner{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:28px}
+.foot-brand h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:8px}
+.foot-brand h3 span{color:var(--accent)}
+.foot-brand p{font-size:.8rem;line-height:1.8;max-width:220px;margin-bottom:18px}
+.foot-social{display:flex;gap:8px}
+.foot-soc{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(255,255,255,.5);font-size:.85rem;transition:all .2s;font-weight:700}
+.foot-soc:hover{border-color:rgba(124,58,237,.5);color:var(--accent);background:rgba(124,58,237,.1)}
+.foot-col h4{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.7);margin-bottom:16px}
+.foot-col a{display:block;font-size:.8rem;color:rgba(255,255,255,.45);text-decoration:none;padding:3px 0;transition:color .2s}
+.foot-col a:hover{color:rgba(255,255,255,.85)}
+.foot-copy{text-align:center;font-size:.74rem;color:rgba(255,255,255,.3)}
+.foot-copy strong{color:rgba(255,255,255,.55)}
+.btt{position:fixed;bottom:28px;right:28px;z-index:800;width:44px;height:44px;border-radius:10px;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:1rem;box-shadow:0 4px 16px rgba(124,58,237,.35);transition:all .3s;opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.btt.show{opacity:1;pointer-events:all}
+.btt:hover{transform:translateY(-3px)}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.footer-inner{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="top-bar">📚 SEO Course &nbsp;·&nbsp; 15 Lessons &nbsp;·&nbsp; <a href="course-seo.html">View All Lessons →</a></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="index.html#resume">Resume</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="courses.html" class="active">Courses</a></li>
+    <li><a href="index.html#contact" class="hire">Hire Me</a></li>
+  </ul>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobnav">
+  <a href="index.html#about">About</a>
+  <a href="index.html#services">Services</a>
+  <a href="tools.html">Tools</a>
+  <a href="index.html#resume">Resume</a>
+  <a href="blog.html">Blog</a>
+  <a href="courses.html">Courses</a>
+  <a href="index.html#contact" class="m-hire">Hire Me</a>
+</div>
+<div class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="lesson-breadcrumb"><a href="index.html">Home</a> › <a href="courses.html">Courses</a> › <a href="course-seo.html">SEO Course</a> › Lesson 06</div>
+    <div class="lesson-badge">Lesson 06 of 15</div>
+    <h1>Core Web Vitals: Measure, Fix & Rank</h1>
+    <p class="lesson-sub">Google's LCP, INP, and CLS metrics determine how your user experience affects rankings — here's how to diagnose and fix each one for Indian fintech sites.</p>
+    <div class="lesson-meta-row">
+      <span>👨‍💻 Lochan Yadav</span><span>·</span><span>🕐 13 min read</span><span>·</span><span>📅 May 2026</span><span>·</span><span>📊 Intermediate</span>
+    </div>
+  </div>
+</div>
+<div class="lesson-wrap">
+  <aside class="lesson-nav-sidebar">
+    <div class="lnav-box">
+      <div class="lnav-title">SEO Course</div><div class="lnav-subtitle">15 Lessons</div>
+      <nav class="lnav-list"><a href="seo-lesson-01-what-is-seo.html" class="lnav-item "><span class="lnav-num">01</span><span class="lnav-text">What Is SEO?</span></a>
+<a href="seo-lesson-02-how-google-works.html" class="lnav-item "><span class="lnav-num">02</span><span class="lnav-text">How Google Works</span></a>
+<a href="seo-lesson-03-keyword-research.html" class="lnav-item "><span class="lnav-num">03</span><span class="lnav-text">Keyword Research</span></a>
+<a href="seo-lesson-04-on-page-seo.html" class="lnav-item "><span class="lnav-num">04</span><span class="lnav-text">On-Page SEO</span></a>
+<a href="seo-lesson-05-technical-seo.html" class="lnav-item "><span class="lnav-num">05</span><span class="lnav-text">Technical SEO</span></a>
+<a href="seo-lesson-06-core-web-vitals.html" class="lnav-item active"><span class="lnav-num">06</span><span class="lnav-text">Core Web Vitals</span></a>
+<a href="seo-lesson-07-link-building.html" class="lnav-item "><span class="lnav-num">07</span><span class="lnav-text">Link Building</span></a>
+<a href="seo-lesson-08-local-seo.html" class="lnav-item "><span class="lnav-num">08</span><span class="lnav-text">Local SEO</span></a>
+<a href="seo-lesson-09-eeat.html" class="lnav-item "><span class="lnav-num">09</span><span class="lnav-text">E-E-A-T</span></a>
+<a href="seo-lesson-10-schema-markup.html" class="lnav-item "><span class="lnav-num">10</span><span class="lnav-text">Schema Markup</span></a>
+<a href="seo-lesson-11-aeo.html" class="lnav-item "><span class="lnav-num">11</span><span class="lnav-text">AEO</span></a>
+<a href="seo-lesson-12-geo.html" class="lnav-item "><span class="lnav-num">12</span><span class="lnav-text">GEO</span></a>
+<a href="seo-lesson-13-ai-seo.html" class="lnav-item "><span class="lnav-num">13</span><span class="lnav-text">AI in SEO</span></a>
+<a href="seo-lesson-14-seo-analytics.html" class="lnav-item "><span class="lnav-num">14</span><span class="lnav-text">SEO Analytics</span></a>
+<a href="seo-lesson-15-seo-strategy.html" class="lnav-item "><span class="lnav-num">15</span><span class="lnav-text">SEO Strategy</span></a></nav>
+    </div>
+  </aside>
+  <main class="lesson-main">
+    <div class="lesson-visual"><svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" width="100%" height="260">
+  <rect width="800" height="260" fill="#1A1612"/>
+  <!-- LCP gauge -->
+  <circle cx="160" cy="130" r="80" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="20"/>
+  <circle cx="160" cy="130" r="80" fill="none" stroke="rgba(22,122,74,.6)" stroke-width="20" stroke-dasharray="251 502" stroke-dashoffset="-63" transform="rotate(-90 160 130)"/>
+  <text x="160" y="118" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">LCP</text>
+  <text x="160" y="138" font-family="Playfair Display,serif" font-size="22" fill="#4ade80" font-weight="900" text-anchor="middle">1.8s</text>
+  <text x="160" y="156" font-family="Inter,sans-serif" font-size="9" fill="rgba(22,122,74,.8)" text-anchor="middle">GOOD &lt;2.5s</text>
+  <!-- INP gauge -->
+  <circle cx="400" cy="130" r="80" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="20"/>
+  <circle cx="400" cy="130" r="80" fill="none" stroke="rgba(192,124,42,.6)" stroke-width="20" stroke-dasharray="200 502" stroke-dashoffset="-63" transform="rotate(-90 400 130)"/>
+  <text x="400" y="118" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">INP</text>
+  <text x="400" y="138" font-family="Playfair Display,serif" font-size="22" fill="#fbbf24" font-weight="900" text-anchor="middle">156ms</text>
+  <text x="400" y="156" font-family="Inter,sans-serif" font-size="9" fill="rgba(192,124,42,.8)" text-anchor="middle">NEEDS WORK &lt;200ms</text>
+  <!-- CLS gauge -->
+  <circle cx="640" cy="130" r="80" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="20"/>
+  <circle cx="640" cy="130" r="80" fill="none" stroke="rgba(192,54,74,.6)" stroke-width="20" stroke-dasharray="350 502" stroke-dashoffset="-63" transform="rotate(-90 640 130)"/>
+  <text x="640" y="118" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">CLS</text>
+  <text x="640" y="138" font-family="Playfair Display,serif" font-size="22" fill="#f87171" font-weight="900" text-anchor="middle">0.28</text>
+  <text x="640" y="156" font-family="Inter,sans-serif" font-size="9" fill="rgba(192,54,74,.8)" text-anchor="middle">POOR &gt;0.25</text>
+  <text x="400" y="235" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.25)" text-anchor="middle" letter-spacing="3">CORE WEB VITALS — USER EXPERIENCE METRICS THAT RANK</text>
+</svg></div>
+    <div class="learn-box">
+      <div class="learn-box-title">🎯 What You'll Learn</div>
+      <ul>
+        <li>What LCP, INP, and CLS measure and why they directly affect your search rankings</li>
+        <li>The specific technical causes of CWV failures on Indian fintech and e-commerce sites</li>
+        <li>How to measure CWV accurately using both field data (GSC) and lab tools (PageSpeed)</li>
+        <li>Step-by-step fixes for each metric with realistic implementation priorities</li>
+      </ul>
+    </div>
+    <div class="lesson-body">
+<h2>What Are Core Web Vitals</h2>
+<p>Core Web Vitals (CWV) are a set of specific, measurable metrics Google uses to quantify the real-world user experience of your web pages. Introduced as a ranking factor in 2021 and continuously refined, they represent Google's commitment to rewarding pages that are not just relevant — but fast, responsive, and visually stable. In competitive verticals like Indian fintech, where multiple sites have comparable content quality, CWV can be a meaningful tiebreaker.</p>
+<p>There are three Core Web Vitals: <strong>LCP</strong> (Largest Contentful Paint — how quickly the main content loads), <strong>INP</strong> (Interaction to Next Paint — how responsive the page is to clicks and taps), and <strong>CLS</strong> (Cumulative Layout Shift — how visually stable the page is as it loads). Each has a "Good," "Needs Improvement," and "Poor" threshold. Google's Page Experience signal is primarily based on whether your pages reach the "Good" threshold across all three.</p>
+
+<div class="stat-row">
+  <div class="stat-block"><div class="num">24%</div><div class="lbl">more clicks for pages passing all CWV thresholds (Google data, 2024)</div></div>
+  <div class="stat-block"><div class="num">2.5s</div><div class="lbl">LCP target — anything slower is "Needs Improvement"</div></div>
+  <div class="stat-block"><div class="num">&lt;0.1</div><div class="lbl">CLS target — layouts that shift during load hurt both UX and rankings</div></div>
+</div>
+
+<h2>LCP — Largest Contentful Paint</h2>
+<p>LCP measures the time from when the user initiates a page load to when the largest visible content element (usually a hero image, main heading, or large block of text) is fully rendered. The target is under 2.5 seconds. LCP directly corresponds to the user's perceived load speed — it's when they feel the page has "arrived."</p>
+<p>For Indian fintech pages, the most common LCP elements are hero images (like rate comparison banners on BankBazaar's product pages) and large above-the-fold text blocks. The most common LCP killers: uncompressed hero images (serve WebP, preload the LCP image), render-blocking resources (defer non-critical CSS and JavaScript), slow server response time (use a CDN, optimize your database queries), and fonts that block rendering (use font-display: swap).</p>
+<p>A specific pattern seen on Indian financial comparison sites: the rate table that appears at the top of a "best credit card" page is often rendered by JavaScript after an API call. If Google can't see this content in the initial HTML, it scores the LCP against whatever loads first — often the navigation or a spinner. Solution: server-side render the initial state of rate tables so they appear in the HTML immediately.</p>
+
+<h2>INP — Interaction to Next Paint</h2>
+<p>INP (which replaced FID — First Input Delay — in March 2024) measures the time from when a user interacts with the page (click, tap, keypress) to when the browser visually updates in response. The target is under 200ms. Poor INP feels like a sluggish, unresponsive page — users tap buttons and nothing happens for a second. This is especially damaging for financial tools like EMI calculators or insurance quote forms.</p>
+<p>INP is measured across all interactions during the page visit — not just the first. This makes it particularly challenging for single-page applications (SPAs) where subsequent navigation and UI updates all count. The main culprits: heavy JavaScript that blocks the main thread, third-party scripts (cookie consent banners, chat widgets, analytics), and complex React/Angular components that take too long to reconcile the DOM on user input.</p>
+
+<h2>CLS — Cumulative Layout Shift</h2>
+<p>CLS measures how much your page's layout shifts unexpectedly as it loads. If an image loads and pushes text down, or an ad appears above a button you're about to click, that's a layout shift — and it's deeply frustrating. The target is under 0.1 (on a scale where 0 is perfect). A score above 0.25 is "Poor" and will negatively impact your rankings.</p>
+<p>For fintech sites, the biggest CLS offenders are: ads and banners that load asynchronously and push content down; images without explicit width and height attributes (so the browser doesn't reserve space for them); dynamically injected content above the fold; and web fonts that cause text to reflow when they load. The fix for images is simple: always set width and height attributes in HTML — the browser uses them to reserve space before the image downloads.</p>
+
+<div class="example-box">
+  <div class="example-label">Real Challenge — Insurance Comparison Widget CLS</div>
+  <p>A popular insurance comparison site had a CLS score of 0.45 — "Poor" — because their premium comparison widget loaded asynchronously and pushed the page content down by 300px when it appeared. The fix: set a fixed-height container div for the widget area in the initial HTML, so the space was reserved before the widget loaded. CLS dropped to 0.08 — "Good." Rankings for competitive insurance keywords improved within 6 weeks of the fix being deployed.</p>
+</div>
+
+<h2>How to Measure CWV</h2>
+<p>CWV can be measured in two ways: <strong>Field Data</strong> (real user data from the Chrome User Experience Report — what Google actually uses for ranking) and <strong>Lab Data</strong> (simulated performance in tools like Lighthouse/PageSpeed Insights — useful for debugging). Always fix issues based on field data from GSC's Core Web Vitals report, then verify fixes with lab tools.</p>
+
+<table class="lesson-table">
+  <thead><tr><th>Tool</th><th>Data Type</th><th>Best For</th><th>Free?</th></tr></thead>
+  <tbody>
+    <tr><td>Google Search Console › CWV</td><td>Field (real users)</td><td>Understanding actual rankings impact, site-wide view</td><td>Yes</td></tr>
+    <tr><td>PageSpeed Insights</td><td>Both field + lab</td><td>Page-level diagnosis, specific recommendations</td><td>Yes</td></tr>
+    <tr><td>Chrome DevTools › Performance</td><td>Lab</td><td>Deep debugging, identifying JS bottlenecks</td><td>Yes</td></tr>
+    <tr><td>WebPageTest.org</td><td>Lab</td><td>Testing from Indian server locations, waterfall analysis</td><td>Yes</td></tr>
+    <tr><td>Lighthouse (CLI)</td><td>Lab</td><td>Automated testing in CI/CD pipeline</td><td>Yes</td></tr>
+  </tbody>
+</table>
+
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Check GSC Core Web Vitals Report</div><div class="step-desc">Go to Search Console › Experience › Core Web Vitals. Look at which page groups are "Poor" — fix those first. GSC shows you field data across real users, which is what affects your rankings.</div></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Fix LCP: Images and Server Speed</div><div class="step-desc">Compress and convert hero images to WebP. Add &lt;link rel="preload"&gt; for your LCP image. Enable server-side caching. Use a CDN. Target: LCP under 2.5s on mobile from an Indian connection.</div></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Fix CLS: Reserve Space for Dynamic Content</div><div class="step-desc">Add width and height attributes to all images. Set min-height on ad slots and dynamic widget containers. Avoid inserting content above the fold after page load. Use font-display: swap for web fonts.</div></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Fix INP: Reduce JavaScript Weight</div><div class="step-desc">Audit third-party scripts — remove any that aren't essential. Break up long tasks (over 50ms) into smaller chunks. Use web workers for heavy computation. Defer non-critical scripts.</div></div></div>
+</div>
+
+<div class="callout callout-tip">
+  <div class="callout-ico">💡</div>
+  <div class="callout-body"><strong>Indian Context:</strong> When testing CWV, simulate a real Indian user — test on a mid-range Android device over a 4G connection (not your office WiFi). Most of India's web traffic comes from these conditions. A page that scores "Good" on your MacBook may score "Poor" for 70% of your actual users.</div>
+</div>
+</div>
+    <div class="takeaways-box"><div class="takeaways-title">📌 Key Takeaways</div><ul>
+  <li>Core Web Vitals (LCP, INP, CLS) are Google's user experience metrics that directly affect rankings — pages in the "Good" threshold get 24% more clicks.</li>
+  <li>LCP target: under 2.5s — fix by compressing images, preloading LCP element, and using a CDN.</li>
+  <li>INP target: under 200ms — fix by reducing JavaScript on the main thread and removing unnecessary third-party scripts.</li>
+  <li>CLS target: under 0.1 — fix by setting explicit image dimensions, reserving space for dynamic content, and using font-display: swap.</li>
+  <li>Always test CWV from real Indian network conditions — a mid-range Android on 4G, not your office WiFi.</li>
+</ul></div>
+    <div class="lesson-nav-bottom"><a href="seo-lesson-05-technical-seo.html" class="lnb-prev">← Technical SEO</a><a href="seo-lesson-07-link-building.html" class="lnb-next">Link Building →</a></div>
+  </main>
+  <aside class="lesson-sidebar">
+  <div class="sb-card">
+    <div class="sb-title">Your Progress</div>
+    <div class="progress-info">Lesson 06 of 15 — 40% complete</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:40%"></div></div>
+  </div>
+  <div class="sb-card">
+    <div class="sb-title">Instructor</div>
+    <div class="inst-name">Lochan Yadav</div>
+    <div class="inst-role">Lead SEO Analyst · 6+ Years</div>
+    <div class="inst-bio">Lochan has driven organic growth for Indian fintech brands including BankBazaar, with expertise in technical SEO, AEO, GEO, and content strategy.</div>
+  </div>
+  <div class="sb-card">
+    <div class="sb-title">Practice Tools</div>
+    <a href="tool-03-seo-geo-audit.html" class="sb-tool">📊 SEO/GEO Audit Tool</a><a href="tool-07-robots-txt-generator.html" class="sb-tool">🤖 Robots.txt Generator</a>
+  </div>
+  <div class="sb-card">
+    <div class="sb-title">Related Reading</div>
+    <a href="blog-technical-seo.html" class="sb-link">Technical SEO Deep Dive</a><a href="blog-seo-2026.html" class="sb-link">SEO Trends 2026</a>
+  </div>
+</aside>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="foot-brand">
+      <h3>Lochan <span>Yadav</span></h3>
+      <p>Lead SEO Analyst driving organic growth for fintech &amp; e-commerce brands. Based in Hindupur, Andhra Pradesh.</p>
+      <div class="foot-social">
+        <a href="https://linkedin.com/in/lochan-yadav-0a26261a3" class="foot-soc" target="_blank">in</a>
+        <a href="https://github.com/yadavgollalochan-blip/Lochan-Projects" class="foot-soc" target="_blank">gh</a>
+        <a href="mailto:lochan.yadavgolla@gmail.com" class="foot-soc">✉</a>
+        <a href="tel:+918951712138" class="foot-soc">☎</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>SEO Course</h4>
+      <a href="seo-lesson-01-what-is-seo.html">What Is SEO?</a>
+      <a href="seo-lesson-02-how-google-works.html">How Google Works</a>
+      <a href="seo-lesson-03-keyword-research.html">Keyword Research</a>
+      <a href="seo-lesson-04-on-page-seo.html">On-Page SEO</a>
+      <a href="course-seo.html">View All 15 Lessons →</a>
+    </div>
+    <div class="foot-col">
+      <h4>Tools</h4>
+      <a href="tool-01-meta-tag-extractor.html">Meta Tag Extractor</a>
+      <a href="tool-02-serp-preview.html">SERP Preview</a>
+      <a href="tool-04-faq-schema-generator.html">FAQ Schema</a>
+      <a href="tool-07-robots-txt-generator.html">Robots.txt Generator</a>
+      <a href="tools.html">All 9 Tools →</a>
+    </div>
+    <div class="foot-col">
+      <h4>Blog</h4>
+      <a href="blog-aeo.html">AEO Guide</a>
+      <a href="blog-geo.html">GEO Guide</a>
+      <a href="blog-technical-seo.html">Technical SEO</a>
+      <a href="blog-seo-2026.html">SEO in 2026</a>
+      <a href="blog.html">All Articles →</a>
+    </div>
+  </div>
+  <p class="foot-copy">© 2026 <strong>Lochan Yadav</strong> · Lead SEO Analyst · <a href="sitemap.xml" style="color:rgba(255,255,255,.4)">Sitemap</a></p>
+</footer>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<script>
+window.addEventListener('scroll',()=>{
+  const st=document.documentElement.scrollTop;
+  const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('prog').style.width=(st/sh*100)+'%';
+  document.getElementById('navbar').classList.toggle('scrolled',st>60);
+  document.getElementById('btt').classList.toggle('show',st>400);
+},{passive:true});
+document.getElementById('ham').addEventListener('click',function(){
+  this.classList.toggle('open');
+  document.getElementById('mobnav').classList.toggle('open');
+});
+</script>
+</body>
+</html>

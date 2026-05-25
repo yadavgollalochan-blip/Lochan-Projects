@@ -17,39 +17,21 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 :root{
-  --bg:#FAFAF8;
-  --bg2:#F3F1EB;
-  --bg3:#ECEAE3;
-  --card:#FFFFFF;
-  --border:#DDD9CE;
-  --border2:#C9C4B5;
-  --ink:#1A1612;
-  --ink2:#3D3529;
-  --muted:#6B6152;
-  --muted2:#9E9285;
-  --accent:#7C3AED;
-  --accent2:#6D28D9;
+  --bg:#FAFAF8;--bg2:#F3F1EB;--bg3:#ECEAE3;--card:#FFFFFF;
+  --border:#DDD9CE;--border2:#C9C4B5;--ink:#1A1612;--ink2:#3D3529;
+  --muted:#6B6152;--muted2:#9E9285;--accent:#7C3AED;--accent2:#6D28D9;
   --accent-lt:rgba(124,58,237,0.08);
-  --gold:#C07C2A;
-  --gold-lt:#F5ECD8;
-  --teal:#167A4A;
-  --teal-lt:rgba(22,122,74,0.08);
-  --rose:#C0364A;
-  --rose-lt:rgba(192,54,74,0.08);
-  --nav-h:62px;
+  --gold:#C07C2A;--gold-lt:#F5ECD8;--teal:#167A4A;--teal-lt:rgba(22,122,74,0.08);
+  --rose:#C0364A;--rose-lt:rgba(192,54,74,0.08);--nav-h:62px;
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--bg2)}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 
-/* ── TOP ANNOUNCEMENT BAR ── */
 .topbar{background:var(--ink);color:rgba(255,255,255,.65);font-size:.7rem;text-align:center;padding:7px 20px;letter-spacing:.04em}
 .topbar a{color:var(--gold-lt);text-decoration:underline}
 
-/* ── NAV ── */
 .nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
 .nav-inner{max-width:1160px;margin:0 auto;padding:0 32px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:20px}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--ink);letter-spacing:-.02em;line-height:1}
@@ -61,7 +43,6 @@ img{max-width:100%;display:block}
 .nav-right a{background:var(--accent);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;font-size:.78rem;transition:background .18s}
 .nav-right a:hover{background:var(--accent2)}
 
-/* ── PAGE HERO ── */
 .page-hero{background:var(--ink);color:#fff;padding:56px 32px;text-align:center;position:relative;overflow:hidden}
 .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.08) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
 .page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
@@ -70,107 +51,30 @@ img{max-width:100%;display:block}
 .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.1;margin-bottom:16px;color:#fff}
 .page-hero p{font-size:.95rem;color:rgba(255,255,255,.55);max-width:520px;margin:0 auto;line-height:1.85}
 
-/* ── ARTICLE NAV PILLS ── */
-.article-nav{max-width:1160px;margin:40px auto 0;padding:0 32px;display:flex;gap:10px;flex-wrap:wrap}
-.anav-pill{padding:7px 18px;border-radius:6px;border:1px solid var(--border2);background:var(--card);color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;text-decoration:none;display:inline-block}
-.anav-pill:hover,.anav-pill.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.filter-bar{max-width:1160px;margin:36px auto 0;padding:0 32px;display:flex;gap:10px;flex-wrap:wrap}
+.filter-btn{padding:7px 18px;border-radius:6px;border:1px solid var(--border2);background:var(--card);color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;text-decoration:none;display:inline-block}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-/* ── MAIN LAYOUT ── */
-.blog-layout{max-width:1160px;margin:0 auto;padding:48px 32px 80px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
+.blog-listing{max-width:1160px;margin:0 auto;padding:48px 32px 80px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
+.articles-col{display:flex;flex-direction:column;gap:32px}
 
-/* ── ARTICLE ── */
-.article{margin-bottom:80px;scroll-margin-top:80px}
-.article-header{margin-bottom:36px}
-.article-cat{display:inline-flex;align-items:center;gap:6px;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:4px 12px;border-radius:4px;margin-bottom:16px}
+.blog-list-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:all .25s}
+.blog-list-card:hover{border-color:rgba(124,58,237,.2);transform:translateY(-4px);box-shadow:0 14px 36px rgba(26,22,18,.09)}
+.blc-img{height:200px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.blc-body{padding:28px}
+.article-cat{display:inline-flex;align-items:center;gap:6px;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:4px 12px;border-radius:4px;margin-bottom:10px}
 .cat-aeo{background:var(--gold-lt);color:var(--gold)}
 .cat-geo{background:var(--accent-lt);color:var(--accent)}
 .cat-tech{background:var(--teal-lt);color:var(--teal)}
-.article-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:900;line-height:1.18;color:var(--ink);letter-spacing:-.025em;margin-bottom:14px}
-.article-meta{display:flex;align-items:center;gap:16px;font-size:.76rem;color:var(--muted2);margin-bottom:24px;flex-wrap:wrap}
-.article-meta-sep{width:3px;height:3px;background:var(--border2);border-radius:50%;display:inline-block}
-.article-author{display:flex;align-items:center;gap:8px}
-.article-av{width:28px;height:28px;border-radius:50%;background:var(--accent-lt);border:1.5px solid rgba(124,58,237,.2);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:var(--accent)}
-.article-author-name{font-weight:600;color:var(--ink2)}
-.article-hero-img{
-  width:100%;border-radius:14px;overflow:hidden;margin-bottom:36px;
-  background:linear-gradient(135deg,#F0EDE5 0%,#DDD5EC 60%,#E5F0EE 100%);
-  height:300px;display:flex;align-items:center;justify-content:center;
-  font-size:5rem;position:relative;border:1px solid var(--border);
-}
-.article-hero-img-label{position:absolute;bottom:14px;left:14px;font-size:.68rem;color:var(--muted);background:rgba(255,255,255,.8);padding:4px 10px;border-radius:4px;backdrop-filter:blur(8px)}
+.blc-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--ink);margin:0 0 12px;line-height:1.3;letter-spacing:-.015em}
+.blc-title a{color:inherit;text-decoration:none;transition:color .18s}
+.blc-title a:hover{color:var(--accent)}
+.blc-exc{font-size:.9rem;color:var(--muted);line-height:1.82;margin-bottom:20px}
+.blc-footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)}
+.blc-meta{font-size:.74rem;color:var(--muted2)}
+.blc-read{font-size:.8rem;font-weight:700;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:4px;transition:gap .18s}
+.blc-read:hover{gap:8px}
 
-/* Article divider */
-.article+.article{border-top:2px solid var(--border);padding-top:80px}
-
-/* ── ARTICLE BODY TYPOGRAPHY ── */
-.article-body{font-size:.95rem;color:var(--ink2);line-height:1.95;max-width:720px}
-.article-body h2{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:var(--ink);margin:40px 0 14px;line-height:1.25;letter-spacing:-.02em}
-.article-body h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin:28px 0 10px;line-height:1.3}
-.article-body p{margin-bottom:20px}
-.article-body strong{color:var(--ink);font-weight:700}
-.article-body a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
-.article-body a:hover{color:var(--accent2)}
-.article-body ul,.article-body ol{margin:0 0 20px 20px}
-.article-body li{margin-bottom:8px;line-height:1.8}
-.article-body blockquote{
-  border-left:3px solid var(--accent);padding:16px 20px;
-  background:var(--accent-lt);border-radius:0 8px 8px 0;
-  margin:28px 0;font-style:italic;color:var(--ink2);
-}
-.article-body blockquote strong{color:var(--accent)}
-
-/* Callout box */
-.callout{
-  padding:20px 24px;border-radius:10px;margin:28px 0;
-  display:flex;gap:14px;align-items:flex-start;
-}
-.callout-info{background:var(--accent-lt);border:1px solid rgba(124,58,237,.15)}
-.callout-tip{background:var(--gold-lt);border:1px solid rgba(192,124,42,.2)}
-.callout-warn{background:var(--teal-lt);border:1px solid rgba(22,122,74,.2)}
-.callout-ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}
-.callout-text{font-size:.88rem;color:var(--ink2);line-height:1.75}
-.callout-text strong{color:var(--ink)}
-
-/* Key points table */
-.key-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.87rem}
-.key-table th{text-align:left;padding:10px 14px;background:var(--bg2);color:var(--ink);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--border2)}
-.key-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top}
-.key-table tr:last-child td{border-bottom:none}
-.key-table tr:hover td{background:var(--bg2)}
-.check{color:var(--teal);font-weight:700}
-.cross{color:var(--rose);font-weight:700}
-
-/* Stat blocks */
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
-.stat-block{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
-.stat-block .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
-.stat-block .lbl{font-size:.75rem;color:var(--muted);margin-top:6px;line-height:1.4}
-
-/* Image placeholder */
-.img-placeholder{
-  width:100%;border-radius:10px;margin:28px 0;
-  background:linear-gradient(135deg,var(--bg2),var(--bg3));
-  border:1px solid var(--border);
-  height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:8px;font-size:2.5rem;color:var(--muted2);
-  position:relative;overflow:hidden;
-}
-.img-placeholder-label{font-size:.75rem;color:var(--muted2);font-family:'Inter',sans-serif}
-.img-placeholder::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(124,58,237,.03) 20px,rgba(124,58,237,.03) 21px)}
-
-/* Article tags */
-.article-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px;padding-top:24px;border-top:1px solid var(--border)}
-.art-tag{font-size:.72rem;font-weight:500;color:var(--muted);background:var(--bg2);border:1px solid var(--border);padding:4px 12px;border-radius:4px}
-
-/* Share */
-.article-share{margin-top:24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.share-label{font-size:.75rem;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-.share-btn{padding:6px 14px;border-radius:5px;font-size:.73rem;font-weight:700;text-decoration:none;transition:opacity .18s}
-.share-li{background:#0A66C2;color:#fff}
-.share-tw{background:#000;color:#fff}
-.share-btn:hover{opacity:.82}
-
-/* ── SIDEBAR ── */
 .sidebar{display:flex;flex-direction:column;gap:24px;position:sticky;top:80px}
 .sb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px}
 .sb-title{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:16px;display:flex;align-items:center;gap:8px}
@@ -190,12 +94,10 @@ img{max-width:100%;display:block}
 .sb-tools{display:flex;flex-direction:column;gap:8px}
 .sb-tool{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink2);padding:7px 10px;border-radius:6px;background:var(--bg2);text-decoration:none;transition:background .18s}
 .sb-tool:hover{background:var(--bg3);color:var(--accent)}
-.sb-tool-ico{font-size:1rem}
 .sb-tags{display:flex;flex-wrap:wrap;gap:6px}
 .sb-tag{font-size:.72rem;font-weight:500;color:var(--muted);background:var(--bg2);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none;transition:all .18s}
 .sb-tag:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
 
-/* ── FOOTER ── */
 footer{background:var(--ink);color:rgba(255,255,255,.45);padding:36px 32px;text-align:center;font-size:.78rem}
 footer a{color:rgba(255,255,255,.65);text-decoration:none;margin:0 10px}
 footer a:hover{color:#fff}
@@ -205,27 +107,14 @@ footer a:hover{color:#fff}
 .footer-links{display:flex;gap:4px}
 .footer-copy{text-align:center;font-size:.72rem;color:rgba(255,255,255,.3);max-width:1160px;margin:0 auto}
 
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .blog-layout{grid-template-columns:1fr;padding:32px 20px 60px}
-  .sidebar{position:static}
-  .stat-row{grid-template-columns:1fr 1fr}
-  .article-nav{padding:0 20px;margin-top:28px}
-  .page-hero{padding:40px 20px}
-}
-@media(max-width:600px){
-  .nav-center{display:none}
-  .stat-row{grid-template-columns:1fr}
-  .article-title{font-size:1.7rem}
-}
+@media(max-width:900px){.blog-listing{grid-template-columns:1fr;padding:32px 20px 60px}.sidebar{position:static}.filter-bar{padding:0 20px;margin-top:24px}.page-hero{padding:40px 20px}}
+@media(max-width:600px){.nav-center{display:none}}
 </style>
 </head>
 <body>
 
-<!-- ── TOP BAR ── -->
-<div class="topbar">📚 New: <a href="courses.html">Digital Marketing Courses</a> · ✍️ Latest article: <a href="#seo2026">SEO in 2026 — How AI Is Reshaping the Fundamentals of Search →</a></div>
+<div class="topbar">📚 New: <a href="courses.html">Digital Marketing Courses</a> · ✍️ Latest: <a href="blog-aeo.html">AEO — The Strategy That Gets You Into AI Answers →</a></div>
 
-<!-- ── NAV ── -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
@@ -243,7 +132,6 @@ footer a:hover{color:#fff}
   </div>
 </nav>
 
-<!-- ── PAGE HERO ── -->
 <div class="page-hero">
   <div class="page-hero-grid"></div>
   <div class="page-hero-inner">
@@ -253,897 +141,211 @@ footer a:hover{color:#fff}
   </div>
 </div>
 
-<!-- ── ARTICLE NAV ── -->
-<div class="article-nav">
-  <a href="#aeo" class="anav-pill active">🎯 AEO</a>
-  <a href="#geo" class="anav-pill">🌍 GEO</a>
-  <a href="#technical" class="anav-pill">⚙️ Technical SEO</a>
-  <a href="#seo2026" class="anav-pill">🤖 SEO in 2026</a>
-  <a href="#trends2026" class="anav-pill">📈 Trends 2026</a>
-  <a href="#aitools" class="anav-pill">🛠️ AI SEO Tools</a>
-  <a href="#algorithm" class="anav-pill">🔄 Algorithm Updates</a>
+<div class="filter-bar">
+  <a href="blog-aeo.html" class="filter-btn">🎯 AEO</a>
+  <a href="blog-geo.html" class="filter-btn">🌍 GEO</a>
+  <a href="blog-technical-seo.html" class="filter-btn">⚙️ Technical SEO</a>
+  <a href="blog-seo-2026.html" class="filter-btn">🤖 SEO in 2026</a>
+  <a href="blog-trends-2026.html" class="filter-btn">📈 Trends 2026</a>
+  <a href="blog-ai-seo-tools.html" class="filter-btn">🛠️ AI SEO Tools</a>
+  <a href="blog-algorithm-updates.html" class="filter-btn">🔄 Algorithm Updates</a>
 </div>
 
-<!-- ── MAIN LAYOUT ── -->
-<div class="blog-layout">
+<div class="blog-listing">
 
-  <!-- ████ ARTICLES COLUMN ████ -->
-  <main>
+  <main class="articles-col">
 
-    <!-- ════════════════════════════════
-         ARTICLE 1: AEO
-    ════════════════════════════════ -->
-    <article class="article" id="aeo">
-      <div class="article-header">
+    <!-- Card 1: AEO -->
+    <article class="blog-list-card">
+      <div class="blc-img" style="background:linear-gradient(135deg,#F5ECD8 0%,#EDE0F5 60%,#F0F5ED 100%)">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <circle cx="140" cy="100" r="65" fill="none" stroke="#C07C2A" stroke-width="10" opacity="0.5"/>
+          <circle cx="140" cy="100" r="42" fill="rgba(192,124,42,0.1)"/>
+          <line x1="190" y1="148" x2="235" y2="175" stroke="#C07C2A" stroke-width="12" stroke-linecap="round" opacity="0.6"/>
+          <rect x="225" y="45" rx="12" ry="12" width="150" height="85" fill="white" stroke="#C07C2A" stroke-width="1.5" opacity="0.9"/>
+          <text x="300" y="78" font-family="Georgia,serif" font-size="11" fill="#C07C2A" font-weight="bold" text-anchor="middle">AI Answer</text>
+          <text x="300" y="95" font-family="Arial,sans-serif" font-size="8.5" fill="#3D3529" text-anchor="middle">CIBIL score: 750+</text>
+          <text x="300" y="110" font-family="Arial,sans-serif" font-size="8" fill="#9E9285" text-anchor="middle">Source: lochan.online</text>
+        </svg>
+      </div>
+      <div class="blc-body">
         <span class="article-cat cat-aeo">AEO · Answer Engine Optimization</span>
-        <h1 class="article-title">AEO: The Strategy That Gets You Into AI Answers — Not Just Google Rankings</h1>
-        <div class="article-meta">
-          <div class="article-author">
-            <div class="article-av">LY</div>
-            <span class="article-author-name">Lochan Yadav</span>
-          </div>
-          <span class="article-meta-sep"></span>
-          <span>May 14, 2026</span>
-          <span class="article-meta-sep"></span>
-          <span>9 min read</span>
-          <span class="article-meta-sep"></span>
-          <span>Lead SEO Analyst, BankBazaar</span>
+        <h2 class="blc-title"><a href="blog-aeo.html">AEO: The Strategy That Gets You Into AI Answers — Not Just Google Rankings</a></h2>
+        <p class="blc-exc">A few months ago, a colleague asked me: "If someone asks ChatGPT which credit card to get in India, do we show up?" That question revealed a massive blind spot — and pushed me to go deep on Answer Engine Optimization at BankBazaar.</p>
+        <div class="blc-footer">
+          <span class="blc-meta">May 14, 2026 · 9 min read</span>
+          <a href="blog-aeo.html" class="blc-read">Read Article →</a>
         </div>
-      </div>
-
-      <div class="article-hero-img" style="background:linear-gradient(135deg,#F5ECD8 0%,#EDE0F5 60%,#F0F5ED 100%)">
-        🎯
-        <span class="article-hero-img-label">Illustration: Answer Engine Optimization strategy map</span>
-      </div>
-
-      <div class="article-body">
-
-        <p>A few months ago, a colleague asked me a question I couldn't immediately answer: <strong>"If someone asks ChatGPT which credit card to get in India, do we show up?"</strong></p>
-
-        <p>It was a simple question. But it revealed a massive blind spot in how most SEO teams were thinking about visibility. Google rankings? We had those tracked to the decimal. AI-generated answers? Nobody was watching.</p>
-
-        <p>That conversation pushed me to go deep on <strong>Answer Engine Optimization (AEO)</strong> — and what I found completely changed how we approach content at BankBazaar.</p>
-
-        <h2>What Is AEO — and How Is It Different from SEO?</h2>
-
-        <p>SEO is about ranking on a search results page. You optimize for a crawler, earn backlinks, structure your HTML, and hope Google puts you in position 1. The goal is a click.</p>
-
-        <p>AEO is different. <strong>The goal is to be the answer itself.</strong></p>
-
-        <p>When someone asks Google "What is the best credit card for airport lounge access?" they might get a featured snippet — a direct answer box that appears before the organic results. Or they might get an AI Overview that synthesizes multiple sources into a paragraph. On ChatGPT or Perplexity, they get a conversational response with inline citations.</p>
-
-        <p>In all of these cases, the user may never scroll to a traditional result. <strong>If you're not the source being cited, you don't exist.</strong></p>
-
-        <div class="callout callout-info">
-          <span class="callout-ico">💡</span>
-          <div class="callout-text"><strong>AEO in one sentence:</strong> Structuring your content so that AI systems, voice assistants, and answer engines can extract, trust, and cite your information directly — without requiring the user to click through.</div>
-        </div>
-
-        <h2>Why This Matters More in Fintech Than Almost Anywhere Else</h2>
-
-        <p>Financial queries are among the most question-heavy search categories that exist. People ask:</p>
-
-        <ul>
-          <li>"What is the minimum CIBIL score for a home loan?"</li>
-          <li>"How much personal loan can I get on ₹30,000 salary?"</li>
-          <li>"Which is better — SBI or HDFC home loan?"</li>
-          <li>"What happens if I miss an EMI?"</li>
-        </ul>
-
-        <p>These are <em>perfect</em> candidates for featured snippets, AI Overviews, and voice answers. They have a clear, factual answer. They're high-intent. And the user wants the answer fast — not a 2,000-word blog post they have to wade through.</p>
-
-        <p>At BankBazaar, we serve millions of these queries every month. When we started tracking our featured snippet capture rate, we realized we were winning the ranking but losing the answer. Pages ranked #1 but the snippet was going to a competitor with a tighter, more direct FAQ format.</p>
-
-        <div class="stat-row">
-          <div class="stat-block"><div class="num">3×</div><div class="lbl">CTR improvement from featured snippet vs. position #1 blue link</div></div>
-          <div class="stat-block"><div class="num">40%</div><div class="lbl">of Google searches result in zero clicks (source: SparkToro 2024)</div></div>
-          <div class="stat-block"><div class="num">58%</div><div class="lbl">of voice search answers come from featured snippets</div></div>
-        </div>
-
-        <h2>How to Actually Implement AEO: The Practical Playbook</h2>
-
-        <p>Here is the exact process we use at BankBazaar. It's not complicated — but it requires discipline and consistency.</p>
-
-        <h3>1. Identify Question-Based Keywords</h3>
-
-        <p>Your first task is to find every question your audience is asking. Use:</p>
-
-        <ul>
-          <li><strong>Google's "People Also Ask"</strong> — the most underrated AEO research tool, available for free on every SERP</li>
-          <li><strong>AnswerThePublic or AlsoAsked.com</strong> — for visual maps of related questions</li>
-          <li><strong>Google Search Console</strong> — filter for queries containing "what", "how", "why", "best", "which"</li>
-          <li><strong>Ahrefs or SEMrush</strong> — question filter in the keyword explorer</li>
-        </ul>
-
-        <p>For BankBazaar, we mapped every question-format query across our key product verticals: credit cards, personal loans, home loans, and insurance. The list was over 3,000 questions long.</p>
-
-        <h3>2. Create Direct-Answer Content Blocks</h3>
-
-        <p>For each key question, you need a content block that answers it in <strong>40–60 words</strong> (the sweet spot for featured snippet extraction). The format matters enormously:</p>
-
-        <ul>
-          <li>Place the question as an H2 or H3 heading</li>
-          <li>Answer it in the very next paragraph — directly, without preamble</li>
-          <li>Don't begin with "It depends" or "Great question" — just answer</li>
-          <li>Follow with a supporting list, table, or example for context</li>
-        </ul>
-
-        <blockquote>
-          <strong>Before (not AEO-optimized):</strong> "When it comes to the minimum CIBIL score required for a home loan, there are several factors to consider. Lenders typically look at your full credit profile, which includes your repayment history, outstanding balances, and the age of your credit accounts..."<br><br>
-          <strong>After (AEO-optimized):</strong> "Most lenders require a minimum CIBIL score of 750 for a home loan at competitive interest rates. A score between 700–749 may still qualify, but typically at higher interest rates. Scores below 700 will likely result in rejection from major banks."
-        </blockquote>
-
-        <h3>3. Implement FAQ Schema Markup</h3>
-
-        <p>Schema markup tells Google explicitly that your page contains Q&A content. This significantly increases your chance of earning the featured snippet <em>and</em> being cited in AI Overviews.</p>
-
-        <p>The JSON-LD format for FAQ schema looks like this:</p>
-
-        <div class="img-placeholder">
-          📋
-          <span class="img-placeholder-label">Image: FAQ Schema JSON-LD code example</span>
-        </div>
-
-        <p>At BankBazaar, we built a custom <strong>FAQs Auto-Builder tool</strong> that generates this schema markup automatically from a spreadsheet of questions and answers — cutting the time from 2 hours per page to under 5 minutes.</p>
-
-        <h3>4. Optimize for E-E-A-T</h3>
-
-        <p>Google's <strong>E-E-A-T</strong> (Experience, Expertise, Authoritativeness, Trustworthiness) framework matters enormously for AEO, especially in the "Your Money or Your Life" categories that financial content falls under.</p>
-
-        <p>Practical steps: add author bios with credentials, cite official sources (RBI, SEBI, bank websites), include "last updated" dates, link to primary sources, and make sure your domain has a solid backlink profile from authoritative financial publications.</p>
-
-        <h3>5. Track Snippet Capture Rate</h3>
-
-        <p>AEO results aren't measured by rankings — they're measured by snippet capture. In Google Search Console, filter for queries where your average position is between 1 and 3, then check if you're winning the featured snippet for those queries using a rank tracker that supports snippet tracking.</p>
-
-        <div class="callout callout-tip">
-          <span class="callout-ico">🔑</span>
-          <div class="callout-text"><strong>Pro tip:</strong> The fastest way to steal a featured snippet is to find a competitor who has one, analyze the exact format of their answer block, write a cleaner, more complete version in the same format, and ensure your page has stronger E-E-A-T signals. Google frequently rotates snippets as content quality shifts.</div>
-        </div>
-
-        <h2>AEO vs. Traditional SEO: What Changes, What Stays the Same</h2>
-
-        <table class="key-table">
-          <thead><tr><th>Factor</th><th>Traditional SEO</th><th>AEO</th></tr></thead>
-          <tbody>
-            <tr><td>Goal</td><td>Earn clicks from a results page</td><td>Become the answer — with or without a click</td></tr>
-            <tr><td>Content format</td><td>Long-form, comprehensive articles</td><td>Direct-answer blocks + supporting depth</td></tr>
-            <tr><td>Technical focus</td><td>Crawlability, speed, backlinks</td><td>+ Schema markup, E-E-A-T, structured data</td></tr>
-            <tr><td>Measurement</td><td>Rankings, organic traffic, clicks</td><td>+ Featured snippet capture, AI citation rate</td></tr>
-            <tr><td>Query type</td><td>All query types</td><td>Specifically question-format, factual, high-intent</td></tr>
-          </tbody>
-        </table>
-
-        <h2>The Bottom Line</h2>
-
-        <p>AEO is not a replacement for SEO — it's an evolution of it. The fundamentals of technical quality, good content, and authoritative backlinks still matter. But the format, structure, and intent of your content needs to evolve for a world where users are increasingly getting answers <em>before</em> they even visit your site.</p>
-
-        <p>For fintech brands, the opportunity is enormous. Financial questions are high-stakes, high-intent, and perfectly suited for direct answers. The brands that get their FAQ architecture, schema markup, and E-E-A-T right will dominate AI-generated answers for years to come.</p>
-
-        <p>My team is in the middle of this shift right now. And the results are already showing up in our featured snippet numbers.</p>
-
-      </div>
-
-      <div class="article-tags">
-        <span class="art-tag">AEO</span>
-        <span class="art-tag">Featured Snippets</span>
-        <span class="art-tag">FAQ Schema</span>
-        <span class="art-tag">E-E-A-T</span>
-        <span class="art-tag">Fintech SEO</span>
-        <span class="art-tag">BankBazaar</span>
-      </div>
-      <div class="article-share">
-        <span class="share-label">Share:</span>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lochan.online/blog.html%23aeo" class="share-btn share-li" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com/intent/tweet?url=https://lochan.online/blog.html%23aeo&text=AEO+for+Fintech+by+%40lochanyadav" class="share-btn share-tw" target="_blank">Twitter / X</a>
       </div>
     </article>
 
-    <!-- ════════════════════════════════
-         ARTICLE 2: GEO
-    ════════════════════════════════ -->
-    <article class="article" id="geo">
-      <div class="article-header">
+    <!-- Card 2: GEO -->
+    <article class="blog-list-card">
+      <div class="blc-img" style="background:linear-gradient(135deg,#E8EDF5 0%,#D4E0F5 60%,#EDE8F5 100%)">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <circle cx="200" cy="100" r="70" fill="none" stroke="#7C3AED" stroke-width="1.5" opacity="0.3"/>
+          <ellipse cx="200" cy="100" rx="70" ry="28" fill="none" stroke="#7C3AED" stroke-width="1" opacity="0.25"/>
+          <line x1="200" y1="30" x2="200" y2="170" stroke="#7C3AED" stroke-width="1" opacity="0.2"/>
+          <line x1="130" y1="100" x2="270" y2="100" stroke="#7C3AED" stroke-width="1" opacity="0.2"/>
+          <circle cx="200" cy="100" r="18" fill="rgba(124,58,237,0.15)" stroke="#7C3AED" stroke-width="2"/>
+          <text x="200" y="105" font-family="Arial" font-size="11" fill="#7C3AED" text-anchor="middle" font-weight="bold">AI</text>
+          <circle cx="295" cy="60" r="14" fill="white" stroke="#7C3AED" stroke-width="1.5"/><text x="295" y="64" font-size="8" text-anchor="middle">Chat</text>
+          <circle cx="310" cy="130" r="14" fill="white" stroke="#7C3AED" stroke-width="1.5"/><text x="310" y="134" font-size="8" text-anchor="middle">Gem</text>
+          <circle cx="98" cy="62" r="14" fill="white" stroke="#7C3AED" stroke-width="1.5"/><text x="98" y="66" font-size="7" text-anchor="middle">Perp</text>
+          <circle cx="88" cy="138" r="14" fill="white" stroke="#7C3AED" stroke-width="1.5"/><text x="88" y="142" font-size="8" text-anchor="middle">Clau</text>
+        </svg>
+      </div>
+      <div class="blc-body">
         <span class="article-cat cat-geo">GEO · Generative Engine Optimization</span>
-        <h1 class="article-title">GEO: Optimizing for AI-Generated Search Results in 2025 — A Practical Guide</h1>
-        <div class="article-meta">
-          <div class="article-author">
-            <div class="article-av">LY</div>
-            <span class="article-author-name">Lochan Yadav</span>
-          </div>
-          <span class="article-meta-sep"></span>
-          <span>April 28, 2026</span>
-          <span class="article-meta-sep"></span>
-          <span>11 min read</span>
-          <span class="article-meta-sep"></span>
-          <span>Lead SEO Analyst, BankBazaar</span>
+        <h2 class="blc-title"><a href="blog-geo.html">GEO: Optimizing for AI-Generated Search Results in 2025 — A Practical Guide</a></h2>
+        <p class="blc-exc">Google's AI Overviews now appear on 15–20% of all searches. ChatGPT processes over 10 million queries per day. These platforms read your content, extract the useful parts, and sometimes — if you're good enough — cite you. This is GEO.</p>
+        <div class="blc-footer">
+          <span class="blc-meta">April 28, 2026 · 11 min read</span>
+          <a href="blog-geo.html" class="blc-read">Read Article →</a>
         </div>
-      </div>
-
-      <div class="article-hero-img" style="background:linear-gradient(135deg,#E8EDF5 0%,#D4E0F5 60%,#EDE8F5 100%)">
-        🌍
-        <span class="article-hero-img-label">Illustration: GEO — how AI systems cite and surface web content</span>
-      </div>
-
-      <div class="article-body">
-
-        <p>Search is changing in a way that most SEO professionals haven't fully reckoned with yet. Not slowly, not incrementally — it's a structural shift happening right now, in real time, across every major platform.</p>
-
-        <p>Google's AI Overviews now appear on roughly <strong>15–20% of all searches</strong>. ChatGPT processes over 10 million queries per day. Perplexity has become a default search tool for millions of users who want cited, synthesized answers rather than a list of blue links.</p>
-
-        <p>All of these platforms do the same thing: they read your content, extract the useful parts, synthesize an answer, and sometimes — if your content is good enough — they cite you.</p>
-
-        <p>This is <strong>Generative Engine Optimization (GEO)</strong>. And it's now as important as traditional SEO.</p>
-
-        <h2>Understanding How Generative AI Systems Work</h2>
-
-        <p>To optimize for generative AI, you need to understand how it actually builds answers.</p>
-
-        <p>When someone asks ChatGPT or Perplexity a question with web search enabled, here's what happens:</p>
-
-        <ol>
-          <li>The model issues a web search query (often several of them)</li>
-          <li>It retrieves 5–20 pages from high-authority domains</li>
-          <li>It reads the content of those pages — the actual text, not just the title and meta</li>
-          <li>It synthesizes the information into a response</li>
-          <li>It selects which sources to cite based on clarity, authority, and relevance</li>
-        </ol>
-
-        <p>The critical insight here is step 3 and 5. The AI reads your content. And it cites sources that are clear, authoritative, and easy to extract information from. This is very different from how Google's traditional algorithm works.</p>
-
-        <div class="callout callout-info">
-          <span class="callout-ico">🤖</span>
-          <div class="callout-text"><strong>GEO ≠ AEO:</strong> AEO focuses on Google's featured snippets and People Also Ask. GEO is broader — it covers all generative AI platforms including ChatGPT, Gemini, Perplexity, Claude, and Microsoft Copilot. The principles overlap, but GEO requires thinking about content in terms of "machine readability" at a deeper level.</div>
-        </div>
-
-        <h2>What AI Systems Look for When Selecting Sources</h2>
-
-        <p>Based on patterns observed across multiple platforms, AI systems consistently prefer sources that exhibit these qualities:</p>
-
-        <h3>1. Factual Density and Specificity</h3>
-
-        <p>Vague content gets skipped. Specific, factual content gets cited. There's a massive difference between "Personal loan interest rates vary by lender" and "Personal loan interest rates in India range from 10.49% to 36% per annum, with PSU banks typically offering lower rates than NBFCs and private banks."</p>
-
-        <p>The second sentence is <strong>citable</strong>. It contains a specific fact that the AI can lift and present to the user. The first sentence tells the AI nothing useful.</p>
-
-        <h3>2. Clear Document Structure</h3>
-
-        <p>AI systems parse HTML. Pages with clear H1 → H2 → H3 hierarchies, short introductory paragraphs, and well-labeled sections are significantly easier for AI to navigate and extract from. Pages that bury key information in long paragraphs or navigation menus get passed over.</p>
-
-        <h3>3. Cited Sources and References</h3>
-
-        <p>When your content cites authoritative external sources — RBI guidelines, SEBI regulations, official bank rate cards — the AI is more likely to trust your synthesis of that information. Think of it as a chain of authority: your page citing the RBI inherits some of the RBI's credibility.</p>
-
-        <h3>4. Domain Authority and Brand Recognition</h3>
-
-        <p>AI models have a prior on well-known, authoritative domains. BankBazaar, Moneycontrol, Economic Times, and similar publications are more likely to be retrieved and cited than a newly registered blog, even with excellent content. This isn't entirely fair — but it's reality, and it means that building domain authority through traditional SEO is still crucial for GEO success.</p>
-
-        <div class="img-placeholder">
-          📊
-          <span class="img-placeholder-label">Image: Diagram showing how AI citation probability correlates with domain authority and content specificity</span>
-        </div>
-
-        <h2>The GEO Optimization Framework: 5 Practical Steps</h2>
-
-        <h3>Step 1: Audit Your Content for "AI Extractability"</h3>
-
-        <p>Go through your key pages and ask: if an AI read this page looking for the answer to a specific question, could it find a clean, citable sentence or paragraph? If the answer to your most important query is buried in paragraph 8 of a 2,000-word article, you have work to do.</p>
-
-        <p>The fix: add a "Quick Answer" or "Key Takeaway" box near the top of each article that summarizes the core answer in 2–3 sentences. This gives the AI an easy extraction point.</p>
-
-        <h3>Step 2: Add Statistical and Quantitative Claims</h3>
-
-        <p>Numbers are gold in GEO. AI systems love to cite specific figures because they're concrete and verifiable. Audit your top-performing pages and ask: where can I add specific data points, percentages, rupee figures, or comparisons?</p>
-
-        <p>For a home loan page, this might mean adding: "As of 2026, SBI's home loan interest rate starts at 8.50% p.a. for loans above ₹75 lakh, with a processing fee of 0.35% of the loan amount." That's a sentence an AI can cite directly.</p>
-
-        <h3>Step 3: Implement Comprehensive Structured Data</h3>
-
-        <p>Beyond FAQ schema, use every relevant schema type for your content:</p>
-
-        <ul>
-          <li><strong>Article schema</strong> — with author, datePublished, dateModified</li>
-          <li><strong>HowTo schema</strong> — for step-by-step process pages</li>
-          <li><strong>FinancialProduct schema</strong> — for product comparison pages</li>
-          <li><strong>BreadcrumbList</strong> — to communicate site structure</li>
-          <li><strong>Organization schema</strong> — with your brand's authority signals</li>
-        </ul>
-
-        <p>Structured data doesn't just help Google — it helps any AI system that uses web data understand what your page is about and who produced it.</p>
-
-        <h3>Step 4: Build Your Brand's "Knowledge Graph Presence"</h3>
-
-        <p>AI systems draw on what they "know" about brands from their training data and from what they find when they search. This means your brand presence across the web matters enormously for GEO.</p>
-
-        <p>Practical actions:</p>
-        <ul>
-          <li>Publish on authoritative third-party sites (guest posts, press coverage, industry reports)</li>
-          <li>Maintain consistent brand information across Google Business Profile, LinkedIn, Crunchbase</li>
-          <li>Earn mentions (with or without links) from well-known publications</li>
-          <li>Build an author brand — publish under your name consistently across platforms</li>
-        </ul>
-
-        <h3>Step 5: Track GEO Performance</h3>
-
-        <p>This is the hardest part because the tooling is still immature. Currently, the best approaches are:</p>
-
-        <ul>
-          <li><strong>Manual sampling</strong> — Regularly ask ChatGPT, Gemini, and Perplexity your target questions and check if your brand appears</li>
-          <li><strong>Perplexity monitoring</strong> — Perplexity shows its sources, making it easier to track citation rates</li>
-          <li><strong>Google AI Overview tracking</strong> — SEMrush and Ahrefs now track AI Overview appearances for keywords</li>
-          <li><strong>Direct traffic monitoring</strong> — A rise in branded direct traffic can correlate with increased AI visibility</li>
-        </ul>
-
-        <div class="callout callout-tip">
-          <span class="callout-ico">⚠️</span>
-          <div class="callout-text"><strong>The hard truth about GEO:</strong> There is no perfect formula yet. GEO is a combination of content quality, domain authority, structured data, and a degree of randomness in how AI systems select sources. The brands winning now are those who started investing in content quality and authority years ago — and that's your strongest argument for treating E-E-A-T seriously today.</div>
-        </div>
-
-        <h2>GEO for Fintech: The Specific Opportunity</h2>
-
-        <p>Fintech brands are uniquely positioned in the GEO landscape because:</p>
-
-        <ol>
-          <li><strong>Financial questions have definitive answers</strong> — unlike opinion-based topics, financial facts (rates, limits, requirements) can be verified and cited with confidence</li>
-          <li><strong>Regulatory data changes frequently</strong> — brands that keep their content updated will consistently beat stale competitors in AI citations</li>
-          <li><strong>Comparison queries are exploding</strong> — "HDFC vs SBI home loan 2026" is exactly the type of synthesis query that AI handles well, and if you've written the best comparison, you'll be cited</li>
-        </ol>
-
-        <p>At BankBazaar, we've made several content changes based on GEO principles — adding "Last updated" dates to all pages, restructuring rate tables to be more machine-readable, and adding explicit "Key Facts" summary boxes. The results are still being measured, but early signals from Google AI Overview appearances are positive.</p>
-
-        <h2>SEO + AEO + GEO = The Full Picture</h2>
-
-        <p>These three disciplines are not separate strategies — they're a triangle. Traditional SEO gets you the traffic. AEO gets you the featured snippets. GEO gets you into AI-generated answers. The brands that master all three will dominate organic search for the next decade, regardless of how the interface changes.</p>
-
-      </div>
-
-      <div class="article-tags">
-        <span class="art-tag">GEO</span>
-        <span class="art-tag">AI Search</span>
-        <span class="art-tag">Generative AI</span>
-        <span class="art-tag">ChatGPT SEO</span>
-        <span class="art-tag">AI Overviews</span>
-        <span class="art-tag">Structured Data</span>
-        <span class="art-tag">Fintech SEO</span>
-      </div>
-      <div class="article-share">
-        <span class="share-label">Share:</span>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lochan.online/blog.html%23geo" class="share-btn share-li" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com/intent/tweet?url=https://lochan.online/blog.html%23geo&text=GEO+Optimization+Guide+by+%40lochanyadav" class="share-btn share-tw" target="_blank">Twitter / X</a>
       </div>
     </article>
 
-    <!-- ════════════════════════════════
-         ARTICLE 3: TECHNICAL SEO
-    ════════════════════════════════ -->
-    <article class="article" id="technical">
-      <div class="article-header">
+    <!-- Card 3: Technical SEO -->
+    <article class="blog-list-card">
+      <div class="blc-img" style="background:linear-gradient(135deg,#E5F0EC 0%,#D0EADE 60%,#E8F0E5 100%)">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <circle cx="200" cy="100" r="38" fill="none" stroke="#167A4A" stroke-width="2.5" opacity="0.6"/>
+          <circle cx="200" cy="100" r="22" fill="rgba(22,122,74,0.12)"/>
+          <text x="200" y="106" font-size="16" text-anchor="middle">⚙️</text>
+          <circle cx="100" cy="55" r="22" fill="none" stroke="#167A4A" stroke-width="1.5" opacity="0.45"/>
+          <text x="100" y="60" font-size="12" text-anchor="middle">🔍</text>
+          <circle cx="300" cy="55" r="22" fill="none" stroke="#167A4A" stroke-width="1.5" opacity="0.45"/>
+          <text x="300" y="60" font-size="12" text-anchor="middle">📊</text>
+          <circle cx="100" cy="150" r="22" fill="none" stroke="#167A4A" stroke-width="1.5" opacity="0.45"/>
+          <text x="100" y="155" font-size="12" text-anchor="middle">🔗</text>
+          <circle cx="300" cy="150" r="22" fill="none" stroke="#167A4A" stroke-width="1.5" opacity="0.45"/>
+          <text x="300" y="155" font-size="12" text-anchor="middle">⚡</text>
+          <line x1="162" y1="87" x2="122" y2="68" stroke="#167A4A" stroke-width="1.2" opacity="0.35"/>
+          <line x1="238" y1="87" x2="278" y2="68" stroke="#167A4A" stroke-width="1.2" opacity="0.35"/>
+          <line x1="162" y1="113" x2="122" y2="138" stroke="#167A4A" stroke-width="1.2" opacity="0.35"/>
+          <line x1="238" y1="113" x2="278" y2="138" stroke="#167A4A" stroke-width="1.2" opacity="0.35"/>
+        </svg>
+      </div>
+      <div class="blc-body">
         <span class="article-cat cat-tech">Technical SEO</span>
-        <h1 class="article-title">Why Technical SEO Still Wins in the Age of AI: Lessons from India's Largest Fintech</h1>
-        <div class="article-meta">
-          <div class="article-author">
-            <div class="article-av">LY</div>
-            <span class="article-author-name">Lochan Yadav</span>
-          </div>
-          <span class="article-meta-sep"></span>
-          <span>March 10, 2026</span>
-          <span class="article-meta-sep"></span>
-          <span>10 min read</span>
-          <span class="article-meta-sep"></span>
-          <span>Lead SEO Analyst, BankBazaar</span>
+        <h2 class="blc-title"><a href="blog-technical-seo.html">Why Technical SEO Still Wins in the Age of AI: Lessons from India's Largest Fintech</a></h2>
+        <p class="blc-exc">Every few years someone declares technical SEO dead. I've been doing SEO for six years at BankBazaar and watched every major core update firsthand. Every time "technical SEO is dead" goes viral, sites with the best foundations come out stronger.</p>
+        <div class="blc-footer">
+          <span class="blc-meta">March 10, 2026 · 10 min read</span>
+          <a href="blog-technical-seo.html" class="blc-read">Read Article →</a>
         </div>
-      </div>
-
-      <div class="article-hero-img" style="background:linear-gradient(135deg,#E5F0EC 0%,#D0EADE 60%,#E8F0E5 100%)">
-        ⚙️
-        <span class="article-hero-img-label">Illustration: Technical SEO architecture — crawl, index, rank</span>
-      </div>
-
-      <div class="article-body">
-
-        <p>Every few years, a new trend sweeps through the SEO community and someone declares technical SEO dead. "AI will write the content." "Backlinks don't matter anymore." "Just use ChatGPT."</p>
-
-        <p>I've been doing SEO for six years at companies that live and die by organic traffic. I've seen every Google core update firsthand. And I'll tell you this: <strong>every time "technical SEO is dead" becomes a hot take, the sites with the best technical foundations come out stronger on the other side.</strong></p>
-
-        <p>Here's what actually happens at scale — using BankBazaar as the case study.</p>
-
-        <h2>The Technical SEO Reality at Scale</h2>
-
-        <p>BankBazaar is not a small blog. It's a platform with hundreds of thousands of pages: product pages, comparison pages, blog articles, calculator tools, city-specific pages, and more. At that scale, technical SEO isn't a one-time checklist — it's an ongoing operational discipline.</p>
-
-        <p>When we run a site health audit, we're not looking at 50 pages. We're looking at crawl budget allocation across an enormous URL space, indexation rates across product categories, Core Web Vitals variance by template type, and structured data validity across dynamically generated content.</p>
-
-        <p>You cannot do that work with AI content generation. You need systematic technical processes.</p>
-
-        <h2>Core Web Vitals: The Metric That Changed How We Work</h2>
-
-        <p>When Google made Core Web Vitals (CWV) a ranking factor in 2021, it changed the entire conversation between SEO and engineering teams. Suddenly, we had a specific, measurable set of metrics that directly connected our work to user experience and ranking performance.</p>
-
-        <p>The three Core Web Vitals metrics are:</p>
-
-        <ul>
-          <li><strong>Largest Contentful Paint (LCP)</strong> — how fast the main content loads. Target: under 2.5 seconds</li>
-          <li><strong>Interaction to Next Paint (INP)</strong> — how responsive the page is to user interactions. Target: under 200ms</li>
-          <li><strong>Cumulative Layout Shift (CLS)</strong> — how much the page layout shifts during loading. Target: under 0.1</li>
-        </ul>
-
-        <div class="img-placeholder">
-          📊
-          <span class="img-placeholder-label">Image: Core Web Vitals score dashboard — BankBazaar template comparison (anonymized)</span>
-        </div>
-
-        <p>At BankBazaar, our biggest CWV challenge was LCP on financial product pages. These pages have a lot of above-the-fold content — rate tables, comparison widgets, trust badges — and every element competed for load priority.</p>
-
-        <p>The fix required SEO and engineering to work together on: lazy loading non-critical images, preloading the LCP element, eliminating render-blocking scripts, and optimizing server response time. It wasn't an SEO task or an engineering task — it was both.</p>
-
-        <div class="callout callout-warn">
-          <span class="callout-ico">✅</span>
-          <div class="callout-text"><strong>The CWV lesson:</strong> Great content that loads slowly won't rank. Google measures page experience signals for every URL. Fixing CWV on your top 20% of pages (by traffic) is almost always the highest-ROI technical SEO investment available.</div>
-        </div>
-
-        <h2>Crawl Budget: The Invisible Factor That Decides What Gets Indexed</h2>
-
-        <p>Most SEO professionals understand crawl budget in theory. Far fewer have worked with it at a scale where it actually becomes a constraint.</p>
-
-        <p>Google doesn't crawl every page on your site every day. It allocates crawl resources based on domain authority, page importance, and crawl demand. If you have 500,000 URLs and Google only crawls 50,000 per day, the question of <em>which</em> pages get crawled — and indexed — is critically important.</p>
-
-        <p>At BankBazaar, managing crawl budget means:</p>
-
-        <ul>
-          <li>Blocking parameterized URLs and session-based duplicates via robots.txt</li>
-          <li>Consolidating thin content pages with canonical tags and 301 redirects</li>
-          <li>Ensuring our XML sitemap only contains indexable, canonical URLs</li>
-          <li>Monitoring index coverage reports in GSC weekly, not monthly</li>
-          <li>Using log file analysis to understand which pages Google actually crawls vs. what we think it crawls</li>
-        </ul>
-
-        <h3>The Robots.txt Lesson We Learned the Hard Way</h3>
-
-        <p>A misconfigured robots.txt can silently de-index critical pages. At one point, a configuration change accidentally blocked a subfolder of product pages that accounted for significant organic traffic. We caught it within 48 hours via GSC coverage alerts — but it was a reminder that technical vigilance isn't optional.</p>
-
-        <p>Our current process: any robots.txt change goes through an SEO sign-off before deployment, and we run a GSC coverage audit within 48 hours of any significant site change.</p>
-
-        <h2>Structured Data at Scale</h2>
-
-        <p>I've already talked about structured data in the context of AEO and GEO. But there's a technical dimension that often gets overlooked: at scale, structured data quality is a systems problem, not a content problem.</p>
-
-        <p>When you have thousands of pages dynamically generating FAQ schema, breadcrumbs, and product schema, a single template error can invalidate structured data across hundreds of pages. This is why we use Google's Rich Results Test as part of our QA pipeline for every template change.</p>
-
-        <div class="img-placeholder">
-          🔧
-          <span class="img-placeholder-label">Image: Structured data validation workflow — template → Rich Results Test → GSC enhancement report</span>
-        </div>
-
-        <h2>The Tools That Make Technical SEO Scalable</h2>
-
-        <p>I've built or contributed to several internal tools that make technical SEO manageable at BankBazaar's scale:</p>
-
-        <table class="key-table">
-          <thead><tr><th>Tool</th><th>What It Does</th><th>Time Saved</th></tr></thead>
-          <tbody>
-            <tr><td>Broken Links Auditor</td><td>Scans entire domain for 4xx/5xx errors weekly</td><td>~6 hrs/week</td></tr>
-            <tr><td>Internal Links Auditor</td><td>Maps link graph, flags orphan pages and crawl depth issues</td><td>~4 hrs/week</td></tr>
-            <tr><td>Meta Tag Extractor</td><td>Bulk-audits title/meta across URL lists</td><td>~3 hrs/audit</td></tr>
-            <tr><td>Lighthouse Tracker</td><td>Tracks CWV scores by template over time</td><td>~5 hrs/month</td></tr>
-            <tr><td>Cannibalization Detector</td><td>Flags keyword overlap across GSC exports</td><td>~4 hrs/analysis</td></tr>
-          </tbody>
-        </table>
-
-        <p>These tools don't replace SEO judgment — they free up time for it. When the audit runs automatically, I can spend my time analyzing the findings and making strategic decisions, rather than manually checking hundreds of URLs in a spreadsheet.</p>
-
-        <h2>Algorithm Updates: What Actually Recovers Traffic</h2>
-
-        <p>I've lived through three major Google core updates at BankBazaar. Here is what I've learned about recovery:</p>
-
-        <ol>
-          <li><strong>Thin content is always punished</strong> — Pages with fewer than 400 substantive words that exist primarily for internal linking or navigation rarely recover. The fix is either consolidating them or dramatically expanding their value.</li>
-          <li><strong>Pages that violate E-E-A-T get hit hardest</strong> — Financial content without author credentials, without citations, or with outdated information gets de-prioritized in every core update.</li>
-          <li><strong>Technical issues don't cause rank drops, but they prevent rank recovery</strong> — After an update, a site with crawlability issues, slow CWV, or broken structured data takes much longer to recover because Googlebot can't efficiently re-evaluate the improved content.</li>
-          <li><strong>Recovery is measured in months, not weeks</strong> — We typically see the first signs of recovery 6–8 weeks after improvements are deployed, with full recovery taking 3–6 months.</li>
-        </ol>
-
-        <h2>The Conclusion: Technical SEO Is the Foundation, Not the Ceiling</h2>
-
-        <p>AI is changing what we write and how we structure it. But it is not changing the fundamental requirement that Google needs to be able to crawl your pages, index them without errors, and render them fast enough to provide a good user experience.</p>
-
-        <p>In fact, AI-generated search features like AI Overviews make technical SEO more important, not less. If your pages are slow, your structured data is broken, or your crawl efficiency is poor, the AI system pulling content for an answer will skip you entirely — regardless of how good your content is.</p>
-
-        <p>The brands that win in the next five years will be the ones that treat technical SEO not as a checklist they run once a year, but as a continuous operational practice — embedded in their dev workflows, monitored with automation, and evolved in response to every platform change.</p>
-
-        <p>That's been our philosophy at BankBazaar. It's why, through multiple major algorithm updates, we've consistently come out on the other side stronger than we went in.</p>
-
-      </div>
-
-      <div class="article-tags">
-        <span class="art-tag">Technical SEO</span>
-        <span class="art-tag">Core Web Vitals</span>
-        <span class="art-tag">Crawl Budget</span>
-        <span class="art-tag">Structured Data</span>
-        <span class="art-tag">Algorithm Updates</span>
-        <span class="art-tag">BankBazaar</span>
-        <span class="art-tag">Fintech SEO</span>
-      </div>
-      <div class="article-share">
-        <span class="share-label">Share:</span>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lochan.online/blog.html%23technical" class="share-btn share-li" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com/intent/tweet?url=https://lochan.online/blog.html%23technical&text=Technical+SEO+lessons+from+fintech+by+%40lochanyadav" class="share-btn share-tw" target="_blank">Twitter / X</a>
       </div>
     </article>
 
-    <!-- ════════════════════════════════
-         ARTICLE 4: SEO IN 2026 AI ERA
-    ════════════════════════════════ -->
-    <article class="article" id="seo2026">
-      <div class="article-header">
-        <span class="article-cat" style="background:rgba(16,185,129,.08);color:#059669;border-color:rgba(16,185,129,.2)">🔮 SEO Strategy · 2026</span>
-        <h1 class="article-title">SEO in 2026: How AI Is Reshaping the Fundamentals of Search</h1>
-        <div class="article-meta">
-          <div class="article-author">
-            <div class="article-av">LY</div>
-            <span class="article-author-name">Lochan Yadav</span>
-          </div>
-          <div class="article-meta-right">
-            <span>April 28, 2026</span>
-            <span>·</span>
-            <span>8 min read</span>
-            <span>·</span>
-            <span>Lead SEO Analyst, BankBazaar</span>
-          </div>
-        </div>
+    <!-- Card 4: SEO 2026 -->
+    <article class="blog-list-card">
+      <div class="blc-img" style="background:linear-gradient(135deg,#064e3b 0%,#065f46 100%)">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect x="60" y="70" rx="24" ry="24" width="280" height="60" fill="rgba(16,185,129,0.2)" stroke="#059669" stroke-width="1.5"/>
+          <text x="130" y="106" font-family="Arial" font-size="12" fill="rgba(255,255,255,0.5)">Search...</text>
+          <circle cx="310" cy="100" r="18" fill="#059669" opacity="0.8"/>
+          <text x="310" y="105" font-family="Arial" font-size="12" fill="white" text-anchor="middle">🔍</text>
+          <circle cx="160" cy="45" r="3" fill="#059669" opacity="0.5"/>
+          <circle cx="200" cy="35" r="5" fill="#059669" opacity="0.7"/>
+          <circle cx="250" cy="45" r="3" fill="#059669" opacity="0.5"/>
+          <text x="200" y="155" font-family="Georgia,serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">AI Overview Active</text>
+        </svg>
       </div>
-
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#064e3b,#065f46);display:flex;align-items:center;justify-content:center;min-height:220px;border-radius:10px;margin-bottom:28px">
-        <div style="text-align:center;color:rgba(255,255,255,.8)"><div style="font-size:48px;margin-bottom:8px">🔮</div><div style="font-size:14px;font-weight:600">SEO in 2026 — The AI Era</div></div>
-      </div>
-
-      <div class="article-body">
-        <p>If you started your SEO career before 2022, you built it on a set of fundamentals that felt immovable: keyword research, backlinks, technical audits, on-page optimization. Then ChatGPT launched. Then Google's SGE became AI Overviews. Then Perplexity crossed 100 million monthly users. And suddenly, the playbook you spent years building needed a version 2.0.</p>
-
-        <p>Here's what I've observed managing SEO at BankBazaar through this transition: <strong>the fundamentals didn't die. They evolved.</strong> The mistake most SEOs make is treating AI as a replacement rather than a transformation.</p>
-
-        <h2>Zero-Click Is Now 58% of All Queries</h2>
-        <p>By Q1 2026, zero-click searches — where the user gets their answer directly in the SERP without clicking — account for roughly 58% of all Google queries on mobile. This isn't theoretical anymore. For informational fintech queries like "what is the current home loan interest rate," the answer appears in AI Overviews before the user even sees an organic result.</p>
-
-        <div class="stat-row">
-          <div class="stat-item"><div class="stat-num" style="color:#059669">58%</div><div class="stat-label">Zero-click searches on mobile (Q1 2026)</div></div>
-          <div class="stat-item"><div class="stat-num" style="color:#059669">6.2×</div><div class="stat-label">CTR uplift when cited in AI Overview</div></div>
-          <div class="stat-item"><div class="stat-num" style="color:#059669">41%</div><div class="stat-label">Of AI Overview sources are not page-1 ranked</div></div>
+      <div class="blc-body">
+        <span class="article-cat" style="background:rgba(16,185,129,.08);color:#059669">🔮 SEO Strategy · 2026</span>
+        <h2 class="blc-title"><a href="blog-seo-2026.html">SEO in 2026: How AI Is Reshaping the Fundamentals of Search</a></h2>
+        <p class="blc-exc">If you started your SEO career before 2022, you built it on fundamentals that felt immovable. Then ChatGPT launched. Then AI Overviews. Then Perplexity crossed 100M users. The fundamentals didn't die — they evolved. Here's what that means.</p>
+        <div class="blc-footer">
+          <span class="blc-meta">April 28, 2026 · 8 min read</span>
+          <a href="blog-seo-2026.html" class="blc-read">Read Article →</a>
         </div>
-
-        <p>That last number is the most important. <strong>41% of sources cited in AI Overviews do not rank on page 1 for the same query.</strong> AI is not simply re-ranking the top 10. It is synthesizing from a broader knowledge base — and that completely changes how you should be building content.</p>
-
-        <h2>The Three Layers of 2026 SEO</h2>
-        <p>Think of modern SEO as three concentric circles:</p>
-
-        <div class="callout callout-info">
-          <strong>Layer 1 — Traditional SEO (still essential):</strong> Crawlability, indexation, Core Web Vitals, E-E-A-T signals, keyword targeting. This is the foundation. Without it, nothing else works. Google still uses these signals even inside AI Overviews.
-        </div>
-
-        <div class="callout callout-tip">
-          <strong>Layer 2 — AEO (Answer Engine Optimization):</strong> Structuring content so AI can extract and cite it. Direct-answer blocks, FAQ schema, concise definitions, clear entity relationships. This is where most of the growth opportunity sits in 2026.
-        </div>
-
-        <div class="callout callout-warn">
-          <strong>Layer 3 — GEO (Generative Engine Optimization):</strong> Building brand presence in AI training data and retrieval systems. When ChatGPT or Perplexity mentions your brand by name without being asked, that's GEO working. It requires consistent authoritative publishing, brand citations, and knowledge graph optimization.
-        </div>
-
-        <h2>What Changed: User Intent in 2026</h2>
-        <p>The biggest shift in 2026 is not algorithmic — it's behavioral. Users now treat search differently. Before, someone searching "home loan eligibility" would click 3–4 results and compare. Today, they ask AI, get a synthesized answer, and only click through if they need to complete a transaction or need more depth.</p>
-
-        <p>This means <strong>your content needs to serve two audiences simultaneously:</strong> the human reader and the AI crawler. The AI crawler rewards extractable facts, cited sources, and structured answers. The human reader rewards clarity, examples, and trust signals. The good news: these are not mutually exclusive goals.</p>
-
-        <h2>The Playbook That's Working Right Now</h2>
-        <p>Based on what I've tested at BankBazaar across 200+ pages in the last six months, here's what's actually moving the needle in 2026:</p>
-
-        <p><strong>1. Write for extractability first.</strong> Every article should have at least one paragraph of 40–60 words that directly answers the core query. No fluff, no qualifications. Just the answer. This is what AI Overviews pull from.</p>
-
-        <p><strong>2. Add statistical citations from credible sources.</strong> RBI reports, SEBI data, academic papers. AI systems are trained to prefer content with verifiable citations. A claim supported by "according to RBI's Q4 2025 monetary policy report" is vastly more likely to be cited than the same claim without attribution.</p>
-
-        <p><strong>3. Build topical authority, not just page authority.</strong> Google's Helpful Content systems and AI retrieval models both reward sites that deeply cover a topic. Ten comprehensive, interlinked articles on home loans outperform 100 thin articles on 100 different topics.</p>
-
-        <p><strong>4. Refresh before creating.</strong> In a world where AI can generate infinite content, fresh and accurate content beats new content. Audit your top 20 pages quarterly. Update statistics, add new examples, expand FAQs. One refreshed page can outperform five new ones.</p>
-
-        <h2>The CTA Question: How Do You Get Clicks When AI Answers Everything?</h2>
-        <p>This is the question every SEO head is facing in 2026. My answer: you stop optimizing for clicks and start optimizing for <em>selection signals</em> — the actions that tell AI systems you're authoritative.</p>
-
-        <p>Brand mentions, being linked by authoritative sources, having your content referenced in academic and government documents, building a recognizable author entity — these all feed the system that decides whether your content gets cited in AI responses. A brand that AI consistently cites builds compounding organic presence, even in a zero-click environment.</p>
-
-        <div class="callout callout-tip">
-          <strong>The 2026 SEO mindset shift:</strong> Stop asking "how do I rank #1?" and start asking "how do I become the source AI trusts?" Ranking is a side effect of authority. Authority is built through consistent, verifiable, well-structured expertise.
-        </div>
-      </div>
-
-      <div class="article-tags">
-        <span class="art-tag">SEO 2026</span>
-        <span class="art-tag">AI Overviews</span>
-        <span class="art-tag">Zero-Click</span>
-        <span class="art-tag">AEO</span>
-        <span class="art-tag">GEO</span>
-        <span class="art-tag">Fintech SEO</span>
-      </div>
-      <div class="article-share">
-        <span class="share-label">Share:</span>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lochan.online/blog.html%23seo2026" class="share-btn share-li" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com/intent/tweet?url=https://lochan.online/blog.html%23seo2026&text=SEO+in+2026+%E2%80%94+how+AI+reshapes+search+fundamentals" class="share-btn share-tw" target="_blank">Twitter / X</a>
       </div>
     </article>
 
-    <!-- ════════════════════════════════
-         ARTICLE 5: SEO TRENDS 2026
-    ════════════════════════════════ -->
-    <article class="article" id="trends2026">
-      <div class="article-header">
-        <span class="article-cat" style="background:rgba(124,58,237,.08);color:#7C3AED;border-color:rgba(124,58,237,.2)">📈 SEO Trends · 2026</span>
-        <h1 class="article-title">SEO Trends 2026: Building Strategies That Survive the AI Algorithm Era</h1>
-        <div class="article-meta">
-          <div class="article-author">
-            <div class="article-av">LY</div>
-            <span class="article-author-name">Lochan Yadav</span>
-          </div>
-          <div class="article-meta-right">
-            <span>April 18, 2026</span>
-            <span>·</span>
-            <span>10 min read</span>
-            <span>·</span>
-            <span>Lead SEO Analyst, BankBazaar</span>
-          </div>
-        </div>
+    <!-- Card 5: Trends 2026 -->
+    <article class="blog-list-card">
+      <div class="blc-img" style="background:linear-gradient(135deg,#2e1065 0%,#4c1d95 100%)">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <polyline points="50,160 105,128 170,112 230,80 295,56 360,32" fill="none" stroke="#7C3AED" stroke-width="2.5" opacity="0.8"/>
+          <circle cx="50" cy="160" r="4" fill="#7C3AED" opacity="0.7"/>
+          <circle cx="105" cy="128" r="4" fill="#7C3AED" opacity="0.7"/>
+          <circle cx="170" cy="112" r="4" fill="#7C3AED" opacity="0.7"/>
+          <circle cx="230" cy="80" r="5" fill="#7C3AED" opacity="0.8"/>
+          <circle cx="295" cy="56" r="5" fill="#7C3AED" opacity="0.8"/>
+          <circle cx="360" cy="32" r="7" fill="#7C3AED" opacity="0.9"/>
+          <polygon points="360,16 374,38 346,38" fill="#7C3AED" opacity="0.7"/>
+          <line x1="50" y1="175" x2="375" y2="175" stroke="rgba(124,58,237,0.25)" stroke-width="1.5"/>
+          <line x1="50" y1="15" x2="50" y2="175" stroke="rgba(124,58,237,0.25)" stroke-width="1.5"/>
+        </svg>
       </div>
-
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#2e1065,#4c1d95);display:flex;align-items:center;justify-content:center;min-height:220px;border-radius:10px;margin-bottom:28px">
-        <div style="text-align:center;color:rgba(255,255,255,.8)"><div style="font-size:48px;margin-bottom:8px">📈</div><div style="font-size:14px;font-weight:600">SEO Trends 2026 — Strategies for the AI Era</div></div>
-      </div>
-
-      <div class="article-body">
-        <p>Every year, someone publishes a "death of SEO" think piece. Every year, organic search continues generating more revenue than almost every other digital channel combined. 2026 is no different — but the strategies that work have changed more in the last 18 months than in the previous five years combined.</p>
-
-        <p>I've broken down the seven trends that are actually moving the needle right now, with practical steps for each.</p>
-
-        <h2>Trend 1 — AI Overviews Demand "Extractable" Content</h2>
-        <p>Google's AI Overviews (formerly SGE) are now live for over 70% of informational queries globally. The pages that get cited share a clear pattern: they have a direct-answer paragraph within the first 200 words of the article, followed by supporting evidence.</p>
-        <p><strong>What to do:</strong> Audit your top 20 landing pages. Add a "Quick Answer" box at the top of each. Keep it under 60 words. State the answer directly, then expand below.</p>
-
-        <h2>Trend 2 — Brand Authority Beats Domain Authority</h2>
-        <p>The old game was: get high-DA backlinks, rank higher. The new game is: build brand recognition that Google can verify across multiple sources — LinkedIn, Wikipedia, press coverage, knowledge graph entries, podcast appearances. Domain Authority as a standalone metric is losing predictive power. Brand Authority is replacing it.</p>
-
-        <div class="callout callout-info">
-          <strong>Brand authority signals that Google uses in 2026:</strong> Author entity profiles with consistent bylines, brand mentions in high-authority publications (even without links), knowledge graph presence, consistent NAP (Name, Address, Phone) data for local entities, and structured data with sameAs properties pointing to authoritative sources.
+      <div class="blc-body">
+        <span class="article-cat" style="background:rgba(124,58,237,.08);color:#7C3AED">📈 SEO Trends · 2026</span>
+        <h2 class="blc-title"><a href="blog-trends-2026.html">SEO Trends 2026: Building Strategies That Survive the AI Algorithm Era</a></h2>
+        <p class="blc-exc">Every year someone publishes a "death of SEO" think piece. Every year, organic search keeps generating revenue. But the strategies that work have changed more in the last 18 months than in the previous five years combined. Here are the 7 trends actually moving the needle.</p>
+        <div class="blc-footer">
+          <span class="blc-meta">April 18, 2026 · 10 min read</span>
+          <a href="blog-trends-2026.html" class="blc-read">Read Article →</a>
         </div>
-
-        <h2>Trend 3 — Experience Content (the First E in E-E-A-T) Is Mandatory</h2>
-        <p>Google added "Experience" to its quality rater guidelines in 2022. By 2026, it's become a primary differentiator. AI can write factually accurate content at scale. It cannot write from first-hand experience. The pages that rank in competitive verticals — finance, health, legal — now consistently include personal experience signals: "I tested this," "we ran this campaign," "our data showed."</p>
-        <p><strong>At BankBazaar:</strong> We added a "From Our Data" section to our top landing pages featuring internal search trends and conversion data. Those pages saw an average 23% improvement in Click-Depth metrics within 60 days.</p>
-
-        <h2>Trend 4 — Video + Text Hybrid Pages Outperform Either Alone</h2>
-        <p>Pages with an embedded video (YouTube preferably, for VideoObject schema support) alongside detailed text are seeing 34% higher dwell time and 18% lower bounce rates on average compared to text-only equivalents. The video doesn't need to be professional — a 3-minute screencast explaining the concept works.</p>
-
-        <h2>Trend 5 — Long-Tail Is Getting Longer</h2>
-        <p>AI handles short informational queries better than ever. Users searching for nuanced, complex, or comparison-based information still need detailed content. Queries are getting longer and more conversational: "what happens to my home loan EMI if interest rates rise by 50 basis points" is a real query type gaining traction in fintech SEO.</p>
-        <p><strong>What to do:</strong> Build FAQ clusters around your top pages. Use Google's "People Also Ask" data, Semrush's Related Questions, and your own internal search data to find the long-tail queries your audience is using.</p>
-
-        <h2>Trend 6 — Technical Health Is Non-Negotiable at Scale</h2>
-        <p>With AI crawlers (Googlebot, GPTBot, ClaudeBot) hitting sites more frequently, Core Web Vitals, crawl budget, and JavaScript rendering are back in the spotlight. Sites with >3 second LCP or significant CLS are being systematically deprioritized in AI Overview source selection.</p>
-
-        <div class="stat-row">
-          <div class="stat-item"><div class="stat-num" style="color:var(--accent)">3s</div><div class="stat-label">Max acceptable LCP for AI Overview eligibility (estimated)</div></div>
-          <div class="stat-item"><div class="stat-num" style="color:var(--accent)">0.1</div><div class="stat-label">CLS threshold — above this, pages lose rich result eligibility</div></div>
-          <div class="stat-item"><div class="stat-num" style="color:var(--accent)">200ms</div><div class="stat-label">Target INP for competitive fintech verticals</div></div>
-        </div>
-
-        <h2>Trend 7 — The Rise of the "Answer Page"</h2>
-        <p>A new content format is emerging in 2026: the Answer Page. Unlike a traditional blog post or landing page, an Answer Page is structured specifically to satisfy AI retrieval systems. It has: a direct definition block, a comparison table, a numbered step-by-step section, an FAQ with schema markup, and a CTA. It's not long (800–1,200 words) but it's intensely structured.</p>
-        <p>This format is generating 3× more AI Overview citations than traditional long-form articles in our internal tests at BankBazaar.</p>
-
-        <div class="callout callout-tip">
-          <strong>Start here:</strong> Pick your top 5 pages by organic impressions. Reformat each as an Answer Page using the structure above. Measure AI Overview impressions via Google Search Console's "Search type: Web" filter with Discover excluded. Track for 45 days.
-        </div>
-
-        <h2>The CTA Paradox — Getting Traffic When AI Answers Everything</h2>
-        <p>The counter-intuitive insight from 2026: <strong>being cited in AI Overviews still drives clicks</strong> — but for different reasons. Users who see your brand named as a source are more likely to click through for the tool, calculator, or transaction they need. The click is further down the funnel but higher intent.</p>
-        <p>Optimize your content to be the trusted source, and the clicks follow. The old model was "rank, get traffic, convert." The 2026 model is "be cited, build trust, attract high-intent visitors."</p>
-      </div>
-
-      <div class="article-tags">
-        <span class="art-tag">SEO Trends</span>
-        <span class="art-tag">2026 Strategy</span>
-        <span class="art-tag">E-E-A-T</span>
-        <span class="art-tag">Brand Authority</span>
-        <span class="art-tag">AI Overviews</span>
-        <span class="art-tag">Answer Pages</span>
-      </div>
-      <div class="article-share">
-        <span class="share-label">Share:</span>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lochan.online/blog.html%23trends2026" class="share-btn share-li" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com/intent/tweet?url=https://lochan.online/blog.html%23trends2026&text=SEO+Trends+2026+%E2%80%94+building+strategies+for+the+AI+era" class="share-btn share-tw" target="_blank">Twitter / X</a>
       </div>
     </article>
 
-    <!-- ════════════════════════════════
-         ARTICLE 6: TOP AI SEO TOOLS
-    ════════════════════════════════ -->
-    <article class="article" id="aitools">
-      <div class="article-header">
-        <span class="article-cat" style="background:rgba(245,158,11,.08);color:#b45309;border-color:rgba(245,158,11,.2)">🛠️ AI SEO Tools · Masterclass</span>
-        <h1 class="article-title">Top AI SEO Tools You'll Use in 2026 — and How to Actually Get Results From Them</h1>
-        <div class="article-meta">
-          <div class="article-author">
-            <div class="article-av">LY</div>
-            <span class="article-author-name">Lochan Yadav</span>
-          </div>
-          <div class="article-meta-right">
-            <span>April 10, 2026</span>
-            <span>·</span>
-            <span>11 min read</span>
-            <span>·</span>
-            <span>Lead SEO Analyst, BankBazaar</span>
-          </div>
-        </div>
+    <!-- Card 6: AI SEO Tools -->
+    <article class="blog-list-card">
+      <div class="blc-img" style="background:linear-gradient(135deg,#78350f 0%,#b45309 100%)">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect x="25" y="30" rx="8" ry="8" width="160" height="95" fill="rgba(180,83,9,0.2)" stroke="#b45309" stroke-width="1.5"/>
+          <rect x="215" y="30" rx="8" ry="8" width="160" height="95" fill="rgba(180,83,9,0.2)" stroke="#b45309" stroke-width="1.5"/>
+          <rect x="25" y="138" rx="8" ry="8" width="160" height="50" fill="rgba(180,83,9,0.15)" stroke="#b45309" stroke-width="1" opacity="0.7"/>
+          <rect x="215" y="138" rx="8" ry="8" width="160" height="50" fill="rgba(180,83,9,0.15)" stroke="#b45309" stroke-width="1" opacity="0.7"/>
+          <text x="105" y="75" font-family="Arial" font-size="11" fill="#b45309" text-anchor="middle" font-weight="bold">🔍 Research</text>
+          <text x="105" y="92" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,0.6)" text-anchor="middle">Ahrefs · Semrush</text>
+          <text x="295" y="75" font-family="Arial" font-size="11" fill="#b45309" text-anchor="middle" font-weight="bold">✍️ Content</text>
+          <text x="295" y="92" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,0.6)" text-anchor="middle">Surfer · Frase</text>
+          <text x="105" y="168" font-family="Arial" font-size="10" fill="#b45309" text-anchor="middle">⚙️ Technical</text>
+          <text x="295" y="168" font-family="Arial" font-size="10" fill="#b45309" text-anchor="middle">📡 GEO Monitor</text>
+        </svg>
       </div>
-
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#78350f,#b45309);display:flex;align-items:center;justify-content:center;min-height:220px;border-radius:10px;margin-bottom:28px">
-        <div style="text-align:center;color:rgba(255,255,255,.8)"><div style="font-size:48px;margin-bottom:8px">🛠️</div><div style="font-size:14px;font-weight:600">Top AI SEO Tools 2026 Masterclass</div></div>
-      </div>
-
-      <div class="article-body">
-        <p>The AI tool landscape for SEO has exploded. In 2023, there were maybe 8 tools worth paying attention to. By mid-2026, there are over 200 claiming to be "AI-powered SEO platforms." Most are GPT wrappers with a logo slapped on. A handful are genuinely transforming how teams work.</p>
-        <p>This is not a sponsored list. These are tools I've used, tested, or seen produce measurable results across different team types and budgets.</p>
-
-        <h2>Category 1 — AI-Powered Research &amp; Keyword Intelligence</h2>
-        <p><strong>Ahrefs AI Features (2026 edition):</strong> Ahrefs now layers AI analysis on top of its backlink and keyword data. The "Content Gap AI" feature identifies not just missing keywords but missing <em>intent clusters</em> — grouping keywords by what the user is trying to accomplish rather than just semantic similarity. Genuinely useful for content strategy at scale.</p>
-        <p><strong>Semrush Copilot:</strong> The AI assistant inside Semrush reads your project data and surfaces prioritized recommendations. What makes it useful is context — it knows your site's history, not just generic best practices. The keyword clustering and topic research modules are particularly strong for fintech verticals.</p>
-        <p><strong>Perplexity for Research:</strong> Underrated as an SEO research tool. Use it to understand how AI systems currently answer your target queries. If Perplexity cites your competitor and not you, that tells you exactly what content format and authority signals you need to build.</p>
-
-        <h2>Category 2 — Content Creation and Optimization</h2>
-
-        <div class="key-table">
-          <table>
-            <thead><tr><th>Tool</th><th>Best For</th><th>Price Range</th><th>Verdict</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Surfer SEO</strong></td><td>On-page optimization, content scoring</td><td>$$</td><td>Best-in-class for content briefs</td></tr>
-              <tr><td><strong>Frase</strong></td><td>SERP analysis, question research, drafting</td><td>$</td><td>Great for small teams</td></tr>
-              <tr><td><strong>Clearscope</strong></td><td>Semantic keyword integration, grading</td><td>$$$</td><td>Loved by enterprise content teams</td></tr>
-              <tr><td><strong>Claude (API)</strong></td><td>Custom workflows, bulk processing, analysis</td><td>$</td><td>Most flexible for automation</td></tr>
-              <tr><td><strong>MarketMuse</strong></td><td>Topical authority mapping, content planning</td><td>$$$</td><td>Strategic, not tactical</td></tr>
-            </tbody>
-          </table>
+      <div class="blc-body">
+        <span class="article-cat" style="background:rgba(245,158,11,.08);color:#b45309">🛠️ AI SEO Tools · Masterclass</span>
+        <h2 class="blc-title"><a href="blog-ai-seo-tools.html">Top AI SEO Tools You'll Use in 2026 — and How to Actually Get Results From Them</a></h2>
+        <p class="blc-exc">By mid-2026, there are over 200 AI-powered SEO platforms. Most are GPT wrappers with a logo slapped on. A handful are genuinely transforming how teams work. This is not a sponsored list — these are the tools producing measurable results.</p>
+        <div class="blc-footer">
+          <span class="blc-meta">April 10, 2026 · 11 min read</span>
+          <a href="blog-ai-seo-tools.html" class="blc-read">Read Article →</a>
         </div>
-
-        <div class="callout callout-info">
-          <strong>Important:</strong> AI writing tools are multipliers, not replacements. Content that reads as purely AI-generated without human expertise, first-hand experience, or unique data is being systematically downranked by Google's Helpful Content systems in 2026. Use AI to speed up research and drafting — then add your expert layer.
-        </div>
-
-        <h2>Category 3 — Technical SEO and Automation</h2>
-        <p><strong>Screaming Frog + GPT integration:</strong> The 2025 version of Screaming Frog added a direct API integration with OpenAI. You can now have it auto-generate meta descriptions for crawled pages, classify content types, and flag thin content — all within a crawl. For large sites (100k+ pages), this is transformative.</p>
-        <p><strong>Sitebulb:</strong> The most visually intuitive technical audit tool in the market. Its "Hints" system explains <em>why</em> something is a problem and what the impact is — essential for teams where the SEO lead needs to communicate issues to developers.</p>
-        <p><strong>ContentKing:</strong> Real-time SEO monitoring. The moment a developer pushes a change that breaks a canonical tag or removes a meta robots tag, ContentKing alerts you. For BankBazaar-scale sites, this is non-negotiable.</p>
-
-        <h2>Category 4 — GEO and AI Citation Monitoring</h2>
-        <p>This is the newest category and it's evolving fast. The core problem: how do you know if AI systems are citing your brand, and how do you track changes in those citations?</p>
-        <p><strong>Otterly.ai:</strong> Monitors AI Overviews, ChatGPT, Perplexity, and Gemini for your brand mentions and your competitors'. Shows share of voice across AI platforms. Still early-stage but the most purpose-built tool for GEO monitoring.</p>
-        <p><strong>BrandMentions:</strong> Not AI-specific, but useful for tracking the broader web mentions that feed AI training data. If your brand is being mentioned on authoritative sites, BrandMentions surfaces it before Google's index does.</p>
-
-        <h2>The Workflow That's Actually Working</h2>
-        <p>The highest-performing SEO teams in 2026 aren't using 20 tools — they're using 5–7 tools deeply, with clear workflows for each stage of content production. Here's the stack that's producing results at BankBazaar:</p>
-        <p><strong>Research:</strong> Ahrefs + Perplexity → <strong>Brief:</strong> Frase → <strong>Draft:</strong> Claude + human expert review → <strong>Optimization:</strong> Surfer SEO → <strong>Publishing:</strong> ContentKing monitoring → <strong>GEO tracking:</strong> Otterly.ai</p>
-
-        <div class="callout callout-tip">
-          <strong>For teams just starting out:</strong> Don't try to implement everything at once. Start with one tool per category. Master it. Then add the next. A team using Ahrefs + Surfer + one AI writer deeply will outperform a team using 15 tools shallowly every single time.
-        </div>
-
-        <h2>What to Avoid</h2>
-        <p>Two red flags when evaluating AI SEO tools: (1) Any tool that claims to "automatically rank your content" without explaining what it actually does. (2) Any tool that outputs content without built-in quality controls. Both are snake oil in 2026. The algorithm has gotten too sophisticated for shortcuts.</p>
-      </div>
-
-      <div class="article-tags">
-        <span class="art-tag">AI SEO Tools</span>
-        <span class="art-tag">Ahrefs</span>
-        <span class="art-tag">Semrush</span>
-        <span class="art-tag">Surfer SEO</span>
-        <span class="art-tag">GEO Monitoring</span>
-        <span class="art-tag">Content Automation</span>
-      </div>
-      <div class="article-share">
-        <span class="share-label">Share:</span>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lochan.online/blog.html%23aitools" class="share-btn share-li" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com/intent/tweet?url=https://lochan.online/blog.html%23aitools&text=Top+AI+SEO+tools+in+2026+by+%40lochanyadav" class="share-btn share-tw" target="_blank">Twitter / X</a>
       </div>
     </article>
 
-    <!-- ════════════════════════════════
-         ARTICLE 7: ALGORITHM SURVIVAL
-    ════════════════════════════════ -->
-    <article class="article" id="algorithm">
-      <div class="article-header">
-        <span class="article-cat" style="background:rgba(192,54,74,.08);color:#C0364A;border-color:rgba(192,54,74,.2)">⚡ Algorithm Updates · Survival Guide</span>
-        <h1 class="article-title">How to Survive — and Thrive — Through Google's Algorithm Updates in the AI Era</h1>
-        <div class="article-meta">
-          <div class="article-author">
-            <div class="article-av">LY</div>
-            <span class="article-author-name">Lochan Yadav</span>
-          </div>
-          <div class="article-meta-right">
-            <span>April 4, 2026</span>
-            <span>·</span>
-            <span>9 min read</span>
-            <span>·</span>
-            <span>Lead SEO Analyst, BankBazaar</span>
-          </div>
-        </div>
+    <!-- Card 7: Algorithm Updates -->
+    <article class="blog-list-card">
+      <div class="blc-img" style="background:linear-gradient(135deg,#450a0a 0%,#7f1d1d 100%)">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <polygon points="200,25 310,165 90,165" fill="none" stroke="#C0364A" stroke-width="2" opacity="0.5"/>
+          <circle cx="200" cy="95" r="42" fill="rgba(192,54,74,0.1)" stroke="#C0364A" stroke-width="1.5" opacity="0.6"/>
+          <text x="200" y="101" font-size="22" text-anchor="middle">🛡️</text>
+          <line x1="200" y1="53" x2="200" y2="32" stroke="#C0364A" stroke-width="1.5" opacity="0.6"/>
+          <polygon points="200,22 207,36 193,36" fill="#C0364A" opacity="0.6"/>
+          <text x="200" y="16" font-family="Arial" font-size="8" fill="#C0364A" text-anchor="middle">Google Update</text>
+          <text x="90" y="180" font-family="Arial" font-size="8" fill="#C0364A" text-anchor="middle">E-E-A-T</text>
+          <text x="310" y="180" font-family="Arial" font-size="8" fill="#C0364A" text-anchor="middle">HCU</text>
+        </svg>
       </div>
-
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#450a0a,#7f1d1d);display:flex;align-items:center;justify-content:center;min-height:220px;border-radius:10px;margin-bottom:28px">
-        <div style="text-align:center;color:rgba(255,255,255,.8)"><div style="font-size:48px;margin-bottom:8px">⚡</div><div style="font-size:14px;font-weight:600">Algorithm Survival Guide 2026</div></div>
-      </div>
-
-      <div class="article-body">
-        <p>Google ran 17 confirmed core updates in 2025. By Q2 2026, we've already seen 6 more — including one of the most significant Helpful Content System rollouts since 2022. If your organic traffic fluctuates by more than 20% whenever Google announces an update, this article is for you.</p>
-
-        <h2>Why Algorithm Updates Hit Harder in 2026</h2>
-        <p>Two reasons. First, Google's systems are now deeply interconnected — a Helpful Content update simultaneously affects ranking, AI Overview source selection, and rich result eligibility. A single quality signal now cascades across three different SERP features. Second, the pace has accelerated. Updates that used to take 2–3 weeks to fully roll out now complete in 4–5 days, giving teams less time to diagnose and respond.</p>
-
-        <h2>The 72-Hour Response Protocol</h2>
-        <p>When you see a traffic drop coinciding with a confirmed algorithm update, follow this exact sequence:</p>
-        <p><strong>Hours 0–24 (Diagnose):</strong> Do not make any changes. Use Google Search Console to isolate which queries and pages dropped. Separate algorithmic losses from technical issues (check crawl errors, indexing status, page experience scores). Determine if competitors gained or if traffic shifted to AI Overviews.</p>
-        <p><strong>Hours 24–48 (Analyse):</strong> Compare your affected pages against the update's stated focus. Helpful Content updates target thin, AI-generated, or non-expert content. Core updates target overall E-E-A-T. Spam updates target manipulative backlinks. Match the update to your symptoms.</p>
-        <p><strong>Hours 48–72 (Plan):</strong> Prioritise fixes by impact. Do not rush to "fix" everything — unfocused changes during an update rollout can make diagnosis harder. Identify 3–5 pages where the fix is clear and high-value. Act on those first.</p>
-
-        <div class="callout callout-warn">
-          <strong>The cardinal rule of algorithm updates:</strong> Never make structural changes (domain moves, URL restructures, navigation overhauls) within 30 days of a major algorithm update. The compounding signals make it impossible to diagnose what caused what.
+      <div class="blc-body">
+        <span class="article-cat" style="background:rgba(192,54,74,.08);color:#C0364A">⚡ Algorithm Updates · Survival Guide</span>
+        <h2 class="blc-title"><a href="blog-algorithm-updates.html">How to Survive — and Thrive — Through Google's Algorithm Updates in the AI Era</a></h2>
+        <p class="blc-exc">Google ran 17 confirmed core updates in 2025. By Q2 2026, we've already seen 6 more. If your organic traffic fluctuates by more than 20% whenever Google announces an update, this 72-hour response protocol is for you.</p>
+        <div class="blc-footer">
+          <span class="blc-meta">April 4, 2026 · 9 min read</span>
+          <a href="blog-algorithm-updates.html" class="blc-read">Read Article →</a>
         </div>
-
-        <h2>The 5 Pages Most Vulnerable to Algorithm Updates</h2>
-
-        <div class="key-table">
-          <table>
-            <thead><tr><th>Page Type</th><th>Primary Risk</th><th>Fix Priority</th></tr></thead>
-            <tbody>
-              <tr><td>Thin comparison pages (&lt;500 words)</td><td>Helpful Content</td><td>High</td></tr>
-              <tr><td>Programmatic landing pages with duplicate content</td><td>Spam / Duplicate</td><td>High</td></tr>
-              <tr><td>Author pages without credentials</td><td>E-E-A-T</td><td>Medium</td></tr>
-              <tr><td>Slow-loading calculators (LCP &gt; 4s)</td><td>Page Experience</td><td>Medium</td></tr>
-              <tr><td>Pages with excessive affiliate links</td><td>Link Spam</td><td>High</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>The Protection Stack — What Makes Sites Algorithm-Resilient</h2>
-        <p>After observing what sites consistently survive updates without significant traffic losses, a clear pattern emerges. They share these characteristics:</p>
-
-        <p><strong>Clear author entities.</strong> Every article has a named author with a bio, credential markers, and a consistent byline across the web. Google's systems can verify the expertise claimed.</p>
-        <p><strong>Unique data and proprietary research.</strong> Pages with original data — surveys, internal metrics, case studies — are significantly harder to replace with AI-generated alternatives. This unique data is the moat.</p>
-        <p><strong>Strong topical depth.</strong> Sites that cover a topic cluster comprehensively — not just the head terms but the long-tail, the edge cases, the adjacent questions — are treated as authoritative sources rather than general publishers.</p>
-        <p><strong>Technical hygiene maintained continuously.</strong> Not just audited once a quarter but monitored in real-time (ContentKing, Sitebulb, or similar). Issues are fixed within 48 hours of detection.</p>
-
-        <h2>The CTA and Conversion Imperative</h2>
-        <p>Here's the strategic insight that most algorithm recovery guides miss: <strong>user engagement signals are now a significant ranking factor.</strong> Pages where users stay, interact, and convert signal quality to Google far more than any on-page optimization trick. A page with a genuinely useful calculator, comparison tool, or interactive element has a built-in quality signal that is very hard for competitors to replicate.</p>
-        <p>At BankBazaar, our tool pages (EMI calculators, loan eligibility checkers) consistently recover faster from algorithm updates than our editorial pages. The engagement signals are undeniable — users interact, they return, they share. Build tools into your content strategy and you build algorithm resilience into your traffic.</p>
-
-        <div class="callout callout-tip">
-          <strong>The algorithm-proof strategy in one sentence:</strong> Build the page that genuinely serves the user better than anything else on the internet for that specific query — and maintain it obsessively. No algorithm update has ever penalized that.
-        </div>
-      </div>
-
-      <div class="article-tags">
-        <span class="art-tag">Algorithm Updates</span>
-        <span class="art-tag">Google Core Update</span>
-        <span class="art-tag">Helpful Content</span>
-        <span class="art-tag">E-E-A-T</span>
-        <span class="art-tag">Recovery Strategy</span>
-        <span class="art-tag">SEO Resilience</span>
-      </div>
-      <div class="article-share">
-        <span class="share-label">Share:</span>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lochan.online/blog.html%23algorithm" class="share-btn share-li" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com/intent/tweet?url=https://lochan.online/blog.html%23algorithm&text=How+to+survive+Google+algorithm+updates+in+2026" class="share-btn share-tw" target="_blank">Twitter / X</a>
       </div>
     </article>
 
   </main>
 
-  <!-- ████ SIDEBAR ████ -->
+  <!-- SIDEBAR -->
   <aside class="sidebar">
-
-    <!-- About -->
     <div class="sb-card">
       <div class="sb-title">About the Author</div>
       <div class="sb-about">
@@ -1155,114 +357,66 @@ footer a:hover{color:#fff}
       </div>
     </div>
 
-    <!-- Articles -->
     <div class="sb-card">
       <div class="sb-title">All Articles</div>
       <div class="sb-articles">
-        <div class="sb-art">
-          <div class="sb-art-ico">🤖</div>
-          <div>
-            <div class="sb-art-title"><a href="#seo2026" style="color:inherit">SEO in 2026: How AI Is Reshaping Search</a></div>
-            <div class="sb-art-meta">Apr 28, 2026 · 8 min</div>
-          </div>
-        </div>
-        <div class="sb-art">
-          <div class="sb-art-ico">📈</div>
-          <div>
-            <div class="sb-art-title"><a href="#trends2026" style="color:inherit">SEO Trends 2026: Strategies for the AI Era</a></div>
-            <div class="sb-art-meta">Apr 18, 2026 · 10 min</div>
-          </div>
-        </div>
-        <div class="sb-art">
-          <div class="sb-art-ico">🛠️</div>
-          <div>
-            <div class="sb-art-title"><a href="#aitools" style="color:inherit">Top AI SEO Tools You'll Use in 2026</a></div>
-            <div class="sb-art-meta">Apr 10, 2026 · 11 min</div>
-          </div>
-        </div>
-        <div class="sb-art">
-          <div class="sb-art-ico">🔄</div>
-          <div>
-            <div class="sb-art-title"><a href="#algorithm" style="color:inherit">How to Survive Google's Algorithm Updates</a></div>
-            <div class="sb-art-meta">Apr 4, 2026 · 9 min</div>
-          </div>
-        </div>
-        <div class="sb-art">
-          <div class="sb-art-ico">🎯</div>
-          <div>
-            <div class="sb-art-title"><a href="#aeo" style="color:inherit">AEO: The Strategy That Gets You Into AI Answers</a></div>
-            <div class="sb-art-meta">May 14, 2026 · 9 min</div>
-          </div>
-        </div>
-        <div class="sb-art">
-          <div class="sb-art-ico">🌍</div>
-          <div>
-            <div class="sb-art-title"><a href="#geo" style="color:inherit">GEO: Optimizing for AI-Generated Search Results</a></div>
-            <div class="sb-art-meta">Apr 28, 2026 · 11 min</div>
-          </div>
-        </div>
-        <div class="sb-art">
-          <div class="sb-art-ico">⚙️</div>
-          <div>
-            <div class="sb-art-title"><a href="#technical" style="color:inherit">Why Technical SEO Still Wins in the Age of AI</a></div>
-            <div class="sb-art-meta">Mar 10, 2026 · 10 min</div>
-          </div>
-        </div>
+        <div class="sb-art"><div class="sb-art-ico">🎯</div><div><div class="sb-art-title"><a href="blog-aeo.html" style="color:inherit">AEO: The Strategy That Gets You Into AI Answers</a></div><div class="sb-art-meta">May 14, 2026 · 9 min</div></div></div>
+        <div class="sb-art"><div class="sb-art-ico">🌍</div><div><div class="sb-art-title"><a href="blog-geo.html" style="color:inherit">GEO: Optimizing for AI-Generated Search Results</a></div><div class="sb-art-meta">Apr 28, 2026 · 11 min</div></div></div>
+        <div class="sb-art"><div class="sb-art-ico">🔮</div><div><div class="sb-art-title"><a href="blog-seo-2026.html" style="color:inherit">SEO in 2026: How AI Is Reshaping Search</a></div><div class="sb-art-meta">Apr 28, 2026 · 8 min</div></div></div>
+        <div class="sb-art"><div class="sb-art-ico">📈</div><div><div class="sb-art-title"><a href="blog-trends-2026.html" style="color:inherit">SEO Trends 2026: Strategies for the AI Era</a></div><div class="sb-art-meta">Apr 18, 2026 · 10 min</div></div></div>
+        <div class="sb-art"><div class="sb-art-ico">🛠️</div><div><div class="sb-art-title"><a href="blog-ai-seo-tools.html" style="color:inherit">Top AI SEO Tools You'll Use in 2026</a></div><div class="sb-art-meta">Apr 10, 2026 · 11 min</div></div></div>
+        <div class="sb-art"><div class="sb-art-ico">🔄</div><div><div class="sb-art-title"><a href="blog-algorithm-updates.html" style="color:inherit">How to Survive Google's Algorithm Updates</a></div><div class="sb-art-meta">Apr 4, 2026 · 9 min</div></div></div>
+        <div class="sb-art"><div class="sb-art-ico">⚙️</div><div><div class="sb-art-title"><a href="blog-technical-seo.html" style="color:inherit">Why Technical SEO Still Wins in the Age of AI</a></div><div class="sb-art-meta">Mar 10, 2026 · 10 min</div></div></div>
       </div>
     </div>
 
-    <!-- SEO Tools -->
     <div class="sb-card">
       <div class="sb-title">My SEO Tools</div>
       <div class="sb-tools">
-        <a href="tool-01-meta-tag-extractor.html" class="sb-tool"><span class="sb-tool-ico">🏷️</span>Meta Tag Extractor</a>
-        <a href="tool-02-serp-preview.html" class="sb-tool"><span class="sb-tool-ico">🔍</span>SERP Preview</a>
-        <a href="tool-03-seo-geo-audit.html" class="sb-tool"><span class="sb-tool-ico">🌍</span>SEO / GEO Audit</a>
-        <a href="tool-04-faq-schema-generator.html" class="sb-tool"><span class="sb-tool-ico">📋</span>FAQ Schema Generator</a>
-        <a href="tool-05-schema-markup-generator.html" class="sb-tool"><span class="sb-tool-ico">🗂️</span>Schema Markup Generator</a>
-        <a href="tool-06-keyword-density-analyzer.html" class="sb-tool"><span class="sb-tool-ico">📊</span>Keyword Density Analyzer</a>
-        <a href="tool-07-robots-txt-generator.html" class="sb-tool"><span class="sb-tool-ico">🤖</span>Robots.txt Generator</a>
-        <a href="tool-08-hreflang-generator.html" class="sb-tool"><span class="sb-tool-ico">🌐</span>Hreflang Generator</a>
+        <a href="tool-01-meta-tag-extractor.html" class="sb-tool">🏷️ Meta Tag Extractor</a>
+        <a href="tool-02-serp-preview.html" class="sb-tool">🔍 SERP Preview</a>
+        <a href="tool-03-seo-geo-audit.html" class="sb-tool">🌍 SEO / GEO Audit</a>
+        <a href="tool-04-faq-schema-generator.html" class="sb-tool">📋 FAQ Schema Generator</a>
+        <a href="tool-05-schema-markup-generator.html" class="sb-tool">🗂️ Schema Markup Generator</a>
+        <a href="tool-06-keyword-density-analyzer.html" class="sb-tool">📊 Keyword Density Analyzer</a>
+        <a href="tool-07-robots-txt-generator.html" class="sb-tool">🤖 Robots.txt Generator</a>
+        <a href="tool-08-hreflang-generator.html" class="sb-tool">🌐 Hreflang Generator</a>
       </div>
     </div>
 
-    <!-- Tags -->
     <div class="sb-card">
       <div class="sb-title">Topics</div>
       <div class="sb-tags">
-        <a href="#aeo" class="sb-tag">AEO</a>
-        <a href="#geo" class="sb-tag">GEO</a>
-        <a href="#technical" class="sb-tag">Technical SEO</a>
-        <a href="#seo2026" class="sb-tag">SEO 2026</a>
-        <a href="#trends2026" class="sb-tag">SEO Trends</a>
-        <a href="#aitools" class="sb-tag">AI SEO Tools</a>
-        <a href="#algorithm" class="sb-tag">Algorithm Updates</a>
-        <a href="#aeo" class="sb-tag">Featured Snippets</a>
-        <a href="#aeo" class="sb-tag">E-E-A-T</a>
-        <a href="#geo" class="sb-tag">AI Overviews</a>
-        <a href="#seo2026" class="sb-tag">Zero-Click Search</a>
-        <a href="#technical" class="sb-tag">Core Web Vitals</a>
-        <a href="#technical" class="sb-tag">Structured Data</a>
-        <a href="#aeo" class="sb-tag">FAQ Schema</a>
-        <a href="#technical" class="sb-tag">Crawl Budget</a>
-        <a href="#geo" class="sb-tag">ChatGPT SEO</a>
-        <a href="#aeo" class="sb-tag">Fintech SEO</a>
-        <a href="#algorithm" class="sb-tag">Google HCU</a>
+        <a href="blog-aeo.html" class="sb-tag">AEO</a>
+        <a href="blog-geo.html" class="sb-tag">GEO</a>
+        <a href="blog-technical-seo.html" class="sb-tag">Technical SEO</a>
+        <a href="blog-seo-2026.html" class="sb-tag">SEO 2026</a>
+        <a href="blog-trends-2026.html" class="sb-tag">SEO Trends</a>
+        <a href="blog-ai-seo-tools.html" class="sb-tag">AI SEO Tools</a>
+        <a href="blog-algorithm-updates.html" class="sb-tag">Algorithm Updates</a>
+        <a href="blog-aeo.html" class="sb-tag">Featured Snippets</a>
+        <a href="blog-aeo.html" class="sb-tag">E-E-A-T</a>
+        <a href="blog-geo.html" class="sb-tag">AI Overviews</a>
+        <a href="blog-seo-2026.html" class="sb-tag">Zero-Click Search</a>
+        <a href="blog-technical-seo.html" class="sb-tag">Core Web Vitals</a>
+        <a href="blog-technical-seo.html" class="sb-tag">Structured Data</a>
+        <a href="blog-aeo.html" class="sb-tag">FAQ Schema</a>
+        <a href="blog-technical-seo.html" class="sb-tag">Crawl Budget</a>
+        <a href="blog-geo.html" class="sb-tag">ChatGPT SEO</a>
+        <a href="blog-aeo.html" class="sb-tag">Fintech SEO</a>
+        <a href="blog-algorithm-updates.html" class="sb-tag">Google HCU</a>
       </div>
     </div>
 
-    <!-- LinkedIn CTA -->
     <div class="sb-card" style="background:linear-gradient(135deg,var(--accent-lt),rgba(192,124,42,.05));border-color:rgba(124,58,237,.15)">
       <div class="sb-title">Connect</div>
       <p style="font-size:.82rem;color:var(--muted);margin-bottom:14px;line-height:1.7">If this resonated with you, let's connect. I post about SEO strategy, fintech growth, and automation regularly.</p>
       <a href="https://linkedin.com/in/lochan-yadav-0a26261a3" target="_blank" style="display:block;background:#0A66C2;color:#fff;padding:9px 14px;border-radius:7px;font-weight:700;font-size:.78rem;text-align:center;text-decoration:none">Follow on LinkedIn →</a>
     </div>
-
   </aside>
 
 </div>
 
-<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-top">
     <div class="footer-logo">Lochan <span>Yadav</span></div>
@@ -1277,22 +431,5 @@ footer a:hover{color:#fff}
   <div class="footer-copy">© 2026 Lochan Yadav · Lead SEO Analyst · BankBazaar · lochan.online</div>
 </footer>
 
-<script>
-/* Article nav active state on scroll */
-const articles=document.querySelectorAll('.article[id]');
-const pills=document.querySelectorAll('.anav-pill');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  articles.forEach(a=>{if(window.scrollY>=a.offsetTop-120)cur=a.id});
-  pills.forEach(p=>{p.classList.toggle('active',p.getAttribute('href')==='#'+cur)});
-},{passive:true});
-
-/* Nav center active */
-document.querySelectorAll('.nav-center a').forEach(a=>{
-  if(a.getAttribute('href')===window.location.pathname.split('/').pop()||a.getAttribute('href')==='blog.html'){
-    a.classList.add('active');
-  }
-});
-</script>
 </body>
 </html>

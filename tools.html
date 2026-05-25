@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Free SEO Tools | Lochan Yadav — Lead SEO Analyst</title>
+<meta name="description" content="9 free browser-based SEO tools built by Lochan Yadav — Meta Tag Extractor, SERP Preview, FAQ Schema Generator, Robots.txt Builder, Hreflang Generator and more.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lochan.online/tools.html">
+<meta property="og:title" content="Free SEO Tools | Lochan Yadav">
+<meta property="og:description" content="9 free browser-based SEO tools — no signup, no API key, no backend required.">
+<meta property="og:url" content="https://lochan.online/tools.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FAFAF8;--bg2:#F3F1EB;--bg3:#ECEAE3;--card:#FFFFFF;
+  --border:#DDD9CE;--border2:#C9C4B5;--ink:#1A1612;--ink2:#3D3529;
+  --muted:#6B6152;--muted2:#9E9285;--accent:#7C3AED;--accent2:#6D28D9;
+  --accent-lt:rgba(124,58,237,0.08);--accent-mid:rgba(124,58,237,0.18);
+  --gold:#C07C2A;--gold-lt:#F5ECD8;--teal:#167A4A;--rose:#C0364A;
+  --nav-h:62px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--ink);color:rgba(255,255,255,.65);font-size:.7rem;text-align:center;padding:7px 20px;letter-spacing:.04em}
+.topbar a{color:var(--gold-lt);text-decoration:underline}
+
+/* ── NAV ── */
+.nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 32px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--ink);letter-spacing:-.02em}
+.nav-logo span{color:var(--accent)}
+.nav-center{display:flex;gap:4px}
+.nav-center a{font-size:.8rem;font-weight:500;color:var(--muted);padding:6px 12px;border-radius:6px;transition:all .18s}
+.nav-center a:hover{color:var(--ink);background:var(--bg2)}
+.nav-center a.active{color:var(--accent);font-weight:600;background:var(--accent-lt)}
+.nav-right a{background:var(--accent);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;font-size:.78rem;transition:background .18s}
+.nav-right a:hover{background:var(--accent2)}
+
+/* ── HERO ── */
+.page-hero{background:var(--ink);color:#fff;padding:64px 32px 56px;text-align:center;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.07) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.hero-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(192,124,42,.9);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:rgba(192,124,42,.5)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.1;margin-bottom:16px;color:#fff}
+.page-hero p{font-size:.95rem;color:rgba(255,255,255,.55);max-width:560px;margin:0 auto 28px;line-height:1.85}
+.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:12px}
+.hs{display:flex;flex-direction:column;align-items:center}
+.hs-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
+.hs-lbl{font-size:.65rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+
+/* ── FILTER BAR ── */
+.filter-bar{max-width:1200px;margin:40px auto 0;padding:0 32px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted2);margin-right:4px}
+.filter-btn{padding:7px 18px;border-radius:6px;border:1px solid var(--border2);background:var(--card);color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s}
+.filter-btn:hover,.filter-btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ── TOOLS GRID ── */
+.tools-wrap{max-width:1200px;margin:0 auto;padding:40px 32px 80px}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+
+/* ── TOOL CARD ── */
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;display:flex;flex-direction:column;position:relative}
+.tool-card:hover{border-color:rgba(124,58,237,.3);transform:translateY(-6px);box-shadow:0 20px 48px rgba(26,22,18,.1)}
+.tool-card-top{height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.tool-num{position:absolute;top:14px;left:14px;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:rgba(255,255,255,.08);line-height:1;user-select:none}
+.tool-badge{position:absolute;top:12px;right:12px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:4px;background:rgba(22,122,74,.15);color:#167A4A;border:1px solid rgba(22,122,74,.25)}
+.tool-card-body{padding:24px;flex:1;display:flex;flex-direction:column}
+.tool-cat{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:8px}
+.tool-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:var(--ink);margin-bottom:10px;line-height:1.25}
+.tool-desc{font-size:.85rem;color:var(--muted);line-height:1.78;flex:1;margin-bottom:18px}
+.tool-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.tool-feat{font-size:.68rem;font-weight:500;color:var(--ink2);background:var(--bg2);border:1px solid var(--border);padding:3px 10px;border-radius:4px}
+.tool-open{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:.82rem;transition:all .25s;border:none;cursor:pointer;text-decoration:none;align-self:flex-start}
+.tool-open:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,.3)}
+
+/* Colour themes for tool cards */
+.tc-purple{background:linear-gradient(135deg,#EDE5F5 0%,#DDD0F0 100%)}
+.tc-teal{background:linear-gradient(135deg,#E5F0EE 0%,#D0E8E3 100%)}
+.tc-gold{background:linear-gradient(135deg,#F5ECD8 0%,#EDD8B0 100%)}
+.tc-blue{background:linear-gradient(135deg,#E5EDF5 0%,#D0DCF0 100%)}
+.tc-emerald{background:linear-gradient(135deg,#E5F2EC 0%,#C8E8D8 100%)}
+.tc-amber{background:linear-gradient(135deg,#451a03 0%,#78350f 100%)}
+.tc-indigo{background:linear-gradient(135deg,#4c1d95 0%,#6d28d9 100%)}
+.tc-ocean{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 100%)}
+.tc-crimson{background:linear-gradient(135deg,#450a0a 0%,#7f1d1d 100%)}
+
+/* ── BOTTOM CTA ── */
+.bottom-cta{background:var(--ink);color:#fff;padding:56px 32px;text-align:center;margin-top:0}
+.bottom-cta h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;margin-bottom:14px}
+.bottom-cta p{color:rgba(255,255,255,.5);font-size:.92rem;max-width:500px;margin:0 auto 28px;line-height:1.85}
+.cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cta-btn{padding:13px 28px;border-radius:8px;font-weight:700;font-size:.86rem;transition:all .25s;display:inline-flex;align-items:center;gap:7px}
+.cta-primary{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.35)}
+.cta-primary:hover{background:var(--accent2);transform:translateY(-2px)}
+.cta-secondary{border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8)}
+.cta-secondary:hover{border-color:rgba(255,255,255,.5);color:#fff}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(255,255,255,.35);padding:28px 32px;text-align:center;font-size:.76rem;border-top:1px solid rgba(255,255,255,.06)}
+footer a{color:rgba(255,255,255,.5);margin:0 8px;transition:color .18s}
+footer a:hover{color:#fff}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){.tools-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){
+  .tools-grid{grid-template-columns:1fr}
+  .nav-center{display:none}
+  .filter-bar{padding:0 20px}
+  .tools-wrap{padding:32px 20px 60px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">🔧 All tools are 100% free · No signup required · <a href="blog.html">Read the SEO Blog →</a></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
+    <div class="nav-center">
+      <a href="index.html">Home</a>
+      <a href="tools.html" class="active">Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="courses.html">Courses</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="mailto:lochan.yadavgolla@gmail.com">Hire Me</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Free SEO Tools</div>
+    <h1>Tools Built for<br>Real SEO Work</h1>
+    <p>9 browser-based tools I built while doing SEO at BankBazaar. No installation, no API keys, no backend — just open and use.</p>
+    <div class="hero-stats">
+      <div class="hs"><span class="hs-num">9</span><span class="hs-lbl">Tools</span></div>
+      <div class="hs"><span class="hs-num">100%</span><span class="hs-lbl">Free</span></div>
+      <div class="hs"><span class="hs-num">0</span><span class="hs-lbl">Signup Required</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Category:</span>
+  <button class="filter-btn on" data-f="all">All Tools</button>
+  <button class="filter-btn" data-f="onpage">On-Page SEO</button>
+  <button class="filter-btn" data-f="schema">Schema &amp; AEO</button>
+  <button class="filter-btn" data-f="technical">Technical SEO</button>
+  <button class="filter-btn" data-f="content">Content SEO</button>
+  <button class="filter-btn" data-f="international">International</button>
+</div>
+
+<!-- TOOLS GRID -->
+<div class="tools-wrap">
+  <div class="tools-grid">
+
+    <!-- TOOL 01: Meta Tag Extractor -->
+    <div class="tool-card" data-cat="onpage">
+      <div class="tool-card-top tc-purple">
+        <span class="tool-num">01</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <rect x="12" y="22" width="66" height="10" rx="5" fill="rgba(124,58,237,.2)"/>
+          <rect x="12" y="38" width="50" height="7" rx="3.5" fill="rgba(124,58,237,.14)"/>
+          <rect x="12" y="51" width="58" height="7" rx="3.5" fill="rgba(124,58,237,.14)"/>
+          <rect x="12" y="64" width="36" height="7" rx="3.5" fill="rgba(124,58,237,.1)"/>
+          <circle cx="70" cy="58" r="14" fill="rgba(124,58,237,.15)" stroke="rgba(124,58,237,.5)" stroke-width="2"/>
+          <path d="M64 58h12M70 52v12" stroke="rgba(124,58,237,.8)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">On-Page SEO</div>
+        <div class="tool-name">Meta Tag Extractor</div>
+        <div class="tool-desc">Bulk-extract and audit title tags, meta descriptions, canonical URLs, Open Graph tags, and robots directives from any list of URLs. Get a structured table output exportable to Excel for team review.</div>
+        <div class="tool-features">
+          <span class="tool-feat">Title &amp; Meta Audit</span>
+          <span class="tool-feat">OG Tags</span>
+          <span class="tool-feat">Canonical URLs</span>
+          <span class="tool-feat">Bulk URLs</span>
+        </div>
+        <a href="tool-01-meta-tag-extractor.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- TOOL 02: SERP Preview -->
+    <div class="tool-card" data-cat="onpage">
+      <div class="tool-card-top tc-teal">
+        <span class="tool-num">02</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <rect x="10" y="16" width="70" height="50" rx="6" fill="rgba(22,122,74,.1)" stroke="rgba(22,122,74,.4)" stroke-width="2"/>
+          <rect x="16" y="24" width="42" height="6" rx="3" fill="rgba(22,122,74,.35)"/>
+          <rect x="16" y="34" width="55" height="5" rx="2.5" fill="rgba(22,122,74,.18)"/>
+          <rect x="16" y="43" width="45" height="5" rx="2.5" fill="rgba(22,122,74,.14)"/>
+          <circle cx="74" cy="24" r="6" fill="rgba(22,122,74,.2)" stroke="rgba(22,122,74,.5)" stroke-width="1.5"/>
+          <path d="M71 24h6M74 21v6" stroke="rgba(22,122,74,.7)" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="22" y="72" width="46" height="5" rx="2.5" fill="rgba(22,122,74,.2)"/>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">On-Page SEO</div>
+        <div class="tool-name">SERP Preview Tool</div>
+        <div class="tool-desc">Visualize exactly how your page title and meta description appear in Google search results before you publish. Includes real-time character count validation and both mobile and desktop preview modes.</div>
+        <div class="tool-features">
+          <span class="tool-feat">Live Preview</span>
+          <span class="tool-feat">Character Count</span>
+          <span class="tool-feat">Mobile &amp; Desktop</span>
+          <span class="tool-feat">Pixel Width</span>
+        </div>
+        <a href="tool-02-serp-preview.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- TOOL 03: SEO/GEO Audit -->
+    <div class="tool-card" data-cat="technical">
+      <div class="tool-card-top tc-blue">
+        <span class="tool-num">03</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <circle cx="38" cy="40" r="22" stroke="rgba(3,105,161,.4)" stroke-width="2" fill="rgba(3,105,161,.08)"/>
+          <path d="M54 56l16 16" stroke="rgba(3,105,161,.6)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="32" cy="34" r="8" fill="rgba(3,105,161,.15)" stroke="rgba(3,105,161,.4)" stroke-width="1.5"/>
+          <path d="M29 34h6M32 31v6" stroke="rgba(3,105,161,.7)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M46 30l4 4-4 4" stroke="rgba(3,105,161,.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="56" y="18" width="16" height="4" rx="2" fill="rgba(3,105,161,.25)"/>
+          <rect x="56" y="26" width="12" height="4" rx="2" fill="rgba(3,105,161,.18)"/>
+          <rect x="56" y="34" width="14" height="4" rx="2" fill="rgba(3,105,161,.18)"/>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Technical SEO &amp; GEO</div>
+        <div class="tool-name">SEO / GEO Audit Tool</div>
+        <div class="tool-desc">Audit any page for both traditional SEO signals and Generative Engine Optimization readiness. Checks structured data, E-E-A-T signals, heading hierarchy, meta tags, and AI-friendly content structure in one scan.</div>
+        <div class="tool-features">
+          <span class="tool-feat">GEO Readiness</span>
+          <span class="tool-feat">E-E-A-T Check</span>
+          <span class="tool-feat">Schema Detect</span>
+          <span class="tool-feat">AI Visibility</span>
+        </div>
+        <a href="tool-03-seo-geo-audit.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- TOOL 04: FAQ Schema Generator -->
+    <div class="tool-card" data-cat="schema">
+      <div class="tool-card-top tc-gold">
+        <span class="tool-num">04</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <rect x="10" y="14" width="40" height="24" rx="6" fill="rgba(192,124,42,.15)" stroke="rgba(192,124,42,.4)" stroke-width="1.5"/>
+          <text x="30" y="30" font-size="14" fill="rgba(192,124,42,.8)" text-anchor="middle" font-family="Playfair Display,serif" font-weight="700">Q</text>
+          <rect x="14" y="19" width="14" height="2.5" rx="1.2" fill="rgba(192,124,42,.3)"/>
+          <path d="M50 26l8 6" stroke="rgba(192,124,42,.4)" stroke-width="2" stroke-linecap="round"/>
+          <rect x="10" y="52" width="70" height="24" rx="6" fill="rgba(192,124,42,.1)" stroke="rgba(192,124,42,.3)" stroke-width="1.5"/>
+          <rect x="18" y="58" width="40" height="3" rx="1.5" fill="rgba(192,124,42,.35)"/>
+          <rect x="18" y="65" width="28" height="3" rx="1.5" fill="rgba(192,124,42,.2)"/>
+          <path d="M58 16l6-6M58 22h8" stroke="rgba(192,124,42,.4)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">AEO &amp; Structured Data</div>
+        <div class="tool-name">FAQ Schema Generator</div>
+        <div class="tool-desc">Generate Google-ready FAQ JSON-LD schema markup by simply entering your questions and answers. Instant output, no API key, no backend. Paste directly into your page head and submit to Google's Rich Results Test.</div>
+        <div class="tool-features">
+          <span class="tool-feat">JSON-LD Output</span>
+          <span class="tool-feat">Add/Remove FAQ</span>
+          <span class="tool-feat">Copy &amp; Download</span>
+          <span class="tool-feat">Rich Results Ready</span>
+        </div>
+        <a href="tool-04-faq-schema-generator.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- TOOL 05: Schema Markup Generator -->
+    <div class="tool-card" data-cat="schema">
+      <div class="tool-card-top tc-emerald">
+        <span class="tool-num">05</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <rect x="14" y="18" width="62" height="54" rx="6" fill="rgba(22,122,74,.08)" stroke="rgba(22,122,74,.35)" stroke-width="2"/>
+          <rect x="20" y="28" width="18" height="5" rx="2.5" fill="rgba(22,122,74,.45)"/>
+          <rect x="40" y="28" width="28" height="5" rx="2.5" fill="rgba(22,122,74,.2)"/>
+          <rect x="20" y="37" width="12" height="5" rx="2.5" fill="rgba(22,122,74,.3)"/>
+          <rect x="34" y="37" width="34" height="5" rx="2.5" fill="rgba(22,122,74,.18)"/>
+          <rect x="20" y="46" width="20" height="5" rx="2.5" fill="rgba(22,122,74,.35)"/>
+          <rect x="42" y="46" width="22" height="5" rx="2.5" fill="rgba(22,122,74,.18)"/>
+          <rect x="20" y="55" width="14" height="5" rx="2.5" fill="rgba(22,122,74,.25)"/>
+          <rect x="36" y="55" width="30" height="5" rx="2.5" fill="rgba(22,122,74,.15)"/>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Structured Data · AEO</div>
+        <div class="tool-name">Schema Markup Generator</div>
+        <div class="tool-desc">Generate JSON-LD schema markup for 8 schema types: Article, HowTo, LocalBusiness, Product, Review, BreadcrumbList, Organization, and VideoObject. Form-based, instant, with validation checklist.</div>
+        <div class="tool-features">
+          <span class="tool-feat">8 Schema Types</span>
+          <span class="tool-feat">Form-Based</span>
+          <span class="tool-feat">JSON-LD</span>
+          <span class="tool-feat">Validation Guide</span>
+        </div>
+        <a href="tool-05-schema-markup-generator.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- TOOL 06: Keyword Density Analyzer -->
+    <div class="tool-card" data-cat="content">
+      <div class="tool-card-top tc-amber">
+        <span class="tool-num">06</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <rect x="14" y="60" width="12" height="18" rx="3" fill="rgba(245,158,11,.6)"/>
+          <rect x="30" y="44" width="12" height="34" rx="3" fill="rgba(245,158,11,.5)"/>
+          <rect x="46" y="30" width="12" height="48" rx="3" fill="rgba(245,158,11,.7)"/>
+          <rect x="62" y="18" width="12" height="60" rx="3" fill="rgba(245,158,11,.55)"/>
+          <path d="M12 65l16-22 16-10 16-18" stroke="rgba(245,158,11,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="65" r="3" fill="#f59e0b"/>
+          <circle cx="36" cy="43" r="3" fill="#f59e0b"/>
+          <circle cx="52" cy="33" r="3" fill="#f59e0b"/>
+          <circle cx="68" cy="15" r="3" fill="#f59e0b"/>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Content SEO</div>
+        <div class="tool-name">Keyword Density Analyzer</div>
+        <div class="tool-desc">Paste any article and get an instant keyword frequency table, Flesch-Kincaid readability score, 2-word phrase analysis, keyword stuffing alerts, visual word cloud, and estimated reading time.</div>
+        <div class="tool-features">
+          <span class="tool-feat">Frequency Table</span>
+          <span class="tool-feat">Readability Score</span>
+          <span class="tool-feat">Phrase Analysis</span>
+          <span class="tool-feat">Word Cloud</span>
+        </div>
+        <a href="tool-06-keyword-density-analyzer.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- TOOL 07: Robots.txt Generator -->
+    <div class="tool-card" data-cat="technical">
+      <div class="tool-card-top tc-indigo">
+        <span class="tool-num">07</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <rect x="26" y="10" width="38" height="26" rx="6" fill="rgba(124,58,237,.25)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <circle cx="36" cy="22" r="4" fill="rgba(255,255,255,.35)"/>
+          <circle cx="54" cy="22" r="4" fill="rgba(255,255,255,.35)"/>
+          <rect x="18" y="38" width="54" height="36" rx="6" fill="rgba(124,58,237,.2)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+          <rect x="26" y="46" width="38" height="4" rx="2" fill="rgba(255,255,255,.3)"/>
+          <rect x="26" y="54" width="28" height="4" rx="2" fill="rgba(255,255,255,.2)"/>
+          <rect x="26" y="62" width="34" height="4" rx="2" fill="rgba(255,255,255,.2)"/>
+          <rect x="10" y="54" width="10" height="4" rx="2" fill="rgba(124,58,237,.35)"/>
+          <rect x="70" y="54" width="10" height="4" rx="2" fill="rgba(124,58,237,.35)"/>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">Technical SEO</div>
+        <div class="tool-name">Robots.txt Generator &amp; Tester</div>
+        <div class="tool-desc">Visual rule builder with 6 industry presets — Fintech, E-Commerce, AI Bot Blocking, Blog, News, and SaaS. Test any URL path against your rules instantly. Download your complete robots.txt in one click.</div>
+        <div class="tool-features">
+          <span class="tool-feat">6 Presets</span>
+          <span class="tool-feat">URL Tester</span>
+          <span class="tool-feat">AI Bot Blocking</span>
+          <span class="tool-feat">One-Click Download</span>
+        </div>
+        <a href="tool-07-robots-txt-generator.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- TOOL 08: Hreflang Generator -->
+    <div class="tool-card" data-cat="international">
+      <div class="tool-card-top tc-ocean">
+        <span class="tool-num">08</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <circle cx="45" cy="45" r="28" stroke="rgba(255,255,255,.3)" stroke-width="2" fill="rgba(3,105,161,.2)"/>
+          <ellipse cx="45" cy="45" rx="14" ry="28" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none"/>
+          <line x1="17" y1="45" x2="73" y2="45" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+          <line x1="20" y1="33" x2="70" y2="33" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          <line x1="20" y1="57" x2="70" y2="57" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          <circle cx="45" cy="45" r="4" fill="rgba(255,255,255,.5)"/>
+          <text x="28" y="28" font-size="7" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif" font-weight="700">IN</text>
+          <text x="54" y="28" font-size="7" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif" font-weight="700">EN</text>
+          <text x="21" y="50" font-size="7" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif" font-weight="700">DE</text>
+          <text x="60" y="50" font-size="7" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif" font-weight="700">JP</text>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">International SEO</div>
+        <div class="tool-name">Hreflang Tag Generator</div>
+        <div class="tool-desc">Generate correct hreflang link tags, HTTP response headers, and XML sitemap entries for multilingual and multi-regional websites. Presets for India, Global English, APAC, Europe, and Latin America included.</div>
+        <div class="tool-features">
+          <span class="tool-feat">Link Tags</span>
+          <span class="tool-feat">HTTP Headers</span>
+          <span class="tool-feat">XML Sitemap</span>
+          <span class="tool-feat">5 Region Presets</span>
+        </div>
+        <a href="tool-08-hreflang-generator.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- TOOL 09: FAQs Auto-Builder -->
+    <div class="tool-card" data-cat="schema">
+      <div class="tool-card-top" style="background:linear-gradient(135deg,#1c0a00 0%,#451a03 100%)">
+        <span class="tool-num">09</span>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <rect x="14" y="14" width="62" height="18" rx="5" fill="rgba(245,158,11,.2)" stroke="rgba(245,158,11,.4)" stroke-width="1.5"/>
+          <rect x="20" y="19" width="8" height="8" rx="2" fill="rgba(245,158,11,.5)"/>
+          <rect x="32" y="21" width="32" height="3" rx="1.5" fill="rgba(245,158,11,.3)"/>
+          <rect x="32" y="27" width="22" height="3" rx="1.5" fill="rgba(245,158,11,.2)"/>
+          <rect x="14" y="38" width="62" height="18" rx="5" fill="rgba(245,158,11,.15)" stroke="rgba(245,158,11,.3)" stroke-width="1.5"/>
+          <rect x="20" y="43" width="8" height="8" rx="2" fill="rgba(245,158,11,.35)"/>
+          <rect x="32" y="45" width="36" height="3" rx="1.5" fill="rgba(245,158,11,.25)"/>
+          <rect x="32" y="51" width="18" height="3" rx="1.5" fill="rgba(245,158,11,.15)"/>
+          <rect x="14" y="62" width="62" height="18" rx="5" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.25)" stroke-width="1.5"/>
+          <rect x="20" y="67" width="8" height="8" rx="2" fill="rgba(245,158,11,.3)"/>
+          <rect x="32" y="69" width="28" height="3" rx="1.5" fill="rgba(245,158,11,.2)"/>
+          <rect x="32" y="75" width="38" height="3" rx="1.5" fill="rgba(245,158,11,.12)"/>
+        </svg>
+        <span class="tool-badge">Web App</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-cat">AEO &amp; Content</div>
+        <div class="tool-name">FAQs Auto-Builder</div>
+        <div class="tool-desc">Browser-based FAQ generator with smart content analysis, 6 industry templates (Personal Loan, Credit Card, SEO, E-Commerce and more), JSON-LD schema output, full HTML snippets with accordion styling, and a live preview tab.</div>
+        <div class="tool-features">
+          <span class="tool-feat">Content Analysis</span>
+          <span class="tool-feat">6 Templates</span>
+          <span class="tool-feat">JSON-LD + HTML</span>
+          <span class="tool-feat">Live Preview</span>
+        </div>
+        <a href="tool-09-faqs-auto-builder.html" class="tool-open">Open Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <h2>Need a Custom SEO Tool?</h2>
+  <p>I build automation tools for SEO workflows — from crawlers to reporting dashboards. Let's talk about what you need.</p>
+  <div class="cta-row">
+    <a href="index.html#contact" class="cta-btn cta-primary">Get in Touch</a>
+    <a href="blog.html" class="cta-btn cta-secondary">Read the Blog</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html">Home</a>
+  <a href="tools.html">Tools</a>
+  <a href="blog.html">Blog</a>
+  <a href="courses.html">Courses</a>
+  <a href="index.html#contact">Contact</a>
+  <br><br>
+  © 2026 <strong style="color:rgba(255,255,255,.5)">Lochan Yadav</strong> · Lead SEO Analyst · <a href="sitemap.xml">Sitemap</a>
+</footer>
+
+<script>
+// Category filter
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    const f=btn.dataset.f;
+    document.querySelectorAll('.tool-card').forEach(c=>{
+      c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

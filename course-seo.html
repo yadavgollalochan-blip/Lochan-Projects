@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SEO Course Guide — Search Engine Optimization | Lochan Yadav</title>
-<meta name="description" content="A practical 3-minute guide to SEO — covering on-page, off-page, technical SEO, keyword research, and how to rank in the age of AI.">
+<title>SEO Course — 15 In-Depth Lessons | Lochan Yadav</title>
+<meta name="description" content="Master Search Engine Optimization with 15 detailed lessons covering keyword research, on-page SEO, technical SEO, link building, E-E-A-T, AEO, GEO, and AI-era strategies.">
 <link rel="canonical" href="https://lochan.online/course-seo.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,11 +17,13 @@ html{scroll-behavior:smooth}
   --accent:#7C3AED;--accent2:#6D28D9;--accent-lt:rgba(124,58,237,0.08);
   --gold:#C07C2A;--gold-lt:#F5ECD8;--nav-h:62px;
   --c:#7C3AED;--c2:#6D28D9;--c-lt:rgba(124,58,237,.1);
+  --teal:#167A4A;--teal-lt:rgba(22,122,74,.1);
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 
+/* NAV */
 .topbar{background:var(--ink);color:rgba(255,255,255,.6);font-size:.7rem;text-align:center;padding:7px 20px;letter-spacing:.04em}
 .topbar a{color:var(--gold-lt);text-decoration:underline}
 .nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
@@ -36,74 +38,107 @@ a{text-decoration:none;color:inherit}
 .nav-right a:hover{background:var(--c2)}
 
 /* HERO */
-.course-hero{background:var(--ink);padding:48px 32px 56px;text-align:center;position:relative;overflow:hidden}
-.course-hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--c-lt) 1px,transparent 1px),linear-gradient(90deg,var(--c-lt) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;opacity:.6}
-.course-hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:20px;transition:color .18s}
+.course-hero{background:var(--ink);padding:56px 32px 64px;text-align:center;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.07) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:24px;transition:color .18s}
 .back-link:hover{color:rgba(255,255,255,.8)}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--c-lt);border:1px solid rgba(124,58,237,.3);color:rgba(124,58,237,.9);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:5px 14px;border-radius:20px;margin-bottom:18px}
-.course-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
-.course-hero p{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.85}
-.hero-meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px}
-.hero-meta-item{font-size:.74rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:5px}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.35);color:rgba(180,150,255,.95);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:5px 16px;border-radius:20px;margin-bottom:20px}
+.course-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
+.course-hero .subtitle{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.85;max-width:580px;margin:0 auto 28px}
+.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;padding:20px 0;border-top:1px solid rgba(255,255,255,.08)}
+.hs-item{text-align:center}
+.hs-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#fff;display:block;line-height:1}
+.hs-label{font-size:.68rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
 
-/* CONTENT */
-.course-body{max-width:1160px;margin:0 auto;padding:56px 32px 80px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
-.course-content h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--ink);margin:36px 0 12px;line-height:1.25}
-.course-content h3{font-size:1rem;font-weight:700;color:var(--ink);margin:24px 0 8px}
-.course-content p{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:14px}
-.course-content strong{color:var(--ink2)}
+/* PROGRESS BAR */
+.progress-bar-wrap{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 32px}
+.progress-bar-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.progress-label{font-size:.75rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.progress-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--c),#a855f7);border-radius:3px;width:0%;transition:width .4s ease}
+.progress-pct{font-size:.72rem;font-weight:700;color:var(--c);white-space:nowrap}
 
-/* CALLOUT */
-.callout{background:var(--c-lt);border-left:3px solid var(--c);border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0;font-size:.84rem;color:var(--ink2);line-height:1.7}
-.callout strong{color:var(--c)}
+/* MAIN LAYOUT */
+.course-wrap{max-width:1160px;margin:0 auto;padding:48px 32px 80px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
 
-/* VISUAL BOX */
-.visual-box{background:linear-gradient(135deg,var(--c-lt),rgba(255,255,255,.5));border:1px solid rgba(124,58,237,.15);border-radius:14px;padding:28px;margin:24px 0;text-align:center}
-.visual-box .visual-icon{font-size:3.5rem;margin-bottom:12px}
-.visual-box p{font-size:.8rem;color:var(--muted);margin:0}
+/* INTRO SECTION */
+.intro-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:32px}
+.intro-card h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:800;color:var(--ink);margin-bottom:12px}
+.intro-card p{font-size:.85rem;color:var(--muted);line-height:1.8;margin-bottom:0}
 
-/* STEPS */
-.steps{display:flex;flex-direction:column;gap:0;margin:20px 0}
-.step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
-.step:last-child{border-bottom:none}
-.step-num{width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.step-content h4{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:4px}
-.step-content p{font-size:.8rem;color:var(--muted);margin:0;line-height:1.65}
+/* WHAT YOU'LL LEARN */
+.learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.learn-item{display:flex;align-items:flex-start;gap:8px;font-size:.8rem;color:var(--ink2)}
+.learn-check{color:var(--teal);font-size:.85rem;flex-shrink:0;margin-top:2px}
 
-/* TOOLS GRID */
-.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
-.tool-chip{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.78rem}
-.tool-chip strong{display:block;color:var(--ink);font-weight:700;margin-bottom:2px}
-.tool-chip span{color:var(--muted);font-size:.72rem}
+/* SECTION LABEL */
+.section-label{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* PROVIDERS */
-.provider-list{display:flex;flex-direction:column;gap:10px;margin:16px 0}
-.provider-item{display:flex;gap:12px;align-items:flex-start;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:10px}
-.provider-icon{font-size:1.4rem;flex-shrink:0}
-.provider-name{font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:2px}
-.provider-desc{font-size:.74rem;color:var(--muted)}
-.provider-tag{display:inline-block;background:var(--c-lt);color:var(--c);font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;margin-top:4px}
+/* LESSON LIST */
+.lessons-list{display:flex;flex-direction:column;gap:0}
+.lesson-row{display:flex;align-items:stretch;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:all .2s;text-decoration:none;color:inherit}
+.lesson-row:hover{border-color:var(--c);box-shadow:0 4px 20px rgba(124,58,237,.1);transform:translateY(-1px)}
+.lesson-num-wrap{width:52px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border-right:1px solid var(--border);flex-shrink:0}
+.lesson-num{font-family:'Playfair Display',serif;font-size:1rem;font-weight:900;color:var(--muted2)}
+.lesson-row.completed .lesson-num-wrap{background:var(--teal-lt);border-color:rgba(22,122,74,.2)}
+.lesson-row.completed .lesson-num{color:var(--teal)}
+.lesson-row.current .lesson-num-wrap{background:var(--c-lt);border-color:rgba(124,58,237,.2)}
+.lesson-row.current .lesson-num{color:var(--c)}
+.lesson-body{flex:1;padding:16px 20px;display:flex;align-items:center;gap:16px}
+.lesson-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--bg2)}
+.lesson-info{flex:1}
+.lesson-title{font-size:.88rem;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:4px}
+.lesson-desc{font-size:.76rem;color:var(--muted);line-height:1.5}
+.lesson-meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.lesson-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:3px}
+.tag-beg{background:#dcfce7;color:#166534}
+.tag-int{background:#fef9c3;color:#854d0e}
+.tag-adv{background:#ede9fe;color:#5b21b6}
+.lesson-time{font-size:.68rem;color:var(--muted2);display:flex;align-items:center;gap:3px}
+.lesson-action{padding:0 20px;display:flex;align-items:center;flex-shrink:0}
+.btn-start{display:inline-flex;align-items:center;gap:5px;background:var(--c);color:#fff;padding:8px 16px;border-radius:7px;font-weight:700;font-size:.74rem;transition:all .18s;white-space:nowrap}
+.btn-start:hover{background:var(--c2)}
+.btn-locked{display:inline-flex;align-items:center;gap:5px;background:var(--bg2);color:var(--muted2);padding:8px 16px;border-radius:7px;font-weight:600;font-size:.74rem;white-space:nowrap;cursor:default}
+.btn-done{display:inline-flex;align-items:center;gap:5px;background:var(--teal-lt);color:var(--teal);border:1px solid rgba(22,122,74,.25);padding:8px 16px;border-radius:7px;font-weight:700;font-size:.74rem;white-space:nowrap}
 
-/* CTA */
-.course-cta-box{background:var(--ink);border-radius:16px;padding:32px;text-align:center;margin-top:40px}
-.course-cta-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:10px}
-.course-cta-box p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:20px}
-.cta-btn{display:inline-flex;align-items:center;gap:6px;background:var(--c);color:#fff;padding:11px 24px;border-radius:8px;font-weight:700;font-size:.82rem;transition:all .18s}
-.cta-btn:hover{background:var(--c2)}
+/* MODULE HEADINGS */
+.module-head{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--muted2);padding:20px 0 8px;display:flex;align-items:center;gap:8px}
+.module-head::before{content:'';width:3px;height:12px;background:var(--c);border-radius:2px}
 
 /* SIDEBAR */
 .course-sidebar{display:flex;flex-direction:column;gap:20px;position:sticky;top:80px}
 .sb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
 .sb-title{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:14px}
-.toc-link{display:block;font-size:.78rem;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);transition:color .18s}
-.toc-link:last-child{border-bottom:none}
-.toc-link:hover{color:var(--c)}
-.other-course{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);text-decoration:none}
-.other-course:last-child{border-bottom:none}
-.oc-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
-.oc-name{font-size:.78rem;font-weight:600;color:var(--ink);line-height:1.2}
-.oc-time{font-size:.68rem;color:var(--muted2)}
+.sb-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.sb-row:last-child{border-bottom:none}
+.sb-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.sb-text{font-size:.78rem;font-weight:600;color:var(--ink);line-height:1.2}
+.sb-sub{font-size:.67rem;color:var(--muted2)}
+
+/* INSTRUCTOR CARD */
+.instructor{display:flex;gap:12px;align-items:flex-start;padding:16px 0}
+.instructor-avatar{width:44px;height:44px;border-radius:50%;background:var(--c-lt);border:2px solid rgba(124,58,237,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem}
+.instructor-name{font-size:.82rem;font-weight:700;color:var(--ink)}
+.instructor-role{font-size:.72rem;color:var(--muted)}
+.instructor-bio{font-size:.75rem;color:var(--muted);line-height:1.6;margin-top:10px}
+
+/* COURSE RATING */
+.rating-row{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.stars{color:#F59E0B;font-size:.9rem;letter-spacing:1px}
+.rating-num{font-size:.85rem;font-weight:700;color:var(--ink)}
+.rating-count{font-size:.72rem;color:var(--muted)}
+.course-detail-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.course-detail-list li{font-size:.78rem;color:var(--ink2);display:flex;align-items:flex-start;gap:8px}
+.course-detail-list li::before{content:'✓';color:var(--teal);font-weight:900;flex-shrink:0;margin-top:1px}
+
+/* CTA BOX */
+.cta-box{background:linear-gradient(135deg,var(--c),#a855f7);border-radius:14px;padding:24px;text-align:center;margin-top:4px}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:8px}
+.cta-box p{font-size:.76rem;color:rgba(255,255,255,.7);margin-bottom:16px}
+.cta-btn-white{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--c);padding:10px 20px;border-radius:8px;font-weight:800;font-size:.78rem;transition:all .18s}
+.cta-btn-white:hover{background:var(--bg2)}
 
 /* FOOTER */
 footer{background:var(--ink);padding:32px;text-align:center}
@@ -115,20 +150,20 @@ footer{background:var(--ink);padding:32px;text-align:center}
 .footer-links a:hover{color:rgba(255,255,255,.8)}
 .footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);max-width:1160px;margin:0 auto}
 
-@media(max-width:900px){.course-body{grid-template-columns:1fr}.course-sidebar{position:static}}
-@media(max-width:600px){.nav-center{display:none}.tools-grid{grid-template-columns:1fr}}
+@media(max-width:1000px){.course-wrap{grid-template-columns:1fr}.course-sidebar{position:static}}
+@media(max-width:640px){.nav-center{display:none}.learn-grid{grid-template-columns:1fr}.lesson-action{padding:12px 16px}.hero-stats{gap:24px}}
 </style>
 </head>
 <body>
 
-<div class="topbar">📚 Part of the <a href="courses.html">Digital Marketing Courses</a> series by Lochan Yadav · BankBazaar</div>
+<div class="topbar">📚 <a href="courses.html">Digital Marketing Courses</a> · SEO Masterclass · 15 Lessons · Free Access</div>
 
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
     <div class="nav-center">
       <a href="index.html">Home</a>
-      <a href="index.html#tools">Tools</a>
+      <a href="tools.html">Tools</a>
       <a href="blog.html">Blog</a>
       <a href="courses.html" class="active">Courses</a>
       <a href="index.html#portfolio">Portfolio</a>
@@ -138,139 +173,494 @@ footer{background:var(--ink);padding:32px;text-align:center}
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="course-hero">
-  <div class="course-hero-grid"></div>
-  <div class="course-hero-inner">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
     <a href="courses.html" class="back-link">← Back to All Courses</a>
-    <div class="hero-badge">🔍 SEO · Search Engine Optimization</div>
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      SEO Masterclass · 15 Lessons
+    </div>
     <h1>Search Engine Optimization</h1>
-    <p>Rank higher, earn more organic traffic, and survive Google's AI era — a practitioner's guide to modern SEO.</p>
-    <div class="hero-meta">
-      <span class="hero-meta-item">⏱ 3 min read</span>
-      <span class="hero-meta-item">✍️ Lochan Yadav · BankBazaar</span>
-      <span class="hero-meta-item">📅 May 2026</span>
+    <p class="subtitle">From Google fundamentals to AI-era strategies — everything you need to rank, drive organic traffic, and build sustainable SEO for the Indian market.</p>
+    <div class="hero-stats">
+      <div class="hs-item"><span class="hs-num">15</span><div class="hs-label">Lessons</div></div>
+      <div class="hs-item"><span class="hs-num">5+</span><div class="hs-label">Hours of Content</div></div>
+      <div class="hs-item"><span class="hs-num">100%</span><div class="hs-label">Free</div></div>
+      <div class="hs-item"><span class="hs-num">2026</span><div class="hs-label">Updated</div></div>
     </div>
   </div>
 </div>
 
-<div class="course-body">
-<div class="course-content">
-
-  <h2>What Is SEO?</h2>
-  <p>SEO (Search Engine Optimization) is the practice of making your website appear higher in search engine results pages (SERPs) — without paying for ads. When someone searches "best credit card in India," the sites that show up on page one didn't get there by accident. They earned those positions through content, authority, and technical signals that Google's algorithm rewards.</p>
-
-  <div class="callout"><strong>Simple definition:</strong> SEO = making your website easy for Google to find, understand, and trust — so it ranks your pages above your competitors.</div>
-
-  <div class="visual-box">
-    <div class="visual-icon">🏗️</div>
-    <p><strong>The 3 Pillars of SEO</strong><br>On-Page (Content & Keywords) · Off-Page (Links & Authority) · Technical (Speed, Structure, Crawlability)</p>
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap">
+  <div class="progress-bar-inner">
+    <span class="progress-label">Your Progress</span>
+    <div class="progress-track"><div class="progress-fill" id="pf"></div></div>
+    <span class="progress-pct" id="pp">0 / 15 lessons</span>
   </div>
-
-  <h2>Real-World Example</h2>
-  <p>At BankBazaar, we optimized our personal loan pages for queries like "personal loan interest rates 2026." By updating the content with current rates, adding FAQ schema, and improving page speed, organic traffic to those pages grew by 38% in 90 days — with zero ad spend.</p>
-
-  <h2>The 3 Pillars of SEO</h2>
-
-  <h3>1. On-Page SEO</h3>
-  <p>On-page SEO is everything you control on your own page. This includes your <strong>title tag</strong> (the clickable headline in search results), your <strong>meta description</strong>, your <strong>headings (H1, H2, H3)</strong>, the <strong>body content</strong>, internal links, image alt text, and structured data (schema markup). The goal is to make your page the most relevant and helpful answer for a specific search query.</p>
-
-  <h3>2. Off-Page SEO</h3>
-  <p>Off-page SEO is about building <strong>authority</strong>. The most important signal is backlinks — other websites linking to yours. A link from The Times of India to BankBazaar tells Google "this is a trustworthy source." Quality beats quantity: one link from a high-authority financial site is worth more than 50 links from random blogs.</p>
-
-  <h3>3. Technical SEO</h3>
-  <p>Technical SEO ensures Google can find, crawl, and index your site efficiently. Key areas: <strong>site speed</strong> (LCP under 2.5s), <strong>mobile friendliness</strong>, <strong>Core Web Vitals</strong>, <strong>HTTPS</strong>, <strong>XML sitemaps</strong>, and a clean <strong>robots.txt</strong>. A great piece of content that can't be crawled won't rank.</p>
-
-  <h2>Step-by-Step SEO Process</h2>
-  <div class="steps">
-    <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Keyword Research</h4><p>Find what your audience searches for. Use Ahrefs or Google Keyword Planner to identify high-volume, low-competition queries relevant to your business.</p></div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Map Keywords to Pages</h4><p>Assign one primary keyword per page. Avoid cannibalization — don't have two pages fighting for the same query.</p></div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Create / Optimize Content</h4><p>Write content that fully answers the search intent. Cover the topic better than anyone on page one — more depth, fresher data, clearer structure.</p></div></div>
-    <div class="step"><div class="step-num">4</div><div class="step-content"><h4>On-Page Optimization</h4><p>Place your keyword in the title tag, first 100 words, at least one H2, and the meta description. Add schema markup for FAQs or articles.</p></div></div>
-    <div class="step"><div class="step-num">5</div><div class="step-content"><h4>Build Backlinks</h4><p>Use digital PR, guest posts, and broken link building to earn links from relevant, authoritative domains in your industry.</p></div></div>
-    <div class="step"><div class="step-num">6</div><div class="step-content"><h4>Monitor & Iterate</h4><p>Track rankings weekly using Ahrefs or Google Search Console. Update content every 3-6 months. SEO is never "done."</p></div></div>
-  </div>
-
-  <h2>SEO in 2026: The AI Layer</h2>
-  <p>Google's AI Overviews now appear for 70%+ of informational queries. To appear in these AI-generated answers, your content must be <strong>factual, structured, and citeable</strong>. Use clear headings, FAQ sections, tables, and statistics with sources. This is AEO (Answer Engine Optimization) — the next evolution of SEO.</p>
-
-  <div class="callout"><strong>Pro tip from BankBazaar:</strong> Pages with FAQ schema that directly answer specific questions (e.g., "What is the SBI home loan interest rate?") are 3× more likely to be cited in AI Overviews than generic long-form articles.</div>
-
-  <h2>Essential SEO Tools</h2>
-  <div class="tools-grid">
-    <div class="tool-chip"><strong>Ahrefs</strong><span>Keyword research, backlinks, rank tracking</span></div>
-    <div class="tool-chip"><strong>Google Search Console</strong><span>Free ranking data direct from Google</span></div>
-    <div class="tool-chip"><strong>Screaming Frog</strong><span>Technical SEO crawls & audits</span></div>
-    <div class="tool-chip"><strong>Surfer SEO</strong><span>On-page optimization & NLP analysis</span></div>
-    <div class="tool-chip"><strong>Google PageSpeed Insights</strong><span>Core Web Vitals measurement</span></div>
-    <div class="tool-chip"><strong>Frase.io</strong><span>AI-assisted content briefs & outlines</span></div>
-  </div>
-
-  <h2>Where to Learn More</h2>
-  <div class="provider-list">
-    <div class="provider-item">
-      <div class="provider-icon">🎓</div>
-      <div><div class="provider-name">Ahrefs Academy</div><div class="provider-desc">Free, practical SEO course from one of the top tools in the industry. Covers keyword research, on-page, and link building.</div><div class="provider-tag">Free</div></div>
-    </div>
-    <div class="provider-item">
-      <div class="provider-icon">🔵</div>
-      <div><div class="provider-name">Google Digital Garage — Fundamentals of Digital Marketing</div><div class="provider-desc">IAB-certified free course covering all digital channels including SEO basics. Great starting point.</div><div class="provider-tag">Free · Certified</div></div>
-    </div>
-    <div class="provider-item">
-      <div class="provider-icon">🟠</div>
-      <div><div class="provider-name">Semrush Academy — SEO Courses</div><div class="provider-desc">Structured courses from beginner to advanced, covering technical SEO, content strategy, and link building.</div><div class="provider-tag">Free · Certified</div></div>
-    </div>
-    <div class="provider-item">
-      <div class="provider-icon">📚</div>
-      <div><div class="provider-name">Coursera — SEO Specialization (UC Davis)</div><div class="provider-desc">In-depth academic SEO curriculum. Best for those who want structured, peer-reviewed learning.</div><div class="provider-tag">Paid · Certificate</div></div>
-    </div>
-  </div>
-
-  <div class="course-cta-box">
-    <h3>Take Your SEO to the Next Level</h3>
-    <p>Use the free tools I've built to analyze your site's meta tags, preview SERP snippets, check keyword density, and generate schema markup.</p>
-    <a href="index.html#tools" class="cta-btn">Explore Free SEO Tools →</a>
-  </div>
-
 </div>
 
-<!-- SIDEBAR -->
-<aside class="course-sidebar">
-  <div class="sb-card">
-    <div class="sb-title">In This Guide</div>
-    <a href="#" class="toc-link">What Is SEO?</a>
-    <a href="#" class="toc-link">Real-World Example</a>
-    <a href="#" class="toc-link">The 3 Pillars</a>
-    <a href="#" class="toc-link">Step-by-Step Process</a>
-    <a href="#" class="toc-link">SEO in 2026: AI Layer</a>
-    <a href="#" class="toc-link">Essential Tools</a>
-    <a href="#" class="toc-link">Where to Learn More</a>
-  </div>
-  <div class="sb-card">
-    <div class="sb-title">Other Courses</div>
-    <a href="course-sem.html" class="other-course"><div class="oc-icon" style="background:rgba(37,99,235,.1)">💰</div><div><div class="oc-name">SEM & Google Ads</div><div class="oc-time">3 min · Paid Search</div></div></a>
-    <a href="course-social-media.html" class="other-course"><div class="oc-icon" style="background:rgba(225,29,72,.1)">📱</div><div><div class="oc-name">Social Media Marketing</div><div class="oc-time">3 min · Organic Social</div></div></a>
-    <a href="course-content-marketing.html" class="other-course"><div class="oc-icon" style="background:rgba(217,119,6,.1)">✍️</div><div><div class="oc-name">Content Marketing</div><div class="oc-time">3 min · Strategy</div></div></a>
-    <a href="course-web-analytics.html" class="other-course"><div class="oc-icon" style="background:rgba(8,145,178,.1)">📊</div><div><div class="oc-name">Web Analytics (GA4)</div><div class="oc-time">3 min · Data</div></div></a>
-    <a href="course-power-bi.html" class="other-course"><div class="oc-icon" style="background:rgba(192,54,74,.1)">📉</div><div><div class="oc-name">Power BI for Marketers</div><div class="oc-time">3 min · Dashboards</div></div></a>
-  </div>
-  <div class="sb-card" style="background:linear-gradient(135deg,var(--c-lt),rgba(192,124,42,.05));border-color:rgba(124,58,237,.15)">
-    <div class="sb-title">Free SEO Tools</div>
-    <p style="font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:12px">I built 8 browser-based SEO tools — all free, no sign-up needed.</p>
-    <a href="index.html#tools" style="display:block;background:var(--c);color:#fff;padding:8px 14px;border-radius:7px;font-weight:700;font-size:.75rem;text-align:center">Open the Toolbox →</a>
-  </div>
-</aside>
+<!-- MAIN WRAP -->
+<div class="course-wrap">
 
-</div>
+  <!-- LEFT: LESSON LIST -->
+  <div class="course-main">
+
+    <!-- INTRO CARD -->
+    <div class="intro-card">
+      <h2>What You'll Learn</h2>
+      <p>This comprehensive SEO course takes you from zero to advanced — covering every pillar of modern search engine optimisation with real-world examples from Indian fintech brands like BankBazaar, Zerodha, and PolicyBazaar.</p>
+      <div class="learn-grid">
+        <div class="learn-item"><span class="learn-check">✓</span> How Google crawls, indexes, and ranks pages</div>
+        <div class="learn-item"><span class="learn-check">✓</span> Keyword research with search intent mapping</div>
+        <div class="learn-item"><span class="learn-check">✓</span> On-page optimisation & content strategy</div>
+        <div class="learn-item"><span class="learn-check">✓</span> Technical SEO — speed, Core Web Vitals, schema</div>
+        <div class="learn-item"><span class="learn-check">✓</span> Link building, E-E-A-T, and trust signals</div>
+        <div class="learn-item"><span class="learn-check">✓</span> AI, AEO, GEO and the future of search</div>
+        <div class="learn-item"><span class="learn-check">✓</span> Local SEO for Indian markets</div>
+        <div class="learn-item"><span class="learn-check">✓</span> SEO analytics, reporting, and strategy</div>
+      </div>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div class="module-head">Module 1 — Foundations</div>
+    <div class="section-label">Lessons 1–3</div>
+
+    <div class="lessons-list">
+
+      <a href="seo-lesson-01-what-is-seo.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">01</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="#7C3AED" stroke-width="1.5"/><path d="M11 7v4l2.5 2.5" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">What Is SEO? — The Complete Beginner's Guide</div>
+            <div class="lesson-desc">Understand what SEO is, why it matters, and how it fits into the broader digital marketing mix. Includes real BankBazaar organic traffic data.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-beg">Beginner</span>
+              <span class="lesson-time">⏱ 12 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-02-how-google-works.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">02</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="3" stroke="#7C3AED" stroke-width="1.5"/><path d="M7 11h8M7 7h5M7 15h3" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">How Google Works — Crawling, Indexing & Ranking Explained</div>
+            <div class="lesson-desc">A deep-dive into Googlebot, the index, and the ranking algorithm. Learn how search results are decided and what signals matter most in 2026.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-beg">Beginner</span>
+              <span class="lesson-time">⏱ 14 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-03-keyword-research.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">03</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="6" stroke="#7C3AED" stroke-width="1.5"/><path d="M14.5 14.5L18 18" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">Keyword Research — Finding the Right Terms to Rank For</div>
+            <div class="lesson-desc">Master search volume, keyword difficulty, and search intent. Build a complete keyword map for any website using free and paid tools.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-beg">Beginner</span>
+              <span class="lesson-time">⏱ 15 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="module-head">Module 2 — On-Page & Technical</div>
+    <div class="section-label">Lessons 4–6</div>
+
+    <div class="lessons-list">
+
+      <a href="seo-lesson-04-on-page-seo.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">04</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4h14v14H4z" stroke="#7C3AED" stroke-width="1.5" rx="2"/><path d="M8 8h6M8 11h4M8 14h5" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">On-Page SEO — Optimise Every Element That Google Reads</div>
+            <div class="lesson-desc">Title tags, meta descriptions, header hierarchy, internal linking, and content optimisation — the complete on-page checklist for 2026.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-int">Intermediate</span>
+              <span class="lesson-time">⏱ 16 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-05-technical-seo.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">05</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M9 4L4 11l5 7M13 4l5 7-5 7" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">Technical SEO — Site Speed, Crawlability & Architecture</div>
+            <div class="lesson-desc">Fix the invisible issues holding your rankings back: robots.txt, sitemaps, canonical tags, redirects, JavaScript SEO, and log file analysis.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-int">Intermediate</span>
+              <span class="lesson-time">⏱ 18 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-06-core-web-vitals.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">06</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 15l4-5 3 3 3-5 4 7" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">Core Web Vitals — Google's UX Ranking Signals Explained</div>
+            <div class="lesson-desc">LCP, INP, CLS — understand what they measure, how to benchmark your scores, and the fixes that move the needle for real-world sites.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-int">Intermediate</span>
+              <span class="lesson-time">⏱ 14 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="module-head">Module 3 — Authority & Trust</div>
+    <div class="section-label">Lessons 7–9</div>
+
+    <div class="lessons-list">
+
+      <a href="seo-lesson-07-link-building.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">07</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M9.5 12.5a4 4 0 005.66 0l2-2a4 4 0 00-5.66-5.66l-1 1" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 9.5a4 4 0 00-5.66 0l-2 2a4 4 0 005.66 5.66l1-1" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">Link Building — Earning Backlinks That Actually Move Rankings</div>
+            <div class="lesson-desc">Domain authority, link equity, and white-hat acquisition strategies. Digital PR, broken-link building, and HARO for the Indian market.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-int">Intermediate</span>
+              <span class="lesson-time">⏱ 17 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-08-local-seo.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">08</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C8.24 2 6 4.24 6 7c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="#7C3AED" stroke-width="1.5"/><circle cx="11" cy="7" r="2" stroke="#7C3AED" stroke-width="1.5"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">Local SEO — Ranking in Google Maps & "Near Me" Searches</div>
+            <div class="lesson-desc">Google Business Profile, local citations, review signals, and NAP consistency. Optimise for city-level searches across Indian metros.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-int">Intermediate</span>
+              <span class="lesson-time">⏱ 13 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-09-eeat.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">09</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3l2 5h5l-4 3.5 1.5 5.5L11 14l-4.5 3 1.5-5.5L4 8h5z" stroke="#7C3AED" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">E-E-A-T — Building Experience, Expertise, Authority & Trust</div>
+            <div class="lesson-desc">Google's quality rater guidelines decoded. Build credibility signals for YMYL finance content — critical for BankBazaar-style sites.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-adv">Advanced</span>
+              <span class="lesson-time">⏱ 15 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="module-head">Module 4 — Structured Data & AI</div>
+    <div class="section-label">Lessons 10–13</div>
+
+    <div class="lessons-list">
+
+      <a href="seo-lesson-10-schema-markup.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">10</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="6" width="7" height="10" rx="2" stroke="#7C3AED" stroke-width="1.5"/><rect x="12" y="4" width="7" height="5" rx="2" stroke="#7C3AED" stroke-width="1.5"/><rect x="12" y="13" width="7" height="5" rx="2" stroke="#7C3AED" stroke-width="1.5"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">Schema Markup — Structured Data for Rich Results & SERP Features</div>
+            <div class="lesson-desc">JSON-LD implementation for FAQ, Article, Product, BreadcrumbList, and FinancialProduct schemas. Win rich snippets in competitive SERPs.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-int">Intermediate</span>
+              <span class="lesson-time">⏱ 16 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-11-aeo.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">11</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4C8 4 5.5 6.5 5.5 9.5c0 2 1 3.7 2.5 4.7V16h6v-1.8c1.5-1 2.5-2.7 2.5-4.7C16.5 6.5 14 4 11 4z" stroke="#7C3AED" stroke-width="1.5"/><path d="M9 16v2h4v-2" stroke="#7C3AED" stroke-width="1.5"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">AEO — Answer Engine Optimisation for Featured Snippets & SGE</div>
+            <div class="lesson-desc">Optimise for zero-click answers, People Also Ask, and Google's AI Overviews. Structure content so AI answers cite your pages.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-adv">Advanced</span>
+              <span class="lesson-time">⏱ 14 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-12-geo.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">12</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#7C3AED" stroke-width="1.5"/><path d="M11 3c0 0-4 3-4 8s4 8 4 8M11 3c0 0 4 3 4 8s-4 8-4 8M3 11h16" stroke="#7C3AED" stroke-width="1.5"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">GEO — Generative Engine Optimisation for ChatGPT & Perplexity</div>
+            <div class="lesson-desc">Get cited in ChatGPT, Claude, Perplexity, and Gemini responses. The new SEO frontier beyond traditional search engines.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-adv">Advanced</span>
+              <span class="lesson-time">⏱ 15 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-13-ai-in-seo.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">13</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="4" width="14" height="14" rx="3" stroke="#7C3AED" stroke-width="1.5"/><path d="M8 9h6M8 12h4M14 15l2 2" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">AI in SEO — Using Artificial Intelligence to Scale Your Strategy</div>
+            <div class="lesson-desc">Automate keyword research, content briefing, and SERP analysis with AI tools. The SEO workflows that cut 80% of manual time.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-adv">Advanced</span>
+              <span class="lesson-time">⏱ 16 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+    </div>
+
+    <!-- MODULE 5 -->
+    <div class="module-head">Module 5 — Measurement & Strategy</div>
+    <div class="section-label">Lessons 14–15</div>
+
+    <div class="lessons-list">
+
+      <a href="seo-lesson-14-seo-analytics.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">14</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 16l4-5 3 3 3-5 4 7" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19h14" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">SEO Analytics — Measuring Performance with GSC & GA4</div>
+            <div class="lesson-desc">Set up Google Search Console and GA4 for SEO. Build dashboards, track rankings, measure ROI, and report to leadership with data.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-int">Intermediate</span>
+              <span class="lesson-time">⏱ 15 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+      <a href="seo-lesson-15-seo-strategy.html" class="lesson-row">
+        <div class="lesson-num-wrap"><span class="lesson-num">15</span></div>
+        <div class="lesson-body">
+          <div class="lesson-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11h14M11 4l7 7-7 7" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="lesson-info">
+            <div class="lesson-title">SEO Strategy — Building a 12-Month Roadmap That Drives Results</div>
+            <div class="lesson-desc">Put it all together: build an SEO roadmap, prioritise quick wins vs long-term plays, and manage a team. How we grew BankBazaar's organic traffic at scale.</div>
+            <div class="lesson-meta">
+              <span class="lesson-tag tag-adv">Advanced</span>
+              <span class="lesson-time">⏱ 18 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-action"><span class="btn-start">Start Lesson →</span></div>
+      </a>
+
+    </div>
+
+  </div><!-- /course-main -->
+
+  <!-- SIDEBAR -->
+  <div class="course-sidebar">
+
+    <!-- INSTRUCTOR -->
+    <div class="sb-card">
+      <div class="sb-title">Your Instructor</div>
+      <div class="instructor">
+        <div class="instructor-avatar">👤</div>
+        <div>
+          <div class="instructor-name">Lochan Yadav</div>
+          <div class="instructor-role">Head of SEO · BankBazaar.com</div>
+        </div>
+      </div>
+      <div class="instructor-bio">10+ years driving organic growth at one of India's top fintech platforms. Managing a 20-person SEO team, responsible for millions of monthly organic visits.</div>
+    </div>
+
+    <!-- COURSE DETAILS -->
+    <div class="sb-card">
+      <div class="rating-row">
+        <span class="stars">★★★★★</span>
+        <span class="rating-num">5.0</span>
+        <span class="rating-count">· Expert Level</span>
+      </div>
+      <ul class="course-detail-list">
+        <li>15 in-depth lessons (5+ hours)</li>
+        <li>Real Indian fintech case studies</li>
+        <li>Downloadable checklists & templates</li>
+        <li>Links to free SEO tools</li>
+        <li>Updated for Google 2026 algorithm</li>
+        <li>Covers AI Overviews, AEO & GEO</li>
+      </ul>
+    </div>
+
+    <!-- OTHER COURSES -->
+    <div class="sb-card">
+      <div class="sb-title">More Courses</div>
+      <a href="course-sem.html" class="sb-row" style="text-decoration:none">
+        <div class="sb-icon" style="background:#FEF3C7">📢</div>
+        <div><div class="sb-text">SEM & Google Ads</div><div class="sb-sub">Paid search mastery</div></div>
+      </a>
+      <a href="course-content-marketing.html" class="sb-row" style="text-decoration:none">
+        <div class="sb-icon" style="background:#DCFCE7">✍️</div>
+        <div><div class="sb-text">Content Marketing</div><div class="sb-sub">Strategy & execution</div></div>
+      </a>
+      <a href="course-web-analytics.html" class="sb-row" style="text-decoration:none">
+        <div class="sb-icon" style="background:#EDE9FE">📊</div>
+        <div><div class="sb-text">Web Analytics</div><div class="sb-sub">GA4 & GSC mastery</div></div>
+      </a>
+      <a href="course-social-media.html" class="sb-row" style="text-decoration:none">
+        <div class="sb-icon" style="background:#FCE7F3">📱</div>
+        <div><div class="sb-text">Social Media</div><div class="sb-sub">Organic & paid</div></div>
+      </a>
+    </div>
+
+    <!-- FREE TOOLS -->
+    <div class="sb-card">
+      <div class="sb-title">Practice with Free Tools</div>
+      <a href="tool-01-meta-tag-extractor.html" class="sb-row" style="text-decoration:none">
+        <div class="sb-icon" style="background:#EDE9FE">🔍</div>
+        <div><div class="sb-text">Meta Tag Extractor</div><div class="sb-sub">Analyse any URL</div></div>
+      </a>
+      <a href="tool-04-faq-schema-generator.html" class="sb-row" style="text-decoration:none">
+        <div class="sb-icon" style="background:#DCFCE7">📋</div>
+        <div><div class="sb-text">FAQ Schema Generator</div><div class="sb-sub">Structured data builder</div></div>
+      </a>
+      <a href="tool-06-keyword-density-analyzer.html" class="sb-row" style="text-decoration:none">
+        <div class="sb-icon" style="background:#FEF9C3">🔑</div>
+        <div><div class="sb-text">Keyword Density Analyzer</div><div class="sb-sub">On-page content audit</div></div>
+      </a>
+    </div>
+
+    <!-- START CTA -->
+    <div class="cta-box">
+      <h3>Ready to Start?</h3>
+      <p>Lesson 1 takes under 15 minutes. Begin your SEO mastery journey now.</p>
+      <a href="seo-lesson-01-what-is-seo.html" class="cta-btn-white">Start Lesson 1 →</a>
+    </div>
+
+  </div><!-- /sidebar -->
+
+</div><!-- /course-wrap -->
 
 <footer>
   <div class="footer-top">
     <div class="footer-logo">Lochan <span>Yadav</span></div>
     <div class="footer-links">
-      <a href="index.html">Home</a><a href="index.html#tools">Tools</a><a href="blog.html">Blog</a>
-      <a href="courses.html">Courses</a><a href="index.html#contact">Contact</a><a href="sitemap.xml">Sitemap</a>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="courses.html">Courses</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
     </div>
   </div>
-  <div class="footer-copy">© 2026 Lochan Yadav · Lead SEO Analyst · BankBazaar · lochan.online</div>
+  <div class="footer-copy">© 2026 Lochan Yadav · Head of SEO · BankBazaar.com · All course content is free and open access.</div>
 </footer>
+
+<script>
+// Simple progress tracker using localStorage
+const LESSON_URLS = [
+  'seo-lesson-01-what-is-seo.html','seo-lesson-02-how-google-works.html',
+  'seo-lesson-03-keyword-research.html','seo-lesson-04-on-page-seo.html',
+  'seo-lesson-05-technical-seo.html','seo-lesson-06-core-web-vitals.html',
+  'seo-lesson-07-link-building.html','seo-lesson-08-local-seo.html',
+  'seo-lesson-09-eeat.html','seo-lesson-10-schema-markup.html',
+  'seo-lesson-11-aeo.html','seo-lesson-12-geo.html',
+  'seo-lesson-13-ai-in-seo.html','seo-lesson-14-seo-analytics.html',
+  'seo-lesson-15-seo-strategy.html'
+];
+try {
+  const done = JSON.parse(localStorage.getItem('seo_done')||'[]');
+  const count = done.length;
+  const pct = Math.round((count/15)*100);
+  document.getElementById('pf').style.width = pct+'%';
+  document.getElementById('pp').textContent = count+' / 15 lessons';
+  // mark completed rows
+  document.querySelectorAll('.lesson-row').forEach((row,i)=>{
+    if(done.includes(LESSON_URLS[i])){
+      row.classList.add('completed');
+      row.querySelector('.btn-start').className='btn-done';
+      row.querySelector('.btn-done').textContent='✓ Done';
+    }
+  });
+} catch(e){}
+</script>
+
 </body>
 </html>
