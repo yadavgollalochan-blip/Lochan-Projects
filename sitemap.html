@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HTML Sitemap — Lochan Yadav | lochan.online</title>
+<meta name="description" content="Complete sitemap of lochan.online — all pages, blog articles, SEO tools, courses and lessons.">
+<link rel="canonical" href="https://lochan.online/sitemap.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF8;--bg2:#F3F1EB;--card:#FFFFFF;--border:#DDD9CE;
+  --ink:#1A1612;--ink2:#3D3529;--muted:#6B6152;--muted2:#9E9285;
+  --accent:#7C3AED;--accent2:#6D28D9;--accent-lt:rgba(124,58,237,.08);
+  --gold:#C07C2A;--gold-lt:#F5ECD8;--teal:#167A4A;--teal-lt:rgba(22,122,74,.08);
+  --nav-h:62px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+
+/* NAV */
+.nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 32px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--ink)}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-size:.8rem;font-weight:500;color:var(--muted);padding:6px 12px;border-radius:6px;transition:all .18s}
+.nav-links a:hover{color:var(--ink);background:var(--bg2)}
+.nav-links a.active{color:var(--accent);background:var(--accent-lt);font-weight:600}
+.nav-cta a{background:var(--accent);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;font-size:.78rem}
+
+/* HERO */
+.page-hero{background:var(--ink);padding:48px 32px 56px;text-align:center;position:relative;overflow:hidden}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.06) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.page-hero-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.3);color:rgba(180,150,255,.9);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:5px 14px;border-radius:20px;margin-bottom:18px}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:12px}
+.page-hero p{font-size:.88rem;color:rgba(255,255,255,.45);line-height:1.8}
+
+/* MAIN */
+.sitemap-wrap{max-width:1100px;margin:0 auto;padding:56px 32px 80px}
+
+/* SECTION GROUP */
+.sm-section{margin-bottom:52px}
+.sm-section-head{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.sm-section-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.sm-section-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:var(--ink)}
+.sm-section-count{font-size:.68rem;font-weight:700;color:var(--muted2);background:var(--bg2);border:1px solid var(--border);padding:2px 9px;border-radius:4px;letter-spacing:.05em;margin-left:auto}
+
+/* LINK GRID */
+.sm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sm-link{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:12px 16px;
+  transition:all .18s;
+}
+.sm-link:hover{border-color:rgba(124,58,237,.3);background:var(--accent-lt);transform:translateX(3px)}
+.sm-link-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sm-link-text{flex:1}
+.sm-link-title{font-size:.82rem;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:2px}
+.sm-link-url{font-size:.67rem;color:var(--muted2)}
+.sm-link:hover .sm-link-title{color:var(--accent)}
+.sm-link-arrow{font-size:.7rem;color:var(--muted2);flex-shrink:0}
+.sm-link:hover .sm-link-arrow{color:var(--accent)}
+
+/* 2-column for long lists */
+.sm-grid-2{grid-template-columns:repeat(2,1fr)}
+.sm-grid-4{grid-template-columns:repeat(4,1fr)}
+
+/* COLORS */
+.dot-purple{background:var(--accent)}
+.dot-gold{background:var(--gold)}
+.dot-teal{background:var(--teal)}
+.dot-blue{background:#0369a1}
+.dot-orange{background:#ea580c}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:48px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:14px}
+.stat-item{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--accent);line-height:1;display:block}
+.stat-lbl{font-size:.62rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.09em;margin-top:4px;font-weight:600}
+
+/* FOOTER */
+footer{background:var(--ink);padding:28px;text-align:center}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3)}
+.footer-copy a{color:rgba(255,255,255,.5)}
+
+@media(max-width:900px){.sm-grid{grid-template-columns:repeat(2,1fr)}.sm-grid-4{grid-template-columns:repeat(2,1fr)}.stats-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.sm-grid,.sm-grid-2,.sm-grid-4{grid-template-columns:1fr}.nav-links{display:none}.stats-row{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="courses.html">Courses</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-cta"><a href="index.html#contact">Hire Me</a></div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">📍 Site Navigation</div>
+    <h1>HTML Sitemap</h1>
+    <p>Every page on lochan.online — organised by section for easy navigation and search engine discovery.</p>
+  </div>
+</div>
+
+<div class="sitemap-wrap">
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-item"><span class="stat-num">5</span><div class="stat-lbl">Core Pages</div></div>
+    <div class="stat-item"><span class="stat-num">7</span><div class="stat-lbl">Blog Articles</div></div>
+    <div class="stat-item"><span class="stat-num">9</span><div class="stat-lbl">SEO Tools</div></div>
+    <div class="stat-item"><span class="stat-num">8</span><div class="stat-lbl">Courses</div></div>
+    <div class="stat-item"><span class="stat-num">15</span><div class="stat-lbl">SEO Lessons</div></div>
+  </div>
+
+  <!-- CORE PAGES -->
+  <div class="sm-section">
+    <div class="sm-section-head">
+      <div class="sm-section-icon" style="background:var(--accent-lt)">🏠</div>
+      <div class="sm-section-title">Core Pages</div>
+      <span class="sm-section-count">5 pages</span>
+    </div>
+    <div class="sm-grid sm-grid-4" style="grid-template-columns:repeat(2,1fr)">
+      <a href="index.html" class="sm-link"><div class="sm-link-dot dot-purple"></div><div class="sm-link-text"><div class="sm-link-title">Home</div><div class="sm-link-url">lochan.online/</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tools.html" class="sm-link"><div class="sm-link-dot dot-purple"></div><div class="sm-link-text"><div class="sm-link-title">SEO Tools Hub</div><div class="sm-link-url">lochan.online/tools.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="blog.html" class="sm-link"><div class="sm-link-dot dot-purple"></div><div class="sm-link-text"><div class="sm-link-title">Blog</div><div class="sm-link-url">lochan.online/blog.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="courses.html" class="sm-link"><div class="sm-link-dot dot-purple"></div><div class="sm-link-text"><div class="sm-link-title">Courses Hub</div><div class="sm-link-url">lochan.online/courses.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="404.html" class="sm-link"><div class="sm-link-dot dot-purple"></div><div class="sm-link-text"><div class="sm-link-title">404 Page</div><div class="sm-link-url">lochan.online/404.html</div></div><span class="sm-link-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- BLOG ARTICLES -->
+  <div class="sm-section">
+    <div class="sm-section-head">
+      <div class="sm-section-icon" style="background:var(--gold-lt)">✍️</div>
+      <div class="sm-section-title">Blog Articles</div>
+      <span class="sm-section-count">7 articles</span>
+    </div>
+    <div class="sm-grid sm-grid-2">
+      <a href="blog-aeo.html" class="sm-link"><div class="sm-link-dot dot-gold"></div><div class="sm-link-text"><div class="sm-link-title">AEO: The Strategy That Gets You Into AI Answers</div><div class="sm-link-url">blog-aeo.html · 9 min · May 2026</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="blog-geo.html" class="sm-link"><div class="sm-link-dot dot-gold"></div><div class="sm-link-text"><div class="sm-link-title">GEO: Optimizing for AI-Generated Search Results</div><div class="sm-link-url">blog-geo.html · 11 min · Apr 2026</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="blog-technical-seo.html" class="sm-link"><div class="sm-link-dot dot-gold"></div><div class="sm-link-text"><div class="sm-link-title">Why Technical SEO Still Wins in the Age of AI</div><div class="sm-link-url">blog-technical-seo.html · 10 min · Mar 2026</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="blog-seo-2026.html" class="sm-link"><div class="sm-link-dot dot-gold"></div><div class="sm-link-text"><div class="sm-link-title">SEO in 2026: What's Changed, What Hasn't</div><div class="sm-link-url">blog-seo-2026.html · 8 min · Apr 2026</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="blog-trends-2026.html" class="sm-link"><div class="sm-link-dot dot-gold"></div><div class="sm-link-text"><div class="sm-link-title">Top SEO Trends Shaping Search in 2026</div><div class="sm-link-url">blog-trends-2026.html · 10 min · Apr 2026</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="blog-ai-seo-tools.html" class="sm-link"><div class="sm-link-dot dot-gold"></div><div class="sm-link-text"><div class="sm-link-title">The AI SEO Tools Masterclass</div><div class="sm-link-url">blog-ai-seo-tools.html · 11 min · Apr 2026</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="blog-algorithm-updates.html" class="sm-link"><div class="sm-link-dot dot-gold"></div><div class="sm-link-text"><div class="sm-link-title">Google Algorithm Updates: The Definitive Guide</div><div class="sm-link-url">blog-algorithm-updates.html · 9 min · Apr 2026</div></div><span class="sm-link-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- SEO TOOLS -->
+  <div class="sm-section">
+    <div class="sm-section-head">
+      <div class="sm-section-icon" style="background:var(--teal-lt)">🔧</div>
+      <div class="sm-section-title">Free SEO Tools</div>
+      <span class="sm-section-count">9 tools</span>
+    </div>
+    <div class="sm-grid">
+      <a href="tool-01-meta-tag-extractor.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">Meta Tag Extractor</div><div class="sm-link-url">On-Page SEO · Web App</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tool-02-serp-preview.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">SERP Preview Tool</div><div class="sm-link-url">On-Page SEO · Web App</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tool-03-seo-geo-audit.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">SEO / GEO Audit Tool</div><div class="sm-link-url">Technical & GEO · Web App</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tool-04-faq-schema-generator.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">FAQ Schema Generator</div><div class="sm-link-url">AEO & Structured Data · Web App</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tool-05-schema-markup-generator.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">Schema Markup Generator</div><div class="sm-link-url">Structured Data · Web App</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tool-06-keyword-density-analyzer.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">Keyword Density Analyzer</div><div class="sm-link-url">Content SEO · Web App</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tool-07-robots-txt-generator.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">Robots.txt Generator & Tester</div><div class="sm-link-url">Technical SEO · Web App</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tool-08-hreflang-generator.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">Hreflang Tag Generator</div><div class="sm-link-url">International SEO · Web App</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="tool-09-faqs-auto-builder.html" class="sm-link"><div class="sm-link-dot dot-teal"></div><div class="sm-link-text"><div class="sm-link-title">FAQs Auto-Builder</div><div class="sm-link-url">AEO & Content · Web App</div></div><span class="sm-link-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- COURSES -->
+  <div class="sm-section">
+    <div class="sm-section-head">
+      <div class="sm-section-icon" style="background:rgba(3,105,161,.08)">📚</div>
+      <div class="sm-section-title">Digital Marketing Courses</div>
+      <span class="sm-section-count">8 courses</span>
+    </div>
+    <div class="sm-grid sm-grid-2">
+      <a href="course-seo.html" class="sm-link"><div class="sm-link-dot dot-blue"></div><div class="sm-link-text"><div class="sm-link-title">SEO Masterclass</div><div class="sm-link-url">course-seo.html · 15 lessons</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="course-sem.html" class="sm-link"><div class="sm-link-dot dot-blue"></div><div class="sm-link-text"><div class="sm-link-title">SEM & Google Ads</div><div class="sm-link-url">course-sem.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="course-social-media.html" class="sm-link"><div class="sm-link-dot dot-blue"></div><div class="sm-link-text"><div class="sm-link-title">Social Media Marketing</div><div class="sm-link-url">course-social-media.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="course-content-marketing.html" class="sm-link"><div class="sm-link-dot dot-blue"></div><div class="sm-link-text"><div class="sm-link-title">Content Marketing</div><div class="sm-link-url">course-content-marketing.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="course-email-marketing.html" class="sm-link"><div class="sm-link-dot dot-blue"></div><div class="sm-link-text"><div class="sm-link-title">Email Marketing</div><div class="sm-link-url">course-email-marketing.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="course-web-analytics.html" class="sm-link"><div class="sm-link-dot dot-blue"></div><div class="sm-link-text"><div class="sm-link-title">Web Analytics (GA4)</div><div class="sm-link-url">course-web-analytics.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="course-power-bi.html" class="sm-link"><div class="sm-link-dot dot-blue"></div><div class="sm-link-text"><div class="sm-link-title">Power BI for Marketers</div><div class="sm-link-url">course-power-bi.html</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="course-affiliate-marketing.html" class="sm-link"><div class="sm-link-dot dot-blue"></div><div class="sm-link-text"><div class="sm-link-title">Affiliate Marketing</div><div class="sm-link-url">course-affiliate-marketing.html</div></div><span class="sm-link-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- SEO LESSONS -->
+  <div class="sm-section">
+    <div class="sm-section-head">
+      <div class="sm-section-icon" style="background:rgba(234,88,12,.08)">🎓</div>
+      <div class="sm-section-title">SEO Masterclass — 15 Lessons</div>
+      <span class="sm-section-count">15 pages</span>
+    </div>
+    <div class="sm-grid">
+      <a href="seo-lesson-01-what-is-seo.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">01 · What Is SEO?</div><div class="sm-link-url">Beginner · 12 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-02-how-google-works.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">02 · How Google Works</div><div class="sm-link-url">Beginner · 14 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-03-keyword-research.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">03 · Keyword Research</div><div class="sm-link-url">Beginner · 15 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-04-on-page-seo.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">04 · On-Page SEO</div><div class="sm-link-url">Intermediate · 16 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-05-technical-seo.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">05 · Technical SEO</div><div class="sm-link-url">Intermediate · 18 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-06-core-web-vitals.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">06 · Core Web Vitals</div><div class="sm-link-url">Intermediate · 14 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-07-link-building.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">07 · Link Building</div><div class="sm-link-url">Intermediate · 17 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-08-local-seo.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">08 · Local SEO</div><div class="sm-link-url">Intermediate · 13 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-09-eeat.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">09 · E-E-A-T</div><div class="sm-link-url">Advanced · 15 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-10-schema-markup.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">10 · Schema Markup</div><div class="sm-link-url">Intermediate · 16 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-11-aeo.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">11 · AEO</div><div class="sm-link-url">Advanced · 14 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-12-geo.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">12 · GEO</div><div class="sm-link-url">Advanced · 15 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-13-ai-seo.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">13 · AI in SEO</div><div class="sm-link-url">Advanced · 16 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-14-seo-analytics.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">14 · SEO Analytics</div><div class="sm-link-url">Intermediate · 15 min</div></div><span class="sm-link-arrow">→</span></a>
+      <a href="seo-lesson-15-seo-strategy.html" class="sm-link"><div class="sm-link-dot dot-orange"></div><div class="sm-link-text"><div class="sm-link-title">15 · SEO Strategy</div><div class="sm-link-url">Advanced · 18 min</div></div><span class="sm-link-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- XML SITEMAP LINK -->
+  <div style="text-align:center;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:12px">
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:10px">Looking for the machine-readable sitemap?</p>
+    <a href="sitemap.xml" style="font-size:.82rem;font-weight:700;color:var(--accent)">View XML Sitemap →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p class="footer-copy">© 2026 <strong style="color:rgba(255,255,255,.6)">Lochan Yadav</strong> · Lead SEO Analyst · BankBazaar · <a href="index.html">Back to Home</a></p>
+</footer>
+
+</body>
+</html>

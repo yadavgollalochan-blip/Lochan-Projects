@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- ── HTML Sitemap ── -->
+  <url>
+    <loc>https://lochan.online/sitemap.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
   <!-- ── Main Portfolio ── -->
   <url>
     <loc>https://lochan.online/</loc>
