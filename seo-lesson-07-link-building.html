@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
 :root{
   --bg:#FAFAF8;--bg2:#F3F1EB;--bg3:#ECEAE3;--card:#FFFFFF;
   --border:#DDD9CE;--border2:#C9C4B5;--ink:#1A1612;--ink2:#3D3529;
@@ -68,7 +68,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(26,22,18,.06)}
 @media(max-width:1100px){.lesson-wrap{grid-template-columns:1fr 260px}.lesson-nav-sidebar{display:none}}
 @media(max-width:800px){.lesson-wrap{grid-template-columns:1fr;padding:24px 20px 60px}.lesson-sidebar{position:static}.nav-links{display:none}.ham{display:flex}}
 /* LEFT NAV */
-.lnav-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;overflow:hidden}
+.lnav-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;overflow-y:auto;max-height:calc(100vh - 130px)}
 .lnav-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:2px}
 .lnav-subtitle{font-size:.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
 .lnav-list{display:flex;flex-direction:column;gap:2px}
@@ -170,6 +170,14 @@ footer{background:var(--ink);color:rgba(255,255,255,.55);padding:52px 6% 32px}
 .btt:hover{transform:translateY(-3px)}
 @media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.footer-inner{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr 1fr}}
+
+/* TOC SIDEBAR */
+.toc-list{display:flex;flex-direction:column;gap:4px}
+.toc-link{display:flex;align-items:flex-start;gap:8px;padding:7px 10px;border-radius:6px;text-decoration:none;color:var(--muted);font-size:.78rem;line-height:1.45;transition:all .18s;border-left:2px solid transparent}
+.toc-link:hover{color:var(--ink);background:var(--bg2)}
+.toc-link.toc-active{color:var(--accent);background:var(--accent-lt);border-left-color:var(--accent);font-weight:600}
+.toc-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;margin-top:6px;opacity:.6}
+
 </style>
 </head>
 <body>
@@ -181,7 +189,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.55);padding:52px 6% 32px}
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#services">Services</a></li>
     <li><a href="tools.html">Tools</a></li>
-    <li><a href="index.html#resume">Resume</a></li>
+    <li><a href="index.html#resume">Experience</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="courses.html" class="active">Courses</a></li>
     <li><a href="index.html#contact" class="hire">Hire Me</a></li>
@@ -192,7 +200,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.55);padding:52px 6% 32px}
   <a href="index.html#about">About</a>
   <a href="index.html#services">Services</a>
   <a href="tools.html">Tools</a>
-  <a href="index.html#resume">Resume</a>
+  <a href="index.html#resume">Experience</a>
   <a href="blog.html">Blog</a>
   <a href="courses.html">Courses</a>
   <a href="index.html#contact" class="m-hire">Hire Me</a>
@@ -332,6 +340,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.55);padding:52px 6% 32px}
     <div class="lesson-nav-bottom"><a href="seo-lesson-06-core-web-vitals.html" class="lnb-prev">← Core Web Vitals</a><a href="seo-lesson-08-local-seo.html" class="lnb-next">Local SEO →</a></div>
   </main>
   <aside class="lesson-sidebar">
+  <div class="sb-card" id="toc-card">
+    <div class="sb-title">In This Lesson</div>
+    <div class="toc-list" id="toc-list"></div>
+  </div>
   <div class="sb-card">
     <div class="sb-title">Your Progress</div>
     <div class="progress-info">Lesson 07 of 15 — 47% complete</div>
@@ -405,6 +417,35 @@ document.getElementById('ham').addEventListener('click',function(){
   this.classList.toggle('open');
   document.getElementById('mobnav').classList.toggle('open');
 });
+
+// Dynamic TOC
+(function(){
+  var list=document.getElementById('toc-list');
+  if(!list)return;
+  var hs=document.querySelectorAll('.lesson-body h2');
+  if(!hs.length){document.getElementById('toc-card').style.display='none';return;}
+  hs.forEach(function(h,i){
+    if(!h.id)h.id='toc-sec-'+i;
+    var a=document.createElement('a');
+    a.className='toc-link';
+    a.href='#'+h.id;
+    a.innerHTML='<span class="toc-dot"></span><span>'+h.textContent+'</span>';
+    list.appendChild(a);
+  });
+  var links=list.querySelectorAll('.toc-link');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){l.classList.remove('toc-active')});
+        var id=e.target.id;
+        var al=list.querySelector('a[href="#'+id+'"]');
+        if(al)al.classList.add('toc-active');
+      }
+    });
+  },{rootMargin:'-10% 0px -80% 0px',threshold:0});
+  hs.forEach(function(h){obs.observe(h)});
+})();
+
 </script>
 </body>
 </html>

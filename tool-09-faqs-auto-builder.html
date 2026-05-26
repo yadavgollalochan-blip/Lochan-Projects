@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>FAQs Auto-Builder | Lochan Yadav SEO Tools</title>
-<meta name="description" content="Paste any content and instantly generate SEO-optimized FAQ sections with JSON-LD schema markup — no Python, no backend, runs entirely in your browser.">
+<title>FAQs Auto-Builder — Trending Google FAQs | Lochan Yadav SEO Tools</title>
+<meta name="description" content="Find trending Google FAQs for any keyword using real autocomplete data. Fetch People Also Ask style questions, edit answers, and export JSON-LD schema instantly.">
+<link rel="canonical" href="https://lochan.online/tool-09-faqs-auto-builder.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -24,792 +26,509 @@ html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.65;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{text-decoration:none;color:var(--acc)}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-
-/* TOPBAR */
-.topbar{background:var(--acc);color:#000;font-size:.68rem;font-weight:700;text-align:center;padding:6px 20px;letter-spacing:.04em}
-.topbar a{color:#000;text-decoration:underline}
-
-/* NAV */
-.nav{background:var(--bg4);border-bottom:1px solid var(--border);padding:0 32px;height:54px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:100}
+.nav{background:var(--bg4);border-bottom:1px solid var(--border);padding:0 32px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .nav-left{display:flex;align-items:center;gap:12px}
-.nav-back{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:.78rem;font-weight:500;transition:color .18s;padding:5px 10px;border-radius:6px;border:1px solid var(--border)}
-.nav-back:hover{color:var(--ink);border-color:var(--border2)}
+.nav-back{color:var(--muted);font-size:.78rem;font-weight:500;padding:5px 10px;border-radius:6px;border:1px solid var(--border)}
+.nav-back:hover{color:var(--ink)}
 .nav-badge{background:var(--acc-lt);border:1px solid var(--acc-glow);color:var(--acc);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:4px 12px;border-radius:20px}
-.nav-right-label{font-size:.72rem;color:var(--muted);font-weight:500}
-
-/* HERO */
-.hero{text-align:center;padding:48px 32px 40px;position:relative}
+.hero{text-align:center;padding:44px 32px 36px;position:relative;border-bottom:1px solid var(--border)}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(245,158,11,.08),transparent);pointer-events:none}
-.hero-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
+.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
 .hero-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:var(--acc-glow)}
-.hero h1{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;line-height:1.1;margin-bottom:12px;letter-spacing:-.025em}
+.hero h1{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;line-height:1.1;margin-bottom:12px;letter-spacing:-.025em}
 .hero h1 span{color:var(--acc)}
-.hero p{font-size:.88rem;color:var(--muted);line-height:1.8;max-width:480px;margin:0 auto 20px}
+.hero p{font-size:.88rem;color:var(--muted);line-height:1.8;max-width:520px;margin:0 auto 18px}
 .hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.badge{padding:4px 12px;border-radius:6px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-.badge-green{background:var(--green-lt);color:var(--green);border:1px solid rgba(16,185,129,.2)}
-.badge-amber{background:var(--acc-lt);color:var(--acc);border:1px solid var(--acc-glow)}
-.badge-blue{background:var(--blue-lt);color:var(--blue);border:1px solid rgba(56,189,248,.2)}
-
-/* MAIN LAYOUT */
-.main{max-width:1200px;margin:0 auto;padding:0 32px 80px;display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:start}
-
-/* PANELS */
-.panel{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.panel-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.panel-title{font-size:.8rem;font-weight:700;color:var(--ink2);display:flex;align-items:center;gap:8px}
-.panel-title-icon{font-size:1rem}
-.panel-body{padding:20px}
-
-/* TABS */
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:0}
-.tab-btn{padding:11px 18px;font-size:.75rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;font-family:var(--font)}
-.tab-btn.active{color:var(--acc);border-bottom-color:var(--acc)}
-.tab-btn:hover:not(.active){color:var(--ink2)}
-.tab-pane{display:none;padding:20px}
-.tab-pane.active{display:block}
-
-/* FORM ELEMENTS */
-label{display:block;font-size:.72rem;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
-textarea,input[type=text],input[type=number],select{
-  width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--ink);
-  font-family:var(--font);font-size:.82rem;padding:10px 14px;transition:border-color .18s;
-  resize:vertical;
-}
-textarea:focus,input:focus,select:focus{outline:none;border-color:var(--acc)}
-.input-hint{font-size:.68rem;color:var(--muted2);margin-top:5px}
-.input-group{margin-bottom:16px}
-.char-count{font-size:.65rem;color:var(--muted2);text-align:right;margin-top:3px}
-
-/* BUTTONS */
-.btn{padding:10px 20px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;border:none;font-family:var(--font);transition:all .18s;display:inline-flex;align-items:center;gap:7px}
-.btn-primary{background:var(--acc);color:#000}
-.btn-primary:hover{background:var(--acc2);transform:translateY(-1px)}
-.btn-outline{background:transparent;border:1px solid var(--border2);color:var(--ink2)}
-.btn-outline:hover{border-color:var(--acc);color:var(--acc)}
-.btn-green{background:var(--green);color:#fff}
-.btn-green:hover{opacity:.85}
-.btn-sm{padding:7px 14px;font-size:.72rem}
-.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
-
-/* SETTINGS GRID */
-.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
-.settings-full{grid-column:1/-1}
-
-/* FAQ EDITOR */
-.faq-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
-.faq-item{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:14px;position:relative}
-.faq-item-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.faq-num{width:22px;height:22px;border-radius:50%;background:var(--acc-lt);border:1px solid var(--acc-glow);color:var(--acc);font-size:.62rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.faq-item label{font-size:.65rem;color:var(--muted2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
-.faq-del{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--muted2);cursor:pointer;font-size:1rem;line-height:1;transition:color .18s;padding:2px}
-.faq-del:hover{color:var(--red)}
-.faq-q{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:6px;color:var(--ink);font-family:var(--font);font-size:.8rem;padding:8px 12px;margin-bottom:8px;resize:none}
-.faq-a{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:6px;color:var(--ink);font-family:var(--font);font-size:.78rem;padding:8px 12px;resize:vertical;min-height:80px}
-.faq-q:focus,.faq-a:focus{outline:none;border-color:var(--acc)}
-
-/* AI GENERATE SECTION */
-.ai-section{background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(167,139,250,.06));border:1px solid rgba(245,158,11,.15);border-radius:12px;padding:18px;margin-bottom:20px}
-.ai-section-title{font-size:.75rem;font-weight:700;color:var(--acc);margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.topics-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-family:var(--font);font-size:.78rem;padding:9px 12px;resize:vertical;min-height:70px}
-.topics-input:focus{outline:none;border-color:var(--acc)}
-
-/* OUTPUT PANEL */
-.output-panel{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;position:sticky;top:70px}
-.output-tabs{display:flex;background:var(--bg4);border-bottom:1px solid var(--border)}
-.out-tab{flex:1;padding:11px 10px;font-size:.72rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;transition:all .18s;font-family:var(--font);border-bottom:2px solid transparent}
-.out-tab.active{color:var(--acc);background:var(--bg2);border-bottom-color:var(--acc)}
-.output-body{padding:0}
-.code-block{background:var(--bg4);padding:18px 20px;font-family:var(--mono);font-size:.72rem;line-height:1.65;color:var(--ink2);overflow:auto;max-height:420px;white-space:pre-wrap;word-break:break-word}
-.code-block .c-key{color:var(--acc)}
-.code-block .c-str{color:var(--green)}
-.code-block .c-tag{color:var(--blue)}
-.code-block .c-attr{color:var(--purple)}
-.preview-area{padding:20px;max-height:420px;overflow:auto}
-
-/* FAQ PREVIEW */
-.faq-preview-item{border-bottom:1px solid var(--border);padding:14px 0}
-.faq-preview-item:last-child{border-bottom:none}
-.faq-preview-q{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:6px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.faq-preview-q::after{content:'▾';color:var(--muted);font-size:.7rem;flex-shrink:0}
-.faq-preview-a{font-size:.8rem;color:var(--muted);line-height:1.7}
-
-/* STATS */
-.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 20px;border-bottom:1px solid var(--border)}
-.stat-card{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;text-align:center}
-.stat-val{font-size:1.3rem;font-weight:800;color:var(--acc)}
-.stat-lbl{font-size:.63rem;color:var(--muted2);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
-
-/* COPY BTN */
-.copy-btn{display:inline-flex;align-items:center;gap:5px;background:var(--acc-lt);border:1px solid var(--acc-glow);color:var(--acc);padding:5px 12px;border-radius:6px;font-size:.68rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:var(--font)}
-.copy-btn:hover{background:var(--acc);color:#000}
-.copy-btn.copied{background:var(--green-lt);color:var(--green);border-color:rgba(16,185,129,.3)}
-
-/* ALERT */
-.alert{padding:12px 16px;border-radius:8px;font-size:.78rem;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;line-height:1.6}
-.alert-info{background:var(--blue-lt);border:1px solid rgba(56,189,248,.2);color:var(--blue)}
-.alert-success{background:var(--green-lt);border:1px solid rgba(16,185,129,.2);color:var(--green)}
-.alert-warn{background:var(--acc-lt);border:1px solid var(--acc-glow);color:var(--acc)}
-
-/* EMPTY STATE */
-.empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
-.empty-state-icon{font-size:3rem;margin-bottom:12px;display:block}
-.empty-state p{font-size:.82rem;line-height:1.7}
-
-/* ACTION ROW */
-.action-row{padding:16px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:var(--bg4)}
-
-/* SEPARATOR */
-.sep{height:1px;background:var(--border);margin:16px 0}
-
-/* TOPICS CHIP */
-.topic-chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-.topic-chip{padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600;background:var(--bg3);border:1px solid var(--border2);color:var(--muted);cursor:pointer;transition:all .18s}
-.topic-chip:hover,.topic-chip.selected{background:var(--acc-lt);border-color:var(--acc-glow);color:var(--acc)}
-
-/* FOOTER */
-footer{background:var(--bg4);border-top:1px solid var(--border);padding:20px 32px;text-align:center;font-size:.72rem;color:var(--muted2)}
-footer a{color:var(--acc)}
-
-@media(max-width:960px){.main{grid-template-columns:1fr}.output-panel{position:static}}
-@media(max-width:600px){.settings-grid{grid-template-columns:1fr}.hero{padding:32px 20px 28px}.main{padding:0 16px 60px}}
+.badge{padding:4px 12px;border-radius:6px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border:1px solid}
+.badge-green{background:var(--green-lt);color:var(--green);border-color:rgba(16,185,129,.2)}
+.badge-amber{background:var(--acc-lt);color:var(--acc);border-color:var(--acc-glow)}
+.badge-blue{background:var(--blue-lt);color:var(--blue);border-color:rgba(56,189,248,.2)}
+.badge-purple{background:var(--purple-lt);color:var(--purple);border-color:rgba(167,139,250,.2)}
+/* SEARCH */
+.search-section{max-width:900px;margin:0 auto;padding:32px 24px 0}
+.search-card{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:28px 32px}
+.search-card h2{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px}
+.search-row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.sf{flex:1;min-width:180px}
+.sf label{display:block;font-size:.72rem;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.sf input,.sf select{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-family:var(--font);font-size:.9rem;padding:11px 14px;outline:none;transition:border-color .18s}
+.sf input:focus,.sf select:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-lt)}
+.sf input::placeholder{color:var(--muted2)}
+.btn-fetch{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#000;font-weight:800;font-size:.88rem;padding:12px 28px;border-radius:8px;border:none;cursor:pointer;font-family:var(--font);transition:all .2s;white-space:nowrap;align-self:flex-end;margin-top:22px}
+.btn-fetch:hover{transform:translateY(-2px);box-shadow:0 6px 22px var(--acc-glow)}
+.btn-fetch:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.prefix-wrap{margin-top:18px}
+.prefix-label{font-size:.68rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.prefix-chips{display:flex;flex-wrap:wrap;gap:6px}
+.p-chip{padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid var(--border2);background:var(--bg3);color:var(--muted);transition:all .18s;user-select:none}
+.p-chip.active{background:var(--acc-lt);border-color:var(--acc-glow);color:var(--acc)}
+/* RESULTS */
+.results-section{max-width:900px;margin:0 auto;padding:24px 24px 80px}
+.results-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.results-title{font-size:.88rem;font-weight:700;color:var(--ink2)}
+.results-meta{font-size:.72rem;color:var(--muted);margin-top:3px}
+.action-row{display:flex;gap:7px;flex-wrap:wrap}
+.btn-sm{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:6px;font-size:.73rem;font-weight:700;cursor:pointer;border:1px solid;font-family:var(--font);transition:all .2s}
+.btn-green{background:var(--green-lt);color:var(--green);border-color:rgba(16,185,129,.25)}
+.btn-green:hover{background:var(--green);color:#000;border-color:var(--green)}
+.btn-purple{background:var(--purple-lt);color:var(--purple);border-color:rgba(167,139,250,.25)}
+.btn-purple:hover{background:var(--purple);color:#000}
+.btn-blue{background:var(--blue-lt);color:var(--blue);border-color:rgba(56,189,248,.25)}
+.btn-blue:hover{background:var(--blue);color:#000}
+.btn-excel{background:rgba(33,115,70,.15);color:#4ade80;border-color:rgba(74,222,128,.25)}
+.btn-excel:hover{background:#217346;color:#fff;border-color:#217346}
+.btn-amber{background:var(--acc-lt);color:var(--acc);border-color:var(--acc-glow)}
+.btn-amber:hover{background:var(--acc);color:#000}
+.stats-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.stat-pill{background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:7px 12px;font-size:.73rem;display:flex;align-items:center;gap:5px}
+.stat-num{font-weight:800;color:var(--acc)}
+/* FAQ CARDS */
+.faq-grid{display:flex;flex-direction:column;gap:8px}
+.faq-card{background:var(--bg2);border:1px solid var(--border);border-radius:11px;overflow:hidden;transition:border-color .18s}
+.faq-card.selected{border-color:rgba(245,158,11,.45);background:rgba(245,158,11,.025)}
+.faq-card-top{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;cursor:pointer;user-select:none}
+.faq-checkbox{width:17px;height:17px;flex-shrink:0;cursor:pointer;accent-color:var(--acc);margin-top:2px}
+.faq-question{font-size:.88rem;font-weight:600;color:var(--ink);line-height:1.45;flex:1}
+.faq-source{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:3px;background:var(--acc-lt);color:var(--acc);border:1px solid var(--acc-glow)}
+.faq-answer-wrap{padding:0 16px 14px 45px;display:none}
+.faq-card.selected .faq-answer-wrap{display:block}
+.faq-answer-label{font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.faq-answer-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:7px;color:var(--ink);font-family:var(--font);font-size:.82rem;padding:9px 12px;outline:none;resize:vertical;min-height:64px;line-height:1.6;transition:border-color .18s}
+.faq-answer-input:focus{border-color:var(--acc)}
+.faq-answer-input::placeholder{color:var(--muted2);font-size:.76rem}
+.group-header{display:flex;align-items:center;gap:10px;padding:10px 0 4px;margin-top:4px}
+.group-label{font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+.group-line{flex:1;height:1px;background:var(--border)}
+.group-count{font-size:.64rem;color:var(--muted2);white-space:nowrap}
+/* SCHEMA PANEL */
+.schema-panel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-top:22px;overflow:hidden}
+.schema-header{padding:13px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.schema-title{font-size:.8rem;font-weight:700;color:var(--ink2)}
+.schema-actions{display:flex;gap:7px}
+.schema-code{background:var(--bg4);padding:18px;font-family:var(--mono);font-size:.76rem;color:#a0e0b0;line-height:1.7;max-height:340px;overflow-y:auto;white-space:pre-wrap;word-break:break-all}
+/* EMPTY / LOADING */
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-icon{font-size:3rem;margin-bottom:14px}
+.empty-state p{font-size:.85rem;line-height:1.8;max-width:440px;margin:0 auto}
+.loading-state{text-align:center;padding:48px 20px;color:var(--muted)}
+.spinner{display:inline-block;width:28px;height:28px;border:3px solid var(--border2);border-top-color:var(--acc);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;margin:12px auto;max-width:320px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:2px;transition:width .25s}
+.err-box{background:var(--red-lt);border:1px solid rgba(248,113,113,.25);border-radius:8px;padding:14px 18px;color:var(--red);font-size:.83rem}
+@media(max-width:640px){.search-row{flex-direction:column}.btn-fetch{width:100%;justify-content:center}.search-card{padding:20px}.nav{padding:0 16px}.hero{padding:32px 16px 28px}.action-row{width:100%}}
 </style>
 </head>
 <body>
 
-<div class="topbar">⚡ 100% Browser-Based — No Python, No Backend, No Sign-up · <a href="index.html">← Portfolio</a></div>
-
-<div class="nav">
+<nav class="nav">
   <div class="nav-left">
-    <a href="index.html" class="nav-back">← Portfolio</a>
-    <span class="nav-badge">TOOL #09 · FAQs Auto-Builder</span>
+    <a href="tools.html" class="nav-back">← All Tools</a>
+    <div class="nav-badge">Tool 09 · AEO &amp; Schema</div>
   </div>
-  <div class="nav-right-label">🟡 Amber Edition · Instant Output</div>
-</div>
+  <span style="font-size:.72rem;color:var(--muted)">Lochan Yadav · SEO Toolkit</span>
+</nav>
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">SEO Tool #09</div>
-    <h1>FAQs <span>Auto-Builder</span></h1>
-    <p>Paste your content, pick your topics, and generate a complete FAQ section with JSON-LD schema, HTML snippet, and a live preview — all in your browser.</p>
+    <div class="hero-eyebrow">FAQ Auto-Builder</div>
+    <h1>Trending <span>Google FAQs</span><br>for Any Keyword</h1>
+    <p>Type any keyword and instantly pull real trending questions from Google's autocomplete — the same data behind "People Also Ask". Select, write answers, and export JSON-LD schema.</p>
     <div class="hero-badges">
-      <span class="badge badge-green">⚡ No Backend</span>
-      <span class="badge badge-amber">📋 JSON-LD Schema</span>
-      <span class="badge badge-blue">🔍 Google Rich Results Ready</span>
+      <span class="badge badge-green">✓ No API Key</span>
+      <span class="badge badge-amber">✓ Live Google Data</span>
+      <span class="badge badge-blue">✓ JSON-LD Schema Export</span>
+      <span class="badge badge-purple">✓ Excel Export</span>
     </div>
   </div>
 </div>
 
-<div class="main">
-
-  <!-- LEFT: INPUT PANEL -->
-  <div>
-    <!-- SOURCE INPUT -->
-    <div class="panel" style="margin-bottom:20px">
-      <div class="panel-header">
-        <div class="panel-title"><span class="panel-title-icon">📄</span> Step 1: Paste Your Content</div>
+<div class="search-section">
+  <div class="search-card">
+    <h2>🔍 Find Trending Questions</h2>
+    <div class="search-row">
+      <div class="sf" style="flex:2;min-width:220px">
+        <label>Keyword</label>
+        <input type="text" id="kw-input" placeholder="e.g. debit card, personal loan, credit score, income tax…" autocomplete="off">
       </div>
-      <div class="tabs" id="srcTabs">
-        <button class="tab-btn active" onclick="switchSrcTab('paste')">Paste Content</button>
-        <button class="tab-btn" onclick="switchSrcTab('manual')">Manual Mode</button>
-        <button class="tab-btn" onclick="switchSrcTab('template')">Templates</button>
+      <div class="sf" style="max-width:180px">
+        <label>Vertical</label>
+        <select id="vertical-select">
+          <option value="">General</option>
+          <option value="bfsi">BFSI / Finance</option>
+          <option value="insurance">Insurance</option>
+          <option value="tax">Tax / ITR</option>
+          <option value="ecom">E-Commerce</option>
+          <option value="health">Healthcare</option>
+          <option value="edtech">Education</option>
+          <option value="travel">Travel</option>
+          <option value="realestate">Real Estate</option>
+        </select>
       </div>
-
-      <!-- PASTE TAB -->
-      <div class="tab-pane active" id="src-paste">
-        <div class="ai-section">
-          <div class="ai-section-title">✨ Smart FAQ Generator</div>
-          <p style="font-size:.76rem;color:var(--muted);margin-bottom:12px;line-height:1.6">Paste any article, product description, or page content below. The tool will analyze it and suggest FAQ topics you can build on.</p>
-          <label for="srcContent">Your Content (paste article / product text / page copy)</label>
-          <textarea id="srcContent" rows="7" placeholder="Paste your blog post, landing page copy, product description, or any text here...&#10;&#10;Example: BankBazaar offers personal loans from ₹50,000 to ₹40 lakhs. Interest rates range from 10.5% to 24% per annum depending on credit score and lender. Tenure options are 1-5 years..." oninput="analyzeSrcContent()"></textarea>
-          <div class="char-count" id="srcCharCount">0 words</div>
-        </div>
-
-        <div class="input-group">
-          <label>Quick Topic Chips (click to add to FAQ)</label>
-          <div class="topic-chips" id="topicChips">
-            <span class="topic-chip" onclick="addTopicFAQ('What is [topic]?')">What is [topic]?</span>
-            <span class="topic-chip" onclick="addTopicFAQ('How does [topic] work?')">How does it work?</span>
-            <span class="topic-chip" onclick="addTopicFAQ('What are the benefits of [topic]?')">Benefits</span>
-            <span class="topic-chip" onclick="addTopicFAQ('How to apply for [topic]?')">How to apply</span>
-            <span class="topic-chip" onclick="addTopicFAQ('What are the requirements for [topic]?')">Requirements</span>
-            <span class="topic-chip" onclick="addTopicFAQ('How long does [topic] take?')">Timeline</span>
-            <span class="topic-chip" onclick="addTopicFAQ('What is the cost / fee for [topic]?')">Cost / Fee</span>
-            <span class="topic-chip" onclick="addTopicFAQ('Is [topic] safe / secure?')">Safety</span>
-            <span class="topic-chip" onclick="addTopicFAQ('What documents are needed for [topic]?')">Documents</span>
-            <span class="topic-chip" onclick="addTopicFAQ('What are the eligibility criteria for [topic]?')">Eligibility</span>
-          </div>
-          <div class="input-hint">💡 Tip: click chips to pre-fill questions, then replace [topic] with your actual subject</div>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn btn-primary" onclick="generateFromContent()">⚡ Generate FAQ Suggestions</button>
-          <button class="btn btn-outline btn-sm" onclick="loadFinanceSample()">Load Fintech Sample</button>
-        </div>
+      <div class="sf" style="max-width:140px">
+        <label>Language</label>
+        <select id="lang-select">
+          <option value="en">English</option>
+          <option value="hi">Hindi</option>
+          <option value="ta">Tamil</option>
+          <option value="te">Telugu</option>
+          <option value="mr">Marathi</option>
+          <option value="bn">Bengali</option>
+        </select>
       </div>
-
-      <!-- MANUAL TAB -->
-      <div class="tab-pane" id="src-manual">
-        <p style="font-size:.8rem;color:var(--muted);margin-bottom:16px;line-height:1.65">Write your Q&A pairs directly. Best for when you already know exactly what questions to answer.</p>
-        <div class="alert alert-info">
-          <span>💡</span><span>Switch to the <strong>FAQ Editor</strong> below to add and edit your question-answer pairs. This tab is just for when you want to skip the content analysis step.</span>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-outline btn-sm" onclick="addFAQItem()">+ Add FAQ Pair</button>
-          <button class="btn btn-outline btn-sm" onclick="clearAllFAQs()">Clear All</button>
-        </div>
-      </div>
-
-      <!-- TEMPLATES TAB -->
-      <div class="tab-pane" id="src-template">
-        <p style="font-size:.8rem;color:var(--muted);margin-bottom:16px;line-height:1.65">Load a pre-built FAQ set for your industry and customize it.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <button class="btn btn-outline" style="justify-content:center" onclick="loadTemplate('personal-loan')">🏦 Personal Loan</button>
-          <button class="btn btn-outline" style="justify-content:center" onclick="loadTemplate('credit-card')">💳 Credit Card</button>
-          <button class="btn btn-outline" style="justify-content:center" onclick="loadTemplate('home-loan')">🏠 Home Loan</button>
-          <button class="btn btn-outline" style="justify-content:center" onclick="loadTemplate('health-insurance')">🏥 Health Insurance</button>
-          <button class="btn btn-outline" style="justify-content:center" onclick="loadTemplate('seo')">🔍 SEO / Digital Marketing</button>
-          <button class="btn btn-outline" style="justify-content:center" onclick="loadTemplate('ecommerce')">🛒 E-Commerce</button>
-        </div>
-      </div>
+      <button class="btn-fetch" id="fetch-btn" onclick="fetchAllFAQs()">🚀 Fetch Trending FAQs</button>
     </div>
-
-    <!-- SETTINGS -->
-    <div class="panel" style="margin-bottom:20px">
-      <div class="panel-header">
-        <div class="panel-title"><span class="panel-title-icon">⚙️</span> Step 2: Settings</div>
-      </div>
-      <div class="panel-body">
-        <div class="settings-grid">
-          <div>
-            <label for="pageUrl">Page URL (for schema)</label>
-            <input type="text" id="pageUrl" placeholder="https://example.com/page">
-          </div>
-          <div>
-            <label for="pageName">Page / Topic Name</label>
-            <input type="text" id="pageName" placeholder="e.g. Personal Loan">
-          </div>
-          <div>
-            <label for="outputStyle">Output Style</label>
-            <select id="outputStyle">
-              <option value="jsonld">JSON-LD (recommended)</option>
-              <option value="microdata">Microdata HTML</option>
-              <option value="both">Both formats</option>
-            </select>
-          </div>
-          <div>
-            <label for="htmlStyle">HTML Style</label>
-            <select id="htmlStyle">
-              <option value="accordion">Accordion (expand/collapse)</option>
-              <option value="simple">Simple Q&A List</option>
-              <option value="cards">Card Layout</option>
-              <option value="numbered">Numbered List</option>
-            </select>
-          </div>
-          <div class="settings-full">
-            <label for="customCss">Custom CSS Class (optional)</label>
-            <input type="text" id="customCss" placeholder="faq-section my-faqs">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FAQ EDITOR -->
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title"><span class="panel-title-icon">✏️</span> Step 3: Edit FAQ Pairs <span id="faqCountBadge" style="background:var(--acc-lt);color:var(--acc);font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:10px">0 FAQs</span></div>
-        <div class="btn-row" style="margin-top:0">
-          <button class="btn btn-outline btn-sm" onclick="addFAQItem()">+ Add Pair</button>
-          <button class="btn btn-primary btn-sm" onclick="buildOutput()">🔨 Build Output</button>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div class="faq-list" id="faqList">
-          <div class="empty-state" id="faqEmpty">
-            <span class="empty-state-icon">📋</span>
-            <p>No FAQ pairs yet.<br>Paste content above and click <strong>Generate FAQ Suggestions</strong>, or load a template, or click <strong>+ Add Pair</strong> to write manually.</p>
-          </div>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-outline btn-sm" onclick="addFAQItem()">+ Add Another Pair</button>
-          <button class="btn btn-outline btn-sm" onclick="clearAllFAQs()">🗑 Clear All</button>
-          <button class="btn btn-green btn-sm" onclick="buildOutput()">✅ Build Output →</button>
-        </div>
-      </div>
+    <div class="prefix-wrap">
+      <div class="prefix-label">Question Prefixes — click to toggle which angles to search</div>
+      <div class="prefix-chips" id="prefix-chips"></div>
     </div>
   </div>
-
-  <!-- RIGHT: OUTPUT PANEL -->
-  <div class="output-panel">
-    <div style="padding:16px 20px;border-bottom:1px solid var(--border)">
-      <div class="panel-title"><span class="panel-title-icon">📤</span> Output</div>
-    </div>
-    <div class="stats-row" id="statsRow">
-      <div class="stat-card"><div class="stat-val" id="statFaqs">0</div><div class="stat-lbl">FAQs</div></div>
-      <div class="stat-card"><div class="stat-val" id="statWords">0</div><div class="stat-lbl">Words</div></div>
-      <div class="stat-card"><div class="stat-val" id="statChars">0</div><div class="stat-lbl">Chars</div></div>
-    </div>
-    <div class="output-tabs">
-      <button class="out-tab active" onclick="switchOutTab('jsonld')">JSON-LD</button>
-      <button class="out-tab" onclick="switchOutTab('html')">HTML</button>
-      <button class="out-tab" onclick="switchOutTab('preview')">Preview</button>
-    </div>
-    <div id="out-jsonld" class="output-body">
-      <div class="empty-state" style="padding:40px 20px">
-        <span class="empty-state-icon">⚡</span>
-        <p>Add FAQ pairs and click <strong>Build Output</strong> to generate your schema markup.</p>
-      </div>
-    </div>
-    <div id="out-html" class="output-body" style="display:none">
-      <div class="empty-state" style="padding:40px 20px">
-        <span class="empty-state-icon">🔧</span>
-        <p>HTML snippet will appear here after you build the output.</p>
-      </div>
-    </div>
-    <div id="out-preview" class="output-body" style="display:none">
-      <div class="empty-state" style="padding:40px 20px">
-        <span class="empty-state-icon">👁️</span>
-        <p>Live FAQ preview will appear here.</p>
-      </div>
-    </div>
-    <div class="action-row" id="actionRow" style="display:none">
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="copy-btn" id="copyJsonBtn" onclick="copyOutput('jsonld')">📋 Copy JSON-LD</button>
-        <button class="copy-btn" id="copyHtmlBtn" onclick="copyOutput('html')">📋 Copy HTML</button>
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-outline btn-sm" onclick="downloadAll()">⬇ Download .json</button>
-        <button class="btn btn-outline btn-sm" onclick="openValidator()">🧪 Test in Google</button>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<footer>
-  TOOL #09 · FAQs Auto-Builder · by <a href="index.html">Lochan Yadav</a> · Lead SEO Analyst · BankBazaar · 100% browser-based · no data sent anywhere
-</footer>
+<div class="results-section">
+  <div id="output">
+    <div class="empty-state">
+      <div class="empty-icon">💡</div>
+      <p>Enter any keyword above and click <strong style="color:var(--acc)">Fetch Trending FAQs</strong> to instantly pull real questions people are asking on Google — no API key needed.</p>
+    </div>
+  </div>
+</div>
 
 <script>
-/* ── DATA STORE ── */
-let faqs = [];
-let jsonLdOutput = '';
-let htmlOutput = '';
-let currentSrcTab = 'paste';
-let currentOutTab = 'jsonld';
+// ── Prefix bank ────────────────────────────────────────────────────────────
+const BASE_PREFIXES = [
+  {label:'what is',      q: k=>`what is ${k}`},
+  {label:'how to',       q: k=>`how to ${k}`},
+  {label:'how does',     q: k=>`how does ${k} work`},
+  {label:'how to get',   q: k=>`how to get ${k}`},
+  {label:'why',          q: k=>`why ${k}`},
+  {label:'which is best',q: k=>`which is best ${k}`},
+  {label:'can i',        q: k=>`can i ${k}`},
+  {label:'benefits of',  q: k=>`benefits of ${k}`},
+  {label:'charges',      q: k=>`${k} charges`},
+  {label:'limit',        q: k=>`${k} limit`},
+  {label:'vs',           q: k=>`${k} vs`},
+  {label:'eligibility',  q: k=>`${k} eligibility`},
+  {label:'documents',    q: k=>`${k} documents required`},
+  {label:'interest rate',q: k=>`${k} interest rate`},
+  {label:'apply online', q: k=>`how to apply for ${k} online`},
+  {label:'meaning',      q: k=>`${k} meaning`},
+];
 
-/* ── TEMPLATES ── */
-const TEMPLATES = {
-  'personal-loan': [
-    { q: 'What is a personal loan?', a: 'A personal loan is an unsecured loan offered by banks and NBFCs that you can use for any personal expense — medical emergencies, travel, home renovation, or debt consolidation. No collateral is required, and funds are typically disbursed within 1-3 business days.' },
-    { q: 'What is the interest rate on a personal loan?', a: 'Personal loan interest rates typically range from 10.5% to 24% per annum, depending on your credit score, income, employer profile, and the lender. Applicants with a CIBIL score above 750 generally qualify for the lowest rates.' },
-    { q: 'What is the maximum loan amount I can get?', a: 'Most banks offer personal loans between ₹50,000 and ₹40 lakhs. The exact amount depends on your monthly income, existing EMIs, and creditworthiness. Typically, lenders offer up to 10-15× your net monthly salary.' },
-    { q: 'How long does it take to get a personal loan approved?', a: 'For pre-approved offers and digital-first lenders, approval and disbursal can happen within 24 hours. For new applications, it typically takes 2-5 business days depending on document verification.' },
-    { q: 'What documents do I need to apply for a personal loan?', a: 'You typically need: PAN card, Aadhaar card (identity proof), last 3 months salary slips, last 6 months bank statements, and latest Form 16 or ITR. Self-employed applicants also need GST registration and business proof.' },
-    { q: 'Does applying for a personal loan affect my credit score?', a: 'Yes, each loan application triggers a hard inquiry that can temporarily lower your CIBIL score by 5-10 points. To minimize impact, use an eligibility checker (soft inquiry) before formally applying.' }
-  ],
-  'credit-card': [
-    { q: 'What is a credit card?', a: 'A credit card is a payment card that lets you borrow money from the issuing bank up to a set credit limit. You can make purchases, pay bills, and book travel — and repay the amount either in full or in installments. If paid in full by the due date, no interest is charged.' },
-    { q: 'How is credit card interest calculated?', a: 'Credit cards charge interest only on the outstanding balance if you carry it past the due date. Most cards charge between 36% and 48% APR (3-4% per month). Paying even the minimum due each month helps avoid late fees but does not stop interest from accumulating.' },
-    { q: 'What credit score do I need to get a credit card?', a: 'Most banks require a CIBIL score of 700+ for a credit card. Premium and rewards cards typically require 750+. If you have no credit history, you can start with a secured card (against a fixed deposit) to build your score.' },
-    { q: 'What is the difference between a credit card and a debit card?', a: 'A debit card draws directly from your bank account (your money). A credit card is a loan — you borrow from the bank and repay later. Credit cards also offer rewards, purchase protection, and travel benefits that debit cards usually do not.' },
-    { q: 'How do credit card rewards work?', a: 'Most credit cards offer 1-5 reward points per ₹100 spent. Points can be redeemed for cashback, travel miles, vouchers, or products. Premium cards often offer accelerated points on specific categories like dining, travel, or online shopping.' }
-  ],
-  'home-loan': [
-    { q: 'What is a home loan?', a: 'A home loan (mortgage) is a secured loan taken to purchase, construct, or renovate a residential property. The property itself is pledged as collateral. Home loans are offered over tenures of up to 30 years and are eligible for tax deductions under Section 80C and 24(b) of the Income Tax Act.' },
-    { q: 'What is the current home loan interest rate in India?', a: 'As of 2026, home loan interest rates in India range from 8.35% to 11% per annum depending on the lender, loan amount, and applicant profile. Public sector banks like SBI and Bank of Baroda typically offer lower rates than private banks and NBFCs.' },
-    { q: 'What is the maximum home loan tenure?', a: 'Most banks offer home loans up to 30 years. However, the tenure cannot extend beyond the borrower\'s retirement age (typically 60-65). Longer tenures reduce EMI but increase total interest paid over the loan life.' },
-    { q: 'What percentage of the property value can I borrow?', a: 'Banks typically finance 75-90% of the property value (Loan-to-Value or LTV ratio). For loans above ₹75 lakhs, the maximum LTV is 75%. The remaining 10-25% must be paid as down payment from your own funds.' },
-    { q: 'Can I get a home loan if I am self-employed?', a: 'Yes, self-employed individuals can get home loans. You will typically need 2-3 years of ITR filings showing consistent income, audited P&L statements, bank statements for 12 months, and business registration documents.' }
-  ],
-  'health-insurance': [
-    { q: 'What is health insurance?', a: 'Health insurance is a policy that covers medical expenses — hospitalization, surgeries, treatments, and sometimes OPD costs — in exchange for a premium paid annually. It protects you from large, unexpected medical bills that could otherwise deplete your savings.' },
-    { q: 'What is covered under a typical health insurance plan?', a: 'Standard coverage includes in-patient hospitalization (room rent, doctor fees, surgery, medicines), pre and post-hospitalization expenses (usually 30 and 60 days), daycare procedures (chemotherapy, dialysis, cataract), ambulance charges, and organ donor costs.' },
-    { q: 'What is a waiting period in health insurance?', a: 'A waiting period is the time after policy issuance during which certain claims are not accepted. Most plans have: 30 days for general illness (accidents are usually covered from day 1), 2-4 years for pre-existing conditions, and 1-2 years for specific listed diseases.' },
-    { q: 'What is a sum insured and how much should I choose?', a: 'Sum insured is the maximum amount your insurer will pay in a policy year. Given rising healthcare costs in Indian metros, financial experts recommend a minimum of ₹10-15 lakhs for individuals and ₹20-25 lakhs for families. A super top-up can add coverage cost-effectively.' },
-    { q: 'What is the difference between cashless and reimbursement claims?', a: 'In a cashless claim, the insurer directly settles the bill with the network hospital — you pay nothing (beyond deductibles). In a reimbursement claim, you pay the hospital first and then file for reimbursement from the insurer within 30-45 days.' }
-  ],
-  'seo': [
-    { q: 'What is SEO?', a: 'SEO (Search Engine Optimization) is the practice of improving a website\'s visibility in search engine results without paying for ads. It involves optimizing content, technical structure, and earning backlinks so that Google ranks your pages higher for relevant searches.' },
-    { q: 'How long does SEO take to show results?', a: 'For a new website, SEO typically takes 4-6 months to show measurable results and 6-12 months for significant organic traffic. Established sites with strong authority can see improvements in 2-3 months. SEO is a long-term investment, not an overnight fix.' },
-    { q: 'What is the difference between on-page and off-page SEO?', a: 'On-page SEO includes everything on your website — titles, meta descriptions, content quality, heading structure, internal links, and schema markup. Off-page SEO refers to external factors, primarily backlinks from other websites, that signal authority to Google.' },
-    { q: 'What are Core Web Vitals and why do they matter?', a: 'Core Web Vitals are Google\'s user experience metrics: LCP (Largest Contentful Paint — measures load speed, target < 2.5s), CLS (Cumulative Layout Shift — measures visual stability, target < 0.1), and INP (Interaction to Next Paint — measures responsiveness, target < 200ms). Pages passing these thresholds get a ranking advantage.' },
-    { q: 'What is AEO and how is it different from traditional SEO?', a: 'AEO (Answer Engine Optimization) is the practice of structuring content to be cited in AI-generated answers from ChatGPT, Google AI Overviews, and Perplexity. While SEO targets ranked positions, AEO targets inclusion in AI responses. It requires structured data, clear Q&A content, and E-E-A-T signals.' }
-  ],
-  'ecommerce': [
-    { q: 'How do I place an order?', a: 'Browse the product you want, click "Add to Cart," and proceed to checkout. You\'ll need to log in or create an account, enter your delivery address, and choose a payment method. Orders are confirmed via email within minutes of payment.' },
-    { q: 'What payment methods are accepted?', a: 'We accept all major credit and debit cards (Visa, Mastercard, Amex), UPI (GPay, PhonePe, Paytm), net banking from 50+ banks, EMI options on eligible cards, and Pay on Delivery (COD) for eligible pin codes.' },
-    { q: 'How long does delivery take?', a: 'Standard delivery takes 3-5 business days. Express delivery (next day or same day) is available in select cities for orders placed before 12 PM. Estimated delivery date is shown on the product page and confirmed in your order email.' },
-    { q: 'What is your return policy?', a: 'We offer a 30-day return window for most products. Items must be unused, in original packaging, with all tags and accessories. Initiate a return from your "My Orders" page — we\'ll arrange a free pickup. Refunds are processed within 5-7 business days.' },
-    { q: 'Is my payment information secure?', a: 'Yes. All transactions are encrypted using 256-bit SSL and processed through PCI-DSS compliant payment gateways. We never store your complete card details on our servers. You can further protect your account with two-factor authentication.' }
-  ]
+const VERTICAL_EXTRAS = {
+  bfsi:       [{label:'RBI rules',    q:k=>`RBI rules for ${k}`},{label:'tax on',      q:k=>`tax on ${k}`}],
+  insurance:  [{label:'premium',      q:k=>`${k} premium`},     {label:'claim',        q:k=>`${k} claim process`}],
+  tax:        [{label:'how to file',  q:k=>`how to file ${k}`},{label:'last date',    q:k=>`${k} last date`}],
+  ecom:       [{label:'return policy',q:k=>`${k} return policy`},{label:'discount',   q:k=>`${k} discount`}],
+  health:     [{label:'symptoms',     q:k=>`${k} symptoms`},    {label:'treatment',    q:k=>`${k} treatment`}],
+  edtech:     [{label:'syllabus',     q:k=>`${k} syllabus`},    {label:'exam pattern', q:k=>`${k} exam pattern`}],
+  travel:     [{label:'best time',    q:k=>`best time to visit ${k}`},{label:'visa',   q:k=>`${k} visa requirements`}],
+  realestate: [{label:'price',        q:k=>`${k} price`},       {label:'home loan',    q:k=>`${k} home loan`}],
 };
 
-/* ── FAQ MANAGEMENT ── */
-function renderFAQs() {
-  const list = document.getElementById('faqList');
-  const empty = document.getElementById('faqEmpty');
-  const badge = document.getElementById('faqCountBadge');
-  badge.textContent = faqs.length + ' FAQ' + (faqs.length !== 1 ? 's' : '');
-  if (faqs.length === 0) {
-    empty.style.display = '';
-    list.innerHTML = '';
-    list.appendChild(empty);
+let activePrefixes = new Set(BASE_PREFIXES.map(p=>p.label));
+let allFAQs = [];
+let selectedIds = new Set();
+
+function getAllPrefixes() {
+  const v = document.getElementById('vertical-select').value;
+  return [...BASE_PREFIXES, ...(VERTICAL_EXTRAS[v]||[])];
+}
+
+function renderPrefixChips() {
+  const wrap = document.getElementById('prefix-chips');
+  wrap.innerHTML = '';
+  getAllPrefixes().forEach(p => {
+    const chip = document.createElement('span');
+    chip.className = 'p-chip' + (activePrefixes.has(p.label) ? ' active' : '');
+    chip.textContent = p.label;
+    chip.onclick = () => {
+      if (activePrefixes.has(p.label)) activePrefixes.delete(p.label);
+      else activePrefixes.add(p.label);
+      chip.classList.toggle('active');
+    };
+    wrap.appendChild(chip);
+  });
+}
+
+document.getElementById('vertical-select').addEventListener('change', renderPrefixChips);
+document.getElementById('kw-input').addEventListener('keydown', e => { if(e.key==='Enter') fetchAllFAQs(); });
+renderPrefixChips();
+
+// ── Fetch Google Autocomplete ──────────────────────────────────────────────
+async function fetchSuggestions(query, lang) {
+  const directUrl = `https://suggestqueries.google.com/complete/search?client=firefox&q=${encodeURIComponent(query)}&hl=${lang}`;
+  // Try direct first (works if browser allows cross-origin)
+  try {
+    const res = await fetch(directUrl, {signal: AbortSignal.timeout(3000)});
+    const data = await res.json();
+    if (Array.isArray(data[1]) && data[1].length) return data[1];
+  } catch(e) {}
+  // Proxy 1: codetabs
+  try {
+    const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(directUrl)}`;
+    const res = await fetch(proxyUrl, {signal: AbortSignal.timeout(12000)});
+    const data = await res.json();
+    if (Array.isArray(data[1]) && data[1].length) return data[1];
+  } catch(e) {}
+  // Proxy 2: allorigins
+  try {
+    const proxyUrl2 = `https://api.allorigins.win/raw?url=${encodeURIComponent(directUrl)}`;
+    const res = await fetch(proxyUrl2, {signal: AbortSignal.timeout(12000)});
+    const data = await res.json();
+    if (Array.isArray(data[1]) && data[1].length) return data[1];
+  } catch(e) {}
+  // Proxy 3: corsproxy.io
+  try {
+    const proxyUrl3 = `https://corsproxy.io/?${encodeURIComponent(directUrl)}`;
+    const res = await fetch(proxyUrl3, {signal: AbortSignal.timeout(12000)});
+    const data = await res.json();
+    return Array.isArray(data[1]) ? data[1] : [];
+  } catch(e) { return []; }
+}
+
+async function fetchAllFAQs() {
+  const kw = document.getElementById('kw-input').value.trim();
+  if (!kw) { showErr('Please enter a keyword first.'); return; }
+
+  const lang   = document.getElementById('lang-select').value;
+  const active = getAllPrefixes().filter(p => activePrefixes.has(p.label));
+  if (!active.length) { showErr('Please activate at least one prefix chip.'); return; }
+
+  const btn = document.getElementById('fetch-btn');
+  btn.disabled = true; btn.textContent = '⏳ Fetching…';
+  showLoading(active.length);
+
+  const seen = new Map();
+  let done = 0;
+
+  await Promise.all(active.map(async p => {
+    const suggestions = await fetchSuggestions(p.q(kw), lang);
+    done++;
+    updateProgress(done, active.length);
+    suggestions.forEach(s => {
+      const q = s.trim();
+      if (!q || q.toLowerCase() === kw.toLowerCase()) return;
+      const key = q.toLowerCase();
+      if (!seen.has(key)) {
+        seen.set(key, {
+          id: 'f' + Math.random().toString(36).slice(2,8),
+          question: q,
+          prefix: p.label,
+          answer: ''
+        });
+      }
+    });
+  }));
+
+  allFAQs = Array.from(seen.values());
+  selectedIds.clear();
+  btn.disabled = false; btn.textContent = '🚀 Fetch Trending FAQs';
+
+  if (!allFAQs.length) {
+    showErr(`No questions found for "${escH(kw)}". Try a broader keyword.`);
     return;
   }
-  empty.style.display = 'none';
-  list.innerHTML = '';
-  faqs.forEach((faq, i) => {
-    const div = document.createElement('div');
-    div.className = 'faq-item';
-    div.innerHTML = `
-      <div class="faq-item-header">
-        <div class="faq-num">${i + 1}</div>
-        <span style="font-size:.72rem;color:var(--muted);font-weight:600">FAQ PAIR #${i + 1}</span>
+  renderResults(kw);
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+function renderResults(kw) {
+  const groups = {};
+  allFAQs.forEach(f => { (groups[f.prefix] = groups[f.prefix]||[]).push(f); });
+
+  let h = `<div class="results-header">
+    <div>
+      <div class="results-title">Trending Questions for "<span style="color:var(--acc)">${escH(kw)}</span>"</div>
+      <div class="results-meta">${allFAQs.length} questions across ${Object.keys(groups).length} categories · Check questions to build schema</div>
+    </div>
+    <div class="action-row">
+      <button class="btn-sm btn-amber"  onclick="selectAll()">☑ Select All</button>
+      <button class="btn-sm btn-blue"   onclick="deselectAll()">□ Clear</button>
+      <button class="btn-sm btn-green"  onclick="copySchema(this)">📋 Copy JSON-LD</button>
+      <button class="btn-sm btn-excel"  onclick="exportExcel()">📊 Excel</button>
+      <button class="btn-sm btn-purple" onclick="copyHTMLSnippet()">🖥 Copy HTML</button>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-pill"><span class="stat-num" id="sel-num">0</span>&nbsp;selected</div>
+    <div class="stat-pill"><span class="stat-num">${allFAQs.length}</span>&nbsp;total</div>
+    <div class="stat-pill"><span class="stat-num">${Object.keys(groups).length}</span>&nbsp;categories</div>
+  </div>
+  <div class="faq-grid">`;
+
+  Object.entries(groups).forEach(([prefix, items]) => {
+    h += `<div class="group-header">
+      <span class="group-label">${escH(prefix)}</span>
+      <span class="group-line"></span>
+      <span class="group-count">${items.length} questions</span>
+    </div>`;
+    items.forEach(f => {
+      h += `<div class="faq-card" id="card_${f.id}">
+        <div class="faq-card-top" onclick="toggleFAQ('${f.id}')">
+          <input type="checkbox" class="faq-checkbox" id="cb_${f.id}"
+            onclick="event.stopPropagation()" onchange="onCheck('${f.id}',this)">
+          <span class="faq-question">${escH(f.question)}</span>
+          <span class="faq-source">Google</span>
+        </div>
+        <div class="faq-answer-wrap">
+          <div class="faq-answer-label">Answer (optional — 40–100 words ideal for featured snippets)</div>
+          <textarea class="faq-answer-input" id="ans_${f.id}"
+            placeholder="Write a clear, concise answer. Use bullet points or short paragraphs for best snippet chance."
+            oninput="allFAQs.find(x=>x.id==='${f.id}').answer=this.value"></textarea>
+        </div>
+      </div>`;
+    });
+  });
+
+  h += `</div>
+  <div class="schema-panel" id="schema-panel" style="display:none">
+    <div class="schema-header">
+      <span class="schema-title">📄 FAQ Schema (JSON-LD) — <span id="schema-count">0</span> questions</span>
+      <div class="schema-actions">
+        <button class="btn-sm btn-green" onclick="copySchema(this)">📋 Copy</button>
+        <button class="btn-sm btn-blue" onclick="downloadSchema()">⬇ .json</button>
       </div>
-      <button class="faq-del" onclick="deleteFAQ(${i})" title="Delete">✕</button>
-      <label>Question</label>
-      <textarea class="faq-q" rows="2" placeholder="e.g. What is the interest rate on a personal loan?" oninput="updateFAQ(${i},'q',this.value)">${escHtml(faq.q)}</textarea>
-      <label>Answer</label>
-      <textarea class="faq-a" rows="3" placeholder="Write a clear, factual answer (2-5 sentences works best for rich results)..." oninput="updateFAQ(${i},'a',this.value)">${escHtml(faq.a)}</textarea>
-    `;
-    list.appendChild(div);
+    </div>
+    <pre class="schema-code" id="schema-code"></pre>
+  </div>`;
+
+  document.getElementById('output').innerHTML = h;
+}
+
+// ── Card interaction ───────────────────────────────────────────────────────
+function toggleFAQ(id) {
+  const cb = document.getElementById('cb_' + id);
+  cb.checked = !cb.checked;
+  onCheck(id, cb);
+}
+function onCheck(id, cb) {
+  const card = document.getElementById('card_' + id);
+  if (cb.checked) { selectedIds.add(id); card.classList.add('selected'); }
+  else            { selectedIds.delete(id); card.classList.remove('selected'); }
+  document.getElementById('sel-num').textContent = selectedIds.size;
+  refreshSchemaPanel();
+}
+function selectAll() {
+  allFAQs.forEach(f => {
+    selectedIds.add(f.id);
+    const cb = document.getElementById('cb_'+f.id);
+    const card = document.getElementById('card_'+f.id);
+    if(cb) cb.checked=true;
+    if(card) card.classList.add('selected');
   });
+  document.getElementById('sel-num').textContent = selectedIds.size;
+  refreshSchemaPanel();
 }
-
-function addFAQItem(q = '', a = '') {
-  faqs.push({ q, a });
-  renderFAQs();
-  switchSrcTab('manual');
-  // Scroll to last item
-  setTimeout(() => {
-    const items = document.querySelectorAll('.faq-item');
-    if (items.length) items[items.length - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 100);
-}
-
-function deleteFAQ(i) {
-  faqs.splice(i, 1);
-  renderFAQs();
-  if (faqs.length > 0) buildOutput();
-}
-
-function updateFAQ(i, field, val) {
-  faqs[i][field] = val;
-}
-
-function clearAllFAQs() {
-  if (faqs.length > 0 && !confirm('Clear all ' + faqs.length + ' FAQ pairs?')) return;
-  faqs = [];
-  renderFAQs();
-  resetOutput();
-}
-
-/* ── SRC TABS ── */
-function switchSrcTab(tab) {
-  currentSrcTab = tab;
-  document.querySelectorAll('#srcTabs .tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', ['paste','manual','template'][i] === tab);
+function deselectAll() {
+  allFAQs.forEach(f => {
+    selectedIds.delete(f.id);
+    const cb = document.getElementById('cb_'+f.id);
+    const card = document.getElementById('card_'+f.id);
+    if(cb) cb.checked=false;
+    if(card) card.classList.remove('selected');
   });
-  ['paste','manual','template'].forEach(t => {
-    const el = document.getElementById('src-' + t);
-    if (el) el.classList.toggle('active', t === tab);
-  });
+  document.getElementById('sel-num').textContent = '0';
+  refreshSchemaPanel();
 }
 
-/* ── OUT TABS ── */
-function switchOutTab(tab) {
-  currentOutTab = tab;
-  document.querySelectorAll('.out-tab').forEach((b, i) => {
-    b.classList.toggle('active', ['jsonld','html','preview'][i] === tab);
-  });
-  ['out-jsonld','out-html','out-preview'].forEach((id, i) => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = ['jsonld','html','preview'][i] === tab ? '' : 'none';
-  });
-}
+// ── Schema ─────────────────────────────────────────────────────────────────
+function getSelected() { return allFAQs.filter(f=>selectedIds.has(f.id)); }
 
-/* ── CONTENT ANALYSIS ── */
-function analyzeSrcContent() {
-  const src = document.getElementById('srcContent').value;
-  const words = src.trim() ? src.trim().split(/\s+/).length : 0;
-  document.getElementById('srcCharCount').textContent = words + ' words · ' + src.length + ' chars';
-}
-
-function generateFromContent() {
-  const src = document.getElementById('srcContent').value.trim();
-  if (!src) { alert('Please paste some content first.'); return; }
-
-  // Extract meaningful sentences to suggest Q&A
-  const sentences = src.replace(/\n+/g, ' ').split(/(?<=[.!?])\s+/).filter(s => s.length > 30);
-  const suggested = [];
-
-  // Pattern-based extraction
-  sentences.forEach(s => {
-    const lower = s.toLowerCase();
-    if (lower.includes('interest rate') || lower.includes('%')) {
-      suggested.push({ q: 'What is the interest rate?', a: s.trim() });
-    } else if (lower.includes('eligib') || lower.includes('qualify') || lower.includes('criteria')) {
-      suggested.push({ q: 'What are the eligibility criteria?', a: s.trim() });
-    } else if (lower.includes('document') || lower.includes('require')) {
-      suggested.push({ q: 'What documents are required?', a: s.trim() });
-    } else if (lower.includes('how long') || lower.includes('days') || lower.includes('hours') || lower.includes('time')) {
-      suggested.push({ q: 'How long does the process take?', a: s.trim() });
-    } else if (lower.includes('benefit') || lower.includes('advantage') || lower.includes('feature')) {
-      suggested.push({ q: 'What are the key benefits / features?', a: s.trim() });
-    } else if (lower.includes('fee') || lower.includes('charge') || lower.includes('cost') || lower.includes('₹') || lower.includes('rupee')) {
-      suggested.push({ q: 'What are the fees / charges?', a: s.trim() });
-    } else if (lower.includes('apply') || lower.includes('application') || lower.includes('step')) {
-      suggested.push({ q: 'How do I apply?', a: s.trim() });
-    }
-  });
-
-  // If we found some, add them; otherwise add generic starters
-  if (suggested.length > 0) {
-    const toAdd = suggested.slice(0, 6);
-    toAdd.forEach(faq => addFAQItemSilent(faq.q, faq.a));
-    renderFAQs();
-    switchSrcTab('manual');
-    showNotif('Generated ' + toAdd.length + ' FAQ suggestions from your content!', 'success');
-  } else {
-    // Add 4 generic starters
-    const topic = document.getElementById('pageName').value || 'this topic';
-    const starters = [
-      { q: 'What is ' + topic + '?', a: 'Enter a clear, 2-3 sentence definition here...' },
-      { q: 'How does ' + topic + ' work?', a: 'Explain the process in simple, jargon-free language...' },
-      { q: 'What are the key benefits of ' + topic + '?', a: 'List 3-4 main benefits with brief explanations...' },
-      { q: 'How do I get started with ' + topic + '?', a: 'Describe the first steps someone should take...' }
-    ];
-    starters.forEach(s => addFAQItemSilent(s.q, s.a));
-    renderFAQs();
-    switchSrcTab('manual');
-    showNotif('Added 4 starter FAQ templates — customize them with your content.', 'info');
-  }
-}
-
-function addFAQItemSilent(q, a) {
-  faqs.push({ q, a });
-}
-
-function addTopicFAQ(qTemplate) {
-  const topic = document.getElementById('pageName').value || '[topic]';
-  const q = qTemplate.replace('[topic]', topic);
-  addFAQItem(q, '');
-}
-
-/* ── TEMPLATES ── */
-function loadTemplate(key) {
-  if (TEMPLATES[key]) {
-    if (faqs.length > 0 && !confirm('Replace current FAQs with this template?')) return;
-    faqs = TEMPLATES[key].map(f => ({ q: f.q, a: f.a }));
-    renderFAQs();
-    switchSrcTab('manual');
-    buildOutput();
-    showNotif('Template loaded — edit the Q&A pairs to match your content.', 'success');
-  }
-}
-
-function loadFinanceSample() {
-  document.getElementById('srcContent').value = 'BankBazaar offers personal loans from ₹50,000 to ₹40 lakhs with interest rates ranging from 10.5% to 24% per annum. The loan tenure ranges from 12 to 60 months. Eligibility requires a minimum salary of ₹25,000 per month and a CIBIL score of 700 or above. Required documents include PAN card, Aadhaar, last 3 months salary slips, and 6 months bank statements. Once all documents are submitted, loan approval typically takes 24-48 hours and disbursal happens within 1-3 business days. There are no hidden charges — processing fees are between 1-3% of the loan amount.';
-  document.getElementById('pageName').value = 'Personal Loan';
-  document.getElementById('pageUrl').value = 'https://www.bankbazaar.com/personal-loan.html';
-  analyzeSrcContent();
-}
-
-/* ── BUILD OUTPUT ── */
-function buildOutput() {
-  const validFaqs = faqs.filter(f => f.q.trim() && f.a.trim());
-  if (validFaqs.length === 0) {
-    showNotif('Add at least one FAQ pair with both a question and answer.', 'warn');
-    return;
-  }
-
-  const pageUrl = document.getElementById('pageUrl').value || 'https://example.com';
-  const pageName = document.getElementById('pageName').value || 'FAQ Page';
-  const outputStyle = document.getElementById('outputStyle').value;
-  const htmlStyle = document.getElementById('htmlStyle').value;
-  const customCss = document.getElementById('customCss').value;
-
-  // ── JSON-LD ──
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    'mainEntity': validFaqs.map(f => ({
-      '@type': 'Question',
-      'name': f.q,
-      'acceptedAnswer': { '@type': 'Answer', 'text': f.a }
+function buildSchema() {
+  return JSON.stringify({
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity": getSelected().map(f=>({
+      "@type":"Question",
+      "name": f.question,
+      "acceptedAnswer":{"@type":"Answer","text": f.answer||"[Add your answer here]"}
     }))
-  };
-  jsonLdOutput = JSON.stringify(schema, null, 2);
+  }, null, 2);
+}
 
-  // ── HTML ──
-  const cssClass = customCss ? ' ' + customCss : '';
-  let htmlStr = '';
-  if (htmlStyle === 'accordion') {
-    htmlStr = `<div class="faq-section${cssClass}" itemscope itemtype="https://schema.org/FAQPage">
-${validFaqs.map((f, i) => `  <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-${i + 1}" itemprop="name">
-      ${escHtml(f.q)}
-    </button>
-    <div class="faq-answer" id="faq-ans-${i + 1}" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text">${escHtml(f.a)}</p>
-    </div>
-  </div>`).join('\n')}
-</div>`;
-  } else if (htmlStyle === 'simple') {
-    htmlStr = `<section class="faq-section${cssClass}">
-  <h2>Frequently Asked Questions</h2>
-${validFaqs.map(f => `  <div class="faq-qa">
-    <h3>${escHtml(f.q)}</h3>
-    <p>${escHtml(f.a)}</p>
-  </div>`).join('\n')}
-</section>`;
-  } else if (htmlStyle === 'cards') {
-    htmlStr = `<div class="faq-grid${cssClass}">
-${validFaqs.map(f => `  <div class="faq-card">
-    <h3>${escHtml(f.q)}</h3>
-    <p>${escHtml(f.a)}</p>
-  </div>`).join('\n')}
-</div>`;
+function refreshSchemaPanel() {
+  const panel = document.getElementById('schema-panel');
+  if (!panel) return;
+  const sel = getSelected();
+  if (!sel.length) { panel.style.display='none'; return; }
+  panel.style.display='';
+  document.getElementById('schema-count').textContent = sel.length;
+  document.getElementById('schema-code').textContent = buildSchema();
+}
+
+function copySchema(btn) {
+  const sel = getSelected();
+  if (!sel.length) { alert('Select at least one question first.'); return; }
+  const json = buildSchema();
+  const orig = btn ? btn.textContent : '';
+  const ok = () => { if(btn){btn.textContent='✓ Copied!';setTimeout(()=>{btn.textContent=orig;},2000);} };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(json).then(ok);
   } else {
-    htmlStr = `<ol class="faq-list${cssClass}">
-${validFaqs.map(f => `  <li class="faq-item">
-    <strong>${escHtml(f.q)}</strong>
-    <p>${escHtml(f.a)}</p>
-  </li>`).join('\n')}
-</ol>`;
+    const ta=document.createElement('textarea');ta.value=json;ta.style.cssText='position:fixed;opacity:0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);ok();
   }
+}
 
-  const fullHtml = `<!-- FAQ Schema (JSON-LD) — paste in <head> -->
-<script type="application/ld+json">
-${jsonLdOutput}
-<\/script>
+function downloadSchema() {
+  const sel = getSelected();
+  if (!sel.length) { alert('Select at least one question first.'); return; }
+  const blob=new Blob([buildSchema()],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='faq-schema-'+new Date().toISOString().slice(0,10)+'.json';a.click();
+}
 
-<!-- FAQ HTML — paste in your page body -->
-${htmlStr}`;
-
-  htmlOutput = fullHtml;
-
-  // ── Update stats ──
-  const totalWords = validFaqs.reduce((sum, f) => sum + (f.q + ' ' + f.a).split(/\s+/).length, 0);
-  const totalChars = validFaqs.reduce((sum, f) => sum + f.q.length + f.a.length, 0);
-  document.getElementById('statFaqs').textContent = validFaqs.length;
-  document.getElementById('statWords').textContent = totalWords;
-  document.getElementById('statChars').textContent = totalChars;
-
-  // ── Render JSON-LD tab ──
-  const jsonldDiv = document.getElementById('out-jsonld');
-  jsonldDiv.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border)">
-      <span style="font-size:.7rem;color:var(--muted);font-weight:600">schema.org/FAQPage · JSON-LD · ${validFaqs.length} questions</span>
-      <button class="copy-btn" id="copyJsonInline" onclick="copyOutput('jsonld')">📋 Copy</button>
+function copyHTMLSnippet() {
+  const sel = getSelected();
+  if (!sel.length) { alert('Select at least one question first.'); return; }
+  const items = sel.map(f=>`  <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+    <h3 itemprop="name">${escH(f.question)}</h3>
+    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+      <p itemprop="text">${escH(f.answer||'[Add your answer here]')}</p>
     </div>
-    <div class="code-block" id="jsonLdCode">${syntaxJson(jsonLdOutput)}</div>
-    <div style="padding:12px 16px;background:var(--green-lt);border-top:1px solid rgba(16,185,129,.2)">
-      <p style="font-size:.72rem;color:var(--green)">✅ Valid FAQPage schema · Paste inside a &lt;script type="application/ld+json"&gt; tag in your &lt;head&gt;</p>
-    </div>
-  `;
-
-  // ── Render HTML tab ──
-  const htmlDiv = document.getElementById('out-html');
-  htmlDiv.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border)">
-      <span style="font-size:.7rem;color:var(--muted);font-weight:600">HTML · ${htmlStyle} style · ready to paste in body</span>
-      <button class="copy-btn" id="copyHtmlInline" onclick="copyOutput('html')">📋 Copy</button>
-    </div>
-    <div class="code-block">${syntaxHtml(escHtml(fullHtml))}</div>
-  `;
-
-  // ── Render Preview tab ──
-  const previewDiv = document.getElementById('out-preview');
-  previewDiv.innerHTML = `
-    <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
-      <span style="font-size:.72rem;color:var(--muted)">Live FAQ Preview · ${validFaqs.length} Q&As</span>
-      <span style="font-size:.68rem;color:var(--green);background:var(--green-lt);padding:3px 8px;border-radius:4px">Click questions to expand</span>
-    </div>
-    <div class="preview-area">
-      <h3 style="font-size:.88rem;color:var(--ink2);margin-bottom:16px;font-weight:700">Frequently Asked Questions — ${escHtml(pageName)}</h3>
-      ${validFaqs.map(f => `<div class="faq-preview-item">
-        <div class="faq-preview-q" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">${escHtml(f.q)}</div>
-        <div class="faq-preview-a" style="display:none">${escHtml(f.a)}</div>
-      </div>`).join('')}
-    </div>
-  `;
-
-  document.getElementById('actionRow').style.display = 'flex';
-  switchOutTab(currentOutTab);
-  showNotif('Output built! ' + validFaqs.length + ' FAQ pairs, ready to copy.', 'success');
+  </div>`).join('\n');
+  const out = `<section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">\n  <h2>Frequently Asked Questions</h2>\n${items}\n</section>\n\n<script type="application/ld+json">\n${buildSchema()}\n<\/script>`;
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(out).then(()=>alert('HTML + JSON-LD copied!'));
+  } else {
+    const ta=document.createElement('textarea');ta.value=out;ta.style.cssText='position:fixed;opacity:0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    alert('HTML + JSON-LD copied!');
+  }
 }
 
-function resetOutput() {
-  ['out-jsonld','out-html','out-preview'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = '<div class="empty-state" style="padding:40px 20px"><span class="empty-state-icon">⚡</span><p>Add FAQ pairs and click <strong>Build Output</strong>.</p></div>';
-  });
-  document.getElementById('actionRow').style.display = 'none';
-  document.getElementById('statFaqs').textContent = '0';
-  document.getElementById('statWords').textContent = '0';
-  document.getElementById('statChars').textContent = '0';
+function exportExcel() {
+  if (typeof XLSX==='undefined'){alert('SheetJS not loaded.');return;}
+  const rows = getSelected().length ? getSelected() : allFAQs;
+  const data=[['#','Question','Answer','Category','Source']];
+  rows.forEach((f,i)=>data.push([i+1,f.question,f.answer||'',f.prefix,'Google Autocomplete']));
+  const ws=XLSX.utils.aoa_to_sheet(data);
+  ws['!cols']=[{wch:5},{wch:80},{wch:60},{wch:18},{wch:20}];
+  const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,ws,'FAQs');
+  XLSX.writeFile(wb,'faqs-'+new Date().toISOString().slice(0,10)+'.xlsx');
 }
 
-/* ── COPY ── */
-function copyOutput(type) {
-  const text = type === 'jsonld' ? `<script type="application/ld+json">\n${jsonLdOutput}\n<\/script>` : htmlOutput;
-  navigator.clipboard.writeText(text).then(() => {
-    showNotif('Copied to clipboard!', 'success');
-  }).catch(() => {
-    const ta = document.createElement('textarea');
-    ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-    showNotif('Copied!', 'success');
-  });
+// ── Helpers ────────────────────────────────────────────────────────────────
+function showLoading(total) {
+  document.getElementById('output').innerHTML=`<div class="loading-state">
+    <div class="spinner"></div>
+    <p style="font-size:.88rem">Fetching trending questions from Google…</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+    <p style="font-size:.73rem;margin-top:8px;color:var(--muted2)" id="prog-lbl">0 / ${total} prefixes queried</p>
+  </div>`;
 }
-
-function downloadAll() {
-  const blob = new Blob([jsonLdOutput], { type: 'application/json' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = 'faq-schema.json'; a.click(); URL.revokeObjectURL(a.href);
+function updateProgress(done,total){
+  const b=document.getElementById('prog'),l=document.getElementById('prog-lbl');
+  if(b)b.style.width=Math.round(done/total*100)+'%';
+  if(l)l.textContent=done+' / '+total+' prefixes queried';
 }
-
-function openValidator() {
-  window.open('https://search.google.com/test/rich-results', '_blank');
+function showErr(msg){
+  document.getElementById('output').innerHTML=`<div class="err-box">⚠️ ${msg}</div>`;
 }
-
-/* ── SYNTAX HIGHLIGHT ── */
-function syntaxJson(code) {
-  return code
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"(@\w+)":/g, '<span class="c-attr">"$1"</span>:')
-    .replace(/: "([^"]*)"([,\n])/g, ': <span class="c-str">"$1"</span>$2')
-    .replace(/: "([^"]*)"$/gm, ': <span class="c-str">"$1"</span>')
-    .replace(/("[^"]+"):/g, '<span class="c-key">$1</span>:');
-}
-
-function syntaxHtml(code) {
-  return code
-    .replace(/&lt;(\/?[\w]+)([^&]*)&gt;/g, '<span class="c-tag">&lt;$1$2&gt;</span>')
-    .replace(/(\w+)=&quot;/g, '<span class="c-attr">$1</span>=&quot;');
-}
-
-function escHtml(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-/* ── NOTIFICATIONS ── */
-function showNotif(msg, type) {
-  const existing = document.getElementById('__notif');
-  if (existing) existing.remove();
-  const n = document.createElement('div');
-  n.id = '__notif';
-  const colors = { success: '#10b981', info: '#38bdf8', warn: '#f59e0b', error: '#f87171' };
-  n.style.cssText = `position:fixed;bottom:24px;right:24px;background:${colors[type]||colors.info};color:${type==='warn'?'#000':'#fff'};padding:11px 20px;border-radius:10px;font-size:.78rem;font-weight:700;z-index:9999;max-width:300px;box-shadow:0 8px 24px rgba(0,0,0,.4)`;
-  n.textContent = msg;
-  document.body.appendChild(n);
-  setTimeout(() => n.remove(), 3000);
-}
-
-/* ── INIT ── */
-renderFAQs();
+function escH(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
 </body>
 </html>

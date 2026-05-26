@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
 :root{
   --bg:#F8F6F1;
   --bg2:#F0EDE5;
@@ -255,31 +255,45 @@ section:nth-child(even){background:var(--bg2)}
 /* ════════════════════════════════
    ABOUT
 ════════════════════════════════ */
-.about-grid{display:grid;grid-template-columns:1fr 1.2fr;align-items:center;gap:72px}
-.about-img-box{
-  border-radius:16px;overflow:hidden;aspect-ratio:4/4.5;
-  background:var(--bg3);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-size:8rem;position:relative;
-  box-shadow:0 8px 32px rgba(26,22,18,.07);
+.about-grid{display:grid;grid-template-columns:1fr 1.3fr;align-items:center;gap:64px}
+.about-illus{
+  border-radius:20px;overflow:hidden;
+  background:linear-gradient(135deg,var(--bg2) 0%,var(--bg3) 100%);
+  border:1px solid var(--border);
+  box-shadow:0 12px 48px rgba(26,22,18,.08);
+  position:relative;
 }
-.about-img-box img{width:100%;height:100%;object-fit:cover}
-
-.about-body h3{
+.about-illus svg{display:block;width:100%}
+.about-accent-heading{
   font-family:'Playfair Display',serif;
-  font-size:1.5rem;font-weight:800;color:var(--ink);
-  margin-bottom:16px;line-height:1.35;
+  font-style:italic;font-weight:700;
+  font-size:1.05rem;color:var(--accent);
+  margin-bottom:8px;letter-spacing:-.01em;
 }
 .about-body p{font-size:.9rem;color:var(--muted);margin-bottom:14px;line-height:1.9}
-.about-details{
+.about-skills-grid{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:12px 24px;margin:24px 0;
-  padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+  gap:10px;margin:24px 0;
 }
-.ad-item{display:flex;flex-direction:column;gap:3px}
-.ad-label{font-size:.62rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.07em;font-weight:600}
-.ad-val{font-size:.83rem;color:var(--ink);font-weight:500}
-.ad-val a{color:var(--accent);text-decoration:none;font-weight:600}
+.ask-item{
+  display:flex;align-items:flex-start;gap:10px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  transition:all .2s;
+}
+.ask-item:hover{border-color:rgba(124,58,237,.25);background:var(--card);box-shadow:0 4px 16px rgba(26,22,18,.06)}
+.ask-ico{font-size:1.15rem;flex-shrink:0;margin-top:1px}
+.ask-text{font-size:.8rem;font-weight:600;color:var(--ink2);line-height:1.4}
+.about-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.achip{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 14px;border-radius:20px;
+  font-size:.72rem;font-weight:700;letter-spacing:.04em;
+  background:var(--accent-lt);color:var(--accent);
+  border:1px solid rgba(124,58,237,.2);
+}
+.achip.gold{background:var(--gold-lt);color:var(--gold);border-color:rgba(192,124,42,.25)}
+.achip.teal{background:var(--teal-lt);color:var(--teal);border-color:rgba(22,122,74,.2)}
 .about-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 
 /* ════════════════════════════════
@@ -421,6 +435,21 @@ section:nth-child(even){background:var(--bg2)}
   font-size:.76rem;color:var(--muted2);
   display:flex;align-items:center;gap:5px;
 }
+.tools-cta-wrap{margin-top:36px}
+.tools-cta-card{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  background:linear-gradient(135deg,var(--bg2),var(--card));
+  border:1.5px solid rgba(124,58,237,.2);
+  border-radius:14px;padding:28px 36px;
+}
+.tools-cta-count{
+  display:inline-block;font-family:'Playfair Display',serif;
+  font-size:1.25rem;font-weight:900;color:var(--accent);
+  margin-bottom:6px;
+}
+.tools-cta-left p{font-size:.84rem;color:var(--muted);line-height:1.7;max-width:520px}
+.tools-cta-btn{white-space:nowrap;padding:14px 28px;font-size:.88rem}
+@media(max-width:700px){.tools-cta-card{flex-direction:column;text-align:center;padding:22px 20px}}
 
 /* ════════════════════════════════
    PORTFOLIO
@@ -437,6 +466,7 @@ section:nth-child(even){background:var(--bg2)}
 .pf-card{
   background:var(--card);border:1px solid var(--border);
   border-radius:14px;overflow:hidden;transition:all .3s;
+  display:flex;flex-direction:column;cursor:pointer;
 }
 .pf-card:hover{border-color:rgba(124,58,237,.25);transform:translateY(-5px);box-shadow:0 16px 40px rgba(26,22,18,.1)}
 .pf-top{
@@ -657,8 +687,8 @@ footer{
   .hero-btns{justify-content:center}
   .hero-stats{justify-content:center;gap:0}
   .about-grid{grid-template-columns:1fr;gap:40px}
-  .about-img-box{max-width:260px;margin:0 auto;aspect-ratio:1}
-  .about-details{grid-template-columns:1fr}
+  .about-illus{max-width:360px;margin:0 auto}
+  .about-skills-grid{grid-template-columns:1fr}
   .svc-grid{grid-template-columns:1fr}
   .resume-cols{grid-template-columns:1fr}
   .skills-grid-8{grid-template-columns:repeat(2,1fr)}
@@ -691,7 +721,7 @@ footer{
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="tools.html">Tools</a></li>
-    <li><a href="#resume">Resume</a></li>
+    <li><a href="#resume">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="blog.html">Blog</a></li>
@@ -707,7 +737,7 @@ footer{
   <a href="#about" onclick="cn()">About</a>
   <a href="#services" onclick="cn()">Services</a>
   <a href="tools.html" onclick="cn()">Tools</a>
-  <a href="#resume" onclick="cn()">Resume</a>
+  <a href="#resume" onclick="cn()">Experience</a>
   <a href="#skills" onclick="cn()">Skills</a>
   <a href="#portfolio" onclick="cn()">Portfolio</a>
   <a href="blog.html" onclick="cn()">Blog</a>
@@ -740,7 +770,7 @@ footer{
       <div class="hero-stats">
         <div class="hs-item"><span class="hs-num" data-c="6">6+</span><span class="hs-label">Years Exp.</span></div>
         <div class="hs-item"><span class="hs-num" data-c="10">10</span><span class="hs-label">Team Members</span></div>
-        <div class="hs-item"><span class="hs-num" data-c="9">9</span><span class="hs-label">SEO Tools Built</span></div>
+        <div class="hs-item"><span class="hs-num" data-c="11">11</span><span class="hs-label">SEO Tools Built</span></div>
         <div class="hs-item"><span class="hs-num" data-c="7">7</span><span class="hs-label">n8n Agents</span></div>
       </div>
     </div>
@@ -757,29 +787,106 @@ footer{
 <!-- ══ ABOUT ══ -->
 <section id="about">
   <div class="about-grid">
-    <div class="rv up">
-      <div class="about-img-box">👨‍💻
-        <!-- Replace with <img src="photo.jpg" alt="Lochan Yadav"> -->
-      </div>
+    <!-- LEFT: Illustration -->
+    <div class="about-illus rv up">
+      <svg viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <defs>
+          <linearGradient id="ab-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1A1612"/>
+            <stop offset="100%" style="stop-color:#2D2620"/>
+          </linearGradient>
+          <linearGradient id="ab-ac" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#7C3AED"/>
+            <stop offset="100%" style="stop-color:#C07C2A"/>
+          </linearGradient>
+          <linearGradient id="ab-card" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(255,255,255,0.07)"/>
+            <stop offset="100%" style="stop-color:rgba(255,255,255,0.03)"/>
+          </linearGradient>
+        </defs>
+        <!-- BG -->
+        <rect width="480" height="520" fill="url(#ab-bg)"/>
+        <!-- subtle grid -->
+        <line x1="0" y1="86" x2="480" y2="86" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+        <line x1="0" y1="173" x2="480" y2="173" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+        <line x1="0" y1="260" x2="480" y2="260" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+        <line x1="0" y1="347" x2="480" y2="347" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+        <line x1="0" y1="434" x2="480" y2="434" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+        <line x1="96" y1="0" x2="96" y2="520" stroke="rgba(124,58,237,.04)" stroke-width="1"/>
+        <line x1="192" y1="0" x2="192" y2="520" stroke="rgba(124,58,237,.04)" stroke-width="1"/>
+        <line x1="288" y1="0" x2="288" y2="520" stroke="rgba(124,58,237,.04)" stroke-width="1"/>
+        <line x1="384" y1="0" x2="384" y2="520" stroke="rgba(124,58,237,.04)" stroke-width="1"/>
+        <!-- Laptop body -->
+        <rect x="80" y="150" width="320" height="200" rx="10" fill="rgba(255,255,255,.05)" stroke="rgba(124,58,237,.35)" stroke-width="1.5"/>
+        <!-- Screen content - analytics chart -->
+        <rect x="95" y="163" width="290" height="130" rx="5" fill="rgba(0,0,0,.3)"/>
+        <!-- Chart bars -->
+        <rect x="115" y="245" width="28" height="35" rx="3" fill="rgba(124,58,237,.4)"/>
+        <rect x="153" y="230" width="28" height="50" rx="3" fill="rgba(124,58,237,.55)"/>
+        <rect x="191" y="215" width="28" height="65" rx="3" fill="rgba(124,58,237,.7)"/>
+        <rect x="229" y="200" width="28" height="80" rx="3" fill="url(#ab-ac)"/>
+        <rect x="267" y="185" width="28" height="95" rx="3" fill="rgba(124,58,237,.8)"/>
+        <rect x="305" y="220" width="28" height="60" rx="3" fill="rgba(192,124,42,.6)"/>
+        <rect x="343" y="235" width="28" height="45" rx="3" fill="rgba(192,124,42,.4)"/>
+        <!-- Chart label -->
+        <text x="240" y="183" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,.35)" text-anchor="middle" letter-spacing="2">ORGANIC TRAFFIC GROWTH</text>
+        <!-- X-axis labels -->
+        <text x="129" y="295" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Jan</text>
+        <text x="167" y="295" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Feb</text>
+        <text x="205" y="295" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Mar</text>
+        <text x="243" y="295" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" font-weight="700">Apr</text>
+        <text x="281" y="295" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">May</text>
+        <text x="319" y="295" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Jun</text>
+        <text x="357" y="295" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Jul</text>
+        <!-- Laptop base -->
+        <rect x="60" y="350" width="360" height="14" rx="4" fill="rgba(255,255,255,.06)" stroke="rgba(124,58,237,.2)" stroke-width="1"/>
+        <rect x="185" y="350" width="110" height="8" rx="2" fill="rgba(255,255,255,.04)"/>
+        <!-- Floating stat cards -->
+        <rect x="22" y="100" width="120" height="60" rx="10" fill="url(#ab-card)" stroke="rgba(22,122,74,.4)" stroke-width="1"/>
+        <text x="34" y="123" font-family="Inter,sans-serif" font-size="9" fill="rgba(22,122,74,.8)" font-weight="700" letter-spacing="1">ORGANIC TRAFFIC</text>
+        <text x="34" y="148" font-family="Playfair Display,serif" font-size="22" fill="#4ade80" font-weight="900">+142%</text>
+        <rect x="338" y="90" width="120" height="60" rx="10" fill="url(#ab-card)" stroke="rgba(192,124,42,.4)" stroke-width="1"/>
+        <text x="350" y="113" font-family="Inter,sans-serif" font-size="9" fill="rgba(192,124,42,.8)" font-weight="700" letter-spacing="1">KEYWORDS RANKED</text>
+        <text x="350" y="138" font-family="Playfair Display,serif" font-size="22" fill="#C07C2A" font-weight="900">28K+</text>
+        <!-- n8n agent badge -->
+        <rect x="160" y="390" width="160" height="44" rx="10" fill="rgba(124,58,237,.15)" stroke="rgba(124,58,237,.4)" stroke-width="1"/>
+        <text x="240" y="408" font-family="Inter,sans-serif" font-size="9" fill="rgba(196,181,253,.7)" text-anchor="middle" letter-spacing="1">AI-POWERED WORKFLOW</text>
+        <text x="240" y="425" font-family="Inter,sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle" font-weight="700">7 n8n Agents Active</text>
+        <!-- Avatar circle -->
+        <circle cx="240" cy="80" r="44" fill="rgba(124,58,237,.1)" stroke="url(#ab-ac)" stroke-width="2"/>
+        <circle cx="240" cy="80" r="36" fill="rgba(124,58,237,.08)"/>
+        <text x="240" y="90" font-family="Inter,sans-serif" font-size="30" text-anchor="middle">👨‍💻</text>
+        <!-- Name label -->
+        <text x="240" y="460" font-family="Playfair Display,serif" font-size="15" fill="rgba(255,255,255,.75)" text-anchor="middle" font-weight="700">Lochan Yadav</text>
+        <text x="240" y="478" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle" letter-spacing="1.5">LEAD SEO ANALYST · BANKBAZAAR</text>
+        <!-- Accent bar -->
+        <rect x="180" y="492" width="120" height="3" rx="2" fill="url(#ab-ac)" opacity=".7"/>
+      </svg>
     </div>
-    <div class="about-body rv rv-d2 up">
+    <!-- RIGHT: Content -->
+    <div class="rv rv-d2 up">
       <div class="eyebrow">Get to know me</div>
-      <h2 class="sec-title">About Me</h2>
-      <p>I'm a <strong style="color:var(--ink)">Lead SEO Analyst</strong> at BankBazaar — India's largest online financial marketplace. I work within a team of 10, drive organic growth strategy, and have contributed to millions of monthly visits across loans, credit cards, and insurance products.</p>
-      <p>I've built AI-powered SEO workflows using <strong style="color:var(--ink)">Claude AI, n8n agents, and Google Colab</strong> that automate content audits, meta updates, and reporting. My B.E. in Computer Science means I work directly with engineering teams on crawlability, Core Web Vitals, and JavaScript SEO.</p>
-      <div class="about-details">
-        <div class="ad-item"><span class="ad-label">Full Name</span><span class="ad-val">Lochan Yadav</span></div>
-        <div class="ad-item"><span class="ad-label">Role</span><span class="ad-val">Lead SEO Analyst · BankBazaar</span></div>
-        <div class="ad-item"><span class="ad-label">Location</span><span class="ad-val">Hindupur, Andhra Pradesh</span></div>
-        <div class="ad-item"><span class="ad-label">Phone</span><span class="ad-val">+91-8951712138</span></div>
-        <div class="ad-item"><span class="ad-label">Email</span><span class="ad-val"><a href="mailto:lochan.yadavgolla@gmail.com">lochan.yadavgolla@gmail.com</a></span></div>
-        <div class="ad-item"><span class="ad-label">LinkedIn</span><span class="ad-val"><a href="https://linkedin.com/in/lochan-yadav-0a26261a3" target="_blank">View Profile →</a></span></div>
-        <div class="ad-item"><span class="ad-label">Availability</span><span class="ad-val" style="color:var(--green)">✓ Open to Work</span></div>
-        <div class="ad-item"><span class="ad-label">Work Type</span><span class="ad-val">Full-time / Remote / Hybrid</span></div>
+      <p class="about-accent-heading">The person behind the rankings</p>
+      <h2 class="sec-title" style="margin-top:0">About Me</h2>
+      <p>I'm a <strong style="color:var(--ink)">Lead SEO Analyst</strong> at BankBazaar — India's largest online financial marketplace. With 6+ years in the field, I've contributed to millions of monthly organic visits across loans, credit cards, and insurance verticals.</p>
+      <p>I build <strong style="color:var(--ink)">AI-powered SEO workflows</strong> using Claude AI, n8n agents, and Google Colab that automate content audits, meta updates, and reporting — turning repetitive tasks into scheduled pipelines. My B.E. in Computer Science lets me work directly with engineering on crawlability, Core Web Vitals, and JavaScript SEO.</p>
+      <div class="about-skills-grid">
+        <div class="ask-item"><span class="ask-ico">🗺️</span><span class="ask-text">Keyword Strategy &amp; Mapping</span></div>
+        <div class="ask-item"><span class="ask-ico">⚙️</span><span class="ask-text">Technical SEO Audits</span></div>
+        <div class="ask-item"><span class="ask-ico">🔄</span><span class="ask-text">n8n Workflow Pipelines</span></div>
+        <div class="ask-item"><span class="ask-ico">🤖</span><span class="ask-text">Claude AI Integration</span></div>
+        <div class="ask-item"><span class="ask-ico">📊</span><span class="ask-text">SEO Analytics &amp; Reporting</span></div>
+        <div class="ask-item"><span class="ask-ico">👥</span><span class="ask-text">Team Training &amp; Mentoring</span></div>
+      </div>
+      <div class="about-chips">
+        <span class="achip">⚡ SEO Pro</span>
+        <span class="achip gold">🤖 AI Automation</span>
+        <span class="achip teal">📈 Analytics</span>
+        <span class="achip">🏦 Fintech</span>
       </div>
       <div class="about-btns">
-        <a href="mailto:lochan.yadavgolla@gmail.com" class="btn-primary">Hire Me</a>
-        <a href="#contact" class="btn-secondary">Get in Touch</a>
+        <a href="#contact" class="btn-primary">Hire Me</a>
+        <a href="#resume" class="btn-secondary">View Experience</a>
       </div>
     </div>
   </div>
@@ -807,7 +914,7 @@ footer{
   <div class="center rv up">
     <div class="eyebrow">What I've Built</div>
     <h2 class="sec-title">SEO Tools &amp; Automation</h2>
-    <p class="sec-sub">9 browser-based tools that automate the most time-consuming SEO workflows — no installation, no Python, no API keys needed.</p>
+    <p class="sec-sub">11 browser-based tools that automate the most time-consuming SEO workflows — no installation, no Python, no API keys needed.</p>
   </div>
   <div class="tools-grid">
 
@@ -853,93 +960,16 @@ footer{
       </div>
     </div>
 
-    <!-- Tool 04 -->
-    <div class="tool-card rv rv-d4 up">
-      <div class="tool-card-top tc4">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="8" y="10" width="24" height="14" rx="4" fill="rgba(192,124,42,.12)" stroke="rgba(192,124,42,.35)" stroke-width="1.5"/><text x="20" y="20" font-size="8" fill="rgba(192,124,42,.7)" text-anchor="middle" font-family="serif" font-weight="700">Q</text><rect x="10" y="30" width="36" height="14" rx="4" fill="rgba(192,124,42,.08)" stroke="rgba(192,124,42,.25)" stroke-width="1.5"/><rect x="14" y="35" width="20" height="2.5" rx="1.2" fill="rgba(192,124,42,.3)"/><rect x="14" y="39" width="14" height="2.5" rx="1.2" fill="rgba(192,124,42,.2)"/><path d="M32 17l4 4" stroke="rgba(192,124,42,.5)" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <span class="tool-badge badge-web">Web App</span>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-cat">AEO &amp; Structured Data</div>
-        <div class="tool-name">FAQ Schema Generator</div>
-        <div class="tool-desc">Instant browser-based FAQ JSON-LD schema generator. Type your Q&amp;A pairs, get Google-ready structured data in seconds — no API key needed.</div>
-        <a href="tool-04-faq-schema-generator.html" class="tool-link">Open Tool →</a>
-      </div>
-    </div>
-
-    <!-- Tool 05 -->
-    <div class="tool-card rv rv-d5 up">
-      <div class="tool-card-top tc5">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="10" y="12" width="36" height="32" rx="4" fill="rgba(192,124,42,.08)" stroke="rgba(192,124,42,.3)" stroke-width="1.5"/><rect x="15" y="18" width="10" height="3" rx="1.5" fill="rgba(192,124,42,.4)"/><rect x="27" y="18" width="14" height="3" rx="1.5" fill="rgba(192,124,42,.2)"/><rect x="15" y="24" width="7" height="3" rx="1.5" fill="rgba(192,124,42,.3)"/><rect x="24" y="24" width="17" height="3" rx="1.5" fill="rgba(192,124,42,.2)"/><rect x="15" y="30" width="12" height="3" rx="1.5" fill="rgba(192,124,42,.3)"/><rect x="29" y="30" width="12" height="3" rx="1.5" fill="rgba(192,124,42,.2)"/><rect x="15" y="36" width="9" height="3" rx="1.5" fill="rgba(192,124,42,.25)"/></svg>
-        <span class="tool-badge badge-web">Web App</span>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-cat">Structured Data · AEO</div>
-        <div class="tool-name">Schema Markup Generator</div>
-        <div class="tool-desc">Generate JSON-LD schema for 8 types — Article, HowTo, LocalBusiness, Product, Review, BreadcrumbList, Organization, VideoObject. Form-based, instant.</div>
-        <a href="tool-05-schema-markup-generator.html" class="tool-link">Open Tool →</a>
-      </div>
-    </div>
-
-    <!-- Tool 06 -->
-    <div class="tool-card rv rv-d6 up">
-      <div class="tool-card-top tc6">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="10" y="38" width="8" height="10" rx="2" fill="rgba(22,122,74,.5)"/><rect x="21" y="28" width="8" height="20" rx="2" fill="rgba(22,122,74,.4)"/><rect x="32" y="20" width="8" height="28" rx="2" fill="rgba(22,122,74,.6)"/><rect x="43" y="12" width="8" height="36" rx="2" fill="rgba(22,122,74,.45)"/><path d="M8 42l12-14 11-4 10-10" stroke="rgba(22,122,74,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="tool-badge badge-web">Web App</span>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-cat">Content SEO</div>
-        <div class="tool-name">Keyword Density Analyzer</div>
-        <div class="tool-desc">Paste any content and get instant keyword frequency table, Flesch-Kincaid readability score, 2-word phrase analysis, stuffing alerts, and reading time.</div>
-        <a href="tool-06-keyword-density-analyzer.html" class="tool-link">Open Tool →</a>
-      </div>
-    </div>
-
-    <!-- Tool 07 -->
-    <div class="tool-card rv rv-d1 up">
-      <div class="tool-card-top tc7">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="26" r="12" fill="rgba(124,58,237,.1)" stroke="rgba(124,58,237,.35)" stroke-width="1.5"/><circle cx="28" cy="22" r="4" fill="rgba(124,58,237,.3)"/><path d="M20 32c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="rgba(124,58,237,.15)"/><rect x="14" y="40" width="28" height="3" rx="1.5" fill="rgba(124,58,237,.2)"/><rect x="18" y="45" width="20" height="2.5" rx="1.2" fill="rgba(124,58,237,.12)"/></svg>
-        <span class="tool-badge badge-web">Web App</span>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-cat">Technical SEO</div>
-        <div class="tool-name">Robots.txt Generator &amp; Tester</div>
-        <div class="tool-desc">Visual rule builder with 6 industry presets (Fintech, E-Commerce, AI-blocking, Blog). Test any URL path against your rules instantly. One-click download.</div>
-        <a href="tool-07-robots-txt-generator.html" class="tool-link">Open Tool →</a>
-      </div>
-    </div>
-
-    <!-- Tool 08 -->
-    <div class="tool-card rv rv-d2 up">
-      <div class="tool-card-top tc8">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="16" stroke="rgba(3,105,161,.4)" stroke-width="1.5" fill="rgba(3,105,161,.06)"/><ellipse cx="28" cy="28" rx="8" ry="16" stroke="rgba(3,105,161,.3)" stroke-width="1.5" fill="none"/><line x1="12" y1="28" x2="44" y2="28" stroke="rgba(3,105,161,.3)" stroke-width="1.5"/><line x1="14" y1="20" x2="42" y2="20" stroke="rgba(3,105,161,.2)" stroke-width="1"/><line x1="14" y1="36" x2="42" y2="36" stroke="rgba(3,105,161,.2)" stroke-width="1"/><circle cx="28" cy="28" r="3" fill="rgba(3,105,161,.5)"/></svg>
-        <span class="tool-badge badge-web">Web App</span>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-cat">International SEO</div>
-        <div class="tool-name">Hreflang Tag Generator</div>
-        <div class="tool-desc">Generate hreflang link tags, HTTP headers, and XML sitemap entries for multilingual sites. Presets for India, Global English, APAC, Europe, and Latin America.</div>
-        <a href="tool-08-hreflang-generator.html" class="tool-link">Open Tool →</a>
-      </div>
-    </div>
-
-    <!-- Tool 09 -->
-    <div class="tool-card rv rv-d3 up">
-      <div class="tool-card-top" style="background:linear-gradient(135deg,#451a03,#78350f)">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="10" y="12" width="36" height="8" rx="3" fill="rgba(245,158,11,.2)" stroke="rgba(245,158,11,.4)" stroke-width="1.5"/><rect x="14" y="14" width="5" height="4" rx="1" fill="rgba(245,158,11,.5)"/><rect x="21" y="15.5" width="18" height="1.5" rx=".75" fill="rgba(245,158,11,.3)"/><rect x="10" y="24" width="36" height="8" rx="3" fill="rgba(245,158,11,.15)" stroke="rgba(245,158,11,.3)" stroke-width="1.5"/><rect x="14" y="26" width="5" height="4" rx="1" fill="rgba(245,158,11,.35)"/><rect x="21" y="27.5" width="14" height="1.5" rx=".75" fill="rgba(245,158,11,.25)"/><rect x="10" y="36" width="36" height="8" rx="3" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.25)" stroke-width="1.5"/><rect x="14" y="38" width="5" height="4" rx="1" fill="rgba(245,158,11,.3)"/><rect x="21" y="39.5" width="20" height="1.5" rx=".75" fill="rgba(245,158,11,.2)"/></svg>
-        <span class="tool-badge badge-web">Web App</span>
-      </div>
-      <div class="tool-card-body">
-        <div class="tool-cat">AEO &amp; Content</div>
-        <div class="tool-name">FAQs Auto-Builder</div>
-        <div class="tool-desc">Browser-based FAQ generator with content analysis, 6 industry templates, JSON-LD schema output, full HTML snippets, and live preview. No backend needed.</div>
-        <a href="tool-09-faqs-auto-builder.html" class="tool-link">Open Tool →</a>
-      </div>
-    </div>
-
   </div>
-  <div style="text-align:center;margin-top:40px" class="rv up">
-    <a href="tools.html" class="btn-primary">🔧 View All Tools</a>
+  <!-- View All Tools CTA -->
+  <div class="tools-cta-wrap rv up">
+    <div class="tools-cta-card">
+      <div class="tools-cta-left">
+        <span class="tools-cta-count">+8 More Tools</span>
+        <p>Schema Generator, Keyword Density Analyzer, Robots.txt Builder, Hreflang Generator, FAQs Auto-Builder, XML &amp; HTML Sitemap Extractors</p>
+      </div>
+      <a href="tools.html" class="btn-primary tools-cta-btn">🔧 View All 11 Tools →</a>
+    </div>
   </div>
 </section>
 
@@ -947,7 +977,7 @@ footer{
 <section id="resume">
   <div class="center rv up">
     <div class="eyebrow">My Background</div>
-    <h2 class="sec-title">Resume</h2>
+    <h2 class="sec-title">Experience</h2>
     <p class="sec-sub">6+ years of progressive experience growing organic channels for India's leading fintech and digital brands.</p>
   </div>
   <div class="resume-cols">
@@ -1079,7 +1109,7 @@ footer{
   <div class="center rv up">
     <div class="eyebrow">My Work</div>
     <h2 class="sec-title">Portfolio &amp; Case Studies</h2>
-    <p class="sec-sub">Key SEO projects and campaigns — from technical overhauls to content strategy and algorithm recovery.</p>
+    <p class="sec-sub">6 in-depth case studies from BankBazaar — click any card to read the full case study.</p>
   </div>
   <div class="pf-filter rv up">
     <button class="pf-btn on" data-filter="all">All</button>
@@ -1089,12 +1119,12 @@ footer{
     <button class="pf-btn" data-filter="links">Link Building</button>
   </div>
   <div class="pf-grid">
-    <div class="pf-card rv rv-d1 up" data-cat="technical"><div class="pf-top c1">📈<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Technical SEO · Fintech</div><div class="pf-name">BankBazaar — Site Health Overhaul</div><div class="pf-desc">Led full technical audit across BankBazaar's financial product pages — resolving crawlability issues, indexation errors, and boosting Core Web Vitals site-wide.</div><div class="pf-metric">+40% Organic Traffic</div></div></div>
-    <div class="pf-card rv rv-d2 up" data-cat="analytics"><div class="pf-top c2">📊<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Analytics · Reporting</div><div class="pf-name">GA4 Reporting Architecture</div><div class="pf-desc">Designed custom GA4 + Looker Studio framework giving leadership real-time visibility into organic KPIs, traffic trends, and conversion performance.</div><div class="pf-metric">Saved 10hrs/Week</div></div></div>
-    <div class="pf-card rv rv-d3 up" data-cat="content"><div class="pf-top c3">🎯<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Keyword Strategy · BFSI</div><div class="pf-name">BFSI Keyword Mapping Framework</div><div class="pf-desc">Built a comprehensive keyword mapping and competitor analysis framework for the BFSI domain covering loans, insurance, credit cards, and investment products.</div><div class="pf-metric">50+ Page-1 Rankings</div></div></div>
-    <div class="pf-card rv rv-d4 up" data-cat="links"><div class="pf-top c4">🔗<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Link Building · Off-Page</div><div class="pf-name">Domain Authority Growth Campaign</div><div class="pf-desc">Managed multi-channel link acquisition — guest posting, local listings, directory submissions — growing domain authority in highly competitive fintech space.</div><div class="pf-metric">DA 42 → 61</div></div></div>
-    <div class="pf-card rv rv-d5 up" data-cat="technical"><div class="pf-top c5">🤖<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Algorithm Response</div><div class="pf-name">Google Core Update Recovery</div><div class="pf-desc">Led rapid response strategy after a Google Core Update impacted rankings. Analyzed affected pages and implemented fixes to recover and grow traffic.</div><div class="pf-metric">Recovered in 6 Weeks</div></div></div>
-    <div class="pf-card rv rv-d6 up" data-cat="content"><div class="pf-top c6">✍️<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">AEO · Content Strategy</div><div class="pf-name">Answer Engine Optimization</div><div class="pf-desc">Structured BankBazaar's financial FAQs and content for AI-powered answers — boosting featured snippet capture and improving visibility in ChatGPT and Gemini responses.</div><div class="pf-metric">3× Featured Snippet CTR</div></div></div>
+    <a href="case-study-01-site-health-overhaul.html" class="pf-card rv rv-d1 up" data-cat="technical" style="text-decoration:none"><div class="pf-top c1">📈<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Technical SEO · Fintech</div><div class="pf-name">BankBazaar — Site Health Overhaul</div><div class="pf-desc">Led full technical audit across BankBazaar's financial product pages — resolving crawlability issues, indexation errors, and boosting Core Web Vitals site-wide.</div><div class="pf-metric">+40% Organic Traffic</div></div></a>
+    <a href="case-study-02-ga4-reporting.html" class="pf-card rv rv-d2 up" data-cat="analytics" style="text-decoration:none"><div class="pf-top c2">📊<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Analytics · Reporting</div><div class="pf-name">GA4 Reporting Architecture</div><div class="pf-desc">Designed custom GA4 + Looker Studio framework giving leadership real-time visibility into organic KPIs, traffic trends, and conversion performance.</div><div class="pf-metric">Saved 10hrs/Week</div></div></a>
+    <a href="case-study-03-bfsi-keyword-mapping.html" class="pf-card rv rv-d3 up" data-cat="content" style="text-decoration:none"><div class="pf-top c3">🎯<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Keyword Strategy · BFSI</div><div class="pf-name">BFSI Keyword Mapping Framework</div><div class="pf-desc">Built a comprehensive keyword mapping and competitor analysis framework for the BFSI domain covering loans, insurance, credit cards, and investment products.</div><div class="pf-metric">50+ Page-1 Rankings</div></div></a>
+    <a href="case-study-04-domain-authority.html" class="pf-card rv rv-d4 up" data-cat="links" style="text-decoration:none"><div class="pf-top c4">🔗<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Link Building · Off-Page</div><div class="pf-name">Domain Authority Growth Campaign</div><div class="pf-desc">Managed multi-channel link acquisition — guest posting, local listings, directory submissions — growing domain authority in highly competitive fintech space.</div><div class="pf-metric">DA 42 → 61</div></div></a>
+    <a href="case-study-05-core-update-recovery.html" class="pf-card rv rv-d5 up" data-cat="technical" style="text-decoration:none"><div class="pf-top c5">🤖<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">Algorithm Response</div><div class="pf-name">Google Core Update Recovery</div><div class="pf-desc">Led rapid response strategy after a Google Core Update impacted rankings. Analyzed affected pages and implemented fixes to recover and grow traffic.</div><div class="pf-metric">Recovered in 6 Weeks</div></div></a>
+    <a href="case-study-06-aeo-optimization.html" class="pf-card rv rv-d6 up" data-cat="content" style="text-decoration:none"><div class="pf-top c6">✍️<div class="pf-hover"><span>View Case Study →</span></div></div><div class="pf-bottom"><div class="pf-cat">AEO · Content Strategy</div><div class="pf-name">Answer Engine Optimization</div><div class="pf-desc">Structured BankBazaar's financial FAQs and content for AI-powered answers — boosting featured snippet capture and improving visibility in ChatGPT and Gemini responses.</div><div class="pf-metric">3× Featured Snippet CTR</div></div></a>
   </div>
 </section>
 
@@ -1216,7 +1246,7 @@ footer{
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#tools">Tools</a>
-      <a href="#resume">Resume</a>
+      <a href="#resume">Experience</a>
       <a href="#skills">Skills</a>
     </div>
     <div class="foot-col">
@@ -1234,7 +1264,9 @@ footer{
       <a href="tool-03-seo-geo-audit.html">SEO/GEO Audit</a>
       <a href="tool-04-faq-schema-generator.html">FAQ Schema</a>
       <a href="tool-09-faqs-auto-builder.html">FAQs Auto-Builder</a>
-      <a href="tools.html">View All 9 Tools →</a>
+      <a href="tool-10-xml-sitemap-extractor.html">XML Sitemap Extractor</a>
+      <a href="tool-11-html-sitemap-extractor.html">HTML Sitemap Extractor</a>
+      <a href="tools.html">View All 11 Tools →</a>
     </div>
   </div>
   <p class="foot-copy">© 2026 <strong>Lochan Yadav</strong> · Lead SEO Analyst · BankBazaar · Crafted with care · <a href="sitemap.html" style="color:rgba(255,255,255,.4)">Sitemap</a> · <a href="sitemap.xml" style="color:rgba(255,255,255,.3)">XML</a></p>
@@ -1306,11 +1338,4 @@ document.querySelectorAll('.pf-btn').forEach(b=>{
 /* Contact form */
 function sendForm(e){
   e.preventDefault();
-  const btn=e.target.querySelector('.submit-btn');
-  btn.textContent='✓ Message Sent!';
-  btn.style.background='var(--green)';
-  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';e.target.reset()},3000);
-}
-</script>
-</body>
-</html>
+  const btn=e.targe

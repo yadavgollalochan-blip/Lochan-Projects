@@ -10,6 +10,44 @@
     <priority>0.4</priority>
   </url>
 
+  <!-- ── Portfolio Case Studies ── -->
+  <url>
+    <loc>https://lochan.online/case-study-01-site-health-overhaul.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lochan.online/case-study-02-ga4-reporting.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lochan.online/case-study-03-bfsi-keyword-mapping.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lochan.online/case-study-04-domain-authority.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lochan.online/case-study-05-core-update-recovery.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lochan.online/case-study-06-aeo-optimization.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- ── Main Portfolio ── -->
   <url>
     <loc>https://lochan.online/</loc>
@@ -129,6 +167,18 @@
   </url>
   <url>
     <loc>https://lochan.online/tool-09-faqs-auto-builder.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lochan.online/tool-10-xml-sitemap-extractor.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lochan.online/tool-11-html-sitemap-extractor.html</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

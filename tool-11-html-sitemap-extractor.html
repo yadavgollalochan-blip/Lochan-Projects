@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>HTML Sitemap Extractor — SEO Tools | Lochan Yadav</title>
+<meta name="description" content="Free HTML sitemap extractor. Paste any HTML page to extract all links with anchor text, URL, type and path depth. Filter internal vs external, export to CSV.">
+<link rel="canonical" href="https://lochan.online/tool-11-html-sitemap-extractor.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0b12;--surface:#13131f;--surface2:#1c1c2e;--border:#2a2a42;
+  --accent:#7c4dff;--green:#00e676;--yellow:#ffd740;--red:#ff5252;
+  --cyan:#00d4ff;--text:#e8e8f4;--muted:#7878a0;--radius:10px;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;min-height:100vh;}
+a{color:var(--accent);text-decoration:none;}
+.navbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:var(--accent);text-decoration:none;}
+.nav-brand span{color:var(--text);font-weight:600;}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-link{color:var(--muted);font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px;text-decoration:none;transition:all .2s;}
+.nav-link:hover{color:var(--text);background:var(--surface2);}
+.nav-back{background:rgba(124,77,255,.15);border:1px solid rgba(124,77,255,.4);color:#b388ff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:6px;text-decoration:none;}
+.hero{background:linear-gradient(135deg,rgba(124,77,255,.07),rgba(0,212,255,.05));border-bottom:1px solid var(--border);padding:36px 28px 30px;text-align:center;}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#b388ff;background:rgba(124,77,255,.12);border:1px solid rgba(124,77,255,.3);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,#b388ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{color:var(--muted);font-size:14px;max-width:600px;margin:0 auto 18px;line-height:1.7;}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.badge{font-size:11px;font-weight:600;padding:4px 12px;border-radius:12px;border:1px solid;display:inline-flex;align-items:center;gap:5px;}
+.badge-green{color:var(--green);border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.07);}
+.badge-purple{color:#b388ff;border-color:rgba(179,136,255,.3);background:rgba(124,77,255,.07);}
+.badge-cyan{color:var(--cyan);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.07);}
+.container{max-width:1100px;margin:0 auto;padding:28px 20px 60px;}
+/* TABS */
+.input-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:22px;}
+.input-tabs{display:flex;border-bottom:1px solid var(--border);}
+.input-tab{flex:1;padding:13px 10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border:none;background:none;font-family:inherit;transition:all .2s;border-bottom:3px solid transparent;display:flex;align-items:center;justify-content:center;gap:7px;}
+.input-tab.active{color:#b388ff;border-bottom-color:var(--accent);background:rgba(124,77,255,.05);}
+.input-tab:hover:not(.active){color:var(--text);}
+.tab-pane{display:none;padding:22px;}
+.tab-pane.active{display:block;}
+/* FORM */
+input[type=url],input[type=text]{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;font-family:inherit;padding:11px 14px;outline:none;transition:border-color .2s;}
+input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,77,255,.1);}
+input::placeholder{color:var(--muted);}
+textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:12.5px;font-family:'Courier New',monospace;padding:12px 14px;resize:vertical;min-height:200px;outline:none;transition:border-color .2s;line-height:1.6;}
+textarea:focus{border-color:var(--accent);}
+textarea::placeholder{color:var(--muted);font-family:'Inter',sans-serif;font-size:13px;}
+.hint{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5;}
+.form-row{display:flex;gap:10px;align-items:center;margin-bottom:12px;}
+.form-row label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#5c35cc);color:#fff;}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(124,77,255,.4);}
+.btn-secondary{background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+.btn-secondary:hover{border-color:var(--accent);color:#b388ff;}
+.btn-green{background:linear-gradient(135deg,var(--green),#00b248);color:#000;}
+.btn-green:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(0,230,118,.3);}
+.btn-sm{padding:7px 14px;font-size:12px;}
+.btn-row{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+.stat-num{font-size:1.6rem;font-weight:800;color:var(--accent);font-family:'Playfair Display',serif;line-height:1;}
+.stat-num.green{color:var(--green);}
+.stat-num.yellow{color:var(--yellow);}
+.stat-num.red{color:var(--red);}
+.stat-num.cyan{color:var(--cyan);}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.06em;}
+/* FILTER */
+.filter-bar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
+.filter-bar input[type=text]{flex:1;min-width:180px;max-width:320px;}
+.filter-select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:inherit;padding:9px 12px;outline:none;cursor:pointer;}
+.filter-select:focus{border-color:var(--accent);}
+/* TABLE */
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{background:var(--surface2);padding:11px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none;}
+thead th:hover{color:#b388ff;}
+thead th.sorted{color:var(--accent);}
+tbody tr{border-bottom:1px solid rgba(42,42,66,.6);transition:background .15s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--surface2);}
+td{padding:10px 14px;vertical-align:middle;}
+td.url-cell{max-width:300px;}
+td.url-cell a{color:var(--cyan);word-break:break-all;font-size:12px;}
+td.url-cell a:hover{text-decoration:underline;}
+td.anchor-cell{max-width:200px;font-size:12.5px;color:var(--text);}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:10px;border:1px solid;}
+.pill-green{color:var(--green);border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.07);}
+.pill-yellow{color:var(--yellow);border-color:rgba(255,215,64,.3);background:rgba(255,215,64,.07);}
+.pill-red{color:var(--red);border-color:rgba(255,82,82,.3);background:rgba(255,82,82,.07);}
+.pill-blue{color:var(--cyan);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.07);}
+.pill-purple{color:#b388ff;border-color:rgba(124,77,255,.3);background:rgba(124,77,255,.07);}
+.pill-gray{color:var(--muted);border-color:var(--border);background:var(--surface2);}
+.depth-bar{display:inline-flex;gap:2px;align-items:center;}
+.depth-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:.35;}
+.depth-dot.filled{opacity:1;}
+/* EMPTY/ERROR */
+.empty{text-align:center;padding:52px 20px;color:var(--muted);}
+.empty-icon{font-size:2.8rem;margin-bottom:12px;}
+.empty p{line-height:1.7;font-size:13px;}
+.err-box{background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.25);border-radius:8px;padding:14px 18px;color:#ff8a80;font-size:13px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start;}
+.info-box{background:rgba(124,77,255,.07);border:1px solid rgba(124,77,255,.2);border-radius:8px;padding:12px 16px;color:#ce93d8;font-size:12.5px;margin-bottom:14px;line-height:1.6;}
+.warn-box{background:rgba(255,215,64,.06);border:1px solid rgba(255,215,64,.25);border-radius:8px;padding:12px 16px;color:#ffe082;font-size:12.5px;margin-bottom:14px;line-height:1.6;}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(124,77,255,.3);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-msg{text-align:center;padding:40px 20px;color:var(--muted);}
+.loading-msg .spinner{width:28px;height:28px;border-width:3px;margin-bottom:14px;}
+/* PAGINATION */
+.pag-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:10px;}
+.pag-info{font-size:12px;color:var(--muted);}
+.pag-btns{display:flex;gap:6px;}
+.pag-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .2s;}
+.pag-btn:hover:not(:disabled){border-color:var(--accent);color:#b388ff;}
+.pag-btn:disabled{opacity:.35;cursor:default;}
+.pag-btn.active{background:rgba(124,77,255,.15);border-color:var(--accent);color:#b388ff;}
+/* TREEMAP */
+.path-treemap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px;}
+.path-treemap h3{font-size:13px;font-weight:700;color:#b388ff;margin-bottom:12px;}
+.path-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;}
+.path-bar-label{color:var(--text);min-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.path-bar-track{flex:1;height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.path-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--cyan));border-radius:4px;}
+.path-bar-count{color:var(--muted);min-width:32px;text-align:right;}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:24px 28px;text-align:center;color:var(--muted);font-size:12px;margin-top:auto;}
+footer a{color:var(--accent);}
+.toggle-wrap input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px;}
+@media(max-width:700px){.stats-row{grid-template-columns:repeat(3,1fr)}.nav-links{display:none}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">Lochan <span>Yadav</span></a>
+  <div class="nav-links">
+    <a href="tools.html" class="nav-link">← All Tools</a>
+    <a href="tool-10-xml-sitemap-extractor.html" class="nav-back">← XML Extractor</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-cat">🔗 Tool 11 · Technical SEO</div>
+  <h1>HTML Sitemap Extractor</h1>
+  <p>Paste any HTML page and instantly extract all links — with anchor text, full URL, type (internal/external/resource), path depth, and nofollow status. Filter, sort, and export to Excel or CSV.</p>
+  <div class="hero-badges">
+    <span class="badge badge-green">✓ No API Key</span>
+    <span class="badge badge-purple">✓ Internal vs External</span>
+    <span class="badge badge-cyan">✓ Path Depth Analysis</span>
+    <span class="badge badge-green">✓ CSV &amp; Excel Export</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- INPUT CARD -->
+  <div class="input-card">
+    <div class="input-tabs">
+      <button class="input-tab active" data-tab="tab-url">🌐 Fetch by URL</button>
+      <button class="input-tab" data-tab="tab-paste">📋 Paste HTML</button>
+    </div>
+
+    <div class="tab-pane" id="tab-paste">
+      <div class="form-row">
+        <label>Base Domain (for internal/external classification)</label>
+        <input type="text" id="base-domain-paste" placeholder="e.g. bankbazaar.com" style="max-width:260px;"/>
+      </div>
+      <div class="form-row" style="margin-bottom:14px;">
+        <label style="white-space:nowrap;margin:0">Smart Mode</label>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <label class="toggle-wrap" style="margin:0;display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px;color:var(--text)">
+            <input type="checkbox" id="smart-mode-paste" checked style="width:auto;cursor:pointer;">
+            <span id="smart-label-paste" style="color:var(--green);font-size:12px;font-weight:600;">ON — Sitemap links only (strips nav/header/footer)</span>
+          </label>
+        </div>
+      </div>
+      <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Paste HTML Source</label>
+      <textarea id="paste-html" placeholder="Paste the full HTML source of any page here (Ctrl+U in browser → Select All → Copy → Paste)&#10;&#10;Or paste just the &lt;nav&gt;, &lt;ul&gt;, or sitemap section if you want to extract links from a specific part."></textarea>
+      <p class="hint">💡 To get a page's HTML: Open the page → Right-click → <strong>View Page Source</strong> → Ctrl+A → Ctrl+C → Paste here.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="parseHTML()">⚡ Extract Links</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('paste-html').value=''">Clear</button>
+      </div>
+    </div>
+
+    <div class="tab-pane active" id="tab-url">
+      <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">HTML Sitemap URL</label>
+      <input type="url" id="url-input" placeholder="https://example.com/sitemap.html" autocomplete="off"/>
+      <div class="form-row" style="margin-top:12px;margin-bottom:4px;">
+        <label style="white-space:nowrap;margin:0">Smart Mode</label>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <label class="toggle-wrap" style="margin:0;display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px;color:var(--text)">
+            <input type="checkbox" id="smart-mode-url" checked style="width:auto;cursor:pointer;">
+            <span id="smart-label-url" style="color:var(--green);font-size:12px;font-weight:600;">ON — Sitemap links only (strips nav/header/footer)</span>
+          </label>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:10px">⚠️ Many sites block direct browser fetches (CORS). If fetch fails, open the URL in your browser, press <strong>Ctrl+U</strong> (View Source), select all, copy, then paste in the <strong>Paste HTML</strong> tab.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="fetchAndParse()">🔍 Fetch &amp; Extract Links</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTPUT -->
+  <div id="output"></div>
+
+</div>
+
+<footer>
+  <p>HTML Sitemap Extractor · Part of <a href="tools.html">Lochan Yadav's SEO Toolkit</a> · <a href="index.html">Portfolio</a></p>
+</footer>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let allRows = [];
+let filteredRows = [];
+let currentPage = 1;
+const PAGE_SIZE = 50;
+let sortCol = null;
+let sortDir = 1;
+
+// ── Tab Switching ──────────────────────────────────────────────────────────
+document.querySelectorAll('.input-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.input-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Fetch URL ──────────────────────────────────────────────────────────────
+const PROXIES = [
+  {mode:'raw',  fn: url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`},
+  {mode:'json', fn: url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`},
+  {mode:'raw',  fn: url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`},
+  {mode:'raw',  fn: url => `https://corsproxy.io/?${encodeURIComponent(url)}`}
+];
+
+async function fetchAndParse() {
+  const url = document.getElementById('url-input').value.trim();
+  if (!url) { showError('Please enter a URL to fetch.'); return; }
+  showLoading('Fetching page...');
+  for (let i = 0; i < PROXIES.length + 1; i++) {
+    try {
+      let text;
+      if (i === 0) {
+        const r = await fetch(url, { mode: 'cors', signal: AbortSignal.timeout(2000) });
+        text = await r.text();
+      } else {
+        const proxy = PROXIES[i-1];
+        const r = await fetch(proxy.fn(url), { signal: AbortSignal.timeout(10000) });
+        if (proxy.mode === 'json') {
+          const j = await r.json();
+          text = j.contents || j;
+          if (typeof text !== 'string') text = JSON.stringify(text);
+        } else {
+          text = await r.text();
+        }
+      }
+      if (text && text.includes('<')) {
+        // Auto-fill base domain
+        try { const u = new URL(url); document.getElementById('base-domain-paste').value = u.hostname; } catch(e){}
+        processHTML(text, url);
+        return;
+      }
+    } catch(e) { /* try next */ }
+  }
+  showError(`Could not fetch the page due to CORS restrictions.<br><br>
+    <strong>Quick fix:</strong> Open <a href="${url}" target="_blank">${url}</a>, press <strong>Ctrl+U</strong> (View Source), select all, copy, then use the <strong>Paste HTML</strong> tab.`);
+}
+
+// ── Parse HTML ─────────────────────────────────────────────────────────────
+function parseHTML() {
+  const html = document.getElementById('paste-html').value.trim();
+  if (!html) { showError('Please paste HTML content first.'); return; }
+  const baseDomain = document.getElementById('base-domain-paste').value.trim();
+  processHTML(html, baseDomain ? 'https://' + baseDomain : '');
+}
+
+function processHTML(html, baseUrl) {
+  showLoading('Extracting links...');
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Try to detect base URL from <base> tag or <link canonical>
+    let base = baseUrl;
+    const baseTag = doc.querySelector('base[href]');
+    if (baseTag) base = baseTag.getAttribute('href');
+    const canonical = doc.querySelector('link[rel=canonical]');
+    if (!base && canonical) base = canonical.getAttribute('href');
+
+    // Get domain for classification
+    let domain = '';
+    try { domain = new URL(base || 'https://example.com').hostname.replace(/^www\./,''); } catch(e){}
+    if (!domain && document.getElementById('base-domain-paste').value.trim()) {
+      domain = document.getElementById('base-domain-paste').value.trim().replace(/^www\./,'').replace(/^https?:\/\//,'');
+    }
+
+    // Smart Mode — step 1: remove semantic/named nav elements
+    const smartCbUrl  = document.getElementById('smart-mode-url');
+    const smartCbPaste= document.getElementById('smart-mode-paste');
+    const urlTabActive = document.querySelector('[data-tab="tab-url"]') && document.querySelector('[data-tab="tab-url"]').classList.contains('active');
+    const smartMode = urlTabActive ? (smartCbUrl ? smartCbUrl.checked : true) : (smartCbPaste ? smartCbPaste.checked : true);
+    let scanRoot = doc.body || doc;
+    if (smartMode) {
+      // Remove obvious chrome elements
+      ['header','nav','footer','aside',
+       '[role="navigation"]','[role="banner"]','[role="contentinfo"]',
+       '.header','.nav','.navbar','.footer','.sidebar','.side-bar','.menu',
+       '#header','#nav','#navbar','#footer','#sidebar','#menu',
+       '.breadcrumb','.breadcrumbs','.top-menu','.bottom-menu','.mega-menu',
+       '.cookie-bar','.alert-bar','.sticky-bar','.fixed-bar','.site-header',
+       '.site-footer','.site-nav','.main-nav','.top-nav','.bottom-nav',
+       '#site-header','#site-footer','#masthead','#colophon'
+      ].forEach(sel => {
+        try { doc.querySelectorAll(sel).forEach(el => el.remove()); } catch(e){}
+      });
+      // Smart step 2: find the densest link container (the real sitemap content)
+      // This handles cases where nav uses non-semantic divs
+      const totalLinks = (doc.body || doc).querySelectorAll('a[href]').length;
+      if (totalLinks > 10) {
+        const candidates = Array.from(doc.querySelectorAll('div,section,article,main,ul,ol'));
+        // Find all elements containing >40% of total links
+        const heavy = candidates.filter(el => {
+          const n = el.querySelectorAll('a[href]').length;
+          return n / totalLinks >= 0.4;
+        });
+        if (heavy.length > 0) {
+          // Pick the DEEPEST (most specific) such element — avoids body/wrappers
+          function nodeDepth(el) { let d=0,n=el; while(n.parentNode){d++;n=n.parentNode;} return d; }
+          heavy.sort((a,b) => nodeDepth(b) - nodeDepth(a));
+          scanRoot = heavy[0];
+        }
+      }
+    }
+
+    // Extract all anchors — use scanRoot (Smart Mode density-detected region, or full body)
+    const anchors = scanRoot.querySelectorAll('a[href]');
+    const seen = new Set();
+    allRows = [];
+
+    anchors.forEach(a => {
+      const href = (a.getAttribute('href') || '').trim();
+      if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+      // Build absolute URL
+      let absUrl = href;
+      try {
+        if (!/^https?:\/\//i.test(href)) {
+          const b = base ? new URL(base) : new URL('https://placeholder.com');
+          absUrl = new URL(href, b).href;
+        }
+      } catch(e) { absUrl = href; }
+
+      const key = absUrl;
+      if (seen.has(key)) return;
+      seen.add(key);
+
+      const anchorText = (a.textContent || '').replace(/\s+/g,' ').trim() || a.getAttribute('title') || a.getAttribute('aria-label') || '(no text)';
+      const rel = a.getAttribute('rel') || '';
+      const nofollow = rel.includes('nofollow');
+      const isExternal = domain && !absUrl.toLowerCase().includes(domain.toLowerCase());
+      const type = classifyLink(absUrl, isExternal);
+      const depth = getPathDepth(absUrl);
+
+      allRows.push({ href: absUrl, anchor: anchorText, type, depth, nofollow, rel, isExternal });
+    });
+
+    if (allRows.length === 0) {
+      showError('No links found in the pasted HTML. Make sure you pasted the full page HTML source.');
+      return;
+    }
+
+    filteredRows = [...allRows];
+    currentPage = 1;
+    renderTable(domain);
+  } catch(e) {
+    showError('Failed to parse HTML: ' + e.message);
+  }
+}
+
+function classifyLink(url, isExternal) {
+  const u = url.toLowerCase();
+  if (isExternal) return 'external';
+  if (/\.(pdf|doc|docx|xls|xlsx|ppt|pptx|zip|rar|gz|tar)$/i.test(u)) return 'document';
+  if (/\.(jpg|jpeg|png|gif|svg|webp|ico|bmp)$/i.test(u)) return 'image';
+  if (/\.(mp4|mp3|avi|mov|wav|ogg)$/i.test(u)) return 'media';
+  if (u.startsWith('mailto:')) return 'email';
+  if (u.startsWith('tel:')) return 'phone';
+  return 'internal';
+}
+
+function getPathDepth(url) {
+  try {
+    const u = new URL(url);
+    const segs = u.pathname.split('/').filter(Boolean);
+    return segs.length;
+  } catch(e) { return 0; }
+}
+
+// ── Render Table ───────────────────────────────────────────────────────────
+function renderTable(domain) {
+  const out = document.getElementById('output');
+  const total = allRows.length;
+  const internal = allRows.filter(r=>r.type==='internal').length;
+  const external = allRows.filter(r=>r.type==='external').length;
+  const nofollows = allRows.filter(r=>r.nofollow).length;
+  const maxDepth = Math.max(...allRows.map(r=>r.depth));
+
+  const start = (currentPage-1)*PAGE_SIZE;
+  const pageRows = filteredRows.slice(start, start+PAGE_SIZE);
+  const totalPages = Math.ceil(filteredRows.length/PAGE_SIZE);
+
+  // Path analysis for top directories
+  const dirMap = {};
+  allRows.filter(r=>r.type==='internal').forEach(r=>{
+    try {
+      const segs = new URL(r.href).pathname.split('/').filter(Boolean);
+      const dir = segs.length>0 ? '/'+segs[0]+'/' : '/';
+      dirMap[dir] = (dirMap[dir]||0)+1;
+    } catch(e){}
+  });
+  const topDirs = Object.entries(dirMap).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const maxDirCount = topDirs[0]?.[1]||1;
+
+  out.innerHTML = `
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num">${total.toLocaleString()}</div><div class="stat-lbl">Total Links</div></div>
+      <div class="stat-box"><div class="stat-num green">${internal.toLocaleString()}</div><div class="stat-lbl">Internal</div></div>
+      <div class="stat-box"><div class="stat-num cyan">${external.toLocaleString()}</div><div class="stat-lbl">External</div></div>
+      <div class="stat-box"><div class="stat-num yellow">${nofollows.toLocaleString()}</div><div class="stat-lbl">Nofollow</div></div>
+      <div class="stat-box"><div class="stat-num">${maxDepth}</div><div class="stat-lbl">Max Depth</div></div>
+    </div>
+
+    ${topDirs.length>1?`<div class="path-treemap">
+      <h3>📂 Top Internal Directories</h3>
+      ${topDirs.map(([dir,count])=>`<div class="path-bar-row">
+        <span class="path-bar-label" title="${dir}">${dir}</span>
+        <div class="path-bar-track"><div class="path-bar-fill" style="width:${Math.round(count/maxDirCount*100)}%"></div></div>
+        <span class="path-bar-count">${count}</span>
+      </div>`).join('')}
+    </div>`:''}
+
+    <div class="filter-bar">
+      <input type="text" placeholder="🔍 Filter by URL or anchor text..." oninput="filterRows(this.value)" id="filter-input" style="max-width:320px"/>
+      <select class="filter-select" onchange="filterByType(this.value)">
+        <option value="">All Types</option>
+        <option value="internal">Internal</option>
+        <option value="external">External</option>
+        <option value="document">Document</option>
+        <option value="image">Image</option>
+        <option value="media">Media</option>
+      </select>
+      <select class="filter-select" onchange="filterByNofollow(this.value)">
+        <option value="">Follow + Nofollow</option>
+        <option value="follow">Follow only</option>
+        <option value="nofollow">Nofollow only</option>
+      </select>
+      <select class="filter-select" onchange="filterByDepth(this.value)">
+        <option value="">All Depths</option>
+        <option value="0">Root (/)</option>
+        <option value="1">Depth 1</option>
+        <option value="2">Depth 2</option>
+        <option value="3">Depth 3+</option>
+      </select>
+      <button class="btn btn-green btn-sm" onclick="exportCSV()">⬇️ Export CSV</button>
+      <button class="btn btn-sm" style="background:linear-gradient(135deg,#217346,#185a32);color:#fff;font-weight:700;" onclick="exportExcel()">📊 Export Excel</button>
+      <button class="btn btn-secondary btn-sm" onclick="copyAllURLs()">📋 Copy URLs</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:34px">#</th>
+          <th onclick="sortBy('anchor')" class="${sortCol==='anchor'?'sorted':''}">Anchor Text ${sortCol==='anchor'?(sortDir>0?'↑':'↓'):'↕'}</th>
+          <th onclick="sortBy('href')" class="${sortCol==='href'?'sorted':''}">URL ${sortCol==='href'?(sortDir>0?'↑':'↓'):'↕'}</th>
+          <th onclick="sortBy('type')" class="${sortCol==='type'?'sorted':''}" style="width:100px">Type ${sortCol==='type'?(sortDir>0?'↑':'↓'):'↕'}</th>
+          <th onclick="sortBy('depth')" class="${sortCol==='depth'?'sorted':''}" style="width:80px">Depth ${sortCol==='depth'?(sortDir>0?'↑':'↓'):'↕'}</th>
+          <th style="width:90px">Rel</th>
+        </tr></thead>
+        <tbody>
+          ${pageRows.length===0?'<tr><td colspan="6" style="padding:32px;text-align:center;color:var(--muted)">No results match your filter.</td></tr>':
+            pageRows.map((r,i)=>`<tr>
+              <td style="color:var(--muted);font-size:11px">${start+i+1}</td>
+              <td class="anchor-cell" title="${escHtml(r.anchor)}">${escHtml(r.anchor.length>60?r.anchor.slice(0,60)+'…':r.anchor)}</td>
+              <td class="url-cell"><a href="${escHtml(r.href)}" target="_blank" rel="noopener">${escHtml(r.href.length>70?r.href.slice(0,70)+'…':r.href)}</a></td>
+              <td>${typePill(r.type)}</td>
+              <td>${depthBar(r.depth)}</td>
+              <td>${r.nofollow?'<span class="pill pill-red">nofollow</span>':'<span class="pill pill-green">follow</span>'}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="pag-row">
+      <span class="pag-info">Showing ${start+1}–${Math.min(start+PAGE_SIZE,filteredRows.length)} of ${filteredRows.length.toLocaleString()} links</span>
+      <div class="pag-btns">
+        <button class="pag-btn" onclick="goPage(1)" ${currentPage===1?'disabled':''}>«</button>
+        <button class="pag-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>
+        ${buildPageNums(currentPage,totalPages)}
+        <button class="pag-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>
+        <button class="pag-btn" onclick="goPage(${totalPages})" ${currentPage===totalPages?'disabled':''}>»</button>
+      </div>
+    </div>`;
+}
+
+function buildPageNums(cur,total){
+  let pages=[];
+  for(let p=Math.max(1,cur-2);p<=Math.min(total,cur+2);p++) pages.push(p);
+  return pages.map(p=>`<button class="pag-btn ${p===cur?'active':''}" onclick="goPage(${p})">${p}</button>`).join('');
+}
+function goPage(p){currentPage=p;renderTable();window.scrollTo({top:400,behavior:'smooth'});}
+
+// ── Filters & Sort ─────────────────────────────────────────────────────────
+let af='',at='',an='',ad='';
+function applyFilters(){
+  filteredRows=allRows.filter(r=>{
+    const txt=(r.href+' '+r.anchor).toLowerCase().includes(af);
+    const typ=!at||r.type===at;
+    let nf=true; if(an==='follow') nf=!r.nofollow; else if(an==='nofollow') nf=r.nofollow;
+    let dp=true;
+    if(ad==='0') dp=r.depth===0;
+    else if(ad==='1') dp=r.depth===1;
+    else if(ad==='2') dp=r.depth===2;
+    else if(ad==='3') dp=r.depth>=3;
+    return txt&&typ&&nf&&dp;
+  });
+  currentPage=1; renderTable();
+}
+function filterRows(v){af=v.toLowerCase();applyFilters();}
+function filterByType(v){at=v;applyFilters();}
+function filterByNofollow(v){an=v;applyFilters();}
+function filterByDepth(v){ad=v;applyFilters();}
+
+function sortBy(col){
+  if(sortCol===col) sortDir*=-1; else{sortCol=col;sortDir=1;}
+  filteredRows.sort((a,b)=>{
+    const av=a[col]||'',bv=b[col]||'';
+    if(col==='depth') return((a.depth||0)-(b.depth||0))*sortDir;
+    return av.toString().localeCompare(bv.toString())*sortDir;
+  });
+  renderTable();
+}
+
+// ── Export ─────────────────────────────────────────────────────────────────
+function exportCSV(){
+  const hdr=['#','Anchor Text','URL','Type','Depth','Rel'];
+  const rows=filteredRows.map((r,i)=>[i+1,r.anchor,r.href,r.type,r.depth,r.nofollow?'nofollow':'follow']);
+  const csv=[hdr,...rows].map(r=>r.map(v=>`"${(v||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='html-links-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+function exportExcel(){
+  if(typeof XLSX==='undefined'){alert('SheetJS not loaded. Check your internet connection.');return;}
+  // Sheet 1: All extracted links — URL + Anchor Text as primary columns
+  const data=[['#','URL','Anchor Text','Type','Depth','Rel']];
+  filteredRows.forEach((r,i)=>data.push([
+    i+1,
+    r.href,
+    r.anchor,
+    r.type,
+    r.depth,
+    r.nofollow?'nofollow':'follow'
+  ]));
+  const ws=XLSX.utils.aoa_to_sheet(data);
+  ws['!cols']=[{wch:5},{wch:80},{wch:50},{wch:12},{wch:8},{wch:10}];
+  // Freeze top row
+  ws['!freeze']={xSplit:0,ySplit:1,topLeftCell:'A2',activePane:'bottomLeft',state:'frozen'};
+  const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,'Links',ws);
+  // Sheet 2: Internal URLs only
+  const intData=[['#','URL','Anchor Text','Depth']];
+  filteredRows.filter(r=>r.type==='internal').forEach((r,i)=>intData.push([i+1,r.href,r.anchor,r.depth]));
+  if(intData.length>1){
+    const ws2=XLSX.utils.aoa_to_sheet(intData);
+    ws2['!cols']=[{wch:5},{wch:80},{wch:50},{wch:8}];
+    XLSX.utils.book_append_sheet(wb,'Internal URLs',ws2);
+  }
+  // Sheet 3: External URLs only
+  const extData=[['#','URL','Anchor Text']];
+  filteredRows.filter(r=>r.type==='external').forEach((r,i)=>extData.push([i+1,r.href,r.anchor]));
+  if(extData.length>1){
+    const ws3=XLSX.utils.aoa_to_sheet(extData);
+    ws3['!cols']=[{wch:5},{wch:80},{wch:50}];
+    XLSX.utils.book_append_sheet(wb,'External URLs',ws3);
+  }
+  XLSX.writeFile(wb,'html-links-'+new Date().toISOString().slice(0,10)+'.xlsx');
+}
+
+function copyAllURLs(){
+  const text=filteredRows.map(r=>r.href).join('\n');
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=event.target;btn.textContent='✓ Copied!';btn.style.color='var(--green)';
+    setTimeout(()=>{btn.textContent='📋 Copy URLs';btn.style.color='';},2000);
+  });
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function typePill(t){
+  const m={internal:'pill-green',external:'pill-blue',document:'pill-yellow',image:'pill-purple',media:'pill-purple',email:'pill-gray',phone:'pill-gray'};
+  const icons={internal:'🔗',external:'↗',document:'📄',image:'🖼',media:'🎬',email:'✉',phone:'📞'};
+  return `<span class="pill ${m[t]||'pill-gray'}">${icons[t]||''} ${t}</span>`;
+}
+function depthBar(d){
+  const max=5;const fill=Math.min(d,max);
+  return `<div class="depth-bar">${Array.from({length:max},(_,i)=>`<div class="depth-dot${i<fill?' filled':''}"></div>`).join('')}<span style="font-size:11px;color:var(--muted);margin-left:4px">${d}</span></div>`;
+}
+function escHtml(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function showLoading(msg='Processing...'){
+  document.getElementById('output').innerHTML=`<div class="loading-msg"><div class="spinner"></div><br>${msg}</div>`;
+}
+function showError(msg){
+  document.getElementById('output').innerHTML=`<div class="err-box"><span style="font-size:1.2rem">⚠️</span><div>${msg}</div></div>`;
+}
+function showEmpty(){
+  document.getElementById('output').innerHTML=`<div class="empty"><div class="empty-icon">🔗</div><p>Paste an HTML page source to extract all links with anchor text, type, depth, and rel attributes.</p></div>`;
+}
+
+// Smart mode label sync
+['paste','url'].forEach(tab => {
+  const cb = document.getElementById('smart-mode-' + tab);
+  const lbl = document.getElementById('smart-label-' + tab);
+  if (cb && lbl) cb.addEventListener('change', () => {
+    lbl.textContent = cb.checked ? 'ON — Sitemap links only (strips nav/header/footer)' : 'OFF — All links on page';
+    lbl.style.color = cb.checked ? 'var(--green)' : 'var(--yellow)';
+  });
+});
+
+
+showEmpty();
+</script>
+</body>
+</html>

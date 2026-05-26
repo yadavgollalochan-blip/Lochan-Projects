@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>XML Sitemap Extractor — SEO Tools | Lochan Yadav</title>
+<meta name="description" content="Free XML sitemap extractor. Paste, upload, or fetch any XML sitemap to extract all URLs with lastmod, changefreq, and priority. Handles sitemap index files. Export to CSV.">
+<link rel="canonical" href="https://lochan.online/tool-10-xml-sitemap-extractor.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0b12;--surface:#13131f;--surface2:#1c1c2e;--border:#2a2a42;
+  --accent:#00d4ff;--green:#00e676;--yellow:#ffd740;--red:#ff5252;
+  --purple:#7c4dff;--text:#e8e8f4;--muted:#7878a0;--radius:10px;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;min-height:100vh;}
+a{color:var(--accent);text-decoration:none;}
+.navbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:var(--accent);text-decoration:none;}
+.nav-brand span{color:var(--text);font-weight:600;}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-link{color:var(--muted);font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px;text-decoration:none;transition:all .2s;}
+.nav-link:hover{color:var(--text);background:var(--surface2);}
+.nav-back{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--accent);font-size:12px;font-weight:700;padding:6px 14px;border-radius:6px;text-decoration:none;}
+.hero{background:linear-gradient(135deg,rgba(0,212,255,.07),rgba(124,77,255,.07));border-bottom:1px solid var(--border);padding:36px 28px 30px;text-align:center;}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--accent);background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{color:var(--muted);font-size:14px;max-width:580px;margin:0 auto 18px;line-height:1.7;}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.badge{font-size:11px;font-weight:600;padding:4px 12px;border-radius:12px;border:1px solid;display:inline-flex;align-items:center;gap:5px;}
+.badge-green{color:var(--green);border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.07);}
+.badge-blue{color:var(--accent);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.07);}
+.badge-purple{color:#b388ff;border-color:rgba(179,136,255,.3);background:rgba(124,77,255,.07);}
+.container{max-width:1100px;margin:0 auto;padding:28px 20px 60px;}
+/* TABS */
+.input-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:22px;}
+.input-tabs{display:flex;border-bottom:1px solid var(--border);}
+.input-tab{flex:1;padding:13px 10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border:none;background:none;font-family:inherit;transition:all .2s;border-bottom:3px solid transparent;display:flex;align-items:center;justify-content:center;gap:7px;}
+.input-tab.active{color:var(--accent);border-bottom-color:var(--accent);background:rgba(0,212,255,.05);}
+.input-tab:hover:not(.active){color:var(--text);}
+.tab-pane{display:none;padding:22px;}
+.tab-pane.active{display:block;}
+/* FORM */
+input[type=url],input[type=text]{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;font-family:inherit;padding:11px 14px;outline:none;transition:border-color .2s;}
+input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,255,.08);}
+input::placeholder{color:var(--muted);}
+textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:12.5px;font-family:'Courier New',monospace;padding:12px 14px;resize:vertical;min-height:160px;outline:none;transition:border-color .2s;line-height:1.6;}
+textarea:focus{border-color:var(--accent);}
+textarea::placeholder{color:var(--muted);font-family:'Inter',sans-serif;font-size:13px;}
+.hint{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5;}
+.upload-zone{border:2px dashed var(--border);border-radius:8px;padding:28px;text-align:center;cursor:pointer;transition:all .2s;background:var(--surface2);}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--accent);background:rgba(0,212,255,.04);}
+.upload-zone .uz-icon{font-size:2rem;margin-bottom:8px;}
+.upload-zone p{color:var(--muted);font-size:13px;margin-bottom:6px;}
+.upload-zone strong{color:var(--accent);}
+.upload-zone input{display:none;}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#0098b8);color:#000;}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,212,255,.35);}
+.btn-secondary{background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+.btn-green{background:linear-gradient(135deg,var(--green),#00b248);color:#000;}
+.btn-green:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,230,118,.3);}
+.btn-sm{padding:7px 14px;font-size:12px;}
+.btn-row{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+.stat-num{font-size:1.6rem;font-weight:800;color:var(--accent);font-family:'Playfair Display',serif;line-height:1;}
+.stat-num.green{color:var(--green);}
+.stat-num.yellow{color:var(--yellow);}
+.stat-num.red{color:var(--red);}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.06em;}
+/* FILTER BAR */
+.filter-bar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
+.filter-bar input[type=text]{flex:1;min-width:180px;max-width:320px;}
+.filter-select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:inherit;padding:9px 12px;outline:none;cursor:pointer;}
+.filter-select:focus{border-color:var(--accent);}
+/* TABLE */
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{background:var(--surface2);padding:11px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none;}
+thead th:hover{color:var(--accent);}
+thead th.sorted{color:var(--accent);}
+tbody tr{border-bottom:1px solid rgba(42,42,66,.6);transition:background .15s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--surface2);}
+td{padding:10px 14px;vertical-align:middle;}
+td.url-cell{max-width:380px;}
+td.url-cell a{color:var(--accent);word-break:break-all;font-size:12.5px;}
+td.url-cell a:hover{text-decoration:underline;}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:10px;border:1px solid;}
+.pill-green{color:var(--green);border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.07);}
+.pill-yellow{color:var(--yellow);border-color:rgba(255,215,64,.3);background:rgba(255,215,64,.07);}
+.pill-red{color:var(--red);border-color:rgba(255,82,82,.3);background:rgba(255,82,82,.07);}
+.pill-blue{color:var(--accent);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.07);}
+.pill-gray{color:var(--muted);border-color:var(--border);background:var(--surface2);}
+/* EMPTY / ERROR / LOADING */
+.empty{text-align:center;padding:48px 20px;color:var(--muted);}
+.empty-icon{font-size:2.8rem;margin-bottom:12px;}
+.empty p{line-height:1.7;font-size:13px;}
+.err-box{background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.25);border-radius:8px;padding:14px 18px;color:#ff8a80;font-size:13px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start;}
+.warn-box{background:rgba(255,215,64,.06);border:1px solid rgba(255,215,64,.25);border-radius:8px;padding:12px 16px;color:#ffe082;font-size:12.5px;margin-bottom:14px;line-height:1.6;}
+.info-box{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);border-radius:8px;padding:12px 16px;color:#80deea;font-size:12.5px;margin-bottom:14px;line-height:1.6;}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(0,212,255,.3);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-msg{text-align:center;padding:40px 20px;color:var(--muted);}
+.loading-msg .spinner{width:28px;height:28px;border-width:3px;margin-bottom:14px;}
+/* PAGINATION */
+.pag-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:10px;}
+.pag-info{font-size:12px;color:var(--muted);}
+.pag-btns{display:flex;gap:6px;}
+.pag-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .2s;}
+.pag-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
+.pag-btn:disabled{opacity:.35;cursor:default;}
+.pag-btn.active{background:rgba(0,212,255,.15);border-color:var(--accent);color:var(--accent);}
+/* NESTED SITEMAPS */
+.nested-list{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px;}
+.nested-list h3{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:12px;}
+.nested-item{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:6px;background:var(--surface2);border:1px solid var(--border);margin-bottom:8px;gap:10px;}
+.nested-item:last-child{margin-bottom:0;}
+.nested-url{font-size:12px;color:var(--text);word-break:break-all;flex:1;}
+.nested-status{font-size:11px;flex-shrink:0;}
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:24px 28px;text-align:center;color:var(--muted);font-size:12px;margin-top:auto;}
+footer a{color:var(--accent);}
+@media(max-width:700px){.stats-row{grid-template-columns:repeat(3,1fr)}.nav-links{display:none}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">Lochan <span>Yadav</span></a>
+  <div class="nav-links">
+    <a href="tools.html" class="nav-link">← All Tools</a>
+    <a href="tool-11-html-sitemap-extractor.html" class="nav-back">HTML Extractor →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-cat">🗺️ Tool 10 · Technical SEO</div>
+  <h1>XML Sitemap Extractor</h1>
+  <p>Fetch, paste, or upload any XML sitemap — extract all URLs with lastmod, changefreq, and priority. Handles sitemap index files with nested sitemaps automatically.</p>
+  <div class="hero-badges">
+    <span class="badge badge-green">✓ No API Key</span>
+    <span class="badge badge-blue">✓ Sitemap Index Support</span>
+    <span class="badge badge-purple">✓ CSV &amp; Excel Export</span>
+    <span class="badge badge-green">✓ Works Offline (Paste/Upload)</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- INPUT CARD -->
+  <div class="input-card">
+    <div class="input-tabs">
+      <button class="input-tab active" data-tab="tab-url">🌐 Fetch by URL</button>
+      <button class="input-tab" data-tab="tab-paste">📋 Paste XML</button>
+      <button class="input-tab" data-tab="tab-upload">📁 Upload File</button>
+    </div>
+
+    <div class="tab-pane active" id="tab-url">
+      <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Sitemap URL</label>
+      <input type="url" id="url-input" placeholder="https://example.com/sitemap.xml" autocomplete="off"/>
+      <p class="hint">⚠️ Many sites block direct browser fetches (CORS). If fetch fails, copy-paste your sitemap XML in the <strong>Paste XML</strong> tab — it always works.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="fetchURL()">🔍 Fetch &amp; Extract</button>
+        <button class="btn btn-secondary" onclick="tryCommonPaths()">🔎 Try Common Paths</button>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-paste">
+      <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Paste Sitemap XML</label>
+      <textarea id="paste-input" placeholder="Paste your sitemap XML here...&#10;&#10;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;&#10;  &lt;url&gt;&#10;    &lt;loc&gt;https://example.com/page&lt;/loc&gt;&#10;    ...&#10;  &lt;/url&gt;&#10;&lt;/urlset&gt;"></textarea>
+      <p class="hint">Supports both <code style="color:var(--accent)">&lt;urlset&gt;</code> (standard) and <code style="color:var(--accent)">&lt;sitemapindex&gt;</code> formats.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="parsePaste()">⚡ Extract URLs</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('paste-input').value=''">Clear</button>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-upload">
+      <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
+        <div class="uz-icon">📂</div>
+        <p><strong>Click to upload</strong> or drag &amp; drop</p>
+        <p style="font-size:12px;margin-top:4px">Supports .xml and .txt sitemap files</p>
+        <input type="file" id="file-input" accept=".xml,.txt" onchange="handleFileUpload(event)"/>
+      </div>
+      <p class="hint" id="file-name-hint"></p>
+    </div>
+  </div>
+
+  <!-- OUTPUT AREA -->
+  <div id="output"></div>
+
+</div>
+
+<footer>
+  <p>XML Sitemap Extractor · Part of <a href="tools.html">Lochan Yadav's SEO Toolkit</a> · <a href="index.html">Portfolio</a></p>
+</footer>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let allRows = [];
+let filteredRows = [];
+let currentPage = 1;
+const PAGE_SIZE = 50;
+let sortCol = null;
+let sortDir = 1;
+
+// ── Tab Switching ──────────────────────────────────────────────────────────
+document.querySelectorAll('.input-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.input-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Drag & Drop ────────────────────────────────────────────────────────────
+const uz = document.getElementById('upload-zone');
+uz.addEventListener('dragover', e => { e.preventDefault(); uz.classList.add('drag'); });
+uz.addEventListener('dragleave', () => uz.classList.remove('drag'));
+uz.addEventListener('drop', e => {
+  e.preventDefault(); uz.classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) processFile(file);
+});
+
+function handleFileUpload(e) { processFile(e.target.files[0]); }
+
+function processFile(file) {
+  document.getElementById('file-name-hint').textContent = '📄 Loaded: ' + file.name;
+  const reader = new FileReader();
+  reader.onload = ev => parseXML(ev.target.result, file.name);
+  reader.readAsText(file);
+}
+
+// ── URL Fetch ──────────────────────────────────────────────────────────────
+const PROXIES = [
+  {mode:'raw',  fn: url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`},
+  {mode:'json', fn: url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`},
+  {mode:'raw',  fn: url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`},
+  {mode:'raw',  fn: url => `https://corsproxy.io/?${encodeURIComponent(url)}`}
+];
+
+async function fetchURL() {
+  const url = document.getElementById('url-input').value.trim();
+  if (!url) { showError('Please enter a sitemap URL.'); return; }
+  showLoading('Fetching sitemap...');
+  // Try direct first
+  for (let i = 0; i < PROXIES.length + 1; i++) {
+    try {
+      let res, text;
+      if (i === 0) {
+        res = await fetch(url, { mode: 'cors', signal: AbortSignal.timeout(2000) });
+        text = await res.text();
+      } else {
+        const proxy = PROXIES[i-1];
+        const proxyUrl = proxy.fn(url);
+        res = await fetch(proxyUrl, { signal: AbortSignal.timeout(10000) });
+        if (proxy.mode === 'json') {
+          const json = await res.json();
+          text = json.contents || json;
+          if (typeof text !== 'string') text = JSON.stringify(text);
+        } else {
+          text = await res.text();
+        }
+      }
+      if (text && text.includes('<')) {
+        parseXML(text, url);
+        return;
+      }
+    } catch(e) { /* try next */ }
+  }
+  showError(`Could not fetch the sitemap. CORS restrictions are blocking the request.<br><br>
+    <strong>Quick fix:</strong> Open <a href="${url}" target="_blank">${url}</a>, select all (Ctrl+A), copy, then use the <strong>Paste XML</strong> tab.`);
+}
+
+async function tryCommonPaths() {
+  const url = document.getElementById('url-input').value.trim();
+  if (!url) { showError('Enter a domain URL first (e.g. https://example.com)'); return; }
+  let base = url.replace(/\/+$/, '').split('/').slice(0,3).join('/');
+  const paths = ['/sitemap.xml','/sitemap_index.xml','/sitemap-index.xml','/sitemaps/sitemap.xml','/wp-sitemap.xml','/news-sitemap.xml'];
+  showLoading('Trying common sitemap paths...');
+  const out = document.getElementById('output');
+  out.innerHTML = `<div class="nested-list"><h3>🔎 Common Sitemap Paths for ${base}</h3>` +
+    paths.map(p => `<div class="nested-item">
+      <span class="nested-url"><a href="${base+p}" target="_blank">${base+p}</a></span>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('url-input').value='${base+p}';fetchURL()">Fetch →</button>
+    </div>`).join('') + `</div>`;
+}
+
+// ── Parse XML ──────────────────────────────────────────────────────────────
+function parsePaste() {
+  const xml = document.getElementById('paste-input').value.trim();
+  if (!xml) { showError('Please paste your sitemap XML first.'); return; }
+  parseXML(xml, 'pasted content');
+}
+
+function parseXML(xmlText, source) {
+  showLoading('Parsing XML...');
+  try {
+    // Clean up common issues
+    xmlText = xmlText.replace(/^\s*<\?xml[^>]*\?>\s*/,'').trim();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xmlText, 'application/xml');
+    const parseErr = doc.querySelector('parseerror');
+    if (parseErr) {
+      // Try text/xml
+      const doc2 = parser.parseFromString(xmlText, 'text/xml');
+      const err2 = doc2.querySelector('parseerror');
+      if (err2) { showError('XML parse error: ' + err2.textContent.substring(0,200)); return; }
+      renderResults(doc2, source);
+    } else {
+      renderResults(doc, source);
+    }
+  } catch(e) {
+    showError('Failed to parse XML: ' + e.message);
+  }
+}
+
+function getTag(el, tag) {
+  const n = el.getElementsByTagNameNS('*', tag)[0] || el.querySelector(tag);
+  return n ? n.textContent.trim() : '';
+}
+
+function renderResults(doc, source) {
+  allRows = [];
+  // Check if sitemap index
+  const sitemapNodes = doc.getElementsByTagNameNS('*','sitemap');
+  const urlNodes = doc.getElementsByTagNameNS('*','url');
+
+  if (sitemapNodes.length > 0 && urlNodes.length === 0) {
+    // Sitemap Index
+    const nestedSitemaps = [];
+    Array.from(sitemapNodes).forEach(sm => {
+      nestedSitemaps.push({ loc: getTag(sm,'loc'), lastmod: getTag(sm,'lastmod') });
+    });
+    renderIndexView(nestedSitemaps, source);
+    return;
+  }
+
+  if (urlNodes.length === 0) {
+    showError('No &lt;url&gt; or &lt;sitemap&gt; entries found. Make sure you\'re pasting valid sitemap XML.');
+    return;
+  }
+
+  Array.from(urlNodes).forEach(u => {
+    allRows.push({
+      loc: getTag(u,'loc'),
+      lastmod: getTag(u,'lastmod'),
+      changefreq: getTag(u,'changefreq'),
+      priority: getTag(u,'priority')
+    });
+  });
+
+  filteredRows = [...allRows];
+  currentPage = 1;
+  renderTable();
+}
+
+function renderIndexView(items, source) {
+  const out = document.getElementById('output');
+  out.innerHTML = `
+    <div class="info-box">📂 <strong>Sitemap Index detected</strong> — This file contains ${items.length} nested sitemap(s). Click "Fetch & Extract" on any child sitemap below, or paste individual sitemap XML in the Paste tab.</div>
+    <div class="nested-list">
+      <h3>🗂️ Nested Sitemaps (${items.length})</h3>
+      ${items.map((s,i) => `
+        <div class="nested-item">
+          <span class="nested-url"><a href="${s.loc}" target="_blank">${s.loc}</a></span>
+          <span class="pill pill-gray" style="font-size:10px">${s.lastmod||'—'}</span>
+          <button class="btn btn-secondary btn-sm" onclick="document.getElementById('url-input').value='${s.loc}';document.querySelector('[data-tab=tab-url]').click();fetchURL()">Fetch →</button>
+        </div>`).join('')}
+    </div>
+    <div class="warn-box">💡 To extract all URLs from all child sitemaps, fetch each one individually or paste their XML content in the <strong>Paste XML</strong> tab.</div>`;
+}
+
+// ── Table Rendering ────────────────────────────────────────────────────────
+function renderTable() {
+  const out = document.getElementById('output');
+  if (allRows.length === 0) { showEmpty(); return; }
+
+  // Build stats
+  const total = allRows.length;
+  const hasLastmod = allRows.filter(r=>r.lastmod).length;
+  const hasPriority = allRows.filter(r=>r.priority).length;
+  const hiPriority = allRows.filter(r=>parseFloat(r.priority)>=0.8).length;
+  const freqMap = {};
+  allRows.forEach(r=>{ if(r.changefreq) freqMap[r.changefreq]=(freqMap[r.changefreq]||0)+1; });
+  const topFreq = Object.entries(freqMap).sort((a,b)=>b[1]-a[1])[0];
+
+  const start = (currentPage-1)*PAGE_SIZE;
+  const pageRows = filteredRows.slice(start, start+PAGE_SIZE);
+  const totalPages = Math.ceil(filteredRows.length/PAGE_SIZE);
+
+  out.innerHTML = `
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num">${total.toLocaleString()}</div><div class="stat-lbl">Total URLs</div></div>
+      <div class="stat-box"><div class="stat-num green">${filteredRows.length.toLocaleString()}</div><div class="stat-lbl">Filtered</div></div>
+      <div class="stat-box"><div class="stat-num">${hasLastmod.toLocaleString()}</div><div class="stat-lbl">Have Lastmod</div></div>
+      <div class="stat-box"><div class="stat-num yellow">${hiPriority.toLocaleString()}</div><div class="stat-lbl">Priority ≥0.8</div></div>
+      <div class="stat-box"><div class="stat-num" style="font-size:1.1rem">${topFreq?topFreq[0]:'—'}</div><div class="stat-lbl">Top Freq</div></div>
+    </div>
+
+    <div class="filter-bar">
+      <input type="text" placeholder="🔍 Filter URLs..." oninput="filterRows(this.value)" id="filter-input" style="max-width:340px"/>
+      <select class="filter-select" onchange="filterByFreq(this.value)">
+        <option value="">All Changefreq</option>
+        <option>always</option><option>hourly</option><option>daily</option>
+        <option>weekly</option><option>monthly</option><option>yearly</option><option>never</option>
+      </select>
+      <select class="filter-select" onchange="filterByPriority(this.value)">
+        <option value="">All Priority</option>
+        <option value="hi">High (≥0.8)</option>
+        <option value="mid">Mid (0.4–0.7)</option>
+        <option value="lo">Low (&lt;0.4)</option>
+      </select>
+      <button class="btn btn-green btn-sm" onclick="exportCSV()">⬇️ Export CSV</button>
+      <button class="btn btn-sm" style="background:linear-gradient(135deg,#217346,#185a32);color:#fff;font-weight:700;" onclick="exportExcel()">📊 Export Excel</button>
+      <button class="btn btn-secondary btn-sm" onclick="copyAll(this)">📋 Copy All URLs</button>
+    </div>
+
+    <div class="table-wrap">
+      <table id="main-table">
+        <thead><tr>
+          <th style="width:36px">#</th>
+          <th onclick="sortBy('loc')" class="${sortCol==='loc'?'sorted':''}">URL ${sortCol==='loc'?(sortDir>0?'↑':'↓'):'↕'}</th>
+          <th onclick="sortBy('lastmod')" class="${sortCol==='lastmod'?'sorted':''}" style="width:130px">Last Modified ${sortCol==='lastmod'?(sortDir>0?'↑':'↓'):'↕'}</th>
+          <th onclick="sortBy('changefreq')" class="${sortCol==='changefreq'?'sorted':''}" style="width:110px">Changefreq ${sortCol==='changefreq'?(sortDir>0?'↑':'↓'):'↕'}</th>
+          <th onclick="sortBy('priority')" class="${sortCol==='priority'?'sorted':''}" style="width:90px">Priority ${sortCol==='priority'?(sortDir>0?'↑':'↓'):'↕'}</th>
+        </tr></thead>
+        <tbody>
+          ${pageRows.length===0?'<tr><td colspan="5" class="empty" style="padding:32px;text-align:center;color:var(--muted)">No results match your filter.</td></tr>':
+            pageRows.map((r,i)=>`<tr>
+              <td style="color:var(--muted);font-size:11px">${start+i+1}</td>
+              <td class="url-cell"><a href="${escHtml(r.loc)}" target="_blank">${escHtml(r.loc)}</a></td>
+              <td style="font-size:12px;color:var(--muted)">${r.lastmod?formatDate(r.lastmod):'<span style="color:#3a3a5c">—</span>'}</td>
+              <td>${r.changefreq?`<span class="pill ${freqPill(r.changefreq)}">${r.changefreq}</span>`:'<span style="color:#3a3a5c">—</span>'}</td>
+              <td>${r.priority?`<span class="pill ${priPill(r.priority)}">${r.priority}</span>`:'<span style="color:#3a3a5c">—</span>'}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="pag-row">
+      <span class="pag-info">Showing ${start+1}–${Math.min(start+PAGE_SIZE,filteredRows.length)} of ${filteredRows.length.toLocaleString()} URLs</span>
+      <div class="pag-btns">
+        <button class="pag-btn" onclick="goPage(1)" ${currentPage===1?'disabled':''}>«</button>
+        <button class="pag-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>
+        ${buildPageNums(currentPage, totalPages)}
+        <button class="pag-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>
+        <button class="pag-btn" onclick="goPage(${totalPages})" ${currentPage===totalPages?'disabled':''}>»</button>
+      </div>
+    </div>`;
+}
+
+function buildPageNums(cur, total) {
+  let pages = [];
+  for(let p=Math.max(1,cur-2);p<=Math.min(total,cur+2);p++) pages.push(p);
+  return pages.map(p=>`<button class="pag-btn ${p===cur?'active':''}" onclick="goPage(${p})">${p}</button>`).join('');
+}
+
+function goPage(p) { currentPage=p; renderTable(); window.scrollTo({top:400,behavior:'smooth'}); }
+
+// ── Filters & Sort ─────────────────────────────────────────────────────────
+let activeTextFilter='', activeFreqFilter='', activePriFilter='';
+function applyFilters() {
+  filteredRows = allRows.filter(r => {
+    const t = r.loc.toLowerCase().includes(activeTextFilter);
+    const f = !activeFreqFilter || r.changefreq===activeFreqFilter;
+    let p = true;
+    if(activePriFilter==='hi') p = parseFloat(r.priority||0)>=0.8;
+    else if(activePriFilter==='mid') p = parseFloat(r.priority||0)>=0.4 && parseFloat(r.priority||0)<0.8;
+    else if(activePriFilter==='lo') p = parseFloat(r.priority||0)<0.4 && r.priority!=='';
+    return t&&f&&p;
+  });
+  currentPage=1; renderTable();
+}
+function filterRows(v){ activeTextFilter=v.toLowerCase(); applyFilters(); }
+function filterByFreq(v){ activeFreqFilter=v; applyFilters(); }
+function filterByPriority(v){ activePriFilter=v; applyFilters(); }
+
+function sortBy(col) {
+  if(sortCol===col) sortDir*=-1; else { sortCol=col; sortDir=1; }
+  filteredRows.sort((a,b)=>{
+    const av=a[col]||'', bv=b[col]||'';
+    if(col==='priority') return (parseFloat(av)||0)-(parseFloat(bv)||0) * sortDir;
+    return av.localeCompare(bv)*sortDir;
+  });
+  renderTable();
+}
+
+// ── Export ─────────────────────────────────────────────────────────────────
+function exportCSV() {
+  const header = ['#','URL','Last Modified','Changefreq','Priority'];
+  const rows = filteredRows.map((r,i) => [i+1, r.loc, r.lastmod, r.changefreq, r.priority]);
+  const csv = [header,...rows].map(r=>r.map(v=>`"${(v||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='sitemap-urls-'+new Date().toISOString().slice(0,10)+'.csv'; a.click();
+}
+
+function exportExcel() {
+  if (typeof XLSX === 'undefined') { alert('SheetJS library not loaded. Please check your internet connection.'); return; }
+  const data = [['#','URL','Last Modified','Changefreq','Priority']];
+  filteredRows.forEach((r,i) => data.push([i+1, r.loc, r.lastmod||'', r.changefreq||'', r.priority||'']));
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  // Column widths
+  ws['!cols'] = [{wch:5},{wch:80},{wch:16},{wch:12},{wch:10}];
+  // Header style (bold)
+  const range = XLSX.utils.decode_range(ws['!ref']);
+  for (let c = range.s.c; c <= range.e.c; c++) {
+    const cell = ws[XLSX.utils.encode_cell({r:0, c})];
+    if (cell) cell.s = { font: { bold: true }, fill: { fgColor: { rgb: '1a3a5c' } } };
+  }
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sitemap URLs');
+  XLSX.writeFile(wb, 'sitemap-urls-'+new Date().toISOString().slice(0,10)+'.xlsx');
+}
+
+function copyAll(btn) {
+  const text = filteredRows.map(r=>r.loc).join('\n');
+  if (!text) return;
+  const restore = () => { btn.textContent='📋 Copy All URLs'; btn.style.color=''; };
+  const ok = () => { btn.textContent='✓ Copied!'; btn.style.color='var(--green)'; setTimeout(restore, 2000); };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(ok).catch(() => fallbackCopy(text, ok));
+  } else {
+    fallbackCopy(text, ok);
+  }
+}
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); cb(); } catch(e) { alert('Copy failed — please select and copy manually.'); }
+  document.body.removeChild(ta);
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function freqPill(f){ const m={always:'blue',hourly:'blue',daily:'green',weekly:'green',monthly:'yellow',yearly:'yellow',never:'red'}; return 'pill-'+(m[f]||'gray'); }
+function priPill(p){ const v=parseFloat(p); return v>=0.8?'pill-green':v>=0.4?'pill-yellow':'pill-red'; }
+function formatDate(d){ try{ return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return d; } }
+function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function showLoading(msg='Processing...') {
+  document.getElementById('output').innerHTML = `<div class="loading-msg"><div class="spinner"></div><br>${msg}</div>`;
+}
+function showError(msg) {
+  document.getElementById('output').innerHTML = `<div class="err-box"><span style="font-size:1.2rem">⚠️</span><div>${msg}</div></div>`;
+}
+function showEmpty() {
+  document.getElementById('output').innerHTML = `<div class="empty"><div class="empty-icon">🗺️</div><p>Fetch, paste, or upload your XML sitemap to extract all URLs.</p></div>`;
+}
+
+// Init
+showEmpty();
+</script>
+</body>
+</html>

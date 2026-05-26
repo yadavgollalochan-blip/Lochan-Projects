@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>BankBazaar Site Health Overhaul — Technical SEO Case Study | Lochan Yadav</title>
+  <meta name="description" content="How a full technical SEO audit and remediation across BankBazaar's financial product pages drove a 40% increase in organic traffic within 4 months.">
+  <link rel="canonical" href="https://lochan.online/case-study-01-site-health-overhaul.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+:root{
+  --bg:#FAFAF8;--bg2:#F3F1EB;--bg3:#ECEAE3;--card:#FFFFFF;
+  --border:#DDD9CE;--border2:#C9C4B5;--ink:#1A1612;--ink2:#3D3529;
+  --muted:#6B6152;--muted2:#9E9285;
+  --accent:#7C3AED;--accent2:#6D28D9;--accent-lt:rgba(124,58,237,.08);--accent-mid:rgba(124,58,237,.18);
+  --gold:#C07C2A;--gold-lt:#F5ECD8;
+  --teal:#167A4A;--teal-lt:rgba(22,122,74,.08);
+  --nav-h:62px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;transition:width .1s}
+.top-bar{background:var(--ink);color:rgba(255,255,255,.6);font-size:.74rem;text-align:center;padding:8px 20px;position:sticky;top:0;z-index:1000}
+.top-bar a{color:#c4b5fd;text-decoration:none;font-weight:600}.top-bar a:hover{color:#fff}
+nav{position:sticky;top:37px;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(250,250,248,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.15rem;text-decoration:none;color:var(--ink)}
+.nav-logo span{color:var(--accent)}
+.nav-links{list-style:none;display:flex;align-items:center;gap:2px}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;padding:7px 12px;border-radius:6px;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);background:var(--bg2)}
+.nav-links .hire{background:var(--accent);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;margin-left:8px}
+.nav-links .hire:hover{background:var(--accent2);color:#fff}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.mob-nav{display:none;position:fixed;top:calc(37px + var(--nav-h));left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:800;flex-direction:column;padding:16px 5% 24px;gap:2px}
+.mob-nav.open{display:flex}
+.mob-nav a{display:block;padding:11px 14px;border-radius:8px;text-decoration:none;color:var(--ink2);font-size:.92rem;font-weight:500;transition:all .2s;border-bottom:1px solid var(--border)}
+.mob-nav a:last-child{border:none}.mob-nav a:hover{color:var(--accent);background:var(--accent-lt)}
+/* CASE HERO */
+.case-hero{background:var(--ink);color:#fff;padding:56px 6% 48px;position:relative;overflow:hidden}
+.case-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.06) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.case-hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.case-breadcrumb{font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:18px}
+.case-breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .18s}.case-breadcrumb a:hover{color:#fff}
+.case-badge{display:inline-block;background:rgba(124,58,237,.3);border:1px solid rgba(124,58,237,.5);color:#c4b5fd;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:4px;margin-bottom:14px}
+.case-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.1;margin-bottom:16px;color:#fff}
+.case-sub{font-size:.92rem;color:rgba(255,255,255,.55);line-height:1.85;max-width:640px;margin-bottom:22px}
+.case-meta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.76rem;color:rgba(255,255,255,.4)}
+.case-metric-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(22,122,74,.25);border:1px solid rgba(22,122,74,.4);color:#4ade80;font-size:.8rem;font-weight:700;padding:6px 16px;border-radius:20px;margin-top:18px}
+/* LAYOUT */
+.case-wrap{max-width:1140px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start}
+.case-main{min-width:0}
+.case-sidebar{position:sticky;top:110px;display:flex;flex-direction:column;gap:20px}
+@media(max-width:900px){.case-wrap{grid-template-columns:1fr}.case-sidebar{position:static}}
+/* CONTENT */
+.case-body{font-size:.93rem;color:var(--ink2);line-height:1.95}
+.case-body h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--ink);margin:44px 0 14px;line-height:1.25;letter-spacing:-.02em;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.case-body h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin:28px 0 10px}
+.case-body p{margin-bottom:18px}
+.case-body strong{color:var(--ink);font-weight:700}
+.case-body ul,.case-body ol{margin:0 0 18px 22px}
+.case-body li{margin-bottom:8px;line-height:1.8}
+.case-body blockquote{border-left:3px solid var(--accent);padding:14px 20px;background:var(--accent-lt);border-radius:0 8px 8px 0;margin:24px 0;font-style:italic;color:var(--ink2)}
+/* RESULTS GRID */
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
+.res-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.res-num{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:900;color:var(--accent);line-height:1}
+.res-label{font-size:.75rem;color:var(--muted);margin-top:6px;line-height:1.45}
+/* PHASE BOX */
+.phase-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px 26px;margin:24px 0}
+.phase-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:12px}
+/* CALLOUT */
+.callout{padding:16px 22px;border-radius:10px;margin:24px 0;display:flex;gap:14px;align-items:flex-start;font-size:.88rem}
+.callout-info{background:var(--accent-lt);border:1px solid rgba(124,58,237,.15)}
+.callout-tip{background:var(--gold-lt);border:1px solid rgba(192,124,42,.2)}
+.callout-win{background:rgba(22,122,74,.06);border:1px solid rgba(22,122,74,.18)}
+.callout-ico{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.callout-body{color:var(--ink2);line-height:1.75}.callout-body strong{color:var(--ink)}
+/* SIDEBAR */
+.sb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.sb-title{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sb-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sb-metric{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.sb-metric:last-child{border-bottom:none}
+.sb-metric-label{color:var(--muted);font-size:.76rem}
+.sb-metric-val{font-weight:700;color:var(--accent);font-family:'Playfair Display',serif;font-size:.95rem}
+.sb-tag{display:inline-block;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:4px;background:var(--bg2);color:var(--ink2);margin:3px 3px 3px 0;border:1px solid var(--border)}
+/* PREV/NEXT */
+.case-nav-bottom{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:32px;border-top:2px solid var(--border)}
+.cnb-prev,.cnb-next{padding:13px 20px;border-radius:8px;border:1.5px solid var(--border2);font-weight:600;font-size:.82rem;color:var(--ink2);text-decoration:none;transition:all .2s;flex:1;text-align:center}
+.cnb-prev:hover,.cnb-next:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
+.cnb-next{background:var(--accent);color:#fff;border-color:var(--accent);text-align:right}
+.cnb-next:hover{background:var(--accent2);color:#fff}
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.55);padding:52px 6% 32px}
+.footer-inner{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:28px}
+.foot-brand h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:8px}
+.foot-brand h3 span{color:var(--accent)}
+.foot-brand p{font-size:.8rem;line-height:1.8;max-width:220px;margin-bottom:18px}
+.foot-social{display:flex;gap:8px}
+.foot-soc{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(255,255,255,.5);font-size:.85rem;transition:all .2s;font-weight:700}
+.foot-soc:hover{border-color:rgba(124,58,237,.5);color:var(--accent);background:rgba(124,58,237,.1)}
+.foot-col h4{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.7);margin-bottom:16px}
+.foot-col a{display:block;font-size:.8rem;color:rgba(255,255,255,.45);text-decoration:none;padding:3px 0;transition:color .2s}
+.foot-col a:hover{color:rgba(255,255,255,.85)}
+.foot-copy{text-align:center;font-size:.74rem;color:rgba(255,255,255,.3)}
+.foot-copy strong{color:rgba(255,255,255,.55)}
+.btt{position:fixed;bottom:28px;right:28px;z-index:800;width:44px;height:44px;border-radius:10px;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:1rem;box-shadow:0 4px 16px rgba(124,58,237,.35);transition:all .3s;opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.btt.show{opacity:1;pointer-events:all}.btt:hover{transform:translateY(-3px)}
+@media(max-width:600px){.footer-inner{grid-template-columns:1fr}.results-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.ham{display:flex}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="top-bar">💼 Portfolio &nbsp;·&nbsp; Case Studies &nbsp;·&nbsp; <a href="index.html#portfolio">← Back to Portfolio</a></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Lochan <span>Yadav</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="index.html#resume">Experience</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="courses.html">Courses</a></li>
+    <li><a href="index.html#contact" class="hire">Hire Me</a></li>
+  </ul>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobnav">
+  <a href="index.html#about">About</a>
+  <a href="index.html#services">Services</a>
+  <a href="tools.html">Tools</a>
+  <a href="index.html#resume">Experience</a>
+  <a href="blog.html">Blog</a>
+  <a href="courses.html">Courses</a>
+  <a href="index.html#contact" class="m-hire">Hire Me</a>
+</div>
+<div class="case-hero">
+  <div class="case-hero-inner">
+    <div class="case-breadcrumb"><a href="index.html">Home</a> › <a href="index.html#portfolio">Portfolio</a> › Case Study</div>
+    <div class="case-badge">Case Study 01 · Technical SEO</div>
+    <h1>BankBazaar — Site Health Overhaul</h1>
+    <p class="case-sub">How a systematic technical audit across 3,000+ financial product pages resolved critical crawlability issues, fixed indexation errors, and boosted Core Web Vitals — resulting in a 40% organic traffic increase.</p>
+    <div class="case-metric-pill">✅ +40% Organic Traffic in 4 Months</div>
+    <div class="case-meta-row" style="margin-top:16px"><span>👨‍💻 Lochan Yadav</span><span>·</span><span>🏢 BankBazaar</span><span>·</span><span>📅 2023</span><span>·</span><span>⏱ 4-Month Project</span></div>
+  </div>
+</div>
+<div class="case-wrap">
+  <main class="case-main">
+    <div class="case-body">
+<h2>The Challenge</h2>
+<p>BankBazaar operates one of India's most competitive fintech websites — over 15,000 pages spanning personal loans, credit cards, insurance, and investment products. Despite strong content and significant brand authority, the site was consistently underperforming in organic search relative to its potential. Pages were ranking on page 2 and 3 for keywords they should have dominated.</p>
+<p>When I audited the site in early 2023, the picture became clear: <strong>the technical foundation was silently undermining every piece of content and every link built over years of effort</strong>. Crawl budget was being wasted on near-duplicate parameter URLs. Thousands of pages had thin content flags. Core Web Vitals scores were failing on LCP and CLS. Structured data was inconsistent or missing on product pages. And several high-value category pages were accidentally noindexed — effectively invisible to Google.</p>
+<div class="callout callout-info"><span class="callout-ico">💡</span><div class="callout-body"><strong>Key Insight:</strong> In fintech SEO, technical issues compound faster than in other verticals because financial sites have very high crawl demand from Google. Wasted crawl budget means freshly updated rate tables don't get re-indexed for days, costing real conversions.</div></div>
+
+<h2>Strategy & Approach</h2>
+<p>Rather than trying to fix everything simultaneously, I structured the work into three prioritised phases based on impact-to-effort ratio:</p>
+<div class="phase-box">
+  <div class="phase-label">Phase 1 · Weeks 1–4 — Stop the Bleeding</div>
+  <ul>
+    <li>Identify and resolve all unintentional noindex tags on category pages</li>
+    <li>Fix canonical tag inconsistencies across 800+ product pages</li>
+    <li>Block crawler-trapping dynamic parameter URLs in robots.txt</li>
+    <li>Correct hreflang errors affecting the EN-IN vs EN-US pages</li>
+  </ul>
+</div>
+<div class="phase-box">
+  <div class="phase-label">Phase 2 · Weeks 5–10 — Core Web Vitals Sprint</div>
+  <ul>
+    <li>Work with the front-end team to defer non-critical JavaScript</li>
+    <li>Implement lazy loading on below-the-fold images and comparison tables</li>
+    <li>Reduce Largest Contentful Paint from 1.8s to 1.1s on key landing pages</li>
+    <li>Fix cumulative layout shift issues caused by third-party ad scripts</li>
+  </ul>
+</div>
+<div class="phase-box">
+  <div class="phase-label">Phase 3 · Weeks 11–16 — Structured Data & Indexation</div>
+  <ul>
+    <li>Deploy FAQPage and FinancialProduct schema across 400+ product pages</li>
+    <li>Submit updated XML sitemap with correct priority and changefreq signals</li>
+    <li>Reclaim 2,100+ orphaned pages by adding them to the internal link graph</li>
+    <li>Implement BreadcrumbList schema site-wide for navigation clarity</li>
+  </ul>
+</div>
+
+<h2>Execution</h2>
+<p>The most complex part of this project was the coordination. Technical SEO changes at scale require sign-off from product, engineering, and legal teams at a financial company. I learned to frame every recommendation in terms of revenue risk rather than SEO best practices — "these 47 product pages are accidentally noindexed, which means Google cannot rank them for loan queries generating ₹X in monthly conversions" lands differently than "we have indexation issues."</p>
+<p>I built a prioritised issue tracker in Google Sheets, categorised each issue by severity (Critical / High / Medium / Low) and owner (SEO / Dev / Content), and ran a weekly sprint review with the engineering lead. This visibility kept fixes from stalling in backlogs.</p>
+<p>For the Core Web Vitals work, I used a combination of Lighthouse CI integrated into the deployment pipeline and manual PageSpeed Insights testing across the 50 highest-traffic templates. Rather than asking engineering to fix everything, I provided component-level recommendations — which specific scripts to defer, which images to convert to WebP, which third-party widgets to load conditionally.</p>
+<blockquote>"When Lochan showed us that three of our top credit card comparison pages were noindexed, we realised how much traffic we were leaving on the table." — BankBazaar Product Manager</blockquote>
+
+<h2>Results</h2>
+<div class="results-grid">
+  <div class="res-block"><div class="res-num">+40%</div><div class="res-label">Organic traffic increase over 4 months</div></div>
+  <div class="res-block"><div class="res-num">1,200+</div><div class="res-label">Crawl errors resolved in phase 1</div></div>
+  <div class="res-block"><div class="res-num">2,100+</div><div class="res-label">Orphaned pages reclaimed into index</div></div>
+</div>
+<p>Within 6 weeks of phase 1 completion, Google Search Console showed a marked increase in indexed pages and a reduction in "Discovered — currently not indexed" notices. The LCP improvement from 1.8s to 1.1s moved the key product page templates from "Needs Improvement" to "Good" in Google's CWV report — a signal that typically correlates with a ranking boost within 2–3 crawl cycles.</p>
+<div class="callout callout-win"><span class="callout-ico">🏆</span><div class="callout-body"><strong>Biggest win:</strong> Three high-value credit card comparison pages that had been accidentally noindexed for over 4 months were reclaimed. Within 3 weeks of indexation, they began ranking in positions 4–8 for competitive credit card queries — driving an estimated ₹12L in monthly attributed revenue.</div></div>
+
+<h2>Key Takeaways</h2>
+<p>This project reinforced several principles I now apply to every technical SEO engagement. First, a crawl audit is not a one-time exercise — it needs to be part of a monthly technical health monitoring workflow. I automated this with a Screaming Frog scheduled crawl and a GSC API dashboard that sends weekly alerts for new crawl errors.</p>
+<p>Second, Core Web Vitals are fundamentally an engineering problem dressed up as an SEO problem. The SEO's job is not to fix the code, but to diagnose the issues accurately, translate them into engineering tickets, and build the business case for prioritisation. The SEO who understands LCP waterfall analysis will always get their tickets to the top of the sprint.</p>
+<p>Third, internal linking is the most underrated technical SEO lever in large sites. Adding 2,100 orphaned pages back into the internal link graph effectively tripled their crawl frequency — without touching a single line of content or building a single backlink.</p>
+    </div>
+    <div class="case-nav-bottom">
+      <a href="index.html#portfolio" class="cnb-prev">← All Case Studies</a>
+      <a href="case-study-02-ga4-reporting.html" class="cnb-next">GA4 Reporting Architecture →</a>
+    </div>
+  </main>
+  <aside class="case-sidebar">
+    <div class="sb-card">
+      <div class="sb-title">Key Results</div>
+      <div class="sb-metric"><span class="sb-metric-label">Organic Traffic</span><span class="sb-metric-val">+40%</span></div>
+      <div class="sb-metric"><span class="sb-metric-label">Crawl Errors Fixed</span><span class="sb-metric-val">1,200+</span></div>
+      <div class="sb-metric"><span class="sb-metric-label">CWV Score (LCP)</span><span class="sb-metric-val">1.8s → 1.1s</span></div>
+      <div class="sb-metric"><span class="sb-metric-label">Indexed Pages</span><span class="sb-metric-val">+2,100</span></div>
+      <div class="sb-metric"><span class="sb-metric-label">Timeline</span><span class="sb-metric-val">4 months</span></div>
+    </div>
+    <div class="sb-card">
+      <div class="sb-title">Tools Used</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px">
+        <span class="sb-tag">Screaming Frog</span>
+        <span class="sb-tag">Google Search Console</span>
+        <span class="sb-tag">Ahrefs</span>
+        <span class="sb-tag">PageSpeed Insights</span>
+        <span class="sb-tag">Google Lighthouse</span>
+        <span class="sb-tag">Sitebulb</span>
+      </div>
+    </div>
+    <div class="sb-card">
+      <div class="sb-title">Tags</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px">
+        <span class="sb-tag">Technical SEO</span>
+        <span class="sb-tag">Core Web Vitals</span>
+        <span class="sb-tag">Crawlability</span>
+        <span class="sb-tag">Indexation</span>
+        <span class="sb-tag">Fintech</span>
+      </div>
+    </div>
+    <div class="sb-card" style="background:var(--ink);color:#fff">
+      <div style="font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.5);margin-bottom:12px">Interested in similar results?</div>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:14px">I'm open to freelance, consulting, and full-time SEO roles. Let's talk.</p>
+      <a href="index.html#contact" style="display:inline-block;background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;padding:10px 20px;border-radius:8px;text-decoration:none">Get in Touch →</a>
+    </div>
+  </aside>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="foot-brand">
+      <h3>Lochan <span>Yadav</span></h3>
+      <p>Lead SEO Analyst driving organic growth for fintech &amp; e-commerce brands. Based in Hindupur, Andhra Pradesh.</p>
+      <div class="foot-social">
+        <a href="https://linkedin.com/in/lochan-yadav-0a26261a3" class="foot-soc" target="_blank">in</a>
+        <a href="https://github.com/yadavgollalochan-blip/Lochan-Projects" class="foot-soc" target="_blank">gh</a>
+        <a href="mailto:lochan.yadavgolla@gmail.com" class="foot-soc">✉</a>
+        <a href="tel:+918951712138" class="foot-soc">☎</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Case Studies</h4>
+      <a href="case-study-01-site-health-overhaul.html">Site Health Overhaul</a>
+      <a href="case-study-02-ga4-reporting.html">GA4 Reporting</a>
+      <a href="case-study-03-bfsi-keyword-mapping.html">BFSI Keywords</a>
+      <a href="index.html#portfolio">All Case Studies →</a>
+    </div>
+    <div class="foot-col">
+      <h4>Tools</h4>
+      <a href="tool-01-meta-tag-extractor.html">Meta Tag Extractor</a>
+      <a href="tool-02-serp-preview.html">SERP Preview</a>
+      <a href="tools.html">All 9 Tools →</a>
+    </div>
+    <div class="foot-col">
+      <h4>Blog</h4>
+      <a href="blog-aeo.html">AEO Guide</a>
+      <a href="blog-geo.html">GEO Guide</a>
+      <a href="blog.html">All Articles →</a>
+    </div>
+  </div>
+  <p class="foot-copy">© 2026 <strong>Lochan Yadav</strong> · Lead SEO Analyst · <a href="sitemap.xml" style="color:rgba(255,255,255,.4)">Sitemap</a></p>
+</footer>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<script>
+window.addEventListener('scroll',()=>{
+  const st=document.documentElement.scrollTop;
+  const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('prog').style.width=(st/sh*100)+'%';
+  document.getElementById('btt').classList.toggle('show',st>300);
+  document.getElementById('navbar').classList.toggle('scrolled',st>10);
+});
+const ham=document.getElementById('ham');
+const mn=document.getElementById('mobnav');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mn.classList.toggle('open')});
+</script>
+</body>
+</html>
