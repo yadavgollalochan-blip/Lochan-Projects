@@ -38,18 +38,22 @@ a{text-decoration:none;color:inherit}
 .nav-right a:hover{background:var(--c2)}
 
 /* HERO */
-.course-hero{background:var(--ink);padding:56px 32px 64px;text-align:center;position:relative;overflow:hidden}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.07) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.course-hero{background:linear-gradient(135deg,#e3f4f0 0%,#edf0fb 100%);padding:56px 32px 64px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(0,151,167,.12)}
+.hero-grid{display:none}
 .hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:24px;transition:color .18s}
-.back-link:hover{color:rgba(255,255,255,.8)}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.35);color:rgba(180,150,255,.95);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:5px 16px;border-radius:20px;margin-bottom:20px}
-.course-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
-.course-hero .subtitle{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.85;max-width:580px;margin:0 auto 28px}
-.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;padding:20px 0;border-top:1px solid rgba(255,255,255,.08)}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:#4a6360;font-size:.75rem;margin-bottom:24px;transition:color .18s}
+.back-link:hover{color:#0097a7}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(0,151,167,.1);border:1px solid rgba(0,151,167,.25);color:#0097a7;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:5px 16px;border-radius:20px;margin-bottom:20px}
+.course-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#1a2e2b;line-height:1.1;margin-bottom:16px}
+.course-hero .subtitle{font-size:.95rem;color:#4a6360;line-height:1.85;max-width:580px;margin:0 auto 28px}
+.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;padding:20px 0;border-top:1px solid rgba(0,151,167,.15)}
 .hs-item{text-align:center}
-.hs-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#fff;display:block;line-height:1}
-.hs-label{font-size:.68rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+.hs-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#1a2e2b;display:block;line-height:1}
+.hs-label{font-size:.68rem;color:#4a6360;text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+.course-breadcrumb{max-width:1160px;margin:14px auto 0;padding:0 32px;font-size:.75rem;color:#4a6360;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.course-breadcrumb a{color:#4a6360;text-decoration:none;transition:color .18s}
+.course-breadcrumb a:hover{color:#0097a7}
+.course-breadcrumb-sep{color:rgba(0,151,167,.4)}
 
 /* PROGRESS BAR */
 .progress-bar-wrap{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 32px}
@@ -191,6 +195,13 @@ footer{background:var(--ink);padding:32px;text-align:center}
       <div class="hs-item"><span class="hs-num">2026</span><div class="hs-label">Updated</div></div>
     </div>
   </div>
+</div>
+<div class="course-breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="course-breadcrumb-sep">›</span>
+  <a href="courses.html">Courses</a>
+  <span class="course-breadcrumb-sep">›</span>
+  <span>Search Engine Optimization</span>
 </div>
 
 <!-- PROGRESS BAR -->

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>HTML Sitemap Extractor — SEO Tools | Lochan Yadav</title>
 <meta name="description" content="Free HTML sitemap extractor. Paste any HTML page to extract all links with anchor text, URL, type and path depth. Filter internal vs external, export to CSV.">
-<link rel="canonical" href="https://lochan.online/tool-11-html-sitemap-extractor.html"/>
+<link rel="canonical" href="https://lochan.online/tool-html-sitemap-extractor.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
 <style>
@@ -24,9 +24,9 @@ a{color:var(--accent);text-decoration:none;}
 .nav-link{color:var(--muted);font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px;text-decoration:none;transition:all .2s;}
 .nav-link:hover{color:var(--text);background:var(--surface2);}
 .nav-back{background:rgba(124,77,255,.15);border:1px solid rgba(124,77,255,.4);color:#b388ff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:6px;text-decoration:none;}
-.hero{background:linear-gradient(135deg,rgba(124,77,255,.07),rgba(0,212,255,.05));border-bottom:1px solid var(--border);padding:36px 28px 30px;text-align:center;}
-.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#b388ff;background:rgba(124,77,255,.12);border:1px solid rgba(124,77,255,.3);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
-.hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,#b388ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero{background:linear-gradient(135deg,#e3f4f0 0%,#edf0fb 100%);border-bottom:1px solid var(--border);padding:36px 28px 30px;text-align:center;color:#1a2e2b;}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#0097a7;background:rgba(0,151,167,.1);border:1px solid rgba(0,151,167,.25);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;color:#1a2e2b;}
 .hero p{color:var(--muted);font-size:14px;max-width:600px;margin:0 auto 18px;line-height:1.7;}
 .hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
 .badge{font-size:11px;font-weight:600;padding:4px 12px;border-radius:12px;border:1px solid;display:inline-flex;align-items:center;gap:5px;}
@@ -131,6 +131,10 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:24px
 footer a{color:var(--accent);}
 .toggle-wrap input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px;}
 @media(max-width:700px){.stats-row{grid-template-columns:repeat(3,1fr)}.nav-links{display:none}}
+.breadcrumb{max-width:1200px;margin:0 auto;padding:12px 28px 0;font-size:12px;color:#546e69;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.breadcrumb a{color:#546e69;text-decoration:none;}
+.breadcrumb a:hover{color:#0097a7;text-decoration:underline;}
+.breadcrumb-sep{color:#9ab8b4;font-size:11px;}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -143,6 +147,7 @@ footer a{color:var(--accent);}
     <a href="tool-10-xml-sitemap-extractor.html" class="nav-back">← XML Extractor</a>
   </div>
 </nav>
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="tools.html">Tools</a><span class="breadcrumb-sep">›</span><span>HTML Sitemap Extractor</span></nav>
 
 <div class="hero">
   <div class="hero-cat">🔗 Tool 11 · Technical SEO</div>

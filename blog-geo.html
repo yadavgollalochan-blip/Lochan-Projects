@@ -27,9 +27,18 @@ a{text-decoration:none;color:inherit}img{max-width:100%;display:block}
 .nav-center a:hover{color:var(--ink);background:var(--bg2)}.nav-center a.active{color:var(--accent);font-weight:600;background:var(--accent-lt)}
 .nav-right a{background:var(--accent);color:#fff;padding:8px 18px;border-radius:6px;font-weight:700;font-size:.78rem;transition:background .18s}
 .nav-right a:hover{background:var(--accent2)}
-.breadcrumb{max-width:1200px;margin:20px auto 0;padding:0 32px;font-size:.75rem;color:var(--muted2);display:flex;align-items:center;gap:8px}
-.breadcrumb a{color:var(--muted2);text-decoration:none;transition:color .18s}.breadcrumb a:hover{color:var(--accent)}.breadcrumb-sep{color:var(--border2)}
-.article-wrap{max-width:1200px;margin:0 auto;padding:40px 32px 80px;display:grid;grid-template-columns:220px 1fr 280px;gap:44px;align-items:start}
+.article-page-hero{background:linear-gradient(135deg,#e3f4f0 0%,#edf0fb 100%);padding:48px 32px 40px;border-bottom:1px solid rgba(0,151,167,.12)}
+.article-page-hero-inner{max-width:860px;margin:0 auto;text-align:center}
+.aph-cat{display:inline-flex;align-items:center;gap:6px;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:4px 14px;border-radius:20px;margin-bottom:16px;background:rgba(0,151,167,.1);color:#0097a7;border:1px solid rgba(0,151,167,.25)}
+.aph-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:900;line-height:1.18;color:#1a2e2b;letter-spacing:-.025em;margin-bottom:18px}
+.aph-meta{display:flex;align-items:center;justify-content:center;gap:16px;font-size:.76rem;color:#4a6360;flex-wrap:wrap}
+.aph-meta-sep{width:3px;height:3px;background:#0097a7;border-radius:50%;display:inline-block;opacity:.5}
+.aph-author{display:flex;align-items:center;gap:8px}
+.aph-av{width:30px;height:30px;border-radius:50%;background:rgba(0,151,167,.15);border:1.5px solid rgba(0,151,167,.3);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:#0097a7}
+.aph-author-name{font-weight:600;color:#1a2e2b}
+.breadcrumb{max-width:1200px;margin:14px auto 0;padding:0 32px;font-size:.75rem;color:#4a6360;display:flex;align-items:center;gap:8px}
+.breadcrumb a{color:#4a6360;text-decoration:none;transition:color .18s}.breadcrumb a:hover{color:var(--accent)}.breadcrumb-sep{color:rgba(0,151,167,.4)}
+.article-wrap{max-width:1200px;margin:0 auto;padding:28px 32px 80px;display:grid;grid-template-columns:220px 1fr 280px;gap:44px;align-items:start}
 .toc-sidebar{position:sticky;top:80px}.article-main{min-width:0}.right-sidebar{position:sticky;top:80px;display:flex;flex-direction:column;gap:24px}
 .toc-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
 .toc-title{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted2);margin-bottom:14px}
@@ -125,6 +134,22 @@ footer a{color:rgba(255,255,255,.65);text-decoration:none;margin:0 10px}footer a
     </div>
     <div class="nav-right"><a href="mailto:lochan.yadavgolla@gmail.com">Hire Me</a></div>
 </div></nav>
+<!-- ARTICLE HERO -->
+<div class="article-page-hero">
+  <div class="article-page-hero-inner">
+    <div class="aph-cat">GEO · Generative Engine Optimization</div>
+    <h2 class="aph-title">GEO: Optimizing for AI-Generated Search Results in 2025 — A Practical Guide</h2>
+    <div class="aph-meta">
+      <div class="aph-author"><div class="aph-av">LY</div><span class="aph-author-name">Lochan Yadav</span></div>
+      <span class="aph-meta-sep"></span>
+      <span>April 28, 2026</span>
+      <span class="aph-meta-sep"></span>
+      <span>11 min read</span>
+      <span class="aph-meta-sep"></span>
+      <span>Lead SEO Analyst, BankBazaar</span>
+    </div>
+  </div>
+</div>
 <div class="breadcrumb">
   <a href="index.html">Home</a><span class="breadcrumb-sep">›</span>
   <a href="blog.html">Blog</a><span class="breadcrumb-sep">›</span>

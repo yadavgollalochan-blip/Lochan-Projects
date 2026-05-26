@@ -46,17 +46,21 @@ a{text-decoration:none;color:inherit}
 .nav-right a:hover{background:var(--accent2)}
 
 /* ── HERO ── */
-.page-hero{background:var(--ink);color:#fff;padding:64px 32px 56px;text-align:center;position:relative;overflow:hidden}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.07) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.page-hero{background:linear-gradient(135deg,#e3f4f0 0%,#edf0fb 100%);color:#1a2e2b;padding:64px 32px 56px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(0,151,167,.12)}
+.hero-grid{display:none}
 .hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
-.hero-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(192,124,42,.9);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
-.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:rgba(192,124,42,.5)}
-.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.1;margin-bottom:16px;color:#fff}
-.page-hero p{font-size:.95rem;color:rgba(255,255,255,.55);max-width:560px;margin:0 auto 28px;line-height:1.85}
+.hero-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#0097a7;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:rgba(0,151,167,.4)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.1;margin-bottom:16px;color:#1a2e2b}
+.page-hero p{font-size:.95rem;color:#4a6360;max-width:560px;margin:0 auto 28px;line-height:1.85}
 .hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:12px}
 .hs{display:flex;flex-direction:column;align-items:center}
-.hs-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
-.hs-lbl{font-size:.65rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+.hs-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:#0097a7;line-height:1}
+.hs-lbl{font-size:.65rem;color:#4a6360;text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+.page-breadcrumb{max-width:1200px;margin:14px auto 0;padding:0 32px;font-size:.75rem;color:#4a6360;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.page-breadcrumb a{color:#4a6360;text-decoration:none;transition:color .18s}
+.page-breadcrumb a:hover{color:var(--accent)}
+.page-breadcrumb-sep{color:rgba(0,151,167,.4)}
 
 /* ── FILTER BAR ── */
 .filter-bar{max-width:1200px;margin:40px auto 0;padding:0 32px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -158,6 +162,12 @@ footer a:hover{color:#fff}
   </div>
 </div>
 
+<div class="page-breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="page-breadcrumb-sep">›</span>
+  <span>Tools</span>
+</div>
+
 <!-- FILTER BAR -->
 <div class="filter-bar">
   <span class="filter-label">Category:</span>
@@ -197,7 +207,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">Canonical URLs</span>
           <span class="tool-feat">Bulk URLs</span>
         </div>
-        <a href="tool-01-meta-tag-extractor.html" class="tool-open">Open Tool →</a>
+        <a href="tool-meta-tag-extractor.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -226,7 +236,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">Mobile &amp; Desktop</span>
           <span class="tool-feat">Pixel Width</span>
         </div>
-        <a href="tool-02-serp-preview.html" class="tool-open">Open Tool →</a>
+        <a href="tool-serp-preview.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -256,7 +266,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">Schema Detect</span>
           <span class="tool-feat">AI Visibility</span>
         </div>
-        <a href="tool-03-seo-geo-audit.html" class="tool-open">Open Tool →</a>
+        <a href="tool-seo-geo-audit.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -286,7 +296,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">Copy &amp; Download</span>
           <span class="tool-feat">Rich Results Ready</span>
         </div>
-        <a href="tool-04-faq-schema-generator.html" class="tool-open">Open Tool →</a>
+        <a href="tool-faq-schema-generator.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -317,7 +327,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">JSON-LD</span>
           <span class="tool-feat">Validation Guide</span>
         </div>
-        <a href="tool-05-schema-markup-generator.html" class="tool-open">Open Tool →</a>
+        <a href="tool-schema-markup-generator.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -348,7 +358,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">Phrase Analysis</span>
           <span class="tool-feat">Word Cloud</span>
         </div>
-        <a href="tool-06-keyword-density-analyzer.html" class="tool-open">Open Tool →</a>
+        <a href="tool-keyword-density-analyzer.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -379,7 +389,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">AI Bot Blocking</span>
           <span class="tool-feat">One-Click Download</span>
         </div>
-        <a href="tool-07-robots-txt-generator.html" class="tool-open">Open Tool →</a>
+        <a href="tool-robots-txt-generator.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -411,7 +421,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">XML Sitemap</span>
           <span class="tool-feat">5 Region Presets</span>
         </div>
-        <a href="tool-08-hreflang-generator.html" class="tool-open">Open Tool →</a>
+        <a href="tool-hreflang-generator.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -445,7 +455,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">JSON-LD + HTML</span>
           <span class="tool-feat">Live Preview</span>
         </div>
-        <a href="tool-09-faqs-auto-builder.html" class="tool-open">Open Tool →</a>
+        <a href="tool-faqs-auto-builder.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -478,7 +488,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">Sort &amp; Filter</span>
           <span class="tool-feat">CSV Export</span>
         </div>
-        <a href="tool-10-xml-sitemap-extractor.html" class="tool-open">Open Tool →</a>
+        <a href="tool-xml-sitemap-extractor.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 
@@ -511,7 +521,7 @@ footer a:hover{color:#fff}
           <span class="tool-feat">Nofollow Detection</span>
           <span class="tool-feat">Directory Chart</span>
         </div>
-        <a href="tool-11-html-sitemap-extractor.html" class="tool-open">Open Tool →</a>
+        <a href="tool-html-sitemap-extractor.html" class="tool-open">Open Tool →</a>
       </div>
     </div>
 

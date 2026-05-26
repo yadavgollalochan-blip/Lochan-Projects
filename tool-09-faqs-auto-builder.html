@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>FAQs Auto-Builder — Trending Google FAQs | Lochan Yadav SEO Tools</title>
 <meta name="description" content="Find trending Google FAQs for any keyword using real autocomplete data. Fetch People Also Ask style questions, edit answers, and export JSON-LD schema instantly.">
-<link rel="canonical" href="https://lochan.online/tool-09-faqs-auto-builder.html">
+<link rel="canonical" href="https://lochan.online/tool-faqs-auto-builder.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -31,13 +31,13 @@ a{text-decoration:none;color:var(--acc)}
 .nav-back{color:var(--muted);font-size:.78rem;font-weight:500;padding:5px 10px;border-radius:6px;border:1px solid var(--border)}
 .nav-back:hover{color:var(--ink)}
 .nav-badge{background:var(--acc-lt);border:1px solid var(--acc-glow);color:var(--acc);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:4px 12px;border-radius:20px}
-.hero{text-align:center;padding:44px 32px 36px;position:relative;border-bottom:1px solid var(--border)}
+.hero{text-align:center;padding:44px 32px 36px;position:relative;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#e3f4f0 0%,#edf0fb 100%);color:#1a2e2b;}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(245,158,11,.08),transparent);pointer-events:none}
 .hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
-.hero-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
+.hero-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#0097a7;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:var(--acc-glow)}
-.hero h1{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;line-height:1.1;margin-bottom:12px;letter-spacing:-.025em}
-.hero h1 span{color:var(--acc)}
+.hero h1{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;line-height:1.1;margin-bottom:12px;letter-spacing:-.025em;color:#1a2e2b;}
+.hero h1 span{color:#0097a7;}
 .hero p{font-size:.88rem;color:var(--muted);line-height:1.8;max-width:520px;margin:0 auto 18px}
 .hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .badge{padding:4px 12px;border-radius:6px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border:1px solid}
@@ -118,6 +118,10 @@ a{text-decoration:none;color:var(--acc)}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:2px;transition:width .25s}
 .err-box{background:var(--red-lt);border:1px solid rgba(248,113,113,.25);border-radius:8px;padding:14px 18px;color:var(--red);font-size:.83rem}
 @media(max-width:640px){.search-row{flex-direction:column}.btn-fetch{width:100%;justify-content:center}.search-card{padding:20px}.nav{padding:0 16px}.hero{padding:32px 16px 28px}.action-row{width:100%}}
+.breadcrumb{max-width:1200px;margin:0 auto;padding:12px 28px 0;font-size:12px;color:#546e69;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.breadcrumb a{color:#546e69;text-decoration:none;}
+.breadcrumb a:hover{color:#0097a7;text-decoration:underline;}
+.breadcrumb-sep{color:#9ab8b4;font-size:11px;}
 </style>
 </head>
 <body>
@@ -129,6 +133,7 @@ a{text-decoration:none;color:var(--acc)}
   </div>
   <span style="font-size:.72rem;color:var(--muted)">Lochan Yadav · SEO Toolkit</span>
 </nav>
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="tools.html">Tools</a><span class="breadcrumb-sep">›</span><span>FAQs Auto-Builder</span></nav>
 
 <div class="hero">
   <div class="hero-inner">

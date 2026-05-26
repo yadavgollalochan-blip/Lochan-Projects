@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Meta Tag Extractor – SEO Pro Tools</title>
+<link rel="canonical" href="https://lochan.online/tool-meta-tag-extractor.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -20,12 +21,14 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-s
 .navbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .nav-brand{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;color:var(--accent);text-decoration:none;}
 .nav-brand span{color:var(--text);font-weight:600;}
+.nav-brand{color:#1a2e2b !important;}
+.nav-brand span{color:#0097a7 !important;}
 .nav-num{font-size:11px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--purple));color:#000;padding:3px 10px;border-radius:20px;}
 
 /* ── Hero ── */
-.hero{background:linear-gradient(135deg,rgba(0,212,255,.07),rgba(124,77,255,.07));border-bottom:1px solid var(--border);padding:34px 28px 28px;text-align:center;}
-.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--accent);background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
-.hero h1{font-size:clamp(22px,4vw,34px);font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero{background:linear-gradient(135deg,#e3f4f0 0%,#edf0fb 100%);color:#1a2e2b;border-bottom:1px solid var(--border);padding:34px 28px 28px;text-align:center;}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#0097a7;background:rgba(0,151,167,.1);border:1px solid rgba(0,151,167,.25);padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.hero h1{font-size:clamp(22px,4vw,34px);font-weight:800;margin-bottom:8px;color:#1a2e2b;}
 .hero p{color:var(--muted);font-size:14px;max-width:600px;margin:0 auto;line-height:1.7;}
 
 /* ── Container ── */
@@ -186,6 +189,10 @@ textarea::placeholder{color:var(--muted);font-family:'Inter',sans-serif;}
 ::-webkit-scrollbar{width:6px;height:6px;}
 ::-webkit-scrollbar-track{background:var(--surface);}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+.breadcrumb{max-width:1200px;margin:0 auto;padding:12px 28px 0;font-size:12px;color:#546e69;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.breadcrumb a{color:#546e69;text-decoration:none;}
+.breadcrumb a:hover{color:#0097a7;text-decoration:underline;}
+.breadcrumb-sep{color:#9ab8b4;font-size:11px;}
 </style>
 </head>
 <body>
@@ -197,6 +204,8 @@ textarea::placeholder{color:var(--muted);font-family:'Inter',sans-serif;}
     <span class="nav-num">Tool #01</span>
   </div>
 </nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="tools.html">Tools</a><span class="breadcrumb-sep">›</span><span>Meta Tag Extractor</span></nav>
 
 <section class="hero">
   <div class="hero-cat">🏷️ On-Page SEO</div>

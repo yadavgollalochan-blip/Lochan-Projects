@@ -62,13 +62,17 @@ img{max-width:100%;display:block}
 .nav-right a:hover{background:var(--accent2)}
 
 /* PAGE HERO */
-.page-hero{background:var(--ink);color:#fff;padding:56px 32px;text-align:center;position:relative;overflow:hidden}
-.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.08) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.page-hero{background:linear-gradient(135deg,#e3f4f0 0%,#edf0fb 100%);color:#1a2e2b;padding:56px 32px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(0,151,167,.12)}
+.page-hero-grid{display:none}
 .page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
-.page-hero-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(192,124,42,.8);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
-.page-hero-eyebrow::before,.page-hero-eyebrow::after{content:'';width:28px;height:1px;background:rgba(192,124,42,.5)}
-.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.1;margin-bottom:16px;color:#fff}
-.page-hero p{font-size:.95rem;color:rgba(255,255,255,.55);max-width:520px;margin:0 auto;line-height:1.85}
+.page-hero-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#0097a7;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
+.page-hero-eyebrow::before,.page-hero-eyebrow::after{content:'';width:28px;height:1px;background:rgba(0,151,167,.4)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.1;margin-bottom:16px;color:#1a2e2b}
+.page-hero p{font-size:.95rem;color:#4a6360;max-width:520px;margin:0 auto;line-height:1.85}
+.page-breadcrumb{max-width:1160px;margin:14px auto 0;padding:0 32px;font-size:.75rem;color:#4a6360;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.page-breadcrumb a{color:#4a6360;text-decoration:none;transition:color .18s}
+.page-breadcrumb a:hover{color:var(--accent)}
+.page-breadcrumb-sep{color:rgba(0,151,167,.4)}
 
 /* COURSE GRID */
 .courses-section{max-width:1160px;margin:0 auto;padding:56px 32px 80px}
@@ -156,6 +160,11 @@ footer{background:var(--ink);padding:32px;text-align:center}
     <h1>Learn the Skills That Drive Results</h1>
     <p>Short, practical guides on every major digital marketing discipline — written by a practitioner, not a textbook. Read each in under 3 minutes.</p>
   </div>
+</div>
+<div class="page-breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="page-breadcrumb-sep">›</span>
+  <span>Courses</span>
 </div>
 
 <!-- COURSES GRID -->
